@@ -1,0 +1,31 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/posix_linux_x11/x86/debug/pt_matc_test", //should set a.out in obj here instead of in libs
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            //"miDebuggerServerAddress": ":27177",
+            "MIMode": "gdb",
+            //"miDebuggerPath": "${env:HOME}/.local/libexec/android-ndk-r14b/prebuilt/linux-x86_64/bin/gdb",
+            //"miDebuggerArgs": "--init-command=${workspaceFolder}/Runtime/Solution/PosixLinuxX11/libs/x86_64/gdb.setup",
+            "additionalSOLibSearchPath": "${workspaceFolder}/bin/posix_linux_x11/x86/debug",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        }
+    ]
+}

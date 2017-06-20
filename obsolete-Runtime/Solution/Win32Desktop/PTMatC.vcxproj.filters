@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\Private\MatC\MDL\MDLFrontend.cpp">
+      <Filter>Private\MatC\MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Private\MatC\MDL\MDLParserForward.cpp">
+      <Filter>Private\MatC\MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Solution\Win32Desktop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Private\MatC\MDL\MDLParserYacc.c">
+      <Filter>Private\MatC\MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Private\MatC\MDL\MDLScannerLex.c">
+      <Filter>Private\MatC\MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Private\MatC\MDL\MDLParserCXX.cpp">
+      <Filter>Private\MatC\MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Private\MatC\MDL\MDLScannerCXX.cpp">
+      <Filter>Private\MatC\MDL</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Public">
+      <UniqueIdentifier>{a0a4d2d1-3672-4cf7-b128-4f5a43c9b5d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private">
+      <UniqueIdentifier>{5b84cb1c-38fa-44ac-a335-8de7514b16a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\MatC">
+      <UniqueIdentifier>{fe6cec23-c6fe-422c-8e4a-19b465f18714}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\MatC\MDL">
+      <UniqueIdentifier>{13ac27a5-6632-4765-9580-dba7e6c06d0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Solution">
+      <UniqueIdentifier>{71e5c8aa-fc70-434a-9834-ece20b924b11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Solution\Win32Desktop">
+      <UniqueIdentifier>{5b03d83a-f5e2-4f10-9ff8-468c700b18ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\MatC">
+      <UniqueIdentifier>{608e0610-bca2-4cd8-91d3-7437195b42cf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Public\PTCommon.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Private\MatC\MDL\MDLAST.h">
+      <Filter>Private\MatC\MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Private\MatC\MDL\MDLFrontend.h">
+      <Filter>Private\MatC\MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Private\MatC\MDL\MDLParser.h">
+      <Filter>Private\MatC\MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\MatC\PT_MatC_Common.h">
+      <Filter>Public\MatC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\MatC\PT_MatC_Frontend.h">
+      <Filter>Public\MatC</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Private\MatC\MDL\MDLParserYacc.inl">
+      <Filter>Private\MatC\MDL</Filter>
+    </None>
+    <None Include="..\..\Private\MatC\MDL\MDLScannerLex.inl">
+      <Filter>Private\MatC\MDL</Filter>
+    </None>
+  </ItemGroup>
+</Project>

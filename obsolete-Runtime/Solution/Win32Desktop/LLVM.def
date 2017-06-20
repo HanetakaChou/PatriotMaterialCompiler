@@ -1,0 +1,8 @@
+LIBRARY
+	EXPORTS
+		LLVMContextCreate
+		LLVMFloatTypeInContext
+		LLVMInt32TypeInContext
+		LLVMPointerType
+		LLVMStructCreateNamed
+		LLVMStructSetBody

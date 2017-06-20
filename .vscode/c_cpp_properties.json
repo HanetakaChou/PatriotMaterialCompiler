@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "compilerPath": "/usr/bin/clang++",
+            "intelliSenseMode": "clang-x64",
+            "defines": [
+                "PT_MATC_ATTR=PT_EXPORT"
+            ],
+            "cStandard": "c99",
+            "cppStandard": "c++11"
+        }
+    ],
+    "version": 4
+}
