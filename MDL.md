@@ -27,9 +27,11 @@
 >>>>> MDL::compile_module \[src/mdl/compiler/compilercore/compilercore_mdl.cpp\]  
 >>>>>>  
 >>>>>> **MDL::load_module\(IModule_cache \*, IInput_stream \*\)** \[src/mdl/compiler/compilercore/compilercore_mdl.cpp\]       
-  
-Regular Expression  
+
 Regular Language  
-DFA  
+
+Regular Expression // | () *   
+ ↓  
 NFA  
-子集构造法（powerset construction/subset construction）  
+ ↓ 幂集构造法(powerset construction)/子集构造法(subset construction)  //算法一定会终止 因为 设NFA的状态为n个 非空子集的个数不会超过$2^n-1$  
+DFA  
