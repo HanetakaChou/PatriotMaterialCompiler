@@ -28,7 +28,9 @@
 >>>>>>  
 >>>>>> **MDL::load_module\(IModule_cache \*, IInput_stream \*\)** \[src/mdl/compiler/compilercore/compilercore_mdl.cpp\]       
 
-Regular Language  
+Scanner/Lex  
+   
+Regular Language //三型文法
 
 RE(Regular Expression) // | () *  //可以参考YACC中的记法     
  ↓ Thompson's construction    
@@ -37,6 +39,9 @@ NFA(Nondeterministic Finite Automaton) //从某个状态出发，同一个字符
 DFA(Deterministic Finite Automaton) //不同的终止状态对应Token的不同类型 //优化： DFA minimization    
   
 DFA -> 转移表(translate table) //YACC: yytranslate_    
+
+Parser/Syntax   
+Context-Free Grammar //二型文法  
   
 ## libbsdf  
 **LLVM_code_generator::load_and_link_libbsdf**  
