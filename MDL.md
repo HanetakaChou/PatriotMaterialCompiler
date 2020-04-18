@@ -41,8 +41,21 @@ DFA(Deterministic Finite Automaton) //不同的终止状态对应Token的不同�
 DFA -> 转移表(translate table) //YACC: yytranslate_    
 
 Parser/Syntax   
-Context-Free Grammar //二型文法  
-  
+Context-Free Grammar //二型文法   
+G = {N, T, P, S}  
+
+YACC约定 //Bison    
+开始符号S 第一个产生式规则  
+非终结符N 小写  
+终结符T 大写  
+
+BNF范式 //Coco/R  
+非终结符N \<symbol\>  
+终结符T $\underline{symbol}$  
+
+-> AST //开始符号S -> AST的根结点   
+   
+   
 ## libbsdf  
 **LLVM_code_generator::load_and_link_libbsdf**  
 
