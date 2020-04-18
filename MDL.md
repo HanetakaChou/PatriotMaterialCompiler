@@ -30,11 +30,13 @@
 
 Regular Language  
 
-RE(Regular Expression) // | () *   
- ↓  
-NFA  
+RE(Regular Expression) // | () *  //可以参考YACC中的记法     
+ ↓ Thompson's construction    
+NFA(Nondeterministic Finite Automaton) //从某个状态出发，同一个字符可能对应多个不同的边（即产生不同的转移结果） //可能存在空字符对应的边(即空字符转换)，Thompson's construction会生成"空字符转换"         
  ↓ 幂集构造法(powerset construction)/子集构造法(subset construction)  //算法一定会终止 因为 设NFA的状态为n个 非空子集的个数不会超过$2^n-1$  
-DFA  
+DFA(Deterministic Finite Automaton) //不同的终止状态对应Token的不同类型 //优化： DFA minimization    
+  
+DFA -> 转移表(translate table) //YACC: yytranslate_    
   
 ## libbsdf  
 **LLVM_code_generator::load_and_link_libbsdf**  
