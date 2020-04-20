@@ -67,26 +67,28 @@ digraph finite_state_machine {
 
     s->l [ label = "l" ];
     l->li [ label = "i" ];
+    l->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'h\' | \'j\'..\'z\' | \'0\'..\'9\' | _ " ];
     li->lig [ label = "g" ];
+    li->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'f\' | \'h\'..\'z\' | \'0\'..\'9\' | _ " ];
     lig->ligh [ label = "h" ];
+    lig->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'g\' | \'i\'..\'z\' | \'0\'..\'9\' | _ " ];
     ligh->light [ label = "t" ];
+    ligh->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'s\' | \'u\'..\'z\' | \'0\'..\'9\' | _ " ];
     light->light_ [ label = "_" ];
+    light->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'z\' | \'0\'..\'9\' " ];
     light_->light_p [ label = "p" ];
+    light_->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'o\' | \'q\'..\'z\' | \'0\'..\'9\' | _ " ];    
     light_p->light_pr [ label = "r" ];
+    light_p->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'q\' | \'s\'..\'z\' | \'0\'..\'9\' | _ " ];    
     light_pr->light_pro [ label = "o" ];
+    light_pr->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'n\' | \'p\'..\'z\' | \'0\'..\'9\' | _ " ];    
     light_pro->light_prof [ label = "f" ];
+    light_pro->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'e\' | \'h\'..\'z\' | \'0\'..\'9\' | _ " ];    
     light_prof->light_profi [ label = "i" ];
+    light_prof->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'h\' | \'j\'..\'z\' | \'0\'..\'9\' | _ " ];    
     light_profi->light_profil [ label = "l" ];
+    light_profi->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'k\' | \'m\'..\'z\' | \'0\'..\'9\' | _ " ];    
     light_profil->LIGHT_PROFILE [ label = "e" ];
+    light_profil->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'d\' | \'f\'..\'z\' | \'0\'..\'9\' | _ " ];    
     LIGHT_PROFILE->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'z\' | \'0\'..\'9\' | _ " ];
-
-    //node [shape = doublecircle]; q1;
-
-    //qi -> S;
-    //S  -> q1 [ label = "a" ];
-    //S  -> S  [ label = "a" ];
-    //q1 -> S  [ label = "a" ];
-    //q1 -> q2 [ label = "ddb" ];
-    //q2 -> q1 [ label = "b" ];
-    //q2 -> q2 [ label = "b" ];
 }
