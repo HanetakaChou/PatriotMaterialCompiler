@@ -32,7 +32,7 @@
 
 // First part of user declarations.
 
-#line 37 "./mdl/../parser.inl" // lalr1.cc:404
+#line 37 "mdl/../parser.inl" // lalr1.cc:404
 
 #ifndef YY_NULLPTR
 #if defined __cplusplus && 201103L <= __cplusplus
@@ -105,7 +105,7 @@
 
 namespace yy
 {
-#line 116 "./mdl/../parser.inl" // lalr1.cc:408
+#line 116 "mdl/../parser.inl" // lalr1.cc:408
 
 template <class T, class S = std::vector<T>>
 class stack
@@ -533,30 +533,30 @@ private:
   enum
   {
     yyeof_ = 0,
-    yylast_ = 13,  ///< Last index in yytable_.
-    yynnts_ = 3,   ///< Number of nonterminal symbols.
-    yyfinal_ = 13, ///< Termination state number.
+    yylast_ = 15,  ///< Last index in yytable_.
+    yynnts_ = 6,   ///< Number of nonterminal symbols.
+    yyfinal_ = 16, ///< Termination state number.
     yyterror_ = 1,
     yyerrcode_ = 256,
-    yyntokens_ = 14 ///< Number of tokens.
+    yyntokens_ = 15 ///< Number of tokens.
   };
 };
 
 } // namespace yy
-#line 564 "./mdl/../parser.inl" // lalr1.cc:408
+#line 564 "mdl/../parser.inl" // lalr1.cc:408
 
 // User implementation prologue.
 
-#line 572 "./mdl/../parser.inl" // lalr1.cc:412
+#line 572 "mdl/../parser.inl" // lalr1.cc:412
 // Unqualified %code blocks.
-#line 4 "./mdl/parser.y" // lalr1.cc:413
+#line 4 "mdl/parser.y" // lalr1.cc:413
 
 namespace yy
 {
 int yylex(parser::semantic_type *yylval);
 }
 
-#line 581 "./mdl/../parser.inl" // lalr1.cc:413
+#line 581 "mdl/../parser.inl" // lalr1.cc:413
 
 #ifndef YY_
 #if defined YYENABLE_NLS && YYENABLE_NLS
@@ -627,7 +627,7 @@ int yylex(parser::semantic_type *yylval);
 
 namespace yy
 {
-#line 648 "./mdl/../parser.inl" // lalr1.cc:479
+#line 648 "mdl/../parser.inl" // lalr1.cc:479
 
 /// Build a parser object.
 parser::parser()
@@ -1019,7 +1019,7 @@ int parser::parse()
         switch (yyn)
         {
 
-#line 1071 "./mdl/../parser.inl" // lalr1.cc:859
+#line 1071 "mdl/../parser.inl" // lalr1.cc:859
         default:
           break;
         }
@@ -1175,75 +1175,79 @@ parser::yysyntax_error_(state_type, const symbol_type &) const
   return YY_("syntax error");
 }
 
-const signed char parser::yypact_ninf_ = -5;
+const signed char parser::yypact_ninf_ = -6;
 
 const signed char parser::yytable_ninf_ = -1;
 
 const signed char
     parser::yypact_[] =
         {
-            -4, -5, -5, -5, -5, -5, -5, -5, -5, -5,
-            -5, 10, -5, -5, -4, -5};
+            -5, -6, -6, -6, -6, -6, -6, -6, -6, -6,
+            -6, 10, -5, 8, 9, -6, -6, -6, -6, -5,
+            -6};
 
 const unsigned char
     parser::yydefact_[] =
         {
-            0, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-            13, 0, 3, 1, 0, 2};
+            0, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+            17, 0, 3, 0, 5, 7, 1, 2, 4, 0,
+            6};
 
 const signed char
     parser::yypgoto_[] =
         {
-            -5, -5, -3};
+            -6, 0, -6, -6, -6, -4};
 
 const signed char
     parser::yydefgoto_[] =
         {
-            -1, 11, 12};
+            -1, 11, 12, 13, 14, 15};
 
 const unsigned char
     parser::yytable_[] =
         {
             1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-            13, 15, 0, 14};
+            16, 18, 17, 19, 0, 20};
 
 const signed char
     parser::yycheck_[] =
         {
-            4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
-            0, 14, -1, 3};
+            5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+            0, 3, 12, 4, -1, 19};
 
 const unsigned char
     parser::yystos_[] =
         {
-            0, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-            13, 15, 16, 0, 3, 16};
+            0, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+            14, 16, 17, 18, 19, 20, 0, 16, 3, 4,
+            20};
 
 const unsigned char
     parser::yyr1_[] =
         {
-            0, 14, 15, 15, 16, 16, 16, 16, 16, 16,
-            16, 16, 16, 16};
+            0, 15, 16, 16, 17, 18, 19, 19, 20, 20,
+            20, 20, 20, 20, 20, 20, 20, 20};
 
 const unsigned char
     parser::yyr2_[] =
         {
-            0, 2, 3, 1, 1, 1, 1, 1, 1, 1,
-            1, 1, 1, 1};
+            0, 2, 2, 1, 2, 1, 3, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1};
 
 #if YYDEBUG
 // YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
 // First, the terminals, then, starting at \a yyntokens_, nonterminals.
 const char *const parser::yytname_[] =
     {
-        "$end", "error", "$undefined", "'+'", "'1'", "'2'", "'3'", "'4'", "'5'",
-        "'6'", "'7'", "'8'", "'9'", "'0'", "$accept", "addexp", "n", YY_NULLPTR};
+        "$end", "error", "$undefined", "'\\n'", "'+'", "'1'", "'2'", "'3'",
+        "'4'", "'5'", "'6'", "'7'", "'8'", "'9'", "'0'", "$accept", "lines",
+        "line", "exp", "addexp", "n", YY_NULLPTR};
 
 const unsigned char
     parser::yyrline_[] =
         {
-            0, 13, 13, 14, 16, 16, 16, 16, 16, 16,
-            16, 16, 16, 16};
+            0, 13, 13, 14, 16, 18, 20, 21, 23, 23,
+            23, 23, 23, 23, 23, 23, 23, 23};
 
 // Print the state stack on the debug stream.
 void parser::yystack_print_()
@@ -1280,11 +1284,11 @@ parser::yytranslate_(int t)
       translate_table[] =
           {
               0, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+              3, 2, 2, 2, 2, 2, 2, 2, 2, 2,
               2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
               2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-              2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-              2, 2, 2, 3, 2, 2, 2, 2, 13, 4,
-              5, 6, 7, 8, 9, 10, 11, 12, 2, 2,
+              2, 2, 2, 4, 2, 2, 2, 2, 14, 5,
+              6, 7, 8, 9, 10, 11, 12, 13, 2, 2,
               2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
               2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
               2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
@@ -1317,5 +1321,5 @@ parser::yytranslate_(int t)
 }
 
 } // namespace yy
-#line 1394 "./mdl/../parser.inl" // lalr1.cc:1167
-#line 18 "./mdl/parser.y"        // lalr1.cc:1168
+#line 1398 "mdl/../parser.inl" // lalr1.cc:1167
+#line 25 "mdl/parser.y"        // lalr1.cc:1168

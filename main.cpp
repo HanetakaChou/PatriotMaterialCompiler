@@ -12,14 +12,14 @@ int main()
 //yylex
 //https://www.gnu.org/software/bison/manual/bison.html#Split-Symbols
 
+#include <stdio.h>
+#include <iostream>
+
 namespace yy
 {
 int yylex(parser::semantic_type *yylval)
 {
-    static int i = 0;
-    char str[] = {"1+1"};
-    char ch = str[i];
-    ++i;
+    char ch = getchar();
     return ch;
 }
 

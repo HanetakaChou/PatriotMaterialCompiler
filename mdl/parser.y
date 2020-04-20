@@ -10,6 +10,13 @@
 
 %%
 
+lines: line lines;
+lines: line;
+
+line: exp '\n';
+
+exp: addexp;
+
 addexp: addexp '+' n;
 addexp: n;
 
