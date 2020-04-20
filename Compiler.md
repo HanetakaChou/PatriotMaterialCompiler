@@ -41,12 +41,12 @@ exp-> n op n
  op -> E  
  op -> F  
 
-### LL  
+### LL(1)  
 
 LL能分析的文法类型受限（只适用于LL文法），并不被流行的GNU Bison所采用  
 
 ~~LL //**L**eft-to-right **L**eftmost derivation  
-LL(1) //use **1** tokens of lookahead  when parsing a sentence  
+LL(1) //use **1** token of lookahead when parsing a sentence  
 LL(1) 根据 当前的非终结符 和 1个前看符号(显然一定是终结符) 确定产生式规则 //**通过比较 前看符号和First_S集 从而确定产生式规则**      
 //First_S集(针对某个产生式规则) 产生式规则 对应的 所有的推导结果中 可能出现的第1个符号(显然一定是终结符)~~  
 
@@ -95,9 +95,9 @@ LL(1) 根据 当前的非终结符 和 1个前看符号(显然一定是终结符
 //比如 n->x y z //First_S(n->x y z) = First(x) \[当x不属于Nullable集\]  如果x可能为空 那么需要求出First(y)以此类推 如果x y z都可能为空 那么First_S(n->x y z) = Follow(n) //不需要用到不动点算法~~     
 
 
-### LR 
-//LR //**L**eft-to-right **R**ightmost derivation //又叫Shift-Reduce算法 //自底向上(Bottom-up)分析       
-//流行的GNU Bison所采用  
+### LR(0) 
+//LR //**L**eft-to-right **R**ightmost derivation //又叫Shift-Reduce算法 //自底向上(Bottom-up)分析    
+LR(0) //use **0** token of lookahead when parsing a sentence  
  
 //读入Token后尝试归约(Reduce)\[由产生式右侧到左侧\] //即自底向上分析 //最右推导的逆过程      
  
@@ -116,23 +116,52 @@ LL(1) 根据 当前的非终结符 和 1个前看符号(显然一定是终结符
 
 //移进归约冲突 
 //在某个项目集中 一部分产生式 点记号在最右侧（表明归约） 而一部分产生式 点记号不在最右侧（表明移进）   
-//GNU Bison [Shift/Reduce Conflicts](https://www.gnu.org/software/bison/manual/html_node/Shift_002fReduce.html)   
-
-//比如：exp -> exp + exp  
-
-//注意：点记号右侧为非终结符（即exp）时 以该非终结符（即exp）为左侧的产生式（即exp -> exp + exp）也会加入到项目集  
-
-//\[exp -> exp **.** + exp\] -+-> \[exp -> exp + **.** exp\] -exp-> \[exp -> exp + exp **.** \] //表明归约  //发生移进归约冲突！     
-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\[exp -> **.** exp + exp\] -exp-> \[exp -> exp **.** + exp \] //表明移进     
-
+//GNU Bison [Shift/Reduce Conflicts](https://www.gnu.org/software/bison/manual/html_node/Shift_002fReduce.html)    
 
 缺点：
-只要得到产生式的右部 就会进行归约（和查表） 且归约会不断进行，直到不能再归约为止 //会延迟错误发现的时机  //用1个前向符号解决 //比如LR(1)  
-与LL一样 存在冲突的可能 //即存在回溯的可能  
+只要得到产生式的右部 就会进行归约（和查表） 且归约会不断进行，直到不能再归约为止 //会延迟错误发现的时机  //用前向符号解决 //比如LR(1)  
+与LL一样 存在冲突的可能 //即存在回溯的可能   
 
 
 LR分析表  //YACC: yytranslate_  
 
 ### SLR  
 SLR //Simple LR    
-在LR(0)基础上 在得到产生式的右部（即 项目集 中 存在 点记号在最右侧 的项）时 只对Follow集中的终结符进行归约 其它终结符查表提示错误   
+在LR(0)基础上 在得到产生式的右部（即 项目集 中 存在 点记号在最右侧 的项）时 只对Follow集中的终结符进行归约 其它终结符查表提示错误  
+//Follow集 还可以解决某些移进归约冲突  
+
+### LR(1)  
+LR(1) //use **1** token of lookahead when parsing a sentence  
+
+LR(0) 项目集 中的 项 为 产生式  
+LR(1) 项目集 中的 项 为 二元组\<产生式,终结符构成集合\> //终结符集合 比 产生式 左侧的Follow集更精确   
+
+与LR(0)的区别在于closure运算  
+比如 有\<\[x -\> A **.** y B\],\[{C,D}\]\> //点记号右侧为非终结符(即y)    
+\<\[y -\> **.** E\],First_S(B(C|D))>会加入到项目集  
+
+//构造s‘->s\$ //\$代表EOF  
+//初始的二元组为\<\[s‘-\>s\$\],\[\$\]\>  
+
+在分析时  
+比如 有\<\[x -\> A **.** y B\],\[{C,D}\]\>  
+将前看符号与First_S(B(C|D))比较作进一部判断  
+
+### LALR(1)  
+//流行的GNU Bison所采用  
+
+在LR(1)的基础上，将相似的项目集合并 //负面影响：降低精确性    
+
+### 移进归约冲突  
+//GNU Bison [Shift/Reduce Conflicts](https://www.gnu.org/software/bison/manual/html_node/Shift_002fReduce.html)    
+
+//比如：exp -> exp + exp //结合性（实际上属于二义性文法）      
+
+//注意：点记号右侧为非终结符（即exp）时 以该非终结符（即exp）为左侧的产生式（即exp -> exp + exp）也会加入到项目集  
+
+//\[exp -> exp **.** + exp\] -+-> \[exp -> exp + **.** exp\] -exp-> \[exp -> exp + exp **.** \] //表明归约  //发生移进归约冲突！     
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\[exp -> **.** exp + exp\] -exp-> \[exp -> exp **.** + exp \] //表明移进    
+
+//YACC中 支持 %left '+' 解决结合性冲突  
+
+//优先级也会产生类似的冲突  
