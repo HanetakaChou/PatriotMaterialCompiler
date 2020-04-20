@@ -1,0 +1,92 @@
+//https://www.graphviz.org/doc/info/lang.html
+//https://www.graphviz.org/doc/info/attrs.html
+//https://www.graphviz.org/doc/info/shapes.html
+
+digraph finite_state_machine {
+    rankdir=LR;
+    //size="8,5"
+
+    node [shape = point ]; _s;
+    node [shape = circle]; s;
+    
+    node [shape = doublecircle]; IDENT;
+
+    node [shape = circle]; b;
+    node [shape = circle]; bs;
+    node [shape = circle]; bsd;
+    node [shape = doublecircle]; BSDF;
+
+    node [shape = circle]; e;
+    node [shape = circle]; ed;
+    node [shape = doublecircle]; EDF;
+
+    node [shape = circle]; v;
+    node [shape = circle]; vd;
+    node [shape = doublecircle]; VDF;
+
+    node [shape = circle]; l;
+    node [shape = circle]; li;
+    node [shape = circle]; lig;
+    node [shape = circle]; ligh;
+    node [shape = circle]; light;
+    node [shape = circle]; light_;
+    node [shape = circle]; light_p;
+    node [shape = circle]; light_pr;
+    node [shape = circle]; light_pro;
+    node [shape = circle]; light_prof;
+    node [shape = circle]; light_profi;
+    node [shape = circle]; light_profil;
+    node [shape = doublecircle]; LIGHT_PROFILE;
+
+
+    _s->s;
+    
+    s->b [ label = "b" ];
+    b->bs [ label = "s" ];
+    b->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'q\' | \'t\'..\'z\' | \'0\'..\'9\' | _ " ];
+    bs->bsd [ label = "d" ];
+    bs->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'c\' | \'e\'..\'z\' | \'0\'..\'9\' | _ " ];
+    bsd->BSDF [ label = "f" ];
+    bsd->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'e\' | \'g\'..\'z\' | \'0\'..\'9\' | _ " ];
+    BSDF->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'z\' | \'0\'..\'9\' | _ " ];
+    
+    s->e [ label = "e" ];
+    e->ed [ label = "d" ];
+    e->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'c\' | \'e\'..\'z\' | \'0\'..\'9\' | _ " ];
+    ed->EDF [ label = "f" ];
+    ed->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'e\' | \'g\'..\'z\' | \'0\'..\'9\' | _ " ];
+    EDF->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'z\' | \'0\'..\'9\' | _ " ];
+    
+    s->v [ label = "v" ];
+    v->vd [ label = "d" ];
+    v->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'c\' | \'e\'..\'z\' | \'0\'..\'9\' | _ " ];
+    vd->VDF [ label = "f" ];
+    vd->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'e\' | \'g\'..\'z\' | \'0\'..\'9\' | _ " ];
+    VDF->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'z\' | \'0\'..\'9\' | _ " ];
+    
+
+    s->l [ label = "l" ];
+    l->li [ label = "i" ];
+    li->lig [ label = "g" ];
+    lig->ligh [ label = "h" ];
+    ligh->light [ label = "t" ];
+    light->light_ [ label = "_" ];
+    light_->light_p [ label = "p" ];
+    light_p->light_pr [ label = "r" ];
+    light_pr->light_pro [ label = "o" ];
+    light_pro->light_prof [ label = "f" ];
+    light_prof->light_profi [ label = "i" ];
+    light_profi->light_profil [ label = "l" ];
+    light_profil->LIGHT_PROFILE [ label = "e" ];
+    LIGHT_PROFILE->IDENT [ label = "\'A\'..\'Z\' | \'a\'..\'z\' | \'0\'..\'9\' | _ " ];
+
+    //node [shape = doublecircle]; q1;
+
+    //qi -> S;
+    //S  -> q1 [ label = "a" ];
+    //S  -> S  [ label = "a" ];
+    //q1 -> S  [ label = "a" ];
+    //q1 -> q2 [ label = "ddb" ];
+    //q2 -> q1 [ label = "b" ];
+    //q2 -> q2 [ label = "b" ];
+}
