@@ -11,4 +11,4 @@
 
 DIR="$(dirname "$0")"
 
-bison -y -o ${DIR}/mdl_yyparser.inl -p mdl_yy ${DIR}/parser.y -L C 
+bison -y -o ${DIR}/mdl_yyparser.inl -p mdl_yy ${DIR}/mdlparser.y -L C 
