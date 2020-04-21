@@ -1,5 +1,5 @@
-#ifndef _YYTOEKN_H_
-#define _YYTOEKN_H_ 1
+#ifndef _MDL_YYPARSER_H_
+#define _MDL_YYPARSER_H_ 1
 
 #ifndef __cplusplus
 

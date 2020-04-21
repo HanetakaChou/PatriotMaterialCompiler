@@ -11,11 +11,11 @@ extern int mdl_ll_inputstream_read(void *pUserData, void *pUserStream, void *buf
         }                                                                             \
     }
 
-#include "yyparser.h"
+#include "mdl_yyparser.h"
 
 #define YY_DECL int mdl_lllex(yyscan_t yyscanner, union YYSTYPE *lvalp)
 
-#include "yylexer.inl"
+#include "mdl_lllexer.inl"
 
 #if 0
 int main()

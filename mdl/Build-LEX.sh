@@ -2,4 +2,4 @@
 
 DIR="$(dirname "$0")"
 
-flex -X -o ${DIR}/../yylexer.inl ${DIR}/scanner.l   
+flex -X -o ${DIR}/mdl_lllexer.inl ${DIR}/scanner.l   

@@ -1,6 +1,7 @@
 .vscode/settings.json
-yylexer.o
-yyparser.o
+mdl_lllexer.o
+mdl_yyparser.o
+MDLFrontend.o
 PTInputStream.o
 main.o
 a.out
