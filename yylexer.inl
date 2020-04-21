@@ -323,9 +323,9 @@ void llfree(void *, yyscan_t yyscanner);
 
 /* Begin user sect3 */
 
-typedef unsigned char YY_CHAR;
+typedef char YY_CHAR;
 
-typedef int yy_state_type;
+typedef yyconst struct yy_trans_info *yy_state_type;
 
 #define yytext_ptr yytext_r
 
@@ -346,67 +346,423 @@ static void yynoreturn yy_fatal_error(yyconst char *msg, yyscan_t yyscanner);
 
 #define YY_NUM_RULES 1
 #define YY_END_OF_BUFFER 2
-/* This struct is not used in this scanner,
-   but its presence is necessary. */
 struct yy_trans_info
 {
-	flex_int32_t yy_verify;
-	flex_int32_t yy_nxt;
+	flex_int16_t yy_verify;
+	flex_int16_t yy_nxt;
 };
-static yyconst flex_int16_t yy_accept[6] =
-	{0,
-	 0, 0, 2, 1, 0};
+static yyconst struct yy_trans_info yy_transition[520] =
+	{
+		{0, 0},
+		{0, 392},
+		{0, 0},
+		{0, 390},
+		{1, 260},
+		{2, 260},
+		{3, 260},
+		{4, 260},
+		{5, 260},
+		{6, 260},
+		{7, 260},
+		{8, 260},
+		{9, 260},
+		{10, 260},
+		{11, 260},
+		{12, 260},
+		{13, 260},
+		{14, 260},
+		{15, 260},
+		{16, 260},
+		{17, 260},
+		{18, 260},
+		{19, 260},
+		{20, 260},
+		{21, 260},
+		{22, 260},
+		{23, 260},
+		{24, 260},
+		{25, 260},
+		{26, 260},
+		{27, 260},
+		{28, 260},
+		{29, 260},
+		{30, 260},
+		{31, 260},
+		{32, 260},
+		{33, 260},
+		{34, 260},
+		{35, 260},
+		{36, 260},
+		{37, 260},
+		{38, 260},
+		{39, 260},
+		{40, 260},
+		{41, 260},
+		{42, 260},
+		{43, 260},
+		{44, 260},
+		{45, 260},
+		{46, 260},
 
-static yyconst YY_CHAR yy_ec[256] =
-	{0,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+		{47, 260},
+		{48, 260},
+		{49, 260},
+		{50, 260},
+		{51, 260},
+		{52, 260},
+		{53, 260},
+		{54, 260},
+		{55, 260},
+		{56, 260},
+		{57, 260},
+		{58, 260},
+		{59, 260},
+		{60, 260},
+		{61, 260},
+		{62, 260},
+		{63, 260},
+		{64, 260},
+		{65, 260},
+		{66, 260},
+		{67, 260},
+		{68, 260},
+		{69, 260},
+		{70, 260},
+		{71, 260},
+		{72, 260},
+		{73, 260},
+		{74, 260},
+		{75, 260},
+		{76, 260},
+		{77, 260},
+		{78, 260},
+		{79, 260},
+		{80, 260},
+		{81, 260},
+		{82, 260},
+		{83, 260},
+		{84, 260},
+		{85, 260},
+		{86, 260},
+		{87, 260},
+		{88, 260},
+		{89, 260},
+		{90, 260},
+		{91, 260},
+		{92, 260},
+		{93, 260},
+		{94, 260},
+		{95, 260},
+		{96, 260},
 
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+		{97, 260},
+		{98, 260},
+		{99, 260},
+		{100, 260},
+		{101, 260},
+		{102, 260},
+		{103, 260},
+		{104, 260},
+		{105, 260},
+		{106, 260},
+		{107, 260},
+		{108, 260},
+		{109, 260},
+		{110, 260},
+		{111, 260},
+		{112, 260},
+		{113, 260},
+		{114, 260},
+		{115, 260},
+		{116, 260},
+		{117, 260},
+		{118, 260},
+		{119, 260},
+		{120, 260},
+		{121, 260},
+		{122, 260},
+		{123, 260},
+		{124, 260},
+		{125, 260},
+		{126, 260},
+		{127, 260},
+		{128, 260},
+		{0, 0},
+		{0, 260},
+		{1, 130},
+		{2, 130},
+		{3, 130},
+		{4, 130},
+		{5, 130},
+		{6, 130},
+		{7, 130},
+		{8, 130},
+		{9, 130},
+		{10, 130},
+		{11, 130},
+		{12, 130},
+		{13, 130},
+		{14, 130},
+		{15, 130},
+		{16, 130},
 
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	 1, 1, 1, 1, 1};
+		{17, 130},
+		{18, 130},
+		{19, 130},
+		{20, 130},
+		{21, 130},
+		{22, 130},
+		{23, 130},
+		{24, 130},
+		{25, 130},
+		{26, 130},
+		{27, 130},
+		{28, 130},
+		{29, 130},
+		{30, 130},
+		{31, 130},
+		{32, 130},
+		{33, 130},
+		{34, 130},
+		{35, 130},
+		{36, 130},
+		{37, 130},
+		{38, 130},
+		{39, 130},
+		{40, 130},
+		{41, 130},
+		{42, 130},
+		{43, 130},
+		{44, 130},
+		{45, 130},
+		{46, 130},
+		{47, 130},
+		{48, 130},
+		{49, 130},
+		{50, 130},
+		{51, 130},
+		{52, 130},
+		{53, 130},
+		{54, 130},
+		{55, 130},
+		{56, 130},
+		{57, 130},
+		{58, 130},
+		{59, 130},
+		{60, 130},
+		{61, 130},
+		{62, 130},
+		{63, 130},
+		{64, 130},
+		{65, 130},
+		{66, 130},
 
-static yyconst YY_CHAR yy_meta[2] =
-	{0,
-	 1};
+		{67, 130},
+		{68, 130},
+		{69, 130},
+		{70, 130},
+		{71, 130},
+		{72, 130},
+		{73, 130},
+		{74, 130},
+		{75, 130},
+		{76, 130},
+		{77, 130},
+		{78, 130},
+		{79, 130},
+		{80, 130},
+		{81, 130},
+		{82, 130},
+		{83, 130},
+		{84, 130},
+		{85, 130},
+		{86, 130},
+		{87, 130},
+		{88, 130},
+		{89, 130},
+		{90, 130},
+		{91, 130},
+		{92, 130},
+		{93, 130},
+		{94, 130},
+		{95, 130},
+		{96, 130},
+		{97, 130},
+		{98, 130},
+		{99, 130},
+		{100, 130},
+		{101, 130},
+		{102, 130},
+		{103, 130},
+		{104, 130},
+		{105, 130},
+		{106, 130},
+		{107, 130},
+		{108, 130},
+		{109, 130},
+		{110, 130},
+		{111, 130},
+		{112, 130},
+		{113, 130},
+		{114, 130},
+		{115, 130},
+		{116, 130},
 
-static yyconst flex_uint16_t yy_base[7] =
-	{0,
-	 0, 0, 2, 3, 3, 0};
+		{117, 130},
+		{118, 130},
+		{119, 130},
+		{120, 130},
+		{121, 130},
+		{122, 130},
+		{123, 130},
+		{124, 130},
+		{125, 130},
+		{126, 130},
+		{127, 130},
+		{128, 130},
+		{0, 1},
+		{0, 130},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
 
-static yyconst flex_int16_t yy_def[7] =
-	{0,
-	 6, 6, 5, 5, 0, 5};
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
 
-static yyconst flex_uint16_t yy_nxt[5] =
-	{0,
-	 4, 5, 3, 5};
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{129, 2},
+		{1, 0},
+};
 
-static yyconst flex_int16_t yy_chk[5] =
-	{0,
-	 6, 3, 5, 5};
+static yyconst struct yy_trans_info *yy_start_state_list[3] =
+	{
+		&yy_transition[1],
+		&yy_transition[3],
+		&yy_transition[133],
+
+};
 
 /* The intent behind this definition is that it'll catch
  * any uses of REJECT which flex missed.
@@ -418,7 +774,7 @@ static yyconst flex_int16_t yy_chk[5] =
 #line 1 "mdl/scanner.l"
 #define YY_NO_INPUT 1
 #define YY_NO_UNISTD_H 1
-#line 429 "mdl/../yylexer.inl"
+#line 462 "mdl/../yylexer.inl"
 
 #define INITIAL 0
 
@@ -569,34 +925,17 @@ static int input(yyscan_t yyscanner);
  * is returned in "result".
  */
 #ifndef YY_INPUT
-#define YY_INPUT(buf, result, max_size)                                                       \
-	if (YY_CURRENT_BUFFER_LVALUE->yy_is_interactive)                                          \
-	{                                                                                         \
-		int c = '*';                                                                          \
-		int n;                                                                                \
-		for (n = 0; n < max_size &&                                                           \
-					(c = getc(yyin)) != EOF && c != '\n';                                     \
-			 ++n)                                                                             \
-			buf[n] = (char)c;                                                                 \
-		if (c == '\n')                                                                        \
-			buf[n++] = (char)c;                                                               \
-		if (c == EOF && ferror(yyin))                                                         \
-			YY_FATAL_ERROR("input in flex scanner failed");                                   \
-		result = n;                                                                           \
-	}                                                                                         \
-	else                                                                                      \
-	{                                                                                         \
-		errno = 0;                                                                            \
-		while ((result = (int)fread(buf, 1, (yy_size_t)max_size, yyin)) == 0 && ferror(yyin)) \
-		{                                                                                     \
-			if (errno != EINTR)                                                               \
-			{                                                                                 \
-				YY_FATAL_ERROR("input in flex scanner failed");                               \
-				break;                                                                        \
-			}                                                                                 \
-			errno = 0;                                                                        \
-			clearerr(yyin);                                                                   \
-		}                                                                                     \
+#define YY_INPUT(buf, result, max_size)                                      \
+	errno = 0;                                                               \
+	while ((result = (int)read(fileno(yyin), buf, (yy_size_t)max_size)) < 0) \
+	{                                                                        \
+		if (errno != EINTR)                                                  \
+		{                                                                    \
+			YY_FATAL_ERROR("input in flex scanner failed");                  \
+			break;                                                           \
+		}                                                                    \
+		errno = 0;                                                           \
+		clearerr(yyin);                                                      \
 	}
 
 #endif
@@ -684,9 +1023,9 @@ YY_DECL
 	}
 
 	{
-#line 15 "mdl/scanner.l"
+#line 17 "mdl/scanner.l"
 
-#line 691 "mdl/../yylexer.inl"
+#line 708 "mdl/../yylexer.inl"
 
 		while (/*CONSTCOND*/ 1) /* loops until end-of-file is reached */
 		{
@@ -700,50 +1039,34 @@ YY_DECL
 		 */
 			yy_bp = yy_cp;
 
-			yy_current_state = yyg->yy_start;
+			yy_current_state = yy_start_state_list[yyg->yy_start];
 		yy_match:
-			do
-			{
-				YY_CHAR yy_c = yy_ec[YY_SC_TO_UI(*yy_cp)];
-				if (yy_accept[yy_current_state])
-				{
-					yyg->yy_last_accepting_state = yy_current_state;
-					yyg->yy_last_accepting_cpos = yy_cp;
-				}
-				while (yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state)
-				{
-					yy_current_state = (int)yy_def[yy_current_state];
-					if (yy_current_state >= 6)
-						yy_c = yy_meta[(unsigned int)yy_c];
-				}
-				yy_current_state = yy_nxt[yy_base[yy_current_state] + (flex_int16_t)yy_c];
-				++yy_cp;
-			} while (yy_current_state != 5);
-			yy_cp = yyg->yy_last_accepting_cpos;
-			yy_current_state = yyg->yy_last_accepting_state;
+		{
+			yyconst struct yy_trans_info *yy_trans_info;
+
+			YY_CHAR yy_c;
+
+			for (yy_c = YY_SC_TO_UI(*yy_cp);
+				 (yy_trans_info = &yy_current_state[(unsigned int)yy_c])->yy_verify == yy_c;
+				 yy_c = YY_SC_TO_UI(*++yy_cp))
+				yy_current_state += yy_trans_info->yy_nxt;
+		}
 
 		yy_find_action:
-			yy_act = yy_accept[yy_current_state];
+			yy_act = yy_current_state[-1].yy_nxt;
 
 			YY_DO_BEFORE_ACTION;
 
 		do_action: /* This label is used only to access EOF actions. */
 
 			switch (yy_act)
-			{		/* beginning of action switch */
-			case 0: /* must back up */
-				/* undo the effects of YY_DO_BEFORE_ACTION */
-				*yy_cp = yyg->yy_hold_char;
-				yy_cp = yyg->yy_last_accepting_cpos;
-				yy_current_state = yyg->yy_last_accepting_state;
-				goto yy_find_action;
-
+			{ /* beginning of action switch */
 			case 1:
 				YY_RULE_SETUP
-#line 17 "mdl/scanner.l"
+#line 19 "mdl/scanner.l"
 				ECHO;
 				YY_BREAK
-#line 749 "mdl/../yylexer.inl"
+#line 750 "mdl/../yylexer.inl"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -810,8 +1133,7 @@ YY_DECL
 
 					else
 					{
-						yy_cp = yyg->yy_last_accepting_cpos;
-						yy_current_state = yyg->yy_last_accepting_state;
+						yy_cp = yyg->yy_c_buf_p;
 						goto yy_find_action;
 					}
 				}
@@ -1027,23 +1349,11 @@ static yy_state_type yy_get_previous_state(yyscan_t yyscanner)
 	char *yy_cp;
 	struct yyguts_t *yyg = (struct yyguts_t *)yyscanner;
 
-	yy_current_state = yyg->yy_start;
+	yy_current_state = yy_start_state_list[yyg->yy_start];
 
 	for (yy_cp = yyg->yytext_ptr + YY_MORE_ADJ; yy_cp < yyg->yy_c_buf_p; ++yy_cp)
 	{
-		YY_CHAR yy_c = (*yy_cp ? yy_ec[YY_SC_TO_UI(*yy_cp)] : 1);
-		if (yy_accept[yy_current_state])
-		{
-			yyg->yy_last_accepting_state = yy_current_state;
-			yyg->yy_last_accepting_cpos = yy_cp;
-		}
-		while (yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state)
-		{
-			yy_current_state = (int)yy_def[yy_current_state];
-			if (yy_current_state >= 6)
-				yy_c = yy_meta[(unsigned int)yy_c];
-		}
-		yy_current_state = yy_nxt[yy_base[yy_current_state] + (flex_int16_t)yy_c];
+		yy_current_state += yy_current_state[(*yy_cp ? YY_SC_TO_UI(*yy_cp) : 128)].yy_nxt;
 	}
 
 	return yy_current_state;
@@ -1058,22 +1368,13 @@ static yy_state_type yy_try_NUL_trans(yy_state_type yy_current_state, yyscan_t y
 {
 	int yy_is_jam;
 	struct yyguts_t *yyg = (struct yyguts_t *)yyscanner; /* This var may be unused depending upon options. */
-	char *yy_cp = yyg->yy_c_buf_p;
 
-	YY_CHAR yy_c = 1;
-	if (yy_accept[yy_current_state])
-	{
-		yyg->yy_last_accepting_state = yy_current_state;
-		yyg->yy_last_accepting_cpos = yy_cp;
-	}
-	while (yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state)
-	{
-		yy_current_state = (int)yy_def[yy_current_state];
-		if (yy_current_state >= 6)
-			yy_c = yy_meta[(unsigned int)yy_c];
-	}
-	yy_current_state = yy_nxt[yy_base[yy_current_state] + (flex_int16_t)yy_c];
-	yy_is_jam = (yy_current_state == 5);
+	int yy_c = 128;
+	yyconst struct yy_trans_info *yy_trans_info;
+
+	yy_trans_info = &yy_current_state[(unsigned int)yy_c];
+	yy_current_state += yy_trans_info->yy_nxt;
+	yy_is_jam = (yy_trans_info->yy_verify != yy_c);
 
 	(void)yyg;
 	return yy_is_jam ? 0 : yy_current_state;
@@ -1852,4 +2153,4 @@ static int yy_flex_strlen(yyconst char *s, yyscan_t yyscanner)
 
 #define YYTABLES_NAME "yytables"
 
-#line 17 "mdl/scanner.l"
+#line 19 "mdl/scanner.l"
