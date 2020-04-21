@@ -8,6 +8,9 @@
 //  int _INTEGER_LITERAL;
 //}
 %define api.value.type {union YYSTYPE}
+
+%token <_MDL> MDL
+
 %token <_IDENT> IDENT
 %token <_INTEGER_LITERAL> INTEGER_LITERAL 
 %token <_FLOATING_LITERAL> FLOATING_LITERAL
@@ -36,8 +39,9 @@
 %%
 
 
-mdl: INTEGER_LITERAL;
+mdl: mdl_version;
 
+mdl_version: MDL FLOATING_LITERAL ';';
 
 
 //%%

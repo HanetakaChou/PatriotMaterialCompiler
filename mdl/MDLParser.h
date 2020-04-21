@@ -9,6 +9,7 @@ union YYSTYPE {
     float _FLOATING_LITERAL;
 };
 
+extern int YYTOKEN_MDL;
 extern int YYTOKEN_IDENT;
 extern int YYTOKEN_INTEGER_LITERAL;
 extern int YYTOKEN_FLOATING_LITERAL;

@@ -38,14 +38,22 @@ FLOATING_LITERAL_DOUBLE ({FLOATING_LITERAL})[Dd]
 
 [;] {
     return ';';
-}
-
+    }
+    
+    /* keywords */
+[m][d][l] {
+    { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
+    return YYTOKEN_MDL;
+    }
+    
+     /* Identifiers */
 {IDENT} {
     lvalp->_IDENT = MDLFrontend_HashIdentName(yyextra, yytext);
     { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
     return YYTOKEN_IDENT;
     }
 
+     /* Literal values */
 {INTEGER_LITERAL_DECIMAL} { 
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 10);
