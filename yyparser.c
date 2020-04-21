@@ -6,7 +6,6 @@ void yyerror(struct YYLTYPE *llocp, void *pUserData, const char *s);
 
 //https://www.gnu.org/software/bison/manual/html_node/Table-of-Symbols.html
 #define YYSTACK_USE_ALLOCA 1
-
 #include "yyparser.inl"
 
 #include "mdlparser.h"
