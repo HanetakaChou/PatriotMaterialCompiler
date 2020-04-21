@@ -6,10 +6,12 @@
 union YYSTYPE {
     size_t _IDENT; //unordered_set hash unique value
     int _INTEGER_LITERAL;
+    float _FLOATING_LITERAL;
 };
 
 extern int YYTOKEN_IDENT;
 extern int YYTOKEN_INTEGER_LITERAL;
+extern int YYTOKEN_FLOATING_LITERAL;
 
 #else
 #error C++ Not Supported

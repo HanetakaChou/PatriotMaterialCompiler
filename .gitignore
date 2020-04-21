@@ -1,6 +1,6 @@
 .vscode/settings.json
-mdl_lllexer.o
-mdl_yyparser.o
+MDLScanner.o
+MDLParser.o
 MDLFrontend.o
 PTInputStream.o
 main.o

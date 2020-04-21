@@ -67,7 +67,7 @@
 
 /* Copy the first part of user declarations.  */
 
-#line 73 "mdl/mdl_yyparser.inl" /* yacc.c:339  */
+#line 73 "mdl/MDLParser.inl" /* yacc.c:339  */
 
 #ifndef YY_NULLPTR
 #if defined __cplusplus && 201103L <= __cplusplus
@@ -99,12 +99,14 @@ extern int mdl_yydebug;
 enum yytokentype
 {
   IDENT = 258,
-  INTEGER_LITERAL = 259
+  INTEGER_LITERAL = 259,
+  FLOATING_LITERAL = 260
 };
 #endif
 /* Tokens.  */
 #define IDENT 258
 #define INTEGER_LITERAL 259
+#define FLOATING_LITERAL 260
 
 /* Value type.  */
 #if !defined YYSTYPE && !defined YYSTYPE_IS_DECLARED
@@ -131,14 +133,14 @@ int mdl_yyparse(void *pUserData, void *pScanner);
 
 /* Copy the second part of user declarations.  */
 
-#line 142 "mdl/mdl_yyparser.inl" /* yacc.c:358  */
+#line 144 "mdl/MDLParser.inl" /* yacc.c:358  */
 /* Unqualified %code blocks.  */
-#line 19 "mdl/mdlparser.y" /* yacc.c:359  */
+#line 20 "mdl/MDLParser.y" /* yacc.c:359  */
 
 int yylex(union YYSTYPE *lvalp, YYLTYPE *llocp, void *pUserData, void *pScanner);
 void yyerror(YYLTYPE *llocp, void *pUserData, void *pScanner, const char *s);
 
-#line 149 "mdl/mdl_yyparser.inl" /* yacc.c:359  */
+#line 151 "mdl/MDLParser.inl" /* yacc.c:359  */
 
 #ifdef short
 #undef short
@@ -375,7 +377,7 @@ union yyalloc {
 #define YYLAST 1
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS 5
+#define YYNTOKENS 6
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS 2
 /* YYNRULES -- Number of rules.  */
@@ -386,7 +388,7 @@ union yyalloc {
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK 2
-#define YYMAXUTOK 259
+#define YYMAXUTOK 260
 
 #define YYTRANSLATE(YYX) \
   ((unsigned int)(YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -420,13 +422,14 @@ static const yytype_uint8 yytranslate[] =
         2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
         2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
         2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-        2, 2, 2, 2, 2, 2, 1, 2, 3, 4};
+        2, 2, 2, 2, 2, 2, 1, 2, 3, 4,
+        5};
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
     {
-        0, 38, 38};
+        0, 39, 39};
 #endif
 
 #if YYDEBUG || YYERROR_VERBOSE || 0
@@ -434,8 +437,8 @@ static const yytype_uint8 yyrline[] =
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
     {
-        "$end", "error", "$undefined", "IDENT", "INTEGER_LITERAL", "$accept",
-        "mdl", YY_NULLPTR};
+        "$end", "error", "$undefined", "IDENT", "INTEGER_LITERAL",
+        "FLOATING_LITERAL", "$accept", "mdl", YY_NULLPTR};
 #endif
 
 #ifdef YYPRINT
@@ -443,7 +446,7 @@ static const char *const yytname[] =
    (internal) symbol number NUM (which must be that of a token).  */
 static const yytype_uint16 yytoknum[] =
     {
-        0, 256, 257, 258, 259};
+        0, 256, 257, 258, 259, 260};
 #endif
 
 #define YYPACT_NINF -5
@@ -494,12 +497,12 @@ static const yytype_uint8 yycheck[] =
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
     {
-        0, 4, 6, 0};
+        0, 4, 7, 0};
 
 /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
     {
-        0, 5, 6};
+        0, 6, 7};
 
 /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
@@ -1271,7 +1274,7 @@ yyreduce:
   switch (yyn)
   {
 
-#line 1317 "mdl/mdl_yyparser.inl" /* yacc.c:1646  */
+#line 1320 "mdl/MDLParser.inl" /* yacc.c:1646  */
   default:
     break;
   }

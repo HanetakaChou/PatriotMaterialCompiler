@@ -10,6 +10,7 @@
 %define api.value.type {union YYSTYPE}
 %token <_IDENT> IDENT
 %token <_INTEGER_LITERAL> INTEGER_LITERAL 
+%token <_FLOATING_LITERAL> FLOATING_LITERAL
 
 %locations
 
