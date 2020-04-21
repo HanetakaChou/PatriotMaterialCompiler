@@ -12,7 +12,7 @@ MDLFrontend::MDLFrontend()
 extern "C" int mdl_lllex_init_extra(void *user_defined, struct llscan_t **scanner);
 extern "C" void *mdl_llget_extra(struct llscan_t *yyscanner);
 extern "C" void mdl_llset_in(void *user_inputstream, struct llscan_t *scanner);
-extern "C" int mdl_lllex(struct llscan_t *scanner, union YYSTYPE *lvalp);
+extern "C" int mdl_lllex(struct llscan_t *scanner, union YYSTYPE *lvalp, struct YYLTYPE *llocp);
 extern "C" int mdl_lllex_destroy(struct llscan_t *scanner);
 extern "C" int mdl_yyparse(void *pUserData, struct llscan_t *pScanner);
 
@@ -59,6 +59,13 @@ extern "C" int mdl_llwrap(struct llscan_t *scanner)
     return 1;
 }
 
+extern "C" int mdl_yylex(union YYSTYPE *lvalp, struct YYLTYPE *llocp, void *pUserData, struct llscan_t *pScanner)
+{
+    //YYEOF==0
+    int yytoken = mdl_lllex(pScanner, lvalp, llocp);
+    return yytoken;
+}
+
 extern "C" void *mdl_llalloc(size_t size, struct llscan_t *scanner)
 {
     return static_cast<class MDLFrontend *>(mdl_llget_extra(scanner))->callback_malloc(size);
@@ -82,13 +89,6 @@ extern "C" void mdl_llfree(void *ptr, struct llscan_t *scanner)
     /* see llrealloc() for (char *) cast */
 
     return static_cast<class MDLFrontend *>(mdl_llget_extra(scanner))->callback_free(ptr);
-}
-
-extern "C" int mdl_yylex(union YYSTYPE *lvalp, union YYLTYPE *llocp, void *pUserData, struct llscan_t *pScanner)
-{
-    //YYEOF==0
-    int yytoken = mdl_lllex(pScanner, lvalp);
-    return yytoken;
 }
 
 extern "C" void mdl_yyerror(YYLTYPE *llocp, void *pUserData, struct llscan_t *pScanner, const char *s)

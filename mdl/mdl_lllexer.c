@@ -13,7 +13,17 @@ extern ptrdiff_t mdl_ll_stream_read(void *pUserData, void *pUserStream, void *bu
         }                                                                            \
     }
 
-#define YY_DECL int mdl_lllex(yyscan_t yyscanner, union YYSTYPE *lvalp)
+//https://www.gnu.org/software/bison/manual/bison.html#Location-Type
+struct YYLTYPE
+{
+    int first_line;
+    int first_column;
+    int last_line;
+    int last_column;
+};
+typedef struct YYLTYPE YYLTYPE;
+
+#define YY_DECL int mdl_lllex(yyscan_t yyscanner, union YYSTYPE *lvalp, struct YYLTYPE *llocp)
 
 #include "mdl_yyparser.h"
 int SCAN_INTEGER_LITERAL_DECIMAL(char const *pBegin, char const *pEnd);
