@@ -1,5 +1,5 @@
 #include <stddef.h>
-extern int PTStream_Read(void *pUserData, void *pUserStream, void *buf, size_t max_size);
+extern int PTInputStream_Read(void *pUserData, void *pUserStream, void *buf, size_t max_size);
 
 #define YY_NO_INPUT 1
 #define YY_NO_UNPUT 1
@@ -9,7 +9,7 @@ extern int PTStream_Read(void *pUserData, void *pUserStream, void *buf, size_t m
 #define YY_INPUT(buf, result, max_size)                                         \
     assert(!(YY_CURRENT_BUFFER_LVALUE->yy_is_interactive));                     \
     {                                                                           \
-        (*(&result)) = PTStream_Read((yyextra), ((void *)yyin), buf, max_size); \
+        (*(&result)) = PTInputStream_Read((yyextra), ((void *)yyin), buf, max_size); \
         if (result == -1)                                                       \
         {                                                                       \
             YY_FATAL_ERROR("input in flex scanner failed");                     \
