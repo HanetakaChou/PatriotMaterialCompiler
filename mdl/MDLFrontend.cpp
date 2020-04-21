@@ -20,7 +20,6 @@ extern "C" int mdl_yyparse(void *pUserData, struct llscan_t *pScanner);
 #include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
-
 #include <assert.h>
 
 class PTStream_File
@@ -47,6 +46,16 @@ void MDLFrontend::compile()
     mdl_lllex_destroy(scanner);
 }
 
+extern "C" size_t MDLFrontend_HashIdentName(void *pUserData, char const *pIdentName)
+{
+    return static_cast<class MDLFrontend *>(pUserData)->HashIdentName(pIdentName);
+}
+
+size_t MDLFrontend::HashIdentName(char const *pIdentName)
+{
+    return 0;
+}
+
 extern "C" int mdl_ll_stream_read(void *pUserData, void *pUserStream, void *buf, size_t size)
 {
     return static_cast<class PTStream_File *>(pUserStream)->Read(buf, size);
@@ -55,7 +64,7 @@ extern "C" int mdl_ll_stream_read(void *pUserData, void *pUserStream, void *buf,
 //https://westes.github.io/flex/manual/Generated-Scanner.html#Generated-Scanner
 extern "C" int mdl_llwrap(struct llscan_t *scanner)
 {
-    void *user_defined = mdl_llget_extra(scanner);
+    //void *user_defined = mdl_llget_extra(scanner);
     return 1;
 }
 
@@ -111,7 +120,7 @@ void MDLFrontend::callback_free(void *ptr)
     return free(ptr);
 }
 
-void MDLFrontend::callback_error(const char *s)
+void MDLFrontend::callback_error(char const *s)
 {
     std::cout << s << std::endl;
 }

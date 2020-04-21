@@ -25,6 +25,8 @@ typedef struct YYLTYPE YYLTYPE;
 
 #define YY_DECL int mdl_lllex(yyscan_t yyscanner, union YYSTYPE *lvalp, struct YYLTYPE *llocp)
 
+size_t MDLFrontend_HashIdentName(void *pUserData, char const *pIdentName);
+
 #include "mdl_yyparser.h"
 int SCAN_INTEGER_LITERAL_DECIMAL(char const *pBegin, char const *pEnd);
 int SCAN_INTEGER_LITERAL_HEXADECIMAL(char const *pBegin, char const *pEnd);

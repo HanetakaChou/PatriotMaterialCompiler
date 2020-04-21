@@ -19,9 +19,14 @@ INTEGER_LITERAL_HEXADECIMAL [0][xX]([0-9]|[A-F]|[a-f])(([0-9]|[A-F]|[a-f])*)
 INTEGER_LITERAL_OCTAL [0](([0-7])*)
 
 %%
+    
+[/][/]((.)*)[\n] {} //COMMENT //无法处理最后一行未换行的情形  
+
 [ ]|[\t](([ ]|[\t])*) {}
 
 {IDENT} {
+    lvalp->_IDENT = MDLFrontend_HashIdentName(yyextra, yytext);
+    { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
     return YYTOKEN_IDENT;
     }
 
