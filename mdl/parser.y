@@ -13,9 +13,12 @@
 
 %locations
 
+%parse-param {void *pUserData} {void *pScanner}
+%lex-param {void *pUserData} {void *pScanner}
+
 %code{
-    static inline int yylex(union YYSTYPE *lvalp, YYLTYPE *llocp, void *pUserData);
-    static inline void yyerror(YYLTYPE *llocp, void *pUserData, const char *s);
+    int yylex(union YYSTYPE *lvalp, YYLTYPE *llocp, void *pUserData, void *pScanner);
+    void yyerror(YYLTYPE *llocp, void *pUserData, void *pScanner, const char *s);
 }
 
 //Token即终结符
@@ -27,8 +30,7 @@
 //The features of the scanner is a subset of the parser
 //We can use YACC to implement the features of the scanner //Maybe inefficient
 
-%parse-param {void *pUserData} //{void *pUserData2}
-%lex-param {void *pUserData} 
+
 
 %%
 

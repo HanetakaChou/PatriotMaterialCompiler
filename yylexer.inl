@@ -747,7 +747,7 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 22 "mdl/scanner.l"
-{ return LL_INTEGER_LITERAL; }
+{ return YYTOKEN_INTEGER_LITERAL; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP

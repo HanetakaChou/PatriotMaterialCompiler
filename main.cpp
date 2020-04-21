@@ -1,36 +1,14 @@
 
-#include "mdlparser.h"
+#include "MDLFrontend.h"
 
 #include <stddef.h>
 
-#if 0
 int main()
 {
-
-    mdlparse(NULL);
-
-#if 0
-    yy::parser yacc_parser;
-    yacc_parser.parse();
-#endif
+    MDLFrontend mdlfrontend;
+    mdlfrontend.compile();
 
     return 0;
-}
-#endif
-
-#include <stdio.h>
-#include <iostream>
-
-extern "C" int mdllex(void *pUserData, struct mdl_parser_semantic_type *lvalp, struct mdl_parser_location_type *llocp)
-{
-    //For example //static_cast<MyClass *>(pUserdata)->lex(lvalp) //To use pUserdata
-    char ch = getchar();
-    return ch;
-}
-
-extern "C" void mdlerror(void *pUserData, const char *s)
-{
-    std::cout << s << std::endl;
 }
 
 #if 0
