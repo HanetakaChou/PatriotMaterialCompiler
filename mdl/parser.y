@@ -1,12 +1,13 @@
 
-//https://www.gnu.org/software/bison/manual/bison.html#Split-Symbols
-%code
-{
-  namespace yy
-  {
-    int yylex(parser::semantic_type* yylval);
-  }
-}
+
+%define api.pure full
+%define api.value.type {struct mdl_parser_semantic_type}
+%locations
+
+//%token <int> YYTOK_INT 
+
+%parse-param {void *pUserData} //{void *pUserData2}
+%lex-param {void *pUserData} 
 
 %%
 

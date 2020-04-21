@@ -11,4 +11,4 @@
 
 DIR="$(dirname "$0")"
 
-bison -y -L C++ ${DIR}/parser.y -o ${DIR}/../parser.inl
+bison -y -L C ${DIR}/parser.y -o ${DIR}/../yyparser.inl
