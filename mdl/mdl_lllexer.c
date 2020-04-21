@@ -1,10 +1,12 @@
 #include <stddef.h>
+#include <stdint.h>
+#include <stdlib.h>
 
-extern int mdl_ll_inputstream_read(void *pUserData, void *pUserStream, void *buf, size_t max_size);
+extern ptrdiff_t mdl_ll_stream_read(void *pUserData, void *pUserStream, void *buf, size_t size);
 
 #define YY_INPUT(buf, result, max_size)                                               \
     {                                                                                 \
-        (*(&result)) = mdl_ll_inputstream_read((yyextra), ((void *)yyin), buf, max_size); \
+        (*(&result)) = mdl_ll_stream_read((yyextra), ((void *)yyin), buf, max_size); \
         if (result == -1)                                                             \
         {                                                                             \
             YY_FATAL_ERROR("input in flex scanner failed");                           \

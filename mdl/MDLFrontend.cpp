@@ -16,18 +16,40 @@ extern "C" int mdl_lllex(struct llscan_t *scanner, union YYSTYPE *lvalp);
 extern "C" int mdl_lllex_destroy(struct llscan_t *scanner);
 extern "C" int mdl_yyparse(void *pUserData, struct llscan_t *pScanner);
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+#include <assert.h>
+
+class PTStream_File
+{
+    int const m_fd;
+
+public:
+    inline PTStream_File(int fd) : m_fd(fd) { assert(fd != -1); }
+    inline ~PTStream_File() { close(m_fd); }
+    inline ptrdiff_t Read(void *buf, size_t size)
+    {
+        return read(m_fd, buf, size);
+    }
+};
+
 void MDLFrontend::compile()
 {
+    PTStream_File stream{openat(AT_FDCWD, "test.mdl", O_RDONLY)};
+
     struct llscan_t *scanner;
     mdl_lllex_init_extra(this, &scanner);
-    mdl_llset_in(this, scanner);
+    mdl_llset_in(&stream, scanner);
     mdl_yyparse(this, scanner);
     mdl_lllex_destroy(scanner);
 }
 
-extern "C" int mdl_ll_inputstream_read(void *pUserData, void *pUserStream, void *buf, size_t max_size)
+extern "C" int mdl_ll_stream_read(void *pUserData, void *pUserStream, void *buf, size_t size)
 {
-    return 0;
+    return static_cast<class PTStream_File *>(pUserStream)->Read(buf, size);
 }
 
 //https://westes.github.io/flex/manual/Generated-Scanner.html#Generated-Scanner
