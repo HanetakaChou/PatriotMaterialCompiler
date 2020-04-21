@@ -59,11 +59,17 @@
 #define YYPULL 1
 
 
+/* Substitute the variable and function names.  */
+#define yyparse         mdl_yyparse
+#define yylex           mdl_yylex
+#define yyerror         mdl_yyerror
+#define yydebug         mdl_yydebug
+#define yynerrs         mdl_yynerrs
 
 
 /* Copy the first part of user declarations.  */
 
-#line 67 "mdl/../yyparser.inl" /* yacc.c:339  */
+#line 73 "mdl/../yyparser.inl" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -87,7 +93,7 @@
 # define YYDEBUG 0
 #endif
 #if YYDEBUG
-extern int yydebug;
+extern int mdl_yydebug;
 #endif
 
 /* Token type.  */
@@ -126,20 +132,20 @@ struct YYLTYPE
 
 
 
-int yyparse (void *pUserData, void *pScanner);
+int mdl_yyparse (void *pUserData, void *pScanner);
 
 
 
 /* Copy the second part of user declarations.  */
 
-#line 136 "mdl/../yyparser.inl" /* yacc.c:358  */
+#line 142 "mdl/../yyparser.inl" /* yacc.c:358  */
 /* Unqualified %code blocks.  */
 #line 19 "mdl/parser.y" /* yacc.c:359  */
 
     int yylex(union YYSTYPE *lvalp, YYLTYPE *llocp, void *pUserData, void *pScanner);
     void yyerror(YYLTYPE *llocp, void *pUserData, void *pScanner, const char *s);
 
-#line 143 "mdl/../yyparser.inl" /* yacc.c:359  */
+#line 149 "mdl/../yyparser.inl" /* yacc.c:359  */
 
 #ifdef short
 # undef short
@@ -1307,7 +1313,7 @@ yyreduce:
   switch (yyn)
     {
       
-#line 1311 "mdl/../yyparser.inl" /* yacc.c:1646  */
+#line 1317 "mdl/../yyparser.inl" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

@@ -141,7 +141,7 @@ typedef void* yyscan_t;
 #define YY_STATE_EOF(state) (YY_END_OF_BUFFER + state + 1)
 
 /* Special action meaning "start processing a new file". */
-#define YY_NEW_FILE llrestart(yyin ,yyscanner )
+#define YY_NEW_FILE mdl_llrestart(yyin ,yyscanner )
 
 #define YY_END_OF_BUFFER_CHAR 0
 
@@ -252,7 +252,7 @@ struct yy_buffer_state
 	 * possible backing-up.
 	 *
 	 * When we actually see the EOF, we change the status to "new"
-	 * (via llrestart()), so that the user can continue scanning by
+	 * (via mdl_llrestart()), so that the user can continue scanning by
 	 * just pointing yyin at a new input file.
 	 */
 #define YY_BUFFER_EOF_PENDING 2
@@ -275,36 +275,36 @@ struct yy_buffer_state
  */
 #define YY_CURRENT_BUFFER_LVALUE yyg->yy_buffer_stack[yyg->yy_buffer_stack_top]
 
-void llrestart (FILE *input_file ,yyscan_t yyscanner );
-void ll_switch_to_buffer (YY_BUFFER_STATE new_buffer ,yyscan_t yyscanner );
-YY_BUFFER_STATE ll_create_buffer (FILE *file,int size ,yyscan_t yyscanner );
-void ll_delete_buffer (YY_BUFFER_STATE b ,yyscan_t yyscanner );
-void ll_flush_buffer (YY_BUFFER_STATE b ,yyscan_t yyscanner );
-void llpush_buffer_state (YY_BUFFER_STATE new_buffer ,yyscan_t yyscanner );
-void llpop_buffer_state (yyscan_t yyscanner );
+void mdl_llrestart (FILE *input_file ,yyscan_t yyscanner );
+void mdl_ll_switch_to_buffer (YY_BUFFER_STATE new_buffer ,yyscan_t yyscanner );
+YY_BUFFER_STATE mdl_ll_create_buffer (FILE *file,int size ,yyscan_t yyscanner );
+void mdl_ll_delete_buffer (YY_BUFFER_STATE b ,yyscan_t yyscanner );
+void mdl_ll_flush_buffer (YY_BUFFER_STATE b ,yyscan_t yyscanner );
+void mdl_llpush_buffer_state (YY_BUFFER_STATE new_buffer ,yyscan_t yyscanner );
+void mdl_llpop_buffer_state (yyscan_t yyscanner );
 
-static void llensure_buffer_stack (yyscan_t yyscanner );
-static void ll_load_buffer_state (yyscan_t yyscanner );
-static void ll_init_buffer (YY_BUFFER_STATE b,FILE *file ,yyscan_t yyscanner );
+static void mdl_llensure_buffer_stack (yyscan_t yyscanner );
+static void mdl_ll_load_buffer_state (yyscan_t yyscanner );
+static void mdl_ll_init_buffer (YY_BUFFER_STATE b,FILE *file ,yyscan_t yyscanner );
 
-#define YY_FLUSH_BUFFER ll_flush_buffer(YY_CURRENT_BUFFER ,yyscanner)
+#define YY_FLUSH_BUFFER mdl_ll_flush_buffer(YY_CURRENT_BUFFER ,yyscanner)
 
-YY_BUFFER_STATE ll_scan_buffer (char *base,yy_size_t size ,yyscan_t yyscanner );
-YY_BUFFER_STATE ll_scan_string (yyconst char *yy_str ,yyscan_t yyscanner );
-YY_BUFFER_STATE ll_scan_bytes (yyconst char *bytes,int len ,yyscan_t yyscanner );
+YY_BUFFER_STATE mdl_ll_scan_buffer (char *base,yy_size_t size ,yyscan_t yyscanner );
+YY_BUFFER_STATE mdl_ll_scan_string (yyconst char *yy_str ,yyscan_t yyscanner );
+YY_BUFFER_STATE mdl_ll_scan_bytes (yyconst char *bytes,int len ,yyscan_t yyscanner );
 
-void *llalloc (yy_size_t ,yyscan_t yyscanner );
-void *llrealloc (void *,yy_size_t ,yyscan_t yyscanner );
-void llfree (void * ,yyscan_t yyscanner );
+void *mdl_llalloc (yy_size_t ,yyscan_t yyscanner );
+void *mdl_llrealloc (void *,yy_size_t ,yyscan_t yyscanner );
+void mdl_llfree (void * ,yyscan_t yyscanner );
 
-#define yy_new_buffer ll_create_buffer
+#define yy_new_buffer mdl_ll_create_buffer
 
 #define yy_set_interactive(is_interactive) \
 	{ \
 	if ( ! YY_CURRENT_BUFFER ){ \
-        llensure_buffer_stack (yyscanner); \
+        mdl_llensure_buffer_stack (yyscanner); \
 		YY_CURRENT_BUFFER_LVALUE =    \
-            ll_create_buffer(yyin,YY_BUF_SIZE ,yyscanner); \
+            mdl_ll_create_buffer(yyin,YY_BUF_SIZE ,yyscanner); \
 	} \
 	YY_CURRENT_BUFFER_LVALUE->yy_is_interactive = is_interactive; \
 	}
@@ -312,9 +312,9 @@ void llfree (void * ,yyscan_t yyscanner );
 #define yy_set_bol(at_bol) \
 	{ \
 	if ( ! YY_CURRENT_BUFFER ){\
-        llensure_buffer_stack (yyscanner); \
+        mdl_llensure_buffer_stack (yyscanner); \
 		YY_CURRENT_BUFFER_LVALUE =    \
-            ll_create_buffer(yyin,YY_BUF_SIZE ,yyscanner); \
+            mdl_ll_create_buffer(yyin,YY_BUF_SIZE ,yyscanner); \
 	} \
 	YY_CURRENT_BUFFER_LVALUE->yy_at_bol = at_bol; \
 	}
@@ -514,42 +514,42 @@ struct yyguts_t
 
 static int yy_init_globals (yyscan_t yyscanner );
 
-int lllex_init (yyscan_t* scanner);
+int mdl_lllex_init (yyscan_t* scanner);
 
-int lllex_init_extra (YY_EXTRA_TYPE user_defined,yyscan_t* scanner);
+int mdl_lllex_init_extra (YY_EXTRA_TYPE user_defined,yyscan_t* scanner);
 
 /* Accessor methods to globals.
    These are made visible to non-reentrant scanners for convenience. */
 
-int lllex_destroy (yyscan_t yyscanner );
+int mdl_lllex_destroy (yyscan_t yyscanner );
 
-int llget_debug (yyscan_t yyscanner );
+int mdl_llget_debug (yyscan_t yyscanner );
 
-void llset_debug (int debug_flag ,yyscan_t yyscanner );
+void mdl_llset_debug (int debug_flag ,yyscan_t yyscanner );
 
-YY_EXTRA_TYPE llget_extra (yyscan_t yyscanner );
+YY_EXTRA_TYPE mdl_llget_extra (yyscan_t yyscanner );
 
-void llset_extra (YY_EXTRA_TYPE user_defined ,yyscan_t yyscanner );
+void mdl_llset_extra (YY_EXTRA_TYPE user_defined ,yyscan_t yyscanner );
 
-FILE *llget_in (yyscan_t yyscanner );
+FILE *mdl_llget_in (yyscan_t yyscanner );
 
-void llset_in  (FILE * _in_str ,yyscan_t yyscanner );
+void mdl_llset_in  (FILE * _in_str ,yyscan_t yyscanner );
 
-FILE *llget_out (yyscan_t yyscanner );
+FILE *mdl_llget_out (yyscan_t yyscanner );
 
-void llset_out  (FILE * _out_str ,yyscan_t yyscanner );
+void mdl_llset_out  (FILE * _out_str ,yyscan_t yyscanner );
 
-			int llget_leng (yyscan_t yyscanner );
+			int mdl_llget_leng (yyscan_t yyscanner );
 
-char *llget_text (yyscan_t yyscanner );
+char *mdl_llget_text (yyscan_t yyscanner );
 
-int llget_lineno (yyscan_t yyscanner );
+int mdl_llget_lineno (yyscan_t yyscanner );
 
-void llset_lineno (int _line_number ,yyscan_t yyscanner );
+void mdl_llset_lineno (int _line_number ,yyscan_t yyscanner );
 
-int llget_column  (yyscan_t yyscanner );
+int mdl_llget_column  (yyscan_t yyscanner );
 
-void llset_column (int _column_no ,yyscan_t yyscanner );
+void mdl_llset_column (int _column_no ,yyscan_t yyscanner );
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -557,9 +557,9 @@ void llset_column (int _column_no ,yyscan_t yyscanner );
 
 #ifndef YY_SKIP_YYWRAP
 #ifdef __cplusplus
-extern "C" int llwrap (yyscan_t yyscanner );
+extern "C" int mdl_llwrap (yyscan_t yyscanner );
 #else
-extern int llwrap (yyscan_t yyscanner );
+extern int mdl_llwrap (yyscan_t yyscanner );
 #endif
 #endif
 
@@ -649,9 +649,9 @@ static int input (yyscan_t yyscanner );
 #ifndef YY_DECL
 #define YY_DECL_IS_OURS 1
 
-extern int lllex (yyscan_t yyscanner);
+extern int mdl_lllex (yyscan_t yyscanner);
 
-#define YY_DECL int lllex (yyscan_t yyscanner)
+#define YY_DECL int mdl_lllex (yyscan_t yyscanner)
 #endif /* !YY_DECL */
 
 /* Code executed at the beginning of each rule, after yytext and yyleng
@@ -696,12 +696,12 @@ YY_DECL
 			yyout = stdout;
 
 		if ( ! YY_CURRENT_BUFFER ) {
-			llensure_buffer_stack (yyscanner);
+			mdl_llensure_buffer_stack (yyscanner);
 			YY_CURRENT_BUFFER_LVALUE =
-				ll_create_buffer(yyin,YY_BUF_SIZE ,yyscanner);
+				mdl_ll_create_buffer(yyin,YY_BUF_SIZE ,yyscanner);
 		}
 
-		ll_load_buffer_state(yyscanner );
+		mdl_ll_load_buffer_state(yyscanner );
 		}
 
 	{
@@ -772,7 +772,7 @@ ECHO;
 			/* We're scanning a new file or input source.  It's
 			 * possible that this happened because the user
 			 * just pointed yyin at a new source and called
-			 * lllex().  If so, then we have to assure
+			 * mdl_lllex().  If so, then we have to assure
 			 * consistency between YY_CURRENT_BUFFER and our
 			 * globals.  Here is the right place to do so, because
 			 * this is the first action (other than possibly a
@@ -832,7 +832,7 @@ ECHO;
 				{
 				yyg->yy_did_buffer_switch_on_eof = 0;
 
-				if ( llwrap(yyscanner ) )
+				if ( mdl_llwrap(yyscanner ) )
 					{
 					/* Note: because we've taken care in
 					 * yy_get_next_buffer() to have set up
@@ -886,7 +886,7 @@ ECHO;
 	} /* end of action switch */
 		} /* end of scanning one token */
 	} /* end of user's declarations */
-} /* end of lllex */
+} /* end of mdl_lllex */
 
 /* yy_get_next_buffer - try to read in a new buffer
  *
@@ -965,7 +965,7 @@ static int yy_get_next_buffer (yyscan_t yyscanner)
 
 				b->yy_ch_buf = (char *)
 					/* Include room in for 2 EOB chars. */
-					llrealloc((void *) b->yy_ch_buf,(yy_size_t) (b->yy_buf_size + 2) ,yyscanner );
+					mdl_llrealloc((void *) b->yy_ch_buf,(yy_size_t) (b->yy_buf_size + 2) ,yyscanner );
 				}
 			else
 				/* Can't grow it, we don't own it. */
@@ -997,7 +997,7 @@ static int yy_get_next_buffer (yyscan_t yyscanner)
 		if ( number_to_move == YY_MORE_ADJ )
 			{
 			ret_val = EOB_ACT_END_OF_FILE;
-			llrestart(yyin  ,yyscanner);
+			mdl_llrestart(yyin  ,yyscanner);
 			}
 
 		else
@@ -1014,7 +1014,7 @@ static int yy_get_next_buffer (yyscan_t yyscanner)
 	if ((int) (yyg->yy_n_chars + number_to_move) > YY_CURRENT_BUFFER_LVALUE->yy_buf_size) {
 		/* Extend the array by 50%, plus the number we really need. */
 		int new_size = yyg->yy_n_chars + number_to_move + (yyg->yy_n_chars >> 1);
-		YY_CURRENT_BUFFER_LVALUE->yy_ch_buf = (char *) llrealloc((void *) YY_CURRENT_BUFFER_LVALUE->yy_ch_buf,(yy_size_t) new_size ,yyscanner );
+		YY_CURRENT_BUFFER_LVALUE->yy_ch_buf = (char *) mdl_llrealloc((void *) YY_CURRENT_BUFFER_LVALUE->yy_ch_buf,(yy_size_t) new_size ,yyscanner );
 		if ( ! YY_CURRENT_BUFFER_LVALUE->yy_ch_buf )
 			YY_FATAL_ERROR( "out of dynamic memory in yy_get_next_buffer()" );
 	}
@@ -1113,13 +1113,13 @@ static int yy_get_next_buffer (yyscan_t yyscanner)
 					 */
 
 					/* Reset buffer status. */
-					llrestart(yyin ,yyscanner);
+					mdl_llrestart(yyin ,yyscanner);
 
 					/*FALLTHROUGH*/
 
 				case EOB_ACT_END_OF_FILE:
 					{
-					if ( llwrap(yyscanner ) )
+					if ( mdl_llwrap(yyscanner ) )
 						return 0;
 
 					if ( ! yyg->yy_did_buffer_switch_on_eof )
@@ -1151,34 +1151,34 @@ static int yy_get_next_buffer (yyscan_t yyscanner)
  * @param yyscanner The scanner object.
  * @note This function does not reset the start condition to @c INITIAL .
  */
-    void llrestart  (FILE * input_file , yyscan_t yyscanner)
+    void mdl_llrestart  (FILE * input_file , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
 	if ( ! YY_CURRENT_BUFFER ){
-        llensure_buffer_stack (yyscanner);
+        mdl_llensure_buffer_stack (yyscanner);
 		YY_CURRENT_BUFFER_LVALUE =
-            ll_create_buffer(yyin,YY_BUF_SIZE ,yyscanner);
+            mdl_ll_create_buffer(yyin,YY_BUF_SIZE ,yyscanner);
 	}
 
-	ll_init_buffer(YY_CURRENT_BUFFER,input_file ,yyscanner);
-	ll_load_buffer_state(yyscanner );
+	mdl_ll_init_buffer(YY_CURRENT_BUFFER,input_file ,yyscanner);
+	mdl_ll_load_buffer_state(yyscanner );
 }
 
 /** Switch to a different input buffer.
  * @param new_buffer The new input buffer.
  * @param yyscanner The scanner object.
  */
-    void ll_switch_to_buffer  (YY_BUFFER_STATE  new_buffer , yyscan_t yyscanner)
+    void mdl_ll_switch_to_buffer  (YY_BUFFER_STATE  new_buffer , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
 	/* TODO. We should be able to replace this entire function body
 	 * with
-	 *		llpop_buffer_state();
-	 *		llpush_buffer_state(new_buffer);
+	 *		mdl_llpop_buffer_state();
+	 *		mdl_llpush_buffer_state(new_buffer);
      */
-	llensure_buffer_stack (yyscanner);
+	mdl_llensure_buffer_stack (yyscanner);
 	if ( YY_CURRENT_BUFFER == new_buffer )
 		return;
 
@@ -1191,17 +1191,17 @@ static int yy_get_next_buffer (yyscan_t yyscanner)
 		}
 
 	YY_CURRENT_BUFFER_LVALUE = new_buffer;
-	ll_load_buffer_state(yyscanner );
+	mdl_ll_load_buffer_state(yyscanner );
 
 	/* We don't actually know whether we did this switch during
-	 * EOF (llwrap()) processing, but the only time this flag
-	 * is looked at is after llwrap() is called, so it's safe
+	 * EOF (mdl_llwrap()) processing, but the only time this flag
+	 * is looked at is after mdl_llwrap() is called, so it's safe
 	 * to go ahead and always set it.
 	 */
 	yyg->yy_did_buffer_switch_on_eof = 1;
 }
 
-static void ll_load_buffer_state  (yyscan_t yyscanner)
+static void mdl_ll_load_buffer_state  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 	yyg->yy_n_chars = YY_CURRENT_BUFFER_LVALUE->yy_n_chars;
@@ -1216,35 +1216,35 @@ static void ll_load_buffer_state  (yyscan_t yyscanner)
  * @param yyscanner The scanner object.
  * @return the allocated buffer state.
  */
-    YY_BUFFER_STATE ll_create_buffer  (FILE * file, int  size , yyscan_t yyscanner)
+    YY_BUFFER_STATE mdl_ll_create_buffer  (FILE * file, int  size , yyscan_t yyscanner)
 {
 	YY_BUFFER_STATE b;
     
-	b = (YY_BUFFER_STATE) llalloc(sizeof( struct yy_buffer_state ) ,yyscanner );
+	b = (YY_BUFFER_STATE) mdl_llalloc(sizeof( struct yy_buffer_state ) ,yyscanner );
 	if ( ! b )
-		YY_FATAL_ERROR( "out of dynamic memory in ll_create_buffer()" );
+		YY_FATAL_ERROR( "out of dynamic memory in mdl_ll_create_buffer()" );
 
 	b->yy_buf_size = size;
 
 	/* yy_ch_buf has to be 2 characters longer than the size given because
 	 * we need to put in 2 end-of-buffer characters.
 	 */
-	b->yy_ch_buf = (char *) llalloc((yy_size_t) (b->yy_buf_size + 2) ,yyscanner );
+	b->yy_ch_buf = (char *) mdl_llalloc((yy_size_t) (b->yy_buf_size + 2) ,yyscanner );
 	if ( ! b->yy_ch_buf )
-		YY_FATAL_ERROR( "out of dynamic memory in ll_create_buffer()" );
+		YY_FATAL_ERROR( "out of dynamic memory in mdl_ll_create_buffer()" );
 
 	b->yy_is_our_buffer = 1;
 
-	ll_init_buffer(b,file ,yyscanner);
+	mdl_ll_init_buffer(b,file ,yyscanner);
 
 	return b;
 }
 
 /** Destroy the buffer.
- * @param b a buffer created with ll_create_buffer()
+ * @param b a buffer created with mdl_ll_create_buffer()
  * @param yyscanner The scanner object.
  */
-    void ll_delete_buffer (YY_BUFFER_STATE  b , yyscan_t yyscanner)
+    void mdl_ll_delete_buffer (YY_BUFFER_STATE  b , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
@@ -1255,28 +1255,28 @@ static void ll_load_buffer_state  (yyscan_t yyscanner)
 		YY_CURRENT_BUFFER_LVALUE = (YY_BUFFER_STATE) 0;
 
 	if ( b->yy_is_our_buffer )
-		llfree((void *) b->yy_ch_buf ,yyscanner );
+		mdl_llfree((void *) b->yy_ch_buf ,yyscanner );
 
-	llfree((void *) b ,yyscanner );
+	mdl_llfree((void *) b ,yyscanner );
 }
 
 /* Initializes or reinitializes a buffer.
  * This function is sometimes called more than once on the same buffer,
- * such as during a llrestart() or at EOF.
+ * such as during a mdl_llrestart() or at EOF.
  */
-    static void ll_init_buffer  (YY_BUFFER_STATE  b, FILE * file , yyscan_t yyscanner)
+    static void mdl_ll_init_buffer  (YY_BUFFER_STATE  b, FILE * file , yyscan_t yyscanner)
 
 {
 	int oerrno = errno;
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
-	ll_flush_buffer(b ,yyscanner);
+	mdl_ll_flush_buffer(b ,yyscanner);
 
 	b->yy_input_file = file;
 	b->yy_fill_buffer = 1;
 
-    /* If b is the current buffer, then ll_init_buffer was _probably_
-     * called from llrestart() or through yy_get_next_buffer.
+    /* If b is the current buffer, then mdl_ll_init_buffer was _probably_
+     * called from mdl_llrestart() or through yy_get_next_buffer.
      * In that case, we don't want to reset the lineno or column.
      */
     if (b != YY_CURRENT_BUFFER){
@@ -1293,7 +1293,7 @@ static void ll_load_buffer_state  (yyscan_t yyscanner)
  * @param b the buffer state to be flushed, usually @c YY_CURRENT_BUFFER.
  * @param yyscanner The scanner object.
  */
-    void ll_flush_buffer (YY_BUFFER_STATE  b , yyscan_t yyscanner)
+    void mdl_ll_flush_buffer (YY_BUFFER_STATE  b , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 	if ( ! b )
@@ -1314,7 +1314,7 @@ static void ll_load_buffer_state  (yyscan_t yyscanner)
 	b->yy_buffer_status = YY_BUFFER_NEW;
 
 	if ( b == YY_CURRENT_BUFFER )
-		ll_load_buffer_state(yyscanner );
+		mdl_ll_load_buffer_state(yyscanner );
 }
 
 /** Pushes the new state onto the stack. The new state becomes
@@ -1323,15 +1323,15 @@ static void ll_load_buffer_state  (yyscan_t yyscanner)
  *  @param new_buffer The new state.
  *  @param yyscanner The scanner object.
  */
-void llpush_buffer_state (YY_BUFFER_STATE new_buffer , yyscan_t yyscanner)
+void mdl_llpush_buffer_state (YY_BUFFER_STATE new_buffer , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 	if (new_buffer == NULL)
 		return;
 
-	llensure_buffer_stack(yyscanner);
+	mdl_llensure_buffer_stack(yyscanner);
 
-	/* This block is copied from ll_switch_to_buffer. */
+	/* This block is copied from mdl_ll_switch_to_buffer. */
 	if ( YY_CURRENT_BUFFER )
 		{
 		/* Flush out information for old buffer. */
@@ -1345,8 +1345,8 @@ void llpush_buffer_state (YY_BUFFER_STATE new_buffer , yyscan_t yyscanner)
 		yyg->yy_buffer_stack_top++;
 	YY_CURRENT_BUFFER_LVALUE = new_buffer;
 
-	/* copied from ll_switch_to_buffer. */
-	ll_load_buffer_state(yyscanner );
+	/* copied from mdl_ll_switch_to_buffer. */
+	mdl_ll_load_buffer_state(yyscanner );
 	yyg->yy_did_buffer_switch_on_eof = 1;
 }
 
@@ -1354,19 +1354,19 @@ void llpush_buffer_state (YY_BUFFER_STATE new_buffer , yyscan_t yyscanner)
  *  The next element becomes the new top.
  *  @param yyscanner The scanner object.
  */
-void llpop_buffer_state (yyscan_t yyscanner)
+void mdl_llpop_buffer_state (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 	if (!YY_CURRENT_BUFFER)
 		return;
 
-	ll_delete_buffer(YY_CURRENT_BUFFER ,yyscanner);
+	mdl_ll_delete_buffer(YY_CURRENT_BUFFER ,yyscanner);
 	YY_CURRENT_BUFFER_LVALUE = NULL;
 	if (yyg->yy_buffer_stack_top > 0)
 		--yyg->yy_buffer_stack_top;
 
 	if (YY_CURRENT_BUFFER) {
-		ll_load_buffer_state(yyscanner );
+		mdl_ll_load_buffer_state(yyscanner );
 		yyg->yy_did_buffer_switch_on_eof = 1;
 	}
 }
@@ -1374,7 +1374,7 @@ void llpop_buffer_state (yyscan_t yyscanner)
 /* Allocates the stack if it does not exist.
  *  Guarantees space for at least one push.
  */
-static void llensure_buffer_stack (yyscan_t yyscanner)
+static void mdl_llensure_buffer_stack (yyscan_t yyscanner)
 {
 	int num_to_alloc;
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
@@ -1386,11 +1386,11 @@ static void llensure_buffer_stack (yyscan_t yyscanner)
 		 * immediate realloc on the next call.
          */
       num_to_alloc = 1; /* After all that talk, this was set to 1 anyways... */
-		yyg->yy_buffer_stack = (struct yy_buffer_state**)llalloc
+		yyg->yy_buffer_stack = (struct yy_buffer_state**)mdl_llalloc
 								(num_to_alloc * sizeof(struct yy_buffer_state*)
 								, yyscanner);
 		if ( ! yyg->yy_buffer_stack )
-			YY_FATAL_ERROR( "out of dynamic memory in llensure_buffer_stack()" );
+			YY_FATAL_ERROR( "out of dynamic memory in mdl_llensure_buffer_stack()" );
 								  
 		memset(yyg->yy_buffer_stack, 0, num_to_alloc * sizeof(struct yy_buffer_state*));
 				
@@ -1405,12 +1405,12 @@ static void llensure_buffer_stack (yyscan_t yyscanner)
 		yy_size_t grow_size = 8 /* arbitrary grow size */;
 
 		num_to_alloc = yyg->yy_buffer_stack_max + grow_size;
-		yyg->yy_buffer_stack = (struct yy_buffer_state**)llrealloc
+		yyg->yy_buffer_stack = (struct yy_buffer_state**)mdl_llrealloc
 								(yyg->yy_buffer_stack,
 								num_to_alloc * sizeof(struct yy_buffer_state*)
 								, yyscanner);
 		if ( ! yyg->yy_buffer_stack )
-			YY_FATAL_ERROR( "out of dynamic memory in llensure_buffer_stack()" );
+			YY_FATAL_ERROR( "out of dynamic memory in mdl_llensure_buffer_stack()" );
 
 		/* zero only the new slots.*/
 		memset(yyg->yy_buffer_stack + yyg->yy_buffer_stack_max, 0, grow_size * sizeof(struct yy_buffer_state*));
@@ -1424,7 +1424,7 @@ static void llensure_buffer_stack (yyscan_t yyscanner)
  * @param yyscanner The scanner object.
  * @return the newly allocated buffer state object. 
  */
-YY_BUFFER_STATE ll_scan_buffer  (char * base, yy_size_t  size , yyscan_t yyscanner)
+YY_BUFFER_STATE mdl_ll_scan_buffer  (char * base, yy_size_t  size , yyscan_t yyscanner)
 {
 	YY_BUFFER_STATE b;
     
@@ -1434,9 +1434,9 @@ YY_BUFFER_STATE ll_scan_buffer  (char * base, yy_size_t  size , yyscan_t yyscann
 		/* They forgot to leave room for the EOB's. */
 		return NULL;
 
-	b = (YY_BUFFER_STATE) llalloc(sizeof( struct yy_buffer_state ) ,yyscanner );
+	b = (YY_BUFFER_STATE) mdl_llalloc(sizeof( struct yy_buffer_state ) ,yyscanner );
 	if ( ! b )
-		YY_FATAL_ERROR( "out of dynamic memory in ll_scan_buffer()" );
+		YY_FATAL_ERROR( "out of dynamic memory in mdl_ll_scan_buffer()" );
 
 	b->yy_buf_size = (int) (size - 2);	/* "- 2" to take care of EOB's */
 	b->yy_buf_pos = b->yy_ch_buf = base;
@@ -1448,33 +1448,33 @@ YY_BUFFER_STATE ll_scan_buffer  (char * base, yy_size_t  size , yyscan_t yyscann
 	b->yy_fill_buffer = 0;
 	b->yy_buffer_status = YY_BUFFER_NEW;
 
-	ll_switch_to_buffer(b ,yyscanner );
+	mdl_ll_switch_to_buffer(b ,yyscanner );
 
 	return b;
 }
 
-/** Setup the input buffer state to scan a string. The next call to lllex() will
+/** Setup the input buffer state to scan a string. The next call to mdl_lllex() will
  * scan from a @e copy of @a str.
  * @param yystr a NUL-terminated string to scan
  * @param yyscanner The scanner object.
  * @return the newly allocated buffer state object.
  * @note If you want to scan bytes that may contain NUL values, then use
- *       ll_scan_bytes() instead.
+ *       mdl_ll_scan_bytes() instead.
  */
-YY_BUFFER_STATE ll_scan_string (yyconst char * yystr , yyscan_t yyscanner)
+YY_BUFFER_STATE mdl_ll_scan_string (yyconst char * yystr , yyscan_t yyscanner)
 {
     
-	return ll_scan_bytes(yystr,(int) strlen(yystr) ,yyscanner);
+	return mdl_ll_scan_bytes(yystr,(int) strlen(yystr) ,yyscanner);
 }
 
-/** Setup the input buffer state to scan the given bytes. The next call to lllex() will
+/** Setup the input buffer state to scan the given bytes. The next call to mdl_lllex() will
  * scan from a @e copy of @a bytes.
  * @param yybytes the byte buffer to scan
  * @param _yybytes_len the number of bytes in the buffer pointed to by @a bytes.
  * @param yyscanner The scanner object.
  * @return the newly allocated buffer state object.
  */
-YY_BUFFER_STATE ll_scan_bytes  (yyconst char * yybytes, int  _yybytes_len , yyscan_t yyscanner)
+YY_BUFFER_STATE mdl_ll_scan_bytes  (yyconst char * yybytes, int  _yybytes_len , yyscan_t yyscanner)
 {
 	YY_BUFFER_STATE b;
 	char *buf;
@@ -1483,18 +1483,18 @@ YY_BUFFER_STATE ll_scan_bytes  (yyconst char * yybytes, int  _yybytes_len , yysc
     
 	/* Get memory for full buffer, including space for trailing EOB's. */
 	n = (yy_size_t) (_yybytes_len + 2);
-	buf = (char *) llalloc(n ,yyscanner );
+	buf = (char *) mdl_llalloc(n ,yyscanner );
 	if ( ! buf )
-		YY_FATAL_ERROR( "out of dynamic memory in ll_scan_bytes()" );
+		YY_FATAL_ERROR( "out of dynamic memory in mdl_ll_scan_bytes()" );
 
 	for ( i = 0; i < _yybytes_len; ++i )
 		buf[i] = yybytes[i];
 
 	buf[_yybytes_len] = buf[_yybytes_len+1] = YY_END_OF_BUFFER_CHAR;
 
-	b = ll_scan_buffer(buf,n ,yyscanner);
+	b = mdl_ll_scan_buffer(buf,n ,yyscanner);
 	if ( ! b )
-		YY_FATAL_ERROR( "bad buffer in ll_scan_bytes()" );
+		YY_FATAL_ERROR( "bad buffer in mdl_ll_scan_bytes()" );
 
 	/* It's okay to grow etc. this buffer, and we should throw it
 	 * away when we're done.
@@ -1538,7 +1538,7 @@ static void yynoreturn yy_fatal_error (yyconst char* msg , yyscan_t yyscanner)
 /** Get the user-defined data for this scanner.
  * @param yyscanner The scanner object.
  */
-YY_EXTRA_TYPE llget_extra  (yyscan_t yyscanner)
+YY_EXTRA_TYPE mdl_llget_extra  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     return yyextra;
@@ -1547,7 +1547,7 @@ YY_EXTRA_TYPE llget_extra  (yyscan_t yyscanner)
 /** Get the current line number.
  * @param yyscanner The scanner object.
  */
-int llget_lineno  (yyscan_t yyscanner)
+int mdl_llget_lineno  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     
@@ -1560,7 +1560,7 @@ int llget_lineno  (yyscan_t yyscanner)
 /** Get the current column number.
  * @param yyscanner The scanner object.
  */
-int llget_column  (yyscan_t yyscanner)
+int mdl_llget_column  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     
@@ -1573,7 +1573,7 @@ int llget_column  (yyscan_t yyscanner)
 /** Get the input stream.
  * @param yyscanner The scanner object.
  */
-FILE *llget_in  (yyscan_t yyscanner)
+FILE *mdl_llget_in  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     return yyin;
@@ -1582,7 +1582,7 @@ FILE *llget_in  (yyscan_t yyscanner)
 /** Get the output stream.
  * @param yyscanner The scanner object.
  */
-FILE *llget_out  (yyscan_t yyscanner)
+FILE *mdl_llget_out  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     return yyout;
@@ -1591,7 +1591,7 @@ FILE *llget_out  (yyscan_t yyscanner)
 /** Get the length of the current token.
  * @param yyscanner The scanner object.
  */
-int llget_leng  (yyscan_t yyscanner)
+int mdl_llget_leng  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     return yyleng;
@@ -1601,7 +1601,7 @@ int llget_leng  (yyscan_t yyscanner)
  * @param yyscanner The scanner object.
  */
 
-char *llget_text  (yyscan_t yyscanner)
+char *mdl_llget_text  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     return yytext;
@@ -1611,7 +1611,7 @@ char *llget_text  (yyscan_t yyscanner)
  * @param user_defined The data to be associated with this scanner.
  * @param yyscanner The scanner object.
  */
-void llset_extra (YY_EXTRA_TYPE  user_defined , yyscan_t yyscanner)
+void mdl_llset_extra (YY_EXTRA_TYPE  user_defined , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     yyextra = user_defined ;
@@ -1621,13 +1621,13 @@ void llset_extra (YY_EXTRA_TYPE  user_defined , yyscan_t yyscanner)
  * @param _line_number line number
  * @param yyscanner The scanner object.
  */
-void llset_lineno (int  _line_number , yyscan_t yyscanner)
+void mdl_llset_lineno (int  _line_number , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
         /* lineno is only valid if an input buffer exists. */
         if (! YY_CURRENT_BUFFER )
-           YY_FATAL_ERROR( "llset_lineno called with no buffer" );
+           YY_FATAL_ERROR( "mdl_llset_lineno called with no buffer" );
     
     yylineno = _line_number;
 }
@@ -1636,13 +1636,13 @@ void llset_lineno (int  _line_number , yyscan_t yyscanner)
  * @param _column_no column number
  * @param yyscanner The scanner object.
  */
-void llset_column (int  _column_no , yyscan_t yyscanner)
+void mdl_llset_column (int  _column_no , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
         /* column is only valid if an input buffer exists. */
         if (! YY_CURRENT_BUFFER )
-           YY_FATAL_ERROR( "llset_column called with no buffer" );
+           YY_FATAL_ERROR( "mdl_llset_column called with no buffer" );
     
     yycolumn = _column_no;
 }
@@ -1651,27 +1651,27 @@ void llset_column (int  _column_no , yyscan_t yyscanner)
  * input buffer.
  * @param _in_str A readable stream.
  * @param yyscanner The scanner object.
- * @see ll_switch_to_buffer
+ * @see mdl_ll_switch_to_buffer
  */
-void llset_in (FILE *  _in_str , yyscan_t yyscanner)
+void mdl_llset_in (FILE *  _in_str , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     yyin = _in_str ;
 }
 
-void llset_out (FILE *  _out_str , yyscan_t yyscanner)
+void mdl_llset_out (FILE *  _out_str , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     yyout = _out_str ;
 }
 
-int llget_debug  (yyscan_t yyscanner)
+int mdl_llget_debug  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     return yy_flex_debug;
 }
 
-void llset_debug (int  _bdebug , yyscan_t yyscanner)
+void mdl_llset_debug (int  _bdebug , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     yy_flex_debug = _bdebug ;
@@ -1681,12 +1681,12 @@ void llset_debug (int  _bdebug , yyscan_t yyscanner)
 
 /* User-visible API */
 
-/* lllex_init is special because it creates the scanner itself, so it is
+/* mdl_lllex_init is special because it creates the scanner itself, so it is
  * the ONLY reentrant function that doesn't take the scanner as the last argument.
  * That's why we explicitly handle the declaration, instead of using our macros.
  */
 
-int lllex_init(yyscan_t* ptr_yy_globals)
+int mdl_lllex_init(yyscan_t* ptr_yy_globals)
 
 {
     if (ptr_yy_globals == NULL){
@@ -1694,7 +1694,7 @@ int lllex_init(yyscan_t* ptr_yy_globals)
         return 1;
     }
 
-    *ptr_yy_globals = (yyscan_t) llalloc ( sizeof( struct yyguts_t ), NULL );
+    *ptr_yy_globals = (yyscan_t) mdl_llalloc ( sizeof( struct yyguts_t ), NULL );
 
     if (*ptr_yy_globals == NULL){
         errno = ENOMEM;
@@ -1707,27 +1707,27 @@ int lllex_init(yyscan_t* ptr_yy_globals)
     return yy_init_globals ( *ptr_yy_globals );
 }
 
-/* lllex_init_extra has the same functionality as lllex_init, but follows the
+/* mdl_lllex_init_extra has the same functionality as mdl_lllex_init, but follows the
  * convention of taking the scanner as the last argument. Note however, that
  * this is a *pointer* to a scanner, as it will be allocated by this call (and
  * is the reason, too, why this function also must handle its own declaration).
- * The user defined value in the first argument will be available to llalloc in
+ * The user defined value in the first argument will be available to mdl_llalloc in
  * the yyextra field.
  */
 
-int lllex_init_extra(YY_EXTRA_TYPE yy_user_defined,yyscan_t* ptr_yy_globals )
+int mdl_lllex_init_extra(YY_EXTRA_TYPE yy_user_defined,yyscan_t* ptr_yy_globals )
 
 {
     struct yyguts_t dummy_yyguts;
 
-    llset_extra (yy_user_defined, &dummy_yyguts);
+    mdl_llset_extra (yy_user_defined, &dummy_yyguts);
 
     if (ptr_yy_globals == NULL){
         errno = EINVAL;
         return 1;
     }
 	
-    *ptr_yy_globals = (yyscan_t) llalloc ( sizeof( struct yyguts_t ), &dummy_yyguts );
+    *ptr_yy_globals = (yyscan_t) mdl_llalloc ( sizeof( struct yyguts_t ), &dummy_yyguts );
 	
     if (*ptr_yy_globals == NULL){
         errno = ENOMEM;
@@ -1738,7 +1738,7 @@ int lllex_init_extra(YY_EXTRA_TYPE yy_user_defined,yyscan_t* ptr_yy_globals )
     yy_init_globals. Leave at 0x00 for releases. */
     memset(*ptr_yy_globals,0x00,sizeof(struct yyguts_t));
     
-    llset_extra (yy_user_defined, *ptr_yy_globals);
+    mdl_llset_extra (yy_user_defined, *ptr_yy_globals);
     
     return yy_init_globals ( *ptr_yy_globals );
 }
@@ -1747,7 +1747,7 @@ static int yy_init_globals (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     /* Initialization is the same as for the non-reentrant scanner.
-     * This function is called from lllex_destroy(), so don't allocate here.
+     * This function is called from mdl_lllex_destroy(), so don't allocate here.
      */
 
     yyg->yy_buffer_stack = NULL;
@@ -1771,37 +1771,37 @@ static int yy_init_globals (yyscan_t yyscanner)
 #endif
 
     /* For future reference: Set errno on error, since we are called by
-     * lllex_init()
+     * mdl_lllex_init()
      */
     return 0;
 }
 
-/* lllex_destroy is for both reentrant and non-reentrant scanners. */
-int lllex_destroy  (yyscan_t yyscanner)
+/* mdl_lllex_destroy is for both reentrant and non-reentrant scanners. */
+int mdl_lllex_destroy  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
     /* Pop the buffer stack, destroying each element. */
 	while(YY_CURRENT_BUFFER){
-		ll_delete_buffer(YY_CURRENT_BUFFER ,yyscanner );
+		mdl_ll_delete_buffer(YY_CURRENT_BUFFER ,yyscanner );
 		YY_CURRENT_BUFFER_LVALUE = NULL;
-		llpop_buffer_state(yyscanner);
+		mdl_llpop_buffer_state(yyscanner);
 	}
 
 	/* Destroy the stack itself. */
-	llfree(yyg->yy_buffer_stack ,yyscanner);
+	mdl_llfree(yyg->yy_buffer_stack ,yyscanner);
 	yyg->yy_buffer_stack = NULL;
 
     /* Destroy the start condition stack. */
-        llfree(yyg->yy_start_stack ,yyscanner );
+        mdl_llfree(yyg->yy_start_stack ,yyscanner );
         yyg->yy_start_stack = NULL;
 
     /* Reset the globals. This is important in a non-reentrant scanner so the next time
-     * lllex() is called, initialization will occur. */
+     * mdl_lllex() is called, initialization will occur. */
     yy_init_globals( yyscanner);
 
     /* Destroy the main struct (reentrant only). */
-    llfree ( yyscanner , yyscanner );
+    mdl_llfree ( yyscanner , yyscanner );
     yyscanner = NULL;
     return 0;
 }

@@ -1,6 +1,6 @@
 
 %option reentrant
-%option prefix="ll"
+%option prefix="mdl_ll"
 %option noinput
 %option nounput
 %option batch

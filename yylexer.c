@@ -1,10 +1,10 @@
 #include <stddef.h>
 
-extern int ll_inputstream_read(void *pUserData, void *pUserStream, void *buf, size_t max_size);
+extern int mdl_ll_inputstream_read(void *pUserData, void *pUserStream, void *buf, size_t max_size);
 
 #define YY_INPUT(buf, result, max_size)                                               \
     {                                                                                 \
-        (*(&result)) = ll_inputstream_read((yyextra), ((void *)yyin), buf, max_size); \
+        (*(&result)) = mdl_ll_inputstream_read((yyextra), ((void *)yyin), buf, max_size); \
         if (result == -1)                                                             \
         {                                                                             \
             YY_FATAL_ERROR("input in flex scanner failed");                           \
@@ -13,7 +13,7 @@ extern int ll_inputstream_read(void *pUserData, void *pUserStream, void *buf, si
 
 #include "yyparser.h"
 
-#define YY_DECL int lllex(yyscan_t yyscanner, union YYSTYPE *lvalp)
+#define YY_DECL int mdl_lllex(yyscan_t yyscanner, union YYSTYPE *lvalp)
 
 #include "yylexer.inl"
 
@@ -32,13 +32,6 @@ int main()
     return 0;
 }
 #endif
-
-//https://westes.github.io/flex/manual/Generated-Scanner.html#Generated-Scanner
-int llwrap(yyscan_t yyscanner)
-{
-    void *user_defined = llget_extra(yyscanner);
-    return 1;
-}
 
 static void _static_assert_yylexer_(void)
 {
