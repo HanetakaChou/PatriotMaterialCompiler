@@ -1,24 +1,15 @@
 #include <stddef.h>
 extern int PTInputStream_Read(void *pUserData, void *pUserStream, void *buf, size_t max_size);
 
-#define YY_NO_INPUT 1
-#define YY_NO_UNPUT 1
-#define YY_NO_UNISTD_H 1
-
-#include <assert.h>
-#define YY_INPUT(buf, result, max_size)                                         \
-    assert(!(YY_CURRENT_BUFFER_LVALUE->yy_is_interactive));                     \
-    {                                                                           \
+#define YY_INPUT(buf, result, max_size)                                              \
+    {                                                                                \
         (*(&result)) = PTInputStream_Read((yyextra), ((void *)yyin), buf, max_size); \
-        if (result == -1)                                                       \
-        {                                                                       \
-            YY_FATAL_ERROR("input in flex scanner failed");                     \
-        }                                                                       \
+        if (result == -1)                                                            \
+        {                                                                            \
+            YY_FATAL_ERROR("input in flex scanner failed");                          \
+        }                                                                            \
     }
 
-#define isatty(fd) (0)
-#include <stdio.h>
-#define fileno(stream) (-1)
 #include "yylexer.inl"
 
 #if 1
@@ -27,19 +18,47 @@ int main()
     void *pUserInputStream = (void *)1;
 
     yyscan_t scanner;
-    lex_lex_init_extra(NULL, &scanner);
-    lex_set_in(((FILE *)pUserInputStream), scanner);
-    lex_set_extra((void *)1, scanner);
-    lex_lex(scanner);
-    lex_lex_destroy(scanner);
-
+    lllex_init_extra(NULL, &scanner);
+    llset_in(((FILE *)pUserInputStream), scanner);
+    llset_extra((void *)1, scanner);
+    lllex(scanner);
+    lllex_destroy(scanner);
     return 0;
 }
 #endif
 
 //https://westes.github.io/flex/manual/Generated-Scanner.html#Generated-Scanner
-int lex_wrap(yyscan_t yyscanner)
+int llwrap(yyscan_t yyscanner)
 {
-    void *user_defined = lex_get_extra(yyscanner);
+    void *user_defined = llget_extra(yyscanner);
     return 1;
+}
+
+void *llalloc(yy_size_t size, yyscan_t yyscanner)
+{
+    struct yyguts_t *yyg = (struct yyguts_t *)yyscanner;
+    (void)yyg;
+    return malloc(size);
+}
+
+void *llrealloc(void *ptr, yy_size_t size, yyscan_t yyscanner)
+{
+    struct yyguts_t *yyg = (struct yyguts_t *)yyscanner;
+    (void)yyg;
+
+    /* The cast to (char *) in the following accommodates both
+	 * implementations that use char* generic pointers, and those
+	 * that use void* generic pointers.  It works with the latter
+	 * because both ANSI C and C++ allow castless assignment from
+	 * any pointer type to void*, and deal with argument conversions
+	 * as though doing an assignment.
+	 */
+    return realloc(ptr, size);
+}
+
+void llfree(void *ptr, yyscan_t yyscanner)
+{
+    struct yyguts_t *yyg = (struct yyguts_t *)yyscanner;
+    (void)yyg;
+    free((char *)ptr); /* see llrealloc() for (char *) cast */
 }
