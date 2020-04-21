@@ -22,7 +22,11 @@ INTEGER_LITERAL_OCTAL [0](([0-7])*)
 
 %%
     
-[/][/]((.)*)[\n] {} /* COMMENT 无法处理最后一行未换行的情形 */ 
+[/][/]((.)*) { /* Single line comment */ }  
+
+[/][*]([^*]*)[*]+([^*/][^*]*[*]+)*[/] { /* Multiline comment */ }
+
+[/][*] { YY_FATAL_ERROR("Unterminated comment"); }
 
 [ ]|[\t](([ ]|[\t])*) {}
 
