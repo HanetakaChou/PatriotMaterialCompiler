@@ -1,4 +1,5 @@
 #include <stddef.h>
+
 extern int PTInputStream_Read(void *pUserData, void *pUserStream, void *buf, size_t max_size);
 
 #define YY_INPUT(buf, result, max_size)                                              \
@@ -9,6 +10,10 @@ extern int PTInputStream_Read(void *pUserData, void *pUserStream, void *buf, siz
             YY_FATAL_ERROR("input in flex scanner failed");                          \
         }                                                                            \
     }
+
+#include "yytoken.h"
+
+#define YY_DECL int lllex(yyscan_t yyscanner, void *lvalp)
 
 #include "yylexer.inl"
 
@@ -21,7 +26,7 @@ int main()
     lllex_init_extra(NULL, &scanner);
     llset_in(((FILE *)pUserInputStream), scanner);
     llset_extra((void *)1, scanner);
-    lllex(scanner);
+    lllex(scanner, pUserInputStream);
     lllex_destroy(scanner);
     return 0;
 }

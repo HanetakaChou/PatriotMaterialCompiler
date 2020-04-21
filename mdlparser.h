@@ -3,6 +3,7 @@
 
 struct mdl_parser_semantic_type
 {
+    
 };
 
 struct mdl_parser_location_type

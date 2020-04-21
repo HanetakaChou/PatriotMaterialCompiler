@@ -1,10 +1,14 @@
 #include <stddef.h>
 
+#include "yytoken.h"
+
 //https://www.gnu.org/software/bison/manual/html_node/Table-of-Symbols.html
 #define YYSTACK_USE_ALLOCA 1
 #include "yyparser.inl"
 
 #include "mdlparser.h"
+
+int mdllex(void *pUserData, struct mdl_parser_semantic_type *lvalp, struct mdl_parser_location_type *llocp);
 
 int mdlparse(void *pUserData)
 {
@@ -14,7 +18,7 @@ int mdlparse(void *pUserData)
 //https://www.gnu.org/software/bison/manual/html_node/Union-Decl.html#Union-Decl
 //https://www.gnu.org/software/bison/manual/html_node/Location-Type.html
 
-inline int yylex(YYSTYPE *lvalp, YYLTYPE *llocp, void *pUserData)
+static inline int yylex(YYSTYPE *lvalp, YYLTYPE *llocp, void *pUserData)
 {
     //struct mdl_parser_semantic_type mdllval;
 
@@ -32,7 +36,10 @@ inline int yylex(YYSTYPE *lvalp, YYLTYPE *llocp, void *pUserData)
     return yytoken;
 }
 
-inline void yyerror(YYLTYPE *llocp, void *pUserData, const char *s)
+static inline void yyerror(YYLTYPE *llocp, void *pUserData, const char *s)
 {
     return mdlerror(pUserData, s);
 }
+
+int LL_IDENT = IDENT;
+int LL_INTEGER_LITERAL = INTEGER_LITERAL;
