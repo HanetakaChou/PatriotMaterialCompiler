@@ -133,7 +133,7 @@ int mdl_yyparse(void *pUserData, void *pScanner);
 
 #line 142 "mdl/mdl_yyparser.inl" /* yacc.c:358  */
 /* Unqualified %code blocks.  */
-#line 19 "mdl/parser.y" /* yacc.c:359  */
+#line 19 "mdl/mdlparser.y" /* yacc.c:359  */
 
 int yylex(union YYSTYPE *lvalp, YYLTYPE *llocp, void *pUserData, void *pScanner);
 void yyerror(YYLTYPE *llocp, void *pUserData, void *pScanner, const char *s);

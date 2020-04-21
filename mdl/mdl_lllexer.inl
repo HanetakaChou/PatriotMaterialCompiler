@@ -344,19 +344,19 @@ static void yynoreturn yy_fatal_error(yyconst char *msg, yyscan_t yyscanner);
 	*yy_cp = '\0';                 \
 	yyg->yy_c_buf_p = yy_cp;
 
-#define YY_NUM_RULES 3
-#define YY_END_OF_BUFFER 4
+#define YY_NUM_RULES 4
+#define YY_END_OF_BUFFER 5
 struct yy_trans_info
 {
 	flex_int16_t yy_verify;
 	flex_int16_t yy_nxt;
 };
-static yyconst struct yy_trans_info yy_transition[654] =
+static yyconst struct yy_trans_info yy_transition[644] =
 	{
 		{0, 0},
-		{0, 526},
+		{0, 516},
 		{0, 0},
-		{0, 524},
+		{0, 514},
 		{1, 260},
 		{2, 260},
 		{3, 260},
@@ -406,15 +406,15 @@ static yyconst struct yy_trans_info yy_transition[654] =
 
 		{47, 260},
 		{48, 262},
-		{49, 264},
-		{50, 264},
-		{51, 264},
-		{52, 264},
-		{53, 264},
-		{54, 264},
-		{55, 264},
-		{56, 264},
-		{57, 264},
+		{49, 270},
+		{50, 270},
+		{51, 270},
+		{52, 270},
+		{53, 270},
+		{54, 270},
+		{55, 270},
+		{56, 270},
+		{57, 270},
 		{58, 260},
 		{59, 260},
 		{60, 260},
@@ -488,7 +488,7 @@ static yyconst struct yy_trans_info yy_transition[654] =
 		{127, 260},
 		{128, 260},
 		{0, 0},
-		{0, 394},
+		{0, 384},
 		{1, 130},
 		{2, 130},
 		{3, 130},
@@ -538,15 +538,15 @@ static yyconst struct yy_trans_info yy_transition[654] =
 		{46, 130},
 		{47, 130},
 		{48, 132},
-		{49, 134},
-		{50, 134},
-		{51, 134},
-		{52, 134},
-		{53, 134},
-		{54, 134},
-		{55, 134},
-		{56, 134},
-		{57, 134},
+		{49, 140},
+		{50, 140},
+		{51, 140},
+		{52, 140},
+		{53, 140},
+		{54, 140},
+		{55, 140},
+		{56, 140},
+		{57, 140},
 		{58, 130},
 		{59, 130},
 		{60, 130},
@@ -620,12 +620,18 @@ static yyconst struct yy_trans_info yy_transition[654] =
 		{126, 130},
 		{127, 130},
 		{128, 130},
+		{0, 4},
+		{0, 254},
 		{0, 3},
-		{0, 264},
-		{0, 3},
-		{0, 262},
+		{0, 252},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
 		{0, 1},
-		{0, 260},
+		{0, 244},
 		{0, 0},
 		{0, 0},
 		{0, 0},
@@ -634,10 +640,8 @@ static yyconst struct yy_trans_info yy_transition[654] =
 		{0, 0},
 		{0, 0},
 		{0, 0},
-		{0, 0},
-		{0, 250},
-		{0, 0},
-		{0, 0},
+		{0, 3},
+		{0, 234},
 		{0, 0},
 		{0, 0},
 		{0, 0},
@@ -645,11 +649,7 @@ static yyconst struct yy_trans_info yy_transition[654] =
 		{0, 0},
 		{0, 0},
 		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
+		{0, 226},
 		{0, 0},
 		{0, 0},
 		{0, 0},
@@ -664,8 +664,6 @@ static yyconst struct yy_trans_info yy_transition[654] =
 		{0, 0},
 		{0, 0},
 		{0, 0},
-		{0, 1},
-		{0, 221},
 		{0, 0},
 		{0, 0},
 		{0, 0},
@@ -674,46 +672,24 @@ static yyconst struct yy_trans_info yy_transition[654] =
 		{0, 0},
 		{0, 0},
 		{0, 0},
-		{48, 39},
-		{49, 39},
-		{50, 39},
-		{51, 39},
-		{52, 39},
-		{53, 39},
-		{54, 39},
-		{55, 39},
-		{56, 39},
-		{57, 39},
-		{48, 61},
-		{49, 61},
-		{50, 61},
-		{51, 61},
-		{52, 61},
-		{53, 61},
-		{54, 61},
-		{55, 61},
-		{56, 61},
-		{57, 61},
-		{0, 0},
-		{0, 0},
-		{0, 2},
-		{0, 189},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{65, 61},
-		{66, 61},
-		{67, 61},
-		{68, 61},
-		{69, 61},
-		{70, 61},
-		{0, 0},
-		{0, 0},
-
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{88, 12},
+		{48, 18},
+		{49, 18},
+		{50, 18},
+		{51, 18},
+		{52, 18},
+		{53, 18},
+		{54, 18},
+		{55, 18},
+		{48, 77},
+		{49, 77},
+		{50, 77},
+		{51, 77},
+		{52, 77},
+		{53, 77},
+		{54, 77},
+		{55, 77},
+		{56, 77},
+		{57, 77},
 		{48, 0},
 		{49, 0},
 		{50, 0},
@@ -722,8 +698,32 @@ static yyconst struct yy_trans_info yy_transition[654] =
 		{53, 0},
 		{54, 0},
 		{55, 0},
-		{56, 0},
-		{57, 0},
+		{48, 72},
+		{49, 72},
+		{50, 72},
+		{51, 72},
+		{52, 72},
+		{53, 72},
+		{54, 72},
+		{55, 72},
+		{56, 72},
+		{57, 72},
+		{0, 1},
+
+		{0, 167},
+		{0, 0},
+		{0, 0},
+		{88, 26},
+		{0, 0},
+		{0, 0},
+		{65, 72},
+		{66, 72},
+		{67, 72},
+		{68, 72},
+		{69, 72},
+		{70, 72},
+		{0, 2},
+		{0, 154},
 		{0, 0},
 		{0, 0},
 		{0, 0},
@@ -734,84 +734,73 @@ static yyconst struct yy_trans_info yy_transition[654] =
 		{0, 0},
 		{0, 0},
 		{0, 0},
-		{97, 61},
-		{98, 61},
-		{99, 61},
-		{100, 61},
-		{101, 61},
-		{102, 61},
 		{0, 0},
 		{0, 0},
 		{0, 0},
 		{0, 0},
 		{0, 0},
-		{120, 12},
-		{48, 59},
-		{49, 59},
-		{50, 59},
-		{51, 59},
-		{52, 59},
-		{53, 59},
-		{54, 59},
-		{55, 59},
-		{56, 59},
-		{57, 59},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{120, 26},
 		{0, 2},
 		{0, 130},
-		{0, 0},
-		{0, 0},
-
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{65, 59},
-		{66, 59},
-		{67, 59},
-		{68, 59},
-		{69, 59},
-		{70, 59},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{97, 59},
-		{98, 59},
-		{99, 59},
-		{100, 59},
-		{101, 59},
-		{102, 59},
+		{97, 72},
+		{98, 72},
+		{99, 72},
+		{100, 72},
+		{101, 72},
+		{102, 72},
 		{0, 0},
 		{0, 0},
 		{0, 0},
 		{0, 0},
 		{48, 0},
 		{49, 0},
+
 		{50, 0},
 		{51, 0},
 		{52, 0},
-
+		{53, 0},
+		{54, 0},
+		{55, 0},
+		{56, 0},
+		{57, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{48, 24},
+		{49, 24},
+		{50, 24},
+		{51, 24},
+		{52, 24},
+		{53, 24},
+		{54, 24},
+		{55, 24},
+		{56, 24},
+		{57, 24},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{65, 24},
+		{66, 24},
+		{67, 24},
+		{68, 24},
+		{69, 24},
+		{70, 24},
+		{0, 0},
+		{48, 0},
+		{49, 0},
+		{50, 0},
+		{51, 0},
+		{52, 0},
 		{53, 0},
 		{54, 0},
 		{55, 0},
@@ -822,6 +811,7 @@ static yyconst struct yy_trans_info yy_transition[654] =
 		{0, 0},
 		{0, 0},
 		{0, 0},
+
 		{0, 0},
 		{0, 0},
 		{65, 0},
@@ -832,12 +822,12 @@ static yyconst struct yy_trans_info yy_transition[654] =
 		{70, 0},
 		{0, 0},
 		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
+		{97, 24},
+		{98, 24},
+		{99, 24},
+		{100, 24},
+		{101, 24},
+		{102, 24},
 		{0, 0},
 		{0, 0},
 		{0, 0},
@@ -862,6 +852,16 @@ static yyconst struct yy_trans_info yy_transition[654] =
 		{100, 0},
 		{101, 0},
 		{102, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
 
 		{0, 0},
 		{0, 0},
@@ -879,17 +879,7 @@ static yyconst struct yy_trans_info yy_transition[654] =
 		{0, 0},
 		{0, 0},
 		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{0, 0},
-		{129, 4},
+		{129, 5},
 		{1, 0},
 };
 
@@ -911,7 +901,7 @@ static yyconst struct yy_trans_info *yy_start_state_list[3] =
 #line 1 "mdl/mdlscanner.l"
 #define YY_NO_INPUT 1
 #define YY_NO_UNISTD_H 1
-#line 492 "mdl/mdl_lllexer.inl"
+#line 490 "mdl/mdl_lllexer.inl"
 
 #define INITIAL 0
 
@@ -1160,9 +1150,9 @@ YY_DECL
 	}
 
 	{
-#line 22 "mdl/mdlscanner.l"
+#line 18 "mdl/mdlscanner.l"
 
-#line 737 "mdl/mdl_lllexer.inl"
+#line 735 "mdl/mdl_lllexer.inl"
 
 		while (/*CONSTCOND*/ 1) /* loops until end-of-file is reached */
 		{
@@ -1215,26 +1205,34 @@ YY_DECL
 
 			case 1:
 				YY_RULE_SETUP
-#line 23 "mdl/mdlscanner.l"
+#line 19 "mdl/mdlscanner.l"
 				{
-					lvalp->_INTEGER_LITERAL = PARSE_INTEGER_LITERAL_DECIMAL(yytext, yytext + yyleng);
+					lvalp->_INTEGER_LITERAL = SCAN_INTEGER_LITERAL_DECIMAL(yytext, yytext + yyleng);
 					return YYTOKEN_INTEGER_LITERAL;
 				}
 				YY_BREAK
 			case 2:
 				YY_RULE_SETUP
-#line 28 "mdl/mdlscanner.l"
+#line 24 "mdl/mdlscanner.l"
 				{
-					lvalp->_INTEGER_LITERAL = PARSE_INTEGER_LITERAL_HEXADECIMAL(yytext, yytext + yyleng);
+					lvalp->_INTEGER_LITERAL = SCAN_INTEGER_LITERAL_HEXADECIMAL(yytext, yytext + yyleng);
 					return YYTOKEN_INTEGER_LITERAL;
 				}
 				YY_BREAK
 			case 3:
 				YY_RULE_SETUP
-#line 33 "mdl/mdlscanner.l"
+#line 29 "mdl/mdlscanner.l"
+				{
+					lvalp->_INTEGER_LITERAL = SCAN_INTEGER_LITERAL_OCTAL(yytext, yytext + yyleng);
+					return YYTOKEN_INTEGER_LITERAL;
+				}
+				YY_BREAK
+			case 4:
+				YY_RULE_SETUP
+#line 34 "mdl/mdlscanner.l"
 				ECHO;
 				YY_BREAK
-#line 810 "mdl/mdl_lllexer.inl"
+#line 816 "mdl/mdl_lllexer.inl"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -2336,4 +2334,4 @@ static int yy_flex_strlen(yyconst char *s, yyscan_t yyscanner)
 
 #define YYTABLES_NAME "yytables"
 
-#line 33 "mdl/mdlscanner.l"
+#line 34 "mdl/mdlscanner.l"
