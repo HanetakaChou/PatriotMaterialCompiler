@@ -1,15 +1,9 @@
-
-
 %define api.pure full
-//%define api.value.type union-directive
-//%define api.value.union.name YYSTYPE
-//%union {
-//  size_t _IDENT; //unordered_set hash unique value
-//  int _INTEGER_LITERAL;
-//}
+
 %define api.value.type {union YYSTYPE}
 
 %token <_MDL> MDL
+%token <_IMPORT> IMPORT
 
 %token <_IDENT> IDENT
 %token <_INTEGER_LITERAL> INTEGER_LITERAL 
@@ -31,17 +25,21 @@
 //%define api.value.type union //{struct YYSTYPE}
 //%token <int> INTEGER_LITERAL
 
-//The features of the scanner is a subset of the parser
-//We can use YACC to implement the features of the scanner //Maybe inefficient
-
-
 
 %%
 
 
-mdl: mdl_version;
+mdl: mdl_version import_declaration_closure;
 
 mdl_version: MDL FLOATING_LITERAL ';';
 
+import_declaration_closure: import_declaration_closure import_declaration;
+import_declaration_closure: ;
+
+import_declaration: IMPORT qualified_import ';';
+
+qualified_import: simple_name;
+
+simple_name: IDENT;
 
 //%%

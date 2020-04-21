@@ -10,6 +10,7 @@ union YYSTYPE {
 };
 
 extern int YYTOKEN_MDL;
+extern int YYTOKEN_IMPORT;
 extern int YYTOKEN_IDENT;
 extern int YYTOKEN_INTEGER_LITERAL;
 extern int YYTOKEN_FLOATING_LITERAL;

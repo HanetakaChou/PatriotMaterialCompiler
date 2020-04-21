@@ -45,7 +45,12 @@ FLOATING_LITERAL_DOUBLE ({FLOATING_LITERAL})[Dd]
     { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
     return YYTOKEN_MDL;
     }
-    
+
+[i][m][p][o][r][t] {
+    { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
+    return YYTOKEN_IMPORT;
+    }
+
      /* Identifiers */
 {IDENT} {
     lvalp->_IDENT = MDLFrontend_HashIdentName(yyextra, yytext);
