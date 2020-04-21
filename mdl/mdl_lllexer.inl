@@ -617,7 +617,8 @@ static yyconst flex_int32_t yy_rule_can_match_eol[8] =
 #line 1 "mdl/mdlscanner.l"
 #define YY_NO_INPUT 1
 #define YY_NO_UNISTD_H 1
-#line 621 "mdl/mdl_lllexer.inl"
+/* //https://westes.github.io/flex/manual/Patterns.html#Patterns */
+#line 622 "mdl/mdl_lllexer.inl"
 
 #define INITIAL 0
 
@@ -860,10 +861,10 @@ YY_DECL
 		}
 
 	{
-#line 21 "mdl/mdlscanner.l"
+#line 23 "mdl/mdlscanner.l"
 
     
-#line 867 "mdl/mdl_lllexer.inl"
+#line 868 "mdl/mdl_lllexer.inl"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -930,17 +931,17 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 23 "mdl/mdlscanner.l"
-{} //COMMENT //无法处理最后一行未换行的情形  
+#line 25 "mdl/mdlscanner.l"
+{} /* COMMENT 无法处理最后一行未换行的情形 */ 
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 25 "mdl/mdlscanner.l"
+#line 27 "mdl/mdlscanner.l"
 {}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 27 "mdl/mdlscanner.l"
+#line 29 "mdl/mdlscanner.l"
 {
     lvalp->_IDENT = MDLFrontend_HashIdentName(yyextra, yytext);
     { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
@@ -949,7 +950,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 33 "mdl/mdlscanner.l"
+#line 35 "mdl/mdlscanner.l"
 { 
     lvalp->_INTEGER_LITERAL = SCAN_INTEGER_LITERAL_DECIMAL(yytext, yytext + yyleng);
     { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
@@ -958,7 +959,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 39 "mdl/mdlscanner.l"
+#line 41 "mdl/mdlscanner.l"
 { 
     lvalp->_INTEGER_LITERAL = SCAN_INTEGER_LITERAL_HEXADECIMAL(yytext, yytext + yyleng);
     { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
@@ -967,7 +968,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 45 "mdl/mdlscanner.l"
+#line 47 "mdl/mdlscanner.l"
 { 
     lvalp->_INTEGER_LITERAL = SCAN_INTEGER_LITERAL_OCTAL(yytext, yytext + yyleng);
     { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
@@ -976,10 +977,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 51 "mdl/mdlscanner.l"
+#line 53 "mdl/mdlscanner.l"
 ECHO;
 	YY_BREAK
-#line 983 "mdl/mdl_lllexer.inl"
+#line 984 "mdl/mdl_lllexer.inl"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2082,6 +2083,6 @@ static int yy_flex_strlen (yyconst char * s , yyscan_t yyscanner)
 
 #define YYTABLES_NAME "yytables"
 
-#line 51 "mdl/mdlscanner.l"
+#line 53 "mdl/mdlscanner.l"
 
 
