@@ -11,6 +11,11 @@
 //%token <_INTEGER_LITERAL> INTEGER_LITERAL 
 
 
+%{
+    inline int yylex(YYSTYPE *lvalp, YYLTYPE *llocp, void *pUserData);
+    inline void yyerror(YYLTYPE *llocp, void *pUserData, const char *s);
+%}
+
 //Token即终结符
 //推理规则必须全部转换为终结符（即Token），才能完成推理
 
