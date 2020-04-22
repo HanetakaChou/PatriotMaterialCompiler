@@ -686,11 +686,11 @@ static yyconst struct yy_trans_info yy_transition[3294] =
 		{0, 2864},
 		{0, 12},
 		{0, 2862},
-		{0, 2},
+		{0, 1},
 		{0, 2860},
 		{9, 0},
-		{0, 0},
-		{0, 0},
+		{0, 2},
+		{0, 2857},
 		{0, 0},
 		{0, 8},
 		{0, 2854},
@@ -1212,7 +1212,7 @@ static yyconst struct yy_trans_info yy_transition[3294] =
 		{126, 758},
 		{127, 758},
 		{128, 758},
-		{0, 1},
+		{0, 0},
 		{0, 2344},
 		{1, 888},
 		{2, 888},
@@ -1223,7 +1223,7 @@ static yyconst struct yy_trans_info yy_transition[3294] =
 		{7, 888},
 		{8, 888},
 		{9, 888},
-		{0, 0},
+		{10, -516},
 		{11, 888},
 		{12, 888},
 		{13, 888},
@@ -2034,7 +2034,7 @@ static yyconst struct yy_trans_info yy_transition[3294] =
 		{44, 620},
 		{45, 620},
 		{46, 620},
-		{47, -1274},
+		{47, -1271},
 		{48, 620},
 		{49, 620},
 		{50, 620},
@@ -2118,7 +2118,7 @@ static yyconst struct yy_trans_info yy_transition[3294] =
 		{126, 620},
 		{127, 620},
 		{128, 620},
-		{0, 1},
+		{0, 0},
 		{0, 1456},
 		{1, 0},
 		{2, 0},
@@ -2129,7 +2129,7 @@ static yyconst struct yy_trans_info yy_transition[3294] =
 		{7, 0},
 		{8, 0},
 		{9, 0},
-		{0, 0},
+		{10, -1404},
 		{11, 0},
 		{12, 0},
 		{13, 0},
@@ -3215,7 +3215,7 @@ static yyconst struct yy_trans_info yy_transition[3294] =
 		{44, -538},
 		{45, -538},
 		{46, -538},
-		{47, -2432},
+		{47, -2429},
 		{48, -538},
 		{49, -538},
 		{50, -538},
@@ -3963,29 +3963,35 @@ YY_DECL
 				goto yy_find_action;
 
 			case 1:
+				*yy_cp = yyg->yy_hold_char; /* undo effects of setting up yytext */
+				yyg->yy_c_buf_p = yy_cp -= 1;
+				YY_DO_BEFORE_ACTION; /* set up yytext again */
 				YY_RULE_SETUP
 #line 31 "mdl/MDLScanner.l"
-				{ /* Single line comment */
+				{
+					My_Test(yytext, yyleng); /* Single line comment */
 				}
 				YY_BREAK
 			case 2:
 				/* rule 2 can match eol */
 				YY_RULE_SETUP
 #line 33 "mdl/MDLScanner.l"
-				{ /* Multiline comment */
+				{
+					My_Test(yytext, yyleng); /* Multiline comment */
 				}
 				YY_BREAK
 			case 3:
 				YY_RULE_SETUP
 #line 35 "mdl/MDLScanner.l"
 				{
-					YY_FATAL_ERROR("Unterminated comment");
+					My_Test(yytext, yyleng); /* YY_FATAL_ERROR("Unterminated comment"); */
 				}
 				YY_BREAK
 			case 4:
 				YY_RULE_SETUP
 #line 37 "mdl/MDLScanner.l"
 				{
+					My_Test(yytext, yyleng);
 				}
 				YY_BREAK
 			case 5:
@@ -4000,145 +4006,92 @@ YY_DECL
 				YY_RULE_SETUP
 #line 44 "mdl/MDLScanner.l"
 				{
-					{
-						llocp->first_line = yylineno;
-						llocp->first_column = yycolumn;
-						llocp->last_line = yylineno;
-						llocp->last_column = yycolumn;
-					}
 					return YYTOKEN_MDL;
 				}
 				YY_BREAK
 			case 7:
 				YY_RULE_SETUP
-#line 49 "mdl/MDLScanner.l"
+#line 48 "mdl/MDLScanner.l"
 				{
-					{
-						llocp->first_line = yylineno;
-						llocp->first_column = yycolumn;
-						llocp->last_line = yylineno;
-						llocp->last_column = yycolumn;
-					}
 					return YYTOKEN_IMPORT;
 				}
 				YY_BREAK
 			/* Identifiers */
 			case 8:
 				YY_RULE_SETUP
-#line 55 "mdl/MDLScanner.l"
+#line 53 "mdl/MDLScanner.l"
 				{
 					lvalp->_IDENT = MDLFrontend_HashIdentName(yyextra, yytext);
-					{
-						llocp->first_line = yylineno;
-						llocp->first_column = yycolumn;
-						llocp->last_line = yylineno;
-						llocp->last_column = yycolumn;
-					}
 					return YYTOKEN_IDENT;
 				}
 				YY_BREAK
 			/* Literal values */
 			case 9:
 				YY_RULE_SETUP
-#line 62 "mdl/MDLScanner.l"
+#line 59 "mdl/MDLScanner.l"
 				{
 					char *endptr = NULL;
 					lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 10);
 					assert(endptr <= ((yytext) + (yyleng)));
-					{
-						llocp->first_line = yylineno;
-						llocp->first_column = yycolumn;
-						llocp->last_line = yylineno;
-						llocp->last_column = yycolumn;
-					}
 					return YYTOKEN_INTEGER_LITERAL;
 				}
 				YY_BREAK
 			case 10:
 				YY_RULE_SETUP
-#line 70 "mdl/MDLScanner.l"
+#line 66 "mdl/MDLScanner.l"
 				{
 					char *endptr = NULL;
 					lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 16);
 					assert(endptr <= ((yytext) + (yyleng)));
-					{
-						llocp->first_line = yylineno;
-						llocp->first_column = yycolumn;
-						llocp->last_line = yylineno;
-						llocp->last_column = yycolumn;
-					}
 					return YYTOKEN_INTEGER_LITERAL;
 				}
 				YY_BREAK
 			case 11:
 				YY_RULE_SETUP
-#line 78 "mdl/MDLScanner.l"
+#line 73 "mdl/MDLScanner.l"
 				{
 					char *endptr = NULL;
 					lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 8);
 					assert(endptr <= ((yytext) + (yyleng)));
-					{
-						llocp->first_line = yylineno;
-						llocp->first_column = yycolumn;
-						llocp->last_line = yylineno;
-						llocp->last_column = yycolumn;
-					}
 					return YYTOKEN_INTEGER_LITERAL;
 				}
 				YY_BREAK
 			case 12:
 				YY_RULE_SETUP
-#line 86 "mdl/MDLScanner.l"
+#line 80 "mdl/MDLScanner.l"
 				{
 					char *endptr = NULL;
 					lvalp->_FLOATING_LITERAL = strtof(yytext, &endptr);
 					assert(endptr <= ((yytext) + (yyleng)));
-					{
-						llocp->first_line = yylineno;
-						llocp->first_column = yycolumn;
-						llocp->last_line = yylineno;
-						llocp->last_column = yycolumn;
-					}
 					return YYTOKEN_FLOATING_LITERAL;
 				}
 				YY_BREAK
 			case 13:
 				YY_RULE_SETUP
-#line 93 "mdl/MDLScanner.l"
+#line 86 "mdl/MDLScanner.l"
 				{
 					char *endptr = NULL;
 					lvalp->_FLOATING_LITERAL = strtod(yytext, &endptr);
 					assert(endptr <= ((yytext) + (yyleng)));
-					{
-						llocp->first_line = yylineno;
-						llocp->first_column = yycolumn;
-						llocp->last_line = yylineno;
-						llocp->last_column = yycolumn;
-					}
 					return YYTOKEN_FLOATING_LITERAL;
 				}
 				YY_BREAK
 			/* catch-all rule for any other single characters */
 			case 14:
 				YY_RULE_SETUP
-#line 102 "mdl/MDLScanner.l"
+#line 94 "mdl/MDLScanner.l"
 				{
-					/* Error */
-					{
-						llocp->first_line = yylineno;
-						llocp->first_column = yycolumn;
-						llocp->last_line = yylineno;
-						llocp->last_column = yycolumn;
-					}
-					return yytext[0];
+					char msg_fatal_error[4096];
+					sprintf(msg_fatal_error, "Unexpect \'%c\' at line %d column %d", ((yytext)[0]), (yylineno), (yycolumn));
+					YY_FATAL_ERROR(msg_fatal_error);
 				}
 				YY_BREAK
 			case 15:
 				YY_RULE_SETUP
-#line 108 "mdl/MDLScanner.l"
+#line 100 "mdl/MDLScanner.l"
 				ECHO;
 				YY_BREAK
-#line 1534 "mdl/MDLScanner.inl"
+#line 1529 "mdl/MDLScanner.inl"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -5248,4 +5201,4 @@ static int yy_flex_strlen(yyconst char *s, yyscan_t yyscanner)
 
 #define YYTABLES_NAME "yytables"
 
-#line 108 "mdl/MDLScanner.l"
+#line 100 "mdl/MDLScanner.l"

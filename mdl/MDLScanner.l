@@ -28,13 +28,13 @@ FLOATING_LITERAL_DOUBLE ({FLOATING_LITERAL})[Dd]
 
 %%
     
-[/][/]((.)*) { /* Single line comment */ }  
+[/][/]((.)*)$ {  My_Test(yytext, yyleng); /* Single line comment */ }  
 
-[/][*]([^*]*)[*]+([^*/][^*]*[*]+)*[/] { /* Multiline comment */ }
+[/][*]([^*]*)[*]+([^*/][^*]*[*]+)*[/] {  My_Test(yytext, yyleng); /* Multiline comment */ }
 
-[/][*] { YY_FATAL_ERROR("Unterminated comment"); }
+[/][*] { My_Test(yytext, yyleng); /* YY_FATAL_ERROR("Unterminated comment"); */ }
 
-[ ]|[\t](([ ]|[\t])*) {}
+[ ]|[\t](([ ]|[\t])*) { My_Test(yytext, yyleng); }
 
 [;] {
     return ';';
@@ -42,19 +42,16 @@ FLOATING_LITERAL_DOUBLE ({FLOATING_LITERAL})[Dd]
     
     /* keywords */
 [m][d][l] {
-    { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
     return YYTOKEN_MDL;
     }
 
 [i][m][p][o][r][t] {
-    { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
     return YYTOKEN_IMPORT;
     }
 
      /* Identifiers */
 {IDENT} {
     lvalp->_IDENT = MDLFrontend_HashIdentName(yyextra, yytext);
-    { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
     return YYTOKEN_IDENT;
     }
 
@@ -63,7 +60,6 @@ FLOATING_LITERAL_DOUBLE ({FLOATING_LITERAL})[Dd]
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 10);
     assert(endptr <= ((yytext) + (yyleng)));
-    { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
     return YYTOKEN_INTEGER_LITERAL; 
     }
 
@@ -71,7 +67,6 @@ FLOATING_LITERAL_DOUBLE ({FLOATING_LITERAL})[Dd]
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 16);
     assert(endptr <= ((yytext) + (yyleng)));
-    { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
     return YYTOKEN_INTEGER_LITERAL; 
     } 
 
@@ -79,7 +74,6 @@ FLOATING_LITERAL_DOUBLE ({FLOATING_LITERAL})[Dd]
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 8);
     assert(endptr <= ((yytext) + (yyleng)));
-    { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
     return YYTOKEN_INTEGER_LITERAL; 
     }     
 
@@ -87,22 +81,20 @@ FLOATING_LITERAL_DOUBLE ({FLOATING_LITERAL})[Dd]
     char *endptr = NULL;
     lvalp->_FLOATING_LITERAL = strtof(yytext, &endptr);
     assert(endptr <= ((yytext) + (yyleng)));
-    { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
     return YYTOKEN_FLOATING_LITERAL;
     }
 {FLOATING_LITERAL_DOUBLE} {
     char *endptr = NULL;
     lvalp->_FLOATING_LITERAL = strtod(yytext, &endptr);
     assert(endptr <= ((yytext) + (yyleng)));
-    { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
     return YYTOKEN_FLOATING_LITERAL;
     }    
     
     /* catch-all rule for any other single characters */
 (.) { 
-    /* Error */
-    { llocp->first_line = yylineno; llocp->first_column = yycolumn; llocp->last_line = yylineno; llocp->last_column = yycolumn;}
-    return yytext[0];
+        char msg_fatal_error[4096];
+        sprintf(msg_fatal_error, "Unexpect \'%c\' at line %d column %d", ((yytext)[0]), (yylineno), (yycolumn));
+        YY_FATAL_ERROR(msg_fatal_error);
     }
 
 %%

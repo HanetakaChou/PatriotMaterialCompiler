@@ -68,11 +68,32 @@ extern "C" int mdl_llwrap(struct llscan_t *scanner)
     return 1;
 }
 
+#include <stdexcept>
+
 extern "C" int mdl_yylex(union YYSTYPE *lvalp, struct YYLTYPE *llocp, void *pUserData, struct llscan_t *pScanner)
 {
-    //YYEOF==0
-    int yytoken = mdl_lllex(pScanner, lvalp, llocp);
-    return yytoken;
+    try
+    {
+        int yytoken = mdl_lllex(pScanner, lvalp, llocp);
+        return yytoken;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+        return 0; //YYEOF == 0 //MDLParser.c
+    }
+}
+
+#if defined(_MSC_VER)
+extern "C" __declspec(noreturn) void mdl_ll_fatal_error(char const *msg void *pUserData)
+#elif defined(__GNUC__)
+extern "C" __attribute__((__noreturn__)) void mdl_ll_fatal_error(char const *msg, void *pUserData)
+#else
+#error Unknown Compiler //未知的编译器
+#endif
+{
+    //RaiseException
+    throw std::logic_error(msg);
 }
 
 extern "C" void *mdl_llalloc(size_t size, struct llscan_t *scanner)
