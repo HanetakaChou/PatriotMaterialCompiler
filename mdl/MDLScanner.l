@@ -28,7 +28,7 @@ FLOATING_LITERAL_DOUBLE ({FLOATING_LITERAL})[Dd]
 
 %%
     
-[/][/]((.)*)$ {  My_Test(yytext, yyleng); /* Single line comment */ }  
+[/][/]((.)*) {  My_Test(yytext, yyleng); /* Single line comment */ }  
 
 [/][*]([^*]*)[*]+([^*/][^*]*[*]+)*[/] {  My_Test(yytext, yyleng); /* Multiline comment */ }
 

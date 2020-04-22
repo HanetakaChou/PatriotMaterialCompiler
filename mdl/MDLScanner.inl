@@ -686,11 +686,11 @@ static yyconst struct yy_trans_info yy_transition[3294] =
 		{0, 2864},
 		{0, 12},
 		{0, 2862},
-		{0, 1},
+		{0, 2},
 		{0, 2860},
 		{9, 0},
-		{0, 2},
-		{0, 2857},
+		{0, 0},
+		{0, 0},
 		{0, 0},
 		{0, 8},
 		{0, 2854},
@@ -1212,7 +1212,7 @@ static yyconst struct yy_trans_info yy_transition[3294] =
 		{126, 758},
 		{127, 758},
 		{128, 758},
-		{0, 0},
+		{0, 1},
 		{0, 2344},
 		{1, 888},
 		{2, 888},
@@ -1223,7 +1223,7 @@ static yyconst struct yy_trans_info yy_transition[3294] =
 		{7, 888},
 		{8, 888},
 		{9, 888},
-		{10, -516},
+		{0, 0},
 		{11, 888},
 		{12, 888},
 		{13, 888},
@@ -2034,7 +2034,7 @@ static yyconst struct yy_trans_info yy_transition[3294] =
 		{44, 620},
 		{45, 620},
 		{46, 620},
-		{47, -1271},
+		{47, -1274},
 		{48, 620},
 		{49, 620},
 		{50, 620},
@@ -2118,7 +2118,7 @@ static yyconst struct yy_trans_info yy_transition[3294] =
 		{126, 620},
 		{127, 620},
 		{128, 620},
-		{0, 0},
+		{0, 1},
 		{0, 1456},
 		{1, 0},
 		{2, 0},
@@ -2129,7 +2129,7 @@ static yyconst struct yy_trans_info yy_transition[3294] =
 		{7, 0},
 		{8, 0},
 		{9, 0},
-		{10, -1404},
+		{0, 0},
 		{11, 0},
 		{12, 0},
 		{13, 0},
@@ -3215,7 +3215,7 @@ static yyconst struct yy_trans_info yy_transition[3294] =
 		{44, -538},
 		{45, -538},
 		{46, -538},
-		{47, -2429},
+		{47, -2432},
 		{48, -538},
 		{49, -538},
 		{50, -538},
@@ -3963,9 +3963,6 @@ YY_DECL
 				goto yy_find_action;
 
 			case 1:
-				*yy_cp = yyg->yy_hold_char; /* undo effects of setting up yytext */
-				yyg->yy_c_buf_p = yy_cp -= 1;
-				YY_DO_BEFORE_ACTION; /* set up yytext again */
 				YY_RULE_SETUP
 #line 31 "mdl/MDLScanner.l"
 				{
@@ -4091,7 +4088,7 @@ YY_DECL
 #line 100 "mdl/MDLScanner.l"
 				ECHO;
 				YY_BREAK
-#line 1529 "mdl/MDLScanner.inl"
+#line 1526 "mdl/MDLScanner.inl"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
