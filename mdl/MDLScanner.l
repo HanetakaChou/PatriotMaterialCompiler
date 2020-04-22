@@ -12,78 +12,100 @@
 %option noyyrealloc
 %option yylineno
 
-DIGIT [0-9]
+/* Ignore whitespace */
+WHITE ([ \t\r](([ \t\r])*))
+SPLIT ([ \t\r\n;])
 
-IDENT ([A-Z]|[a-z])(([0-9]|[A-Z]|[a-z]|[_])*)
+/* keywords */
+MDL (mdl)
+IMPORT (import)
 
-INTEGER_LITERAL_DECIMAL [1-9](([0-9])*)
-INTEGER_LITERAL_HEXADECIMAL [0][xX]([0-9]|[A-F]|[a-f])(([0-9]|[A-F]|[a-f])*)
-INTEGER_LITERAL_OCTAL [0](([0-7])*)
+/* Identifiers */
+IDENT (([A-Za-z])(([0-9A-Za-z_])*))
 
-FLOATING_LITERAL (({DIGIT}({DIGIT}*)[.])|(([.]{DIGIT}({DIGIT}*))(([eE]{DIGIT}({DIGIT}*))?))|(({DIGIT}({DIGIT}*)[.]{DIGIT}({DIGIT}*))(([eE]{DIGIT}({DIGIT}*))?))) 
-FLOATING_LITERAL_FLOAT ({FLOATING_LITERAL})([Ff]?)
-FLOATING_LITERAL_DOUBLE ({FLOATING_LITERAL})[Dd]
+/* Literal values */
+INTEGER_LITERAL_DECIMAL ([1-9](([0-9])*))
+INTEGER_LITERAL_HEXADECIMAL ([0][xX]([0-9A-Fa-f])(([0-9A-Fa-f])*))
+INTEGER_LITERAL_OCTAL ([0](([0-7])*))
+
+DIGIT ([0-9])
+E ([eE]([-+]?){DIGIT}({DIGIT}*))
+FLOATING_LITERAL ((({DIGIT}*)[.]({DIGIT}*))({E}?))|(({DIGIT}({DIGIT}*)){E})  
+FLOATING_LITERAL_FLOAT (({FLOATING_LITERAL})([Ff]?))
+FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
 
 /* //https://westes.github.io/flex/manual/Patterns.html#Patterns */
 
 %%
     
-[/][/]((.)*) {  My_Test(yytext, yyleng); /* Single line comment */ }  
+[/][/]((.)*) {
+    /* Single line comment */
+    My_Test(yytext, yyleng);
+    }  
 
-[/][*]([^*]*)[*]+([^*/][^*]*[*]+)*[/] {  My_Test(yytext, yyleng); /* Multiline comment */ }
+[/][*]([^*]*)[*]+([^*/][^*]*[*]+)*[/] {
+    /* Multiline comment */
+    My_Test(yytext, yyleng);
+    }
 
-[/][*] { My_Test(yytext, yyleng); /* YY_FATAL_ERROR("Unterminated comment"); */ }
-
-[ ]|[\t](([ ]|[\t])*) { My_Test(yytext, yyleng); }
+[/][*] { 
+    My_Test(yytext, yyleng); 
+    YY_FATAL_ERROR("Unterminated comment");
+    }
+    
+    /* Ignore whitespace */
+{WHITE} { 
+    My_Test(yytext, yyleng); 
+    }
 
 [;] {
     return ';';
     }
     
     /* keywords */
-[m][d][l] {
-    return YYTOKEN_MDL;
+{MDL}/{SPLIT} { 
+    return YYTOKEN_MDL; 
     }
 
-[i][m][p][o][r][t] {
-    return YYTOKEN_IMPORT;
+{IMPORT}/{SPLIT} { 
+    return YYTOKEN_IMPORT; 
     }
 
      /* Identifiers */
-{IDENT} {
+{IDENT}/{SPLIT} {
     lvalp->_IDENT = MDLFrontend_HashIdentName(yyextra, yytext);
     return YYTOKEN_IDENT;
     }
 
      /* Literal values */
-{INTEGER_LITERAL_DECIMAL} { 
+{INTEGER_LITERAL_DECIMAL}/{SPLIT} { 
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 10);
     assert(endptr <= ((yytext) + (yyleng)));
     return YYTOKEN_INTEGER_LITERAL; 
     }
 
-{INTEGER_LITERAL_HEXADECIMAL} { 
+{INTEGER_LITERAL_HEXADECIMAL}/{SPLIT} { 
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 16);
     assert(endptr <= ((yytext) + (yyleng)));
     return YYTOKEN_INTEGER_LITERAL; 
     } 
 
-{INTEGER_LITERAL_OCTAL} { 
+{INTEGER_LITERAL_OCTAL}/{SPLIT} { 
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 8);
     assert(endptr <= ((yytext) + (yyleng)));
     return YYTOKEN_INTEGER_LITERAL; 
     }     
 
-{FLOATING_LITERAL_FLOAT} {
+{FLOATING_LITERAL_FLOAT}/{SPLIT} {
     char *endptr = NULL;
     lvalp->_FLOATING_LITERAL = strtof(yytext, &endptr);
     assert(endptr <= ((yytext) + (yyleng)));
     return YYTOKEN_FLOATING_LITERAL;
     }
-{FLOATING_LITERAL_DOUBLE} {
+{FLOATING_LITERAL_DOUBLE}/{SPLIT} {
     char *endptr = NULL;
     lvalp->_FLOATING_LITERAL = strtod(yytext, &endptr);
     assert(endptr <= ((yytext) + (yyleng)));
