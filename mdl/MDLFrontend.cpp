@@ -11,10 +11,9 @@ extern "C" int mdl_yyparse(void *pUserData, struct llscan_t *pScanner);
 
 MDLFrontend::MDLFrontend()
 {
-
 }
 
-void MDLFrontend::compile()
+void MDLFrontend::Compile()
 {
     PT_MatC_Stream_File stream("test.mdl");
 
@@ -25,27 +24,27 @@ void MDLFrontend::compile()
     mdl_lllex_destroy(scanner);
 }
 
-size_t MDLFrontend::HashIdentName(char const *pIdentName)
+size_t MDLFrontend::Callback_HashIdentName(char const *pIdentName)
 {
     return 0;
 }
 
-void *MDLFrontend::callback_malloc(size_t size)
+void MDLFrontend::Callback_Error(char const *s)
+{
+    std::cout << s << std::endl;
+}
+
+void *MDLFrontend::Callback_Malloc(size_t size)
 {
     return malloc(size);
 }
 
-void *MDLFrontend::callback_realloc(void *ptr, size_t size)
+void *MDLFrontend::Callback_Realloc(void *ptr, size_t size)
 {
     return realloc(ptr, size);
 }
 
-void MDLFrontend::callback_free(void *ptr)
+void MDLFrontend::Callback_Free(void *ptr)
 {
     return free(ptr);
-}
-
-void MDLFrontend::callback_error(char const *s)
-{
-    std::cout << s << std::endl;
 }

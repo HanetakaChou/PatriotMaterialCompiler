@@ -10,12 +10,12 @@ class MDLFrontend
     std::unordered_set<std::string> m_ident_name_hash;
 public:
     MDLFrontend();
-    void compile();
-    size_t HashIdentName(char const *pIdentName);
-    void callback_error(char const *s);
-    void *callback_malloc(size_t size);
-    void *callback_realloc(void *ptr, size_t size);
-    void callback_free(void *ptr);
+    void Compile();
+    size_t Callback_HashIdentName(char const *pIdentName);
+    void Callback_Error(char const *s);
+    void *Callback_Malloc(size_t size);
+    void *Callback_Realloc(void *ptr, size_t size);
+    void Callback_Free(void *ptr);
 };
 
 #endif

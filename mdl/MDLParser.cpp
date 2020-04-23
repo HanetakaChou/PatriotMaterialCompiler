@@ -12,7 +12,7 @@ extern "C" int mdl_yylex(union YYSTYPE *lvalp, struct YYLTYPE *llocp, void *pUse
     }
     catch (const std::exception &e)
     {
-        static_cast<class MDLFrontend *>(pUserData)->callback_error(e.what());
+        static_cast<class MDLFrontend *>(pUserData)->Callback_Error(e.what());
         return 0; //YYEOF == 0 //MDLParser.c
     }
 }
@@ -31,20 +31,20 @@ extern "C" void mdl_yyerror(YYLTYPE *llocp, void *pUserData, struct llscan_t *pS
 {
     char msg_yyerror[4096];
     sprintf(msg_yyerror, "%s at line %d column %d", s, llocp->first_line, llocp->first_column);
-    static_cast<class MDLFrontend *>(mdl_llget_extra(pScanner))->callback_error(msg_yyerror);
+    static_cast<class MDLFrontend *>(mdl_llget_extra(pScanner))->Callback_Error(msg_yyerror);
 }
 
 extern "C" void *mdl_yyalloc(size_t size, void *pUserData)
 {
-    return static_cast<class MDLFrontend *>(pUserData)->callback_malloc(size);
+    return static_cast<class MDLFrontend *>(pUserData)->Callback_Malloc(size);
 }
 
 extern "C" void *mdl_yyrealloc(void *ptr, size_t size, void *pUserData)
 {
-    return static_cast<class MDLFrontend *>(pUserData)->callback_realloc(ptr, size);
+    return static_cast<class MDLFrontend *>(pUserData)->Callback_Realloc(ptr, size);
 }
 
 extern "C" void mdl_yyfree(void *ptr, void *pUserData)
 {
-    return static_cast<class MDLFrontend *>(pUserData)->callback_free(ptr);
+    return static_cast<class MDLFrontend *>(pUserData)->Callback_Free(ptr);
 }

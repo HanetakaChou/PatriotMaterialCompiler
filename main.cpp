@@ -6,7 +6,7 @@
 int main()
 {
     MDLFrontend mdlfrontend;
-    mdlfrontend.compile();
+    mdlfrontend.Compile();
 
     return 0;
 }

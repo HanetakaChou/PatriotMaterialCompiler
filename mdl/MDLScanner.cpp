@@ -6,7 +6,7 @@ extern "C" void *mdl_llget_extra(struct llscan_t *yyscanner);
 
 extern "C" size_t MDLFrontend_HashIdentName(void *pUserData, char const *pIdentName)
 {
-    return static_cast<class MDLFrontend *>(pUserData)->HashIdentName(pIdentName);
+    return static_cast<class MDLFrontend *>(pUserData)->Callback_HashIdentName(pIdentName);
 }
 
 extern "C" int mdl_ll_stream_read(void *pUserData, void *pUserStream, void *buf, size_t size)
@@ -35,15 +35,15 @@ extern "C" __attribute__((__noreturn__)) void mdl_ll_fatal_error(char const *msg
 
 extern "C" void *mdl_llalloc(size_t size, struct llscan_t *scanner)
 {
-    return static_cast<class MDLFrontend *>(mdl_llget_extra(scanner))->callback_malloc(size);
+    return static_cast<class MDLFrontend *>(mdl_llget_extra(scanner))->Callback_Malloc(size);
 }
 
 extern "C" void *mdl_llrealloc(void *ptr, size_t size, struct llscan_t *scanner)
 {
-    return static_cast<class MDLFrontend *>(mdl_llget_extra(scanner))->callback_realloc(ptr, size);
+    return static_cast<class MDLFrontend *>(mdl_llget_extra(scanner))->Callback_Realloc(ptr, size);
 }
 
 extern "C" void mdl_llfree(void *ptr, struct llscan_t *scanner)
 {
-    return static_cast<class MDLFrontend *>(mdl_llget_extra(scanner))->callback_free(ptr);
+    return static_cast<class MDLFrontend *>(mdl_llget_extra(scanner))->Callback_Free(ptr);
 }
