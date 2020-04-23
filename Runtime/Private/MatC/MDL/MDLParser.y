@@ -2,16 +2,7 @@
 
 %define api.value.type {union YYSTYPE}
 
-%token SEMICOLON;
-
-%token MDL
-%token IMPORT
-
-%token SCOPE;
-%token <_IDENT> IDENT
-%token <_INTEGER_LITERAL> INTEGER_LITERAL 
-%token <_FLOATING_LITERAL> FLOATING_LITERAL
-
+// Tell Bison to track locations for improved error messages
 %locations
 
 %parse-param {void *pUserData} {void *pScanner}
@@ -22,20 +13,35 @@
     void yyerror(YYLTYPE *llocp, void *pUserData, void *pScanner, const char *s);
 }
 
-//Token即终结符
-//推理规则必须全部转换为终结符（即Token），才能完成推理
 
-//%define api.value.type union //{struct YYSTYPE}
-//%token <int> INTEGER_LITERAL
+// Define the terminal symbols.
+%token SEMICOLON;
+%token MDL
+%token IMPORT
+%token SCOPE;
+%token <_IDENT> IDENT
+%token <_INTEGER_LITERAL> INTEGER_LITERAL 
+%token <_FLOATING_LITERAL> FLOATING_LITERAL
+
+// Define the nonterminals 
+%type <n> mdl 
+%type <n> mdl_version 
+
+
+// Define the starting nonterminal
+%start mdl
 
 %%
 
-mdl: mdl_version import_declaration_closure;
+mdl: mdl_version import_declaration_opt;
 
 mdl_version: MDL FLOATING_LITERAL SEMICOLON;
 
-import_declaration_closure: import_declaration_closure import_declaration;
-import_declaration_closure: ;
+import_declaration_opt: import_declarations;
+import_declaration_opt: ;
+
+import_declarations: import_declarations import_declaration;
+import_declarations: ;
 
 import_declaration: IMPORT qualified_import SEMICOLON;
 
