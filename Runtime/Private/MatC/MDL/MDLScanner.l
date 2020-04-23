@@ -22,6 +22,8 @@ COMMA (,)
 /* keywords */
 MDL (mdl)
 IMPORT (import)
+MODULE (module)
+EXPORT (export)
 
 /* Identifiers */
 SCOPE (::)
@@ -74,6 +76,14 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
 
 {IMPORT} { 
     return YYTOKEN_IMPORT; 
+    }
+
+{MODULE} {
+    return YYTOKEN_MODULE;
+    }
+
+{EXPORT} {
+    return YYTOKEN_EXPORT;
     }
 
      /* Identifiers */
