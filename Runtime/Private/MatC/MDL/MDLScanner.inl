@@ -1,6 +1,6 @@
-#line 2 "mdl/MDLScanner.inl"
+#line 2 "../../Private/MatC/MDL/MDLScanner.inl"
 
-#line 4 "mdl/MDLScanner.inl"
+#line 4 "../../Private/MatC/MDL/MDLScanner.inl"
 
 #define  YY_INT_ALIGNED short int
 
@@ -1087,7 +1087,7 @@ static yyconst flex_int32_t yy_rule_can_match_eol[17] =
 #define yymore() yymore_used_but_not_detected
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
-#line 1 "mdl/MDLScanner.l"
+#line 1 "../../Private/MatC/MDL/MDLScanner.l"
 #define YY_NO_INPUT 1
 #define YY_NO_UNISTD_H 1
 /* Ignore whitespace */
@@ -1096,7 +1096,7 @@ static yyconst flex_int32_t yy_rule_can_match_eol[17] =
 /* Identifiers */
 /* Literal values */
 /* //https://westes.github.io/flex/manual/Patterns.html#Patterns */
-#line 1100 "mdl/MDLScanner.inl"
+#line 1100 "../../Private/MatC/MDL/MDLScanner.inl"
 
 #define INITIAL 0
 
@@ -1339,10 +1339,10 @@ YY_DECL
 		}
 
 	{
-#line 42 "mdl/MDLScanner.l"
+#line 42 "../../Private/MatC/MDL/MDLScanner.l"
 
     
-#line 1346 "mdl/MDLScanner.inl"
+#line 1346 "../../Private/MatC/MDL/MDLScanner.inl"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1408,7 +1408,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 44 "mdl/MDLScanner.l"
+#line 44 "../../Private/MatC/MDL/MDLScanner.l"
 {
     /* Single line comment */
     }  
@@ -1416,14 +1416,14 @@ YY_RULE_SETUP
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 48 "mdl/MDLScanner.l"
+#line 48 "../../Private/MatC/MDL/MDLScanner.l"
 {
     /* Multiline comment */
     }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 52 "mdl/MDLScanner.l"
+#line 52 "../../Private/MatC/MDL/MDLScanner.l"
 { 
     YY_FATAL_ERROR("Unterminated comment");
     }
@@ -1431,14 +1431,14 @@ YY_RULE_SETUP
 /* Ignore whitespace */
 case 4:
 YY_RULE_SETUP
-#line 57 "mdl/MDLScanner.l"
+#line 57 "../../Private/MatC/MDL/MDLScanner.l"
 { 
     
     }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 61 "mdl/MDLScanner.l"
+#line 61 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_SEMICOLON;
     }
@@ -1446,14 +1446,14 @@ YY_RULE_SETUP
 /* keywords */
 case 6:
 YY_RULE_SETUP
-#line 66 "mdl/MDLScanner.l"
+#line 66 "../../Private/MatC/MDL/MDLScanner.l"
 { 
     return YYTOKEN_MDL; 
     }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 70 "mdl/MDLScanner.l"
+#line 70 "../../Private/MatC/MDL/MDLScanner.l"
 { 
     return YYTOKEN_IMPORT; 
     }
@@ -1461,14 +1461,14 @@ YY_RULE_SETUP
 /* Identifiers */
 case 8:
 YY_RULE_SETUP
-#line 75 "mdl/MDLScanner.l"
+#line 75 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_SCOPE;
 }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 79 "mdl/MDLScanner.l"
+#line 79 "../../Private/MatC/MDL/MDLScanner.l"
 {
     lvalp->_IDENT = MDLFrontend_HashIdentName(yyextra, yytext);
     return YYTOKEN_IDENT;
@@ -1477,7 +1477,7 @@ YY_RULE_SETUP
 /* Literal values */
 case 10:
 YY_RULE_SETUP
-#line 85 "mdl/MDLScanner.l"
+#line 85 "../../Private/MatC/MDL/MDLScanner.l"
 { 
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 10);
@@ -1487,7 +1487,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 92 "mdl/MDLScanner.l"
+#line 92 "../../Private/MatC/MDL/MDLScanner.l"
 { 
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 16);
@@ -1497,7 +1497,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 99 "mdl/MDLScanner.l"
+#line 99 "../../Private/MatC/MDL/MDLScanner.l"
 { 
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 8);
@@ -1507,7 +1507,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 106 "mdl/MDLScanner.l"
+#line 106 "../../Private/MatC/MDL/MDLScanner.l"
 {
     char *endptr = NULL;
     lvalp->_FLOATING_LITERAL = strtof(yytext, &endptr);
@@ -1517,7 +1517,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 112 "mdl/MDLScanner.l"
+#line 112 "../../Private/MatC/MDL/MDLScanner.l"
 {
     char *endptr = NULL;
     lvalp->_FLOATING_LITERAL = strtod(yytext, &endptr);
@@ -1528,7 +1528,7 @@ YY_RULE_SETUP
 /* catch-all rule for any other single characters */
 case 15:
 YY_RULE_SETUP
-#line 120 "mdl/MDLScanner.l"
+#line 120 "../../Private/MatC/MDL/MDLScanner.l"
 { 
         char msg_fatal_error[4096];
         assert(((yyleng) == 1));
@@ -1538,10 +1538,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 127 "mdl/MDLScanner.l"
+#line 127 "../../Private/MatC/MDL/MDLScanner.l"
 ECHO;
 	YY_BREAK
-#line 1545 "mdl/MDLScanner.inl"
+#line 1545 "../../Private/MatC/MDL/MDLScanner.inl"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2644,6 +2644,6 @@ static int yy_flex_strlen (yyconst char * s , yyscan_t yyscanner)
 
 #define YYTABLES_NAME "yytables"
 
-#line 127 "mdl/MDLScanner.l"
+#line 127 "../../Private/MatC/MDL/MDLScanner.l"
 
 

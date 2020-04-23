@@ -1,5 +1,5 @@
 #include "MDLFrontend.h"
-#include "PT_MatC_Stream.h"
+#include "../PT_MatC_Stream.h"
 #include <stddef.h>
 #include <stdlib.h>
 #include <memory.h>

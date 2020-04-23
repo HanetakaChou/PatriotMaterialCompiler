@@ -1,6 +1,6 @@
 #include "MDLScanner.hpp"
 #include "MDLFrontend.h"
-#include "PT_MatC_Stream.h"
+#include "../PT_MatC_Stream.h"
 #include <stdexcept>
 extern "C" void *mdl_llget_extra(struct llscan_t *yyscanner);
 

@@ -69,7 +69,7 @@
 
 /* Copy the first part of user declarations.  */
 
-#line 73 "mdl/MDLParser.inl" /* yacc.c:339  */
+#line 73 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -148,14 +148,14 @@ int mdl_yyparse (void *pUserData, void *pScanner);
 
 /* Copy the second part of user declarations.  */
 
-#line 152 "mdl/MDLParser.inl" /* yacc.c:358  */
+#line 152 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:358  */
 /* Unqualified %code blocks.  */
-#line 20 "mdl/MDLParser.y" /* yacc.c:359  */
+#line 20 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:359  */
 
     int yylex(union YYSTYPE *lvalp, YYLTYPE *llocp, void *pUserData, void *pScanner);
     void yyerror(YYLTYPE *llocp, void *pUserData, void *pScanner, const char *s);
 
-#line 159 "mdl/MDLParser.inl" /* yacc.c:359  */
+#line 159 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:359  */
 
 #ifdef short
 # undef short
@@ -1329,7 +1329,7 @@ yyreduce:
   switch (yyn)
     {
       
-#line 1333 "mdl/MDLParser.inl" /* yacc.c:1646  */
+#line 1333 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

@@ -1,11 +1,13 @@
 #ifndef _MDLFRONTEND_H_
 #define _MDLFRONTEND_H_ 1
 
+#include "../../../Public/PTCommon.h"
+
 #include <stddef.h>
 #include <string>
 #include <unordered_set>
 
-class MDLFrontend
+class PTEXPORT MDLFrontend
 {
     std::unordered_set<std::string> m_ident_name_hash;
 public:

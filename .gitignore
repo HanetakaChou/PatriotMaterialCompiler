@@ -1,11 +1,2 @@
-.vscode/settings.json
-MDLScanner.o
-MDLScanner.cpp.o
-MDLParser.o
-MDLParser.cpp.o
-MDLFrontend.o
-PTInputStream.o
-PTStream.o
-PT_MatC_Stream.o
-main.o
-a.out
+Binary
+Intermediate
