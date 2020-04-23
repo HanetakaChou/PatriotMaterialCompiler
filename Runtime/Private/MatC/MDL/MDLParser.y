@@ -15,12 +15,13 @@
 
 
 // Define the terminal symbols.
-%token SEMICOLON;
-%token COMMA;
+%token SEMICOLON
+%token COMMA
 %token MDL
 %token IMPORT
+%token MODULE
 %token EXPORT
-%token SCOPE;
+%token SCOPE
 %token <_IDENT> IDENT
 %token <_INTEGER_LITERAL> INTEGER_LITERAL 
 %token <_FLOATING_LITERAL> FLOATING_LITERAL
@@ -34,7 +35,7 @@
 
 %%
 
-mdl: mdl_version import_declarations_opt;
+mdl: mdl_version import_declarations_opt module_declaration_opt global_declarations_opt;
 
 mdl_version: MDL FLOATING_LITERAL SEMICOLON;
 
@@ -53,5 +54,18 @@ qualified_import: simple_name;
 
 simple_name: IDENT;
 
+module_declaration_opt: module_declaration;
+module_declaration_opt: ;
+
+module_declaration: MODULE IDENT SEMICOLON;
+
+global_declarations_opt: global_declarations;
+global_declarations_opt: ;
+
+global_declarations: global_declarations global_declaration;
+global_declarations: global_declaration;
+
+global_declaration: EXPORT IDENT SEMICOLON;
+global_declaration: IDENT SEMICOLON;
 
 //%%
