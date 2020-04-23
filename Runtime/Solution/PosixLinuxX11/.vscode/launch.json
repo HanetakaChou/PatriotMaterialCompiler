@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}/Runtime/Solution/PosixLinuxX11/obj/local/x86_64/PTMatC.bundle", //should set a.out in obj here instead of in libs
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/Binary/x64/Debug",
             "environment": [],
             "externalConsole": false,
             "miDebuggerServerAddress": ":27177",
