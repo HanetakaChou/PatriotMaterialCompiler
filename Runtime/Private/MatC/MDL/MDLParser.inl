@@ -102,24 +102,26 @@ extern int mdl_yydebug;
   enum yytokentype
   {
     SEMICOLON = 258,
-    MDL = 259,
-    IMPORT = 260,
-    EXPORT = 261,
-    SCOPE = 262,
-    IDENT = 263,
-    INTEGER_LITERAL = 264,
-    FLOATING_LITERAL = 265
+    COMMA = 259,
+    MDL = 260,
+    IMPORT = 261,
+    EXPORT = 262,
+    SCOPE = 263,
+    IDENT = 264,
+    INTEGER_LITERAL = 265,
+    FLOATING_LITERAL = 266
   };
 #endif
 /* Tokens.  */
 #define SEMICOLON 258
-#define MDL 259
-#define IMPORT 260
-#define EXPORT 261
-#define SCOPE 262
-#define IDENT 263
-#define INTEGER_LITERAL 264
-#define FLOATING_LITERAL 265
+#define COMMA 259
+#define MDL 260
+#define IMPORT 261
+#define EXPORT 262
+#define SCOPE 263
+#define IDENT 264
+#define INTEGER_LITERAL 265
+#define FLOATING_LITERAL 266
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -150,14 +152,14 @@ int mdl_yyparse (void *pUserData, void *pScanner);
 
 /* Copy the second part of user declarations.  */
 
-#line 154 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:358  */
+#line 156 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:358  */
 /* Unqualified %code blocks.  */
 #line 11 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:359  */
 
     int yylex(union YYSTYPE *lvalp, YYLTYPE *llocp, void *pUserData, void *pScanner);
     void yyerror(YYLTYPE *llocp, void *pUserData, void *pScanner, const char *s);
 
-#line 161 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:359  */
+#line 163 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:359  */
 
 #ifdef short
 # undef short
@@ -401,7 +403,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  5
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   12
+#define YYLAST   10
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  12
@@ -415,7 +417,7 @@ union yyalloc
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   265
+#define YYMAXUTOK   266
 
 #define YYTRANSLATE(YYX)                                                \
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -428,7 +430,7 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,    11,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -450,15 +452,15 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8,     9,    10
+       5,     6,     7,     8,     9,    10,    11
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    36,    36,    38,    40,    41,    43,    44,    46,    48,
-      49,    51,    53
+       0,    37,    37,    39,    41,    42,    44,    45,    47,    49,
+      50,    52,    54
 };
 #endif
 
@@ -467,8 +469,8 @@ static const yytype_uint8 yyrline[] =
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "$end", "error", "$undefined", "SEMICOLON", "MDL", "IMPORT", "EXPORT",
-  "SCOPE", "IDENT", "INTEGER_LITERAL", "FLOATING_LITERAL", "','",
+  "$end", "error", "$undefined", "SEMICOLON", "COMMA", "MDL", "IMPORT",
+  "EXPORT", "SCOPE", "IDENT", "INTEGER_LITERAL", "FLOATING_LITERAL",
   "$accept", "mdl", "mdl_version", "import_declarations_opt",
   "import_declarations", "import_declaration", "qualified_imports",
   "qualified_import", "simple_name", YY_NULLPTR
@@ -481,14 +483,14 @@ static const char *const yytname[] =
 static const yytype_uint16 yytoknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
-     265,    44
+     265,   266
 };
 # endif
 
-#define YYPACT_NINF -12
+#define YYPACT_NINF -11
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-12)))
+  (!!((Yystate) == (-11)))
 
 #define YYTABLE_NINF -1
 
@@ -499,8 +501,8 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -2,    -9,     3,    -1,     2,   -12,     1,   -12,    -1,   -12,
-     -12,   -12,    -3,   -12,   -12,   -12,   -12,     1,   -12
+      -2,    -9,     4,    -1,     3,   -11,     0,   -11,    -1,   -11,
+     -11,   -11,    -3,   -11,   -11,   -11,   -11,     0,   -11
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -515,7 +517,7 @@ static const yytype_uint8 yydefact[] =
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -12,   -12,   -12,   -12,   -12,     4,   -12,   -11,   -12
+     -11,   -11,   -11,   -11,   -11,     2,   -11,   -10,   -11
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -529,22 +531,22 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-      16,     4,     1,     5,     6,    10,    18,     0,    17,    11,
-       0,     0,    15
+      16,    17,     4,     1,     5,     6,    10,    18,     0,    11,
+      15
 };
 
 static const yytype_int8 yycheck[] =
 {
-       3,    10,     4,     0,     5,     3,    17,    -1,    11,     8,
-      -1,    -1,     8
+       3,     4,    11,     5,     0,     6,     3,    17,    -1,     9,
+       8
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     4,    13,    14,    10,     0,     5,    15,    16,    17,
-       3,     8,    18,    19,    20,    17,     3,    11,    19
+       0,     5,    13,    14,    11,     0,     6,    15,    16,    17,
+       3,     9,    18,    19,    20,    17,     3,     4,    19
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
@@ -1338,7 +1340,7 @@ yyreduce:
   switch (yyn)
     {
       
-#line 1342 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 1344 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

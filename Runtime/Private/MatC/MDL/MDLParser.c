@@ -18,6 +18,7 @@ void mdl_yyfree(void *ptr, void *pUserData);
 //https://www.gnu.org/software/bison/manual/html_node/Location-Type.html
 
 int YYTOKEN_SEMICOLON = SEMICOLON;
+int YYTOKEN_COMMA = COMMA;
 int YYTOKEN_MDL = MDL;
 int YYTOKEN_IMPORT = IMPORT;
 int YYTOKEN_SCOPE = SCOPE;

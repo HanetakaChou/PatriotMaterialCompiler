@@ -12,6 +12,7 @@ union YYSTYPE {
 
 extern int YYTOKEN_MDL;
 extern int YYTOKEN_SEMICOLON;
+extern int YYTOKEN_COMMA;
 extern int YYTOKEN_IMPORT;
 extern int YYTOKEN_SCOPE;
 extern int YYTOKEN_IDENT;

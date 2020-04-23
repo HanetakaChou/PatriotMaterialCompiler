@@ -17,6 +17,7 @@ WHITE ([ \t\r](([ \t\r])*))
 
 /* Split */
 SEMICOLON (;)
+COMMA (,)
 
 /* keywords */
 MDL (mdl)
@@ -60,6 +61,10 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
 
 {SEMICOLON} {
     return YYTOKEN_SEMICOLON;
+    }
+
+{COMMA} {
+    return YYTOKEN_COMMA;
     }
     
     /* keywords */

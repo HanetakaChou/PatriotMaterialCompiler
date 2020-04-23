@@ -16,6 +16,7 @@
 
 // Define the terminal symbols.
 %token SEMICOLON;
+%token COMMA;
 %token MDL
 %token IMPORT
 %token EXPORT
@@ -46,7 +47,7 @@ import_declarations: import_declaration;
 import_declaration: IMPORT qualified_imports SEMICOLON;
 
 qualified_imports: qualified_import;
-qualified_imports: qualified_imports ',' qualified_import;
+qualified_imports: qualified_imports COMMA qualified_import;
 
 qualified_import: simple_name;
 
