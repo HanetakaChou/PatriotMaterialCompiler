@@ -2,9 +2,12 @@
 
 %define api.value.type {union YYSTYPE}
 
-%token <_MDL> MDL
-%token <_IMPORT> IMPORT
+%token SEMICOLON;
 
+%token MDL
+%token IMPORT
+
+%token SCOPE;
 %token <_IDENT> IDENT
 %token <_INTEGER_LITERAL> INTEGER_LITERAL 
 %token <_FLOATING_LITERAL> FLOATING_LITERAL
@@ -25,18 +28,16 @@
 //%define api.value.type union //{struct YYSTYPE}
 //%token <int> INTEGER_LITERAL
 
-
 %%
-
 
 mdl: mdl_version import_declaration_closure;
 
-mdl_version: MDL FLOATING_LITERAL ';';
+mdl_version: MDL FLOATING_LITERAL SEMICOLON;
 
 import_declaration_closure: import_declaration_closure import_declaration;
 import_declaration_closure: ;
 
-import_declaration: IMPORT qualified_import ';';
+import_declaration: IMPORT qualified_import SEMICOLON;
 
 qualified_import: simple_name;
 

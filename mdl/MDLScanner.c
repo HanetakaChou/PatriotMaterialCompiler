@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 
 #if defined(_MSC_VER)
 extern __declspec(noreturn) void mdl_ll_fatal_error(char const *msg void *pUserData);
@@ -49,16 +50,8 @@ typedef struct YYLTYPE YYLTYPE;
         yycolumn += (yyleng);                         \
     }
 
-size_t MDLFrontend_HashIdentName(void *pUserData, char const *pIdentName);
-
-void My_Test(char const *yytext, int yyleng)
-{
-    int huhu = 0;
-}
-
-#include <stdlib.h>
-#include <assert.h>
 #include "MDLParser.h"
+#include "MDLScanner.hpp"
 
 #include "MDLScanner.inl"
 

@@ -14,13 +14,16 @@
 
 /* Ignore whitespace */
 WHITE ([ \t\r](([ \t\r])*))
-SPLIT ([ \t\r\n;])
+
+/* Split */
+SEMICOLON (;)
 
 /* keywords */
 MDL (mdl)
 IMPORT (import)
 
 /* Identifiers */
+SCOPE (::)
 IDENT (([A-Za-z])(([0-9A-Za-z_])*))
 
 /* Literal values */
@@ -40,72 +43,73 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
     
 [/][/]((.)*) {
     /* Single line comment */
-    My_Test(yytext, yyleng);
     }  
 
 [/][*]([^*]*)[*]+([^*/][^*]*[*]+)*[/] {
     /* Multiline comment */
-    My_Test(yytext, yyleng);
     }
 
 [/][*] { 
-    My_Test(yytext, yyleng); 
     YY_FATAL_ERROR("Unterminated comment");
     }
     
     /* Ignore whitespace */
 {WHITE} { 
-    My_Test(yytext, yyleng); 
+    
     }
 
-[;] {
-    return ';';
+{SEMICOLON} {
+    return YYTOKEN_SEMICOLON;
     }
     
     /* keywords */
-{MDL}/{SPLIT} { 
+{MDL} { 
     return YYTOKEN_MDL; 
     }
 
-{IMPORT}/{SPLIT} { 
+{IMPORT} { 
     return YYTOKEN_IMPORT; 
     }
 
      /* Identifiers */
-{IDENT}/{SPLIT} {
+{SCOPE} {
+    return YYTOKEN_SCOPE;
+}
+
+{IDENT} {
     lvalp->_IDENT = MDLFrontend_HashIdentName(yyextra, yytext);
     return YYTOKEN_IDENT;
     }
 
      /* Literal values */
-{INTEGER_LITERAL_DECIMAL}/{SPLIT} { 
+{INTEGER_LITERAL_DECIMAL} { 
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 10);
     assert(endptr <= ((yytext) + (yyleng)));
     return YYTOKEN_INTEGER_LITERAL; 
     }
 
-{INTEGER_LITERAL_HEXADECIMAL}/{SPLIT} { 
+{INTEGER_LITERAL_HEXADECIMAL} { 
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 16);
     assert(endptr <= ((yytext) + (yyleng)));
     return YYTOKEN_INTEGER_LITERAL; 
     } 
 
-{INTEGER_LITERAL_OCTAL}/{SPLIT} { 
+{INTEGER_LITERAL_OCTAL} { 
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 8);
     assert(endptr <= ((yytext) + (yyleng)));
     return YYTOKEN_INTEGER_LITERAL; 
     }     
 
-{FLOATING_LITERAL_FLOAT}/{SPLIT} {
+{FLOATING_LITERAL_FLOAT} {
     char *endptr = NULL;
     lvalp->_FLOATING_LITERAL = strtof(yytext, &endptr);
     assert(endptr <= ((yytext) + (yyleng)));
     return YYTOKEN_FLOATING_LITERAL;
     }
-{FLOATING_LITERAL_DOUBLE}/{SPLIT} {
+{FLOATING_LITERAL_DOUBLE} {
     char *endptr = NULL;
     lvalp->_FLOATING_LITERAL = strtod(yytext, &endptr);
     assert(endptr <= ((yytext) + (yyleng)));
@@ -115,6 +119,7 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
     /* catch-all rule for any other single characters */
 (.) { 
         char msg_fatal_error[4096];
+        assert(((yyleng) == 1));
         sprintf(msg_fatal_error, "Unexpect \'%c\' at line %d column %d", ((yytext)[0]), (yylineno), (yycolumn));
         YY_FATAL_ERROR(msg_fatal_error);
     }
