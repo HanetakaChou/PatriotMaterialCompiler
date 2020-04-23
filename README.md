@@ -1,4 +1,9 @@
- 
+PatriotMaterialCompiler is an offline material compiler based on MDL/OSL and LLVM.  
+  
+Frontend: MDL/OSL  
+IR: LLVM IR  
+Backend: GLSL/HLSL/MSL  
+
 Here are some literatures:  
 
 [MDL](https://github.com/NVIDIA/MDL-SDK)  
