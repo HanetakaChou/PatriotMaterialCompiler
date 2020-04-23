@@ -7,7 +7,7 @@ union YYSTYPE {
     size_t _IDENT; //unordered_set hash unique value
     int _INTEGER_LITERAL;
     float _FLOATING_LITERAL;
-    struct MDLASTNode *n; // Abstract Syntax Tree node
+    struct MDLDeclaration *_decl;
 };
 
 extern int YYTOKEN_MDL;

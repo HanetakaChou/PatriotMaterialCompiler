@@ -59,4 +59,5 @@ static void _static_assert_mdl_ll_lexer_(void)
 {
     char _static_assert_yy_size_t_[((sizeof(yy_size_t) == sizeof(size_t)) ? 1 : -1)];
     char _static_assert_yyscan_t_[((sizeof(yyscan_t) == sizeof(void *)) ? 1 : -1)];
+    char _static_assert_YY_NULL_[((YY_NULL == 0) ? 1 : -1)];
 }

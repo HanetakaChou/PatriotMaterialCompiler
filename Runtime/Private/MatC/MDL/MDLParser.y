@@ -18,14 +18,14 @@
 %token SEMICOLON;
 %token MDL
 %token IMPORT
+%token EXPORT
 %token SCOPE;
 %token <_IDENT> IDENT
 %token <_INTEGER_LITERAL> INTEGER_LITERAL 
 %token <_FLOATING_LITERAL> FLOATING_LITERAL
 
 // Define the nonterminals 
-%type <n> mdl 
-%type <n> mdl_version 
+// %type <_decl> import_declaration 
 
 
 // Define the starting nonterminal
@@ -33,20 +33,24 @@
 
 %%
 
-mdl: mdl_version import_declaration_opt;
+mdl: mdl_version import_declarations_opt;
 
 mdl_version: MDL FLOATING_LITERAL SEMICOLON;
 
-import_declaration_opt: import_declarations;
-import_declaration_opt: ;
+import_declarations_opt: import_declarations;
+import_declarations_opt: ;
 
 import_declarations: import_declarations import_declaration;
-import_declarations: ;
+import_declarations: import_declaration;
 
-import_declaration: IMPORT qualified_import SEMICOLON;
+import_declaration: IMPORT qualified_imports SEMICOLON;
+
+qualified_imports: qualified_import;
+qualified_imports: qualified_imports ',' qualified_import;
 
 qualified_import: simple_name;
 
 simple_name: IDENT;
+
 
 //%%

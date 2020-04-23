@@ -104,20 +104,22 @@ extern int mdl_yydebug;
     SEMICOLON = 258,
     MDL = 259,
     IMPORT = 260,
-    SCOPE = 261,
-    IDENT = 262,
-    INTEGER_LITERAL = 263,
-    FLOATING_LITERAL = 264
+    EXPORT = 261,
+    SCOPE = 262,
+    IDENT = 263,
+    INTEGER_LITERAL = 264,
+    FLOATING_LITERAL = 265
   };
 #endif
 /* Tokens.  */
 #define SEMICOLON 258
 #define MDL 259
 #define IMPORT 260
-#define SCOPE 261
-#define IDENT 262
-#define INTEGER_LITERAL 263
-#define FLOATING_LITERAL 264
+#define EXPORT 261
+#define SCOPE 262
+#define IDENT 263
+#define INTEGER_LITERAL 264
+#define FLOATING_LITERAL 265
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -148,14 +150,14 @@ int mdl_yyparse (void *pUserData, void *pScanner);
 
 /* Copy the second part of user declarations.  */
 
-#line 152 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:358  */
+#line 154 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:358  */
 /* Unqualified %code blocks.  */
 #line 11 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:359  */
 
     int yylex(union YYSTYPE *lvalp, YYLTYPE *llocp, void *pUserData, void *pScanner);
     void yyerror(YYLTYPE *llocp, void *pUserData, void *pScanner, const char *s);
 
-#line 159 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:359  */
+#line 161 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:359  */
 
 #ifdef short
 # undef short
@@ -399,21 +401,21 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  5
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   7
+#define YYLAST   12
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  10
+#define YYNTOKENS  12
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  8
+#define YYNNTS  9
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  10
+#define YYNRULES  12
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  15
+#define YYNSTATES  19
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   264
+#define YYMAXUTOK   265
 
 #define YYTRANSLATE(YYX)                                                \
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -426,7 +428,7 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,    11,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -448,7 +450,7 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8,     9
+       5,     6,     7,     8,     9,    10
 };
 
 #if YYDEBUG
@@ -456,7 +458,7 @@ static const yytype_uint8 yytranslate[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    36,    36,    38,    40,    41,    43,    44,    46,    48,
-      50
+      49,    51,    53
 };
 #endif
 
@@ -465,10 +467,11 @@ static const yytype_uint8 yyrline[] =
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "$end", "error", "$undefined", "SEMICOLON", "MDL", "IMPORT", "SCOPE",
-  "IDENT", "INTEGER_LITERAL", "FLOATING_LITERAL", "$accept", "mdl",
-  "mdl_version", "import_declaration_opt", "import_declarations",
-  "import_declaration", "qualified_import", "simple_name", YY_NULLPTR
+  "$end", "error", "$undefined", "SEMICOLON", "MDL", "IMPORT", "EXPORT",
+  "SCOPE", "IDENT", "INTEGER_LITERAL", "FLOATING_LITERAL", "','",
+  "$accept", "mdl", "mdl_version", "import_declarations_opt",
+  "import_declarations", "import_declaration", "qualified_imports",
+  "qualified_import", "simple_name", YY_NULLPTR
 };
 #endif
 
@@ -477,16 +480,17 @@ static const char *const yytname[] =
    (internal) symbol number NUM (which must be that of a token).  */
 static const yytype_uint16 yytoknum[] =
 {
-       0,   256,   257,   258,   259,   260,   261,   262,   263,   264
+       0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
+     265,    44
 };
 # endif
 
-#define YYPACT_NINF -9
+#define YYPACT_NINF -12
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-9)))
+  (!!((Yystate) == (-12)))
 
-#define YYTABLE_NINF -8
+#define YYTABLE_NINF -1
 
 #define yytable_value_is_error(Yytable_value) \
   0
@@ -495,8 +499,8 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -4,    -8,     2,    -2,     1,    -9,    -9,     0,    -9,    -1,
-      -9,    -9,     4,    -9,    -9
+      -2,    -9,     3,    -1,     2,   -12,     1,   -12,    -1,   -12,
+     -12,   -12,    -3,   -12,   -12,   -12,   -12,     1,   -12
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -504,55 +508,57 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,     0,     0,     5,     0,     1,     2,     4,     3,     0,
-       6,    10,     0,     9,     8
+       0,     0,     0,     5,     0,     1,     0,     2,     4,     7,
+       3,    12,     0,     9,    11,     6,     8,     0,    10
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -9,    -9,    -9,    -9,    -9,    -9,    -9,    -9
+     -12,   -12,   -12,   -12,   -12,     4,   -12,   -11,   -12
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     2,     3,     6,     7,    10,    12,    13
+      -1,     2,     3,     7,     8,     9,    12,    13,    14
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
      positive, shift that token.  If negative, reduce the rule whose
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
-static const yytype_int8 yytable[] =
+static const yytype_uint8 yytable[] =
 {
-       1,     4,     5,    -7,     8,     9,    11,    14
+      16,     4,     1,     5,     6,    10,    18,     0,    17,    11,
+       0,     0,    15
 };
 
-static const yytype_uint8 yycheck[] =
+static const yytype_int8 yycheck[] =
 {
-       4,     9,     0,     5,     3,     5,     7,     3
+       3,    10,     4,     0,     5,     3,    17,    -1,    11,     8,
+      -1,    -1,     8
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     4,    11,    12,     9,     0,    13,    14,     3,     5,
-      15,     7,    16,    17,     3
+       0,     4,    13,    14,    10,     0,     5,    15,    16,    17,
+       3,     8,    18,    19,    20,    17,     3,    11,    19
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    10,    11,    12,    13,    13,    14,    14,    15,    16,
-      17
+       0,    12,    13,    14,    15,    15,    16,    16,    17,    18,
+      18,    19,    20
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     2,     3,     1,     0,     2,     0,     3,     1,
-       1
+       0,     2,     2,     3,     1,     0,     2,     1,     3,     1,
+       3,     1,     1
 };
 
 
@@ -1332,7 +1338,7 @@ yyreduce:
   switch (yyn)
     {
       
-#line 1336 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 1342 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

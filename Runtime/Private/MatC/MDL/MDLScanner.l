@@ -123,5 +123,4 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
         sprintf(msg_fatal_error, "Unexpect \'%c\' at line %d column %d", ((yytext)[0]), (yylineno), (yycolumn));
         YY_FATAL_ERROR(msg_fatal_error);
     }
-
 %%
