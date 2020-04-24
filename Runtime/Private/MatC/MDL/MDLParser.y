@@ -22,18 +22,38 @@
 %token USING
 %token MODULE
 %token EXPORT
-%token SSIGN
-%token MULTIPLY_ASSIGN
-%token DIVIDE_ASSIGN
-%token MODULO_ASSIGN
-%token PLUS_ASSIGN
-%token MINUS_ASSIGN
-%token SHIFT_LEFT_ASSIGN
-%token SHIFT_RIGHT_ASSIGN
-%token UNSIGNED_SHIFT_RIGHT_ASSIGN
-%token BITWISE_AND_ASSIGN
-%token BITWISE_XOR_ASSIGN
-%token BITWISE_OR_ASSIGN
+%token ASSIGN_OP
+%token BITWISE_OR_ASSIGN_OP
+%token BITWISE_AND_ASSIGN_OP
+%token BITWISE_XOR_ASSIGN_OP
+%token SHIFT_LEFT_ASSIGN_OP
+%token SHIFT_RIGHT_ASSIGN_OP
+%token UNSIGNED_SHIFT_RIGHT_ASSIGN_OP
+%token MULTIPLY_ASSIGN_OP
+%token DIVIDE_ASSIGN_OP
+%token MODULO_ASSIGN_OP
+%token PLUS_ASSIGN_OP
+%token MINUS_ASSIGN_OP
+%token CONDITIONAL_OP
+%token LOGICAL_OR_OP
+%token LOGICAL_AND_OP
+%token BITWISE_OR_OP
+%token BITWISE_XOR_OP
+%token BITWISE_AND_OP
+%token EQUAL_OP
+%token NOT_EQUAL_OP
+%token LESS_OP
+%token LESS_OR_EQUAL_OP
+%token GREATER_OR_EQUAL_OP
+%token GREATER_OP
+%token SHIFT_LEFT_OP
+%token SHIFT_RIGHT_OP
+%token UNSIGNED_SHIFT_RIGHT_OP
+%token PLUS_OP
+%token MINUS_OP
+%token MULTIPLY_OP
+%token DIVIDE_OP
+%token MODULO_OP
 %token DOT
 %token DOTDOT
 %token SCOPE
@@ -41,8 +61,8 @@
 %token COLON
 %token ANNOTATION_BLOCK_BEGIN;
 %token ANNOTATION_BLOCK_END;
-%token LEFT_PAREN;
-%token RIGHT_PAREN;
+%token LEFT_PARENTHESIS;
+%token RIGHT_PARENTHESIS;
 %token <_IDENT> IDENT
 %token <_INTEGER_LITERAL> INTEGER_LITERAL 
 %token <_FLOATING_LITERAL> FLOATING_LITERAL
@@ -119,13 +139,73 @@ annotations: annotation;
 
 annotation: qualified_name argument_list;
 
-argument_list: LEFT_PAREN named_arguments RIGHT_PAREN;
+argument_list: LEFT_PARENTHESIS named_arguments RIGHT_PARENTHESIS;
 
 named_arguments: named_arguments COMMA named_argument;
 named_arguments: named_argument;
 
 named_argument: simple_name COLON assignment_expression;
 
-assignment_expression: DIVIDE_ASSIGN;
+// Operators in MDL are right associative 
+// To see: compilercore_parser.atg
+
+comma_expression: assignment_expression COMMA comma_expression;
+comma_expression: assignment_expression;
+
+assignment_expression: logical_or_expression CONDITIONAL_OP comma_expression COLON assignment_expression;
+assignment_expression: logical_or_expression ASSIGN_OP assignment_expression;
+assignment_expression: logical_or_expression BITWISE_OR_ASSIGN_OP assignment_expression;
+assignment_expression: logical_or_expression BITWISE_AND_ASSIGN_OP assignment_expression;
+assignment_expression: logical_or_expression BITWISE_XOR_ASSIGN_OP assignment_expression;
+assignment_expression: logical_or_expression SHIFT_LEFT_ASSIGN_OP assignment_expression;
+assignment_expression: logical_or_expression SHIFT_RIGHT_ASSIGN_OP assignment_expression;
+assignment_expression: logical_or_expression UNSIGNED_SHIFT_RIGHT_ASSIGN_OP assignment_expression;
+assignment_expression: logical_or_expression MULTIPLY_ASSIGN_OP assignment_expression;
+assignment_expression: logical_or_expression DIVIDE_ASSIGN_OP assignment_expression;
+assignment_expression: logical_or_expression MODULO_ASSIGN_OP assignment_expression;
+assignment_expression: logical_or_expression PLUS_ASSIGN_OP assignment_expression;
+assignment_expression: logical_or_expression MINUS_ASSIGN_OP assignment_expression;
+assignment_expression: logical_or_expression;
+
+logical_or_expression: logical_and_expression LOGICAL_OR_OP logical_or_expression;
+logical_or_expression: logical_and_expression;
+
+logical_and_expression: inclusive_or_expression LOGICAL_AND_OP logical_and_expression;
+logical_and_expression: inclusive_or_expression;
+
+inclusive_or_expression: exclusive_or_expression BITWISE_OR_OP inclusive_or_expression;
+inclusive_or_expression: exclusive_or_expression;
+
+exclusive_or_expression: and_expression BITWISE_XOR_OP exclusive_or_expression;
+exclusive_or_expression: and_expression;
+
+and_expression: equality_expression BITWISE_AND_OP and_expression;
+and_expression: equality_expression;
+
+equality_expression: relational_expression EQUAL_OP equality_expression;
+equality_expression: relational_expression NOT_EQUAL_OP equality_expression;
+equality_expression: relational_expression;
+
+relational_expression: shift_expression LESS_OP relational_expression;
+relational_expression: shift_expression LESS_OR_EQUAL_OP relational_expression;
+relational_expression: shift_expression GREATER_OR_EQUAL_OP relational_expression;
+relational_expression: shift_expression GREATER_OP relational_expression;
+relational_expression: shift_expression;
+
+shift_expression: additive_expression SHIFT_LEFT_OP shift_expression;
+shift_expression: additive_expression SHIFT_RIGHT_OP shift_expression;
+shift_expression: additive_expression UNSIGNED_SHIFT_RIGHT_OP shift_expression;
+shift_expression: additive_expression;
+
+additive_expression: multiplicative_expression PLUS_OP additive_expression;
+additive_expression: multiplicative_expression MINUS_OP additive_expression;
+additive_expression: multiplicative_expression;
+
+multiplicative_expression: unary_expression MULTIPLY_OP multiplicative_expression; 
+multiplicative_expression: unary_expression DIVIDE_OP multiplicative_expression; 
+multiplicative_expression: unary_expression MODULO_OP multiplicative_expression; 
+multiplicative_expression: unary_expression;
+
+unary_expression: LEFT_PARENTHESIS RIGHT_PARENTHESIS;
 
 //%%
