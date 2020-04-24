@@ -41,6 +41,8 @@ typedef struct YYLTYPE YYLTYPE;
 
 #define YY_DECL int mdl_lllex(yyscan_t yyscanner, union YYSTYPE *lvalp, struct YYLTYPE *llocp)
 
+static void mdl_ll_test(char *const text, int leng);
+
 #define YY_USER_ACTION                                \
     {                                                 \
         llocp->first_line = (yylineno);               \

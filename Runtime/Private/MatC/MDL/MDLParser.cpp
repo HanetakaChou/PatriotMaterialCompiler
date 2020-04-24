@@ -9,7 +9,8 @@ extern "C" int mdl_yylex(union YYSTYPE *lvalp, struct YYLTYPE *llocp, void *pUse
     {
         //yyterminate return YY_NULL //YY_NULL == NULL == 0 //Scanner.c
         //YYEOF == 0 //MDLParser.c
-        return mdl_lllex(pScanner, lvalp, llocp);
+        int yytoken = mdl_lllex(pScanner, lvalp, llocp);
+        return yytoken;
     }
     catch (const std::exception &e)
     {
