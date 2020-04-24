@@ -79,20 +79,29 @@ TEXTURE_2D ("texture_2d")
 TEXTURE_3D ("texture_3d")
 TEXTURE_CUBE ("texture_cube")
 TEXTURE_PTEX ("texture_ptex")
-    /* MDL 1.1+ */
 BSDF_MEASUREMENT ("bsdf_measurement")
-    /* MDL 1.1+ */
 INTENSITY_MODE ("intensity_mode")
-    /* MDL 1.1+ */
 INTENSITY_RADIANT_EXITANCE ("intensity_radiant_exitance")
-    /* MDL 1.1+ */
 INTENSITY_POWER ("intensity_power")
-    /* MDL 1.5+ */
 HAIR_BSDF ("hair_bsdf")
 TRUE ("true")
 FALSE ("false")
 LET ("let")
 IN ("in")
+ANNOTATION ("annotation")
+CONST ("const")
+TYPEDEF ("typedef")
+STRUCT ("struct")
+ENUM ("enum")
+IF ("if")
+ELSE ("else")
+SWITCH ("switch")
+WHILE ("while")
+DO ("do")
+FOR ("for")
+BREAK ("break")
+CONTINUE ("continue")
+RETURN ("return")
 
     /* operators */
 ASSIGN_OP ("=")
@@ -459,6 +468,62 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
 
 {IN} {
     return YYTOKEN_IN;
+    }
+
+{ANNOTATION} {
+    return YYTOKEN_ANNOTATION;
+    }
+
+{CONST} {
+    return YYTOKEN_CONST;
+    }
+
+{TYPEDEF} {
+    return YYTOKEN_TYPEDEF;
+    }
+
+{STRUCT} {
+    return YYTOKEN_STRUCT;
+    }
+
+{ENUM} {
+    return YYTOKEN_ENUM;
+    }
+
+{IF} {
+    return YYTOKEN_IF;
+    }
+
+{ELSE} {
+    return YYTOKEN_ELSE;
+    }
+
+{SWITCH} {
+    return YYTOKEN_SWITCH;
+    }
+
+{WHILE} {
+    return YYTOKEN_WHILE;
+    }
+
+{DO} {
+    return YYTOKEN_DO;
+    }
+
+{FOR} {
+    return YYTOKEN_FOR;
+    }
+
+{BREAK} {
+    return YYTOKEN_BREAK;
+    }
+
+{CONTINUE} {
+    return YYTOKEN_CONTINUE;
+    }
+
+{RETURN} {
+    return YYTOKEN_RETURN;
     }
 
     /* operators */

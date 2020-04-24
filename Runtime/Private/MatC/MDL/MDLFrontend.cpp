@@ -15,7 +15,7 @@ MDLFrontend::MDLFrontend()
 
 void MDLFrontend::Compile()
 {
-    PT_MatC_Stream_File stream("/home/share/github/PatriotMaterialCompiler/test.mdl");
+    PT_MatC_Stream_File stream("/home/share/github/PatriotMaterialCompiler/tutorials.mdl");
 
     struct llscan_t *scanner;
     mdl_lllex_init_extra(this, &scanner);

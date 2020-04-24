@@ -83,6 +83,20 @@
 %token FALSE
 %token LET
 %token IN
+%token ANNOTATION
+%token CONST
+%token TYPEDEF
+%token STRUCT
+%token ENUM
+%token IF
+%token ELSE
+%token SWITCH
+%token WHILE
+%token DO
+%token FOR
+%token BREAK
+%token CONTINUE
+%token RETURN
 %token ASSIGN_OP
 %token BITWISE_OR_ASSIGN_OP
 %token BITWISE_AND_ASSIGN_OP
@@ -146,18 +160,24 @@
 
 %%
 
-mdl: mdl_version import_declarations_opt module_declaration_opt { $$ = NULL; };
+mdl: mdl_version import_declarations module_declaration global_declarations { $$ = NULL; };
+mdl: mdl_version import_declarations global_declarations { $$ = NULL; };
+mdl: mdl_version module_declaration global_declarations { $$ = NULL; };
+mdl: mdl_version import_declarations module_declaration { $$ = NULL; };
+mdl: mdl_version import_declarations { $$ = NULL; };
+mdl: mdl_version module_declaration { $$ = NULL; };
+mdl: mdl_version { $$ = NULL; };
 
 mdl_version: MDL FLOATING_LITERAL SEMICOLON;
 
-import_declarations_opt: import_declarations;
-import_declarations_opt: ;
-
-module_declaration_opt: module_declaration;
-module_declaration_opt: ;
-
 import_declarations: import_declarations import_declaration;
 import_declarations: import_declaration;
+
+global_declarations: global_declarations global_declaration;
+global_declarations: global_declaration;
+
+variable_declarations: variable_declarations variable_declaration;
+variable_declarations: variable_declaration;
 
 import_declaration: IMPORT qualified_imports SEMICOLON { $$ = NULL; };
 import_declaration: EXPORT USING qualified_import_prefix IMPORT unqualified_import SEMICOLON { $$ = NULL; };
@@ -202,15 +222,129 @@ simple_name: IDENT;
 module_declaration: MODULE annotation_block SEMICOLON;
 module_declaration: MODULE SEMICOLON;
 
+variable_declaration: type variable_declarators SEMICOLON;
+
+variable_declarators: variable_declarators COMMA variable_declarator;
+variable_declarators: variable_declarator;
+
+variable_declarator: simple_name argument_list annotation_block;
+variable_declarator: simple_name argument_list;
+variable_declarator: simple_name ASSIGN_OP assignment_expression annotation_block;
+variable_declarator: simple_name ASSIGN_OP assignment_expression;
+variable_declarator: simple_name annotation_block;
+variable_declarator: simple_name;
+
+global_declaration: annotation_declaration;
+global_declaration: constant_declaration;
+global_declaration: type_declaration;
+global_declaration: function_declaration;
+
+annotation_declaration: ANNOTATION simple_name parameter_list annotation_block SEMICOLON;
+annotation_declaration: ANNOTATION simple_name parameter_list SEMICOLON;
+
+constant_declaration: CONST type constant_declarators SEMICOLON;
+
+constant_declarators: constant_declarators COMMA constant_declarator;
+constant_declarators: constant_declarator;
+
+constant_declarator: simple_name argument_list annotation_block;
+constant_declarator: simple_name argument_list;
+constant_declarator: simple_name ASSIGN_OP conditional_expression annotation_block;
+constant_declarator: simple_name ASSIGN_OP conditional_expression;
+
+type_declaration: alias_type_declaration;
+type_declaration: struct_type_declaration;
+type_declaration: enum_type_declaration;
+
+alias_type_declaration: TYPEDEF type simple_name SEMICOLON;
+
+struct_type_declaration: STRUCT simple_name annotation_block LEFT_CURLY_BRACE struct_field_declarators RIGHT_CURLY_BRACE SEMICOLON;
+struct_type_declaration: STRUCT simple_name LEFT_CURLY_BRACE struct_field_declarators RIGHT_CURLY_BRACE SEMICOLON;
+struct_type_declaration: STRUCT simple_name annotation_block LEFT_CURLY_BRACE RIGHT_CURLY_BRACE SEMICOLON;
+struct_type_declaration: STRUCT simple_name LEFT_CURLY_BRACE RIGHT_CURLY_BRACE SEMICOLON;
+
+struct_field_declarators: struct_field_declarators struct_field_declarator;
+struct_field_declarators: struct_field_declarator;
+
+struct_field_declarator: type simple_name ASSIGN_OP comma_expression annotation_block SEMICOLON;
+struct_field_declarator: type simple_name ASSIGN_OP comma_expression SEMICOLON;
+struct_field_declarator: type simple_name annotation_block SEMICOLON;
+struct_field_declarator: type simple_name SEMICOLON;
+
+enum_type_declaration: ENUM simple_name annotation_block LEFT_CURLY_BRACE enum_value_declarators RIGHT_CURLY_BRACE SEMICOLON;
+enum_type_declaration: ENUM simple_name LEFT_CURLY_BRACE enum_value_declarators RIGHT_CURLY_BRACE SEMICOLON;
+enum_type_declaration: ENUM simple_name annotation_block LEFT_CURLY_BRACE RIGHT_CURLY_BRACE SEMICOLON;
+enum_type_declaration: ENUM simple_name LEFT_CURLY_BRACE RIGHT_CURLY_BRACE SEMICOLON;
+
+enum_value_declarators: enum_value_declarators COMMA enum_value_declarator;
+enum_value_declarators: enum_value_declarator;
+
+enum_value_declarator: simple_name ASSIGN_OP assignment_expression annotation_block;
+enum_value_declarator: simple_name ASSIGN_OP assignment_expression;
+enum_value_declarator: simple_name annotation_block;
+enum_value_declarator: simple_name;
+
+function_declaration: type annotation_block simple_name parameter_list UNIFORM annotation_block SEMICOLON;
+function_declaration: type annotation_block simple_name parameter_list VARYING annotation_block SEMICOLON;
+function_declaration: type annotation_block simple_name parameter_list annotation_block SEMICOLON;
+function_declaration: type annotation_block simple_name parameter_list UNIFORM SEMICOLON;
+function_declaration: type annotation_block simple_name parameter_list VARYING SEMICOLON;
+function_declaration: type annotation_block simple_name parameter_list SEMICOLON;
+function_declaration: type simple_name parameter_list UNIFORM annotation_block SEMICOLON;
+function_declaration: type simple_name parameter_list VARYING annotation_block SEMICOLON;
+function_declaration: type simple_name parameter_list annotation_block SEMICOLON;
+function_declaration: type simple_name parameter_list UNIFORM SEMICOLON;
+function_declaration: type simple_name parameter_list VARYING SEMICOLON;
+function_declaration: type simple_name parameter_list SEMICOLON;
+
+function_declaration: type annotation_block simple_name parameter_list UNIFORM annotation_block compound_statement;
+function_declaration: type annotation_block simple_name parameter_list VARYING annotation_block compound_statement;
+function_declaration: type annotation_block simple_name parameter_list annotation_block compound_statement;
+function_declaration: type annotation_block simple_name parameter_list UNIFORM compound_statement;
+function_declaration: type annotation_block simple_name parameter_list VARYING compound_statement;
+function_declaration: type annotation_block simple_name parameter_list compound_statement;
+function_declaration: type simple_name parameter_list UNIFORM annotation_block compound_statement;
+function_declaration: type simple_name parameter_list VARYING annotation_block compound_statement;
+function_declaration: type simple_name parameter_list annotation_block compound_statement;
+function_declaration: type simple_name parameter_list UNIFORM compound_statement;
+function_declaration: type simple_name parameter_list VARYING compound_statement;
+function_declaration: type simple_name parameter_list compound_statement;
+
+
+compound_statement: LEFT_CURLY_BRACE statements RIGHT_CURLY_BRACE;
+compound_statement: LEFT_CURLY_BRACE RIGHT_CURLY_BRACE;
+
+statements: statements statement;
+statements: statement;
+
+statement: compound_statement;
+statement: type_declaration;
+statement: constant_declaration;
+statement: if_statement;
+
+if_statement: IF LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS statement ELSE statement; /*-Wconflicts-sr*/
+if_statement: IF LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS statement; /*-Wconflicts-sr*/
+
+
+parameter_list: LEFT_PARENTHESIS parameters RIGHT_PARENTHESIS;
+
+parameters: parameters COMMA parameter;
+parameters: parameter;
+
+parameter: type simple_name ASSIGN_OP assignment_expression annotation_block;
+parameter: type simple_name ASSIGN_OP assignment_expression;
+parameter: type simple_name annotation_block;
+parameter: type simple_name;
+
 annotation_block: ANNOTATION_BLOCK_BEGIN annotations ANNOTATION_BLOCK_END;
 
 annotations: annotations COMMA annotation;
 annotations: annotation;
 
-annotation: qualified_name argument_list;
-
 qualified_name: SCOPE qualified_name_infix;
 qualified_name: qualified_name_infix;
+
+annotation: qualified_name argument_list;
 
 argument_list: LEFT_PARENTHESIS named_arguments RIGHT_PARENTHESIS;
 argument_list: LEFT_PARENTHESIS positional_arguments RIGHT_PARENTHESIS;
@@ -305,22 +439,6 @@ primary_expression: literal_expression;
 primary_expression: simple_type;
 primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
 primary_expression: LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS;
-
-variable_declarations: variable_declarations variable_declaration;
-variable_declarations: variable_declaration;
-
-variable_declaration: type variable_declarators SEMICOLON;
-
-variable_declarators: variable_declarators COMMA variable_declarator;
-variable_declarators: variable_declarator;
-
-variable_declarator: simple_name argument_list annotation_block;
-variable_declarator: simple_name ASSIGN_OP assignment_expression annotation_block;
-variable_declarator: simple_name annotation_block;
-
-variable_declarator: simple_name argument_list;
-variable_declarator: simple_name ASSIGN_OP assignment_expression;
-variable_declarator: simple_name;
 
 literal_expression: boolean_literal;
 literal_expression: integer_literal;
