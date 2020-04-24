@@ -440,6 +440,7 @@ qualified_name: qualified_name_infix;
 
 annotation: qualified_name argument_list;
 
+argument_list: LEFT_PARENTHESIS positional_arguments COMMA named_arguments RIGHT_PARENTHESIS;
 argument_list: LEFT_PARENTHESIS named_arguments RIGHT_PARENTHESIS;
 argument_list: LEFT_PARENTHESIS positional_arguments RIGHT_PARENTHESIS;
 argument_list: LEFT_PARENTHESIS RIGHT_PARENTHESIS;
@@ -516,32 +517,34 @@ multiplicative_expression: unary_expression DIVIDE_OP multiplicative_expression;
 multiplicative_expression: unary_expression MODULO_OP multiplicative_expression; 
 multiplicative_expression: unary_expression;
 
-unary_expression: postfix_expression;
 unary_expression: BITWISE_COMPLEMENT_OP unary_expression;
 unary_expression: LOGICAL_NOT_OP unary_expression;
 unary_expression: POSITIVE_OP unary_expression;
 unary_expression: NEGATIVE_OP unary_expression;
 unary_expression: INCREMENT_OP unary_expression;
 unary_expression: DECREMENT_OP unary_expression;
+unary_expression: postfix_expression;
 unary_expression: let_expression;
 
-let_expression: LET variable_declaration IN unary_expression;
-let_expression: LET LEFT_CURLY_BRACE variable_declarations RIGHT_CURLY_BRACE IN unary_expression;
+postfix_expression: postfix_expression LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET; /* [-Wconflicts-sr] */
 
 postfix_expression: postfix_expression INCREMENT_OP;
 postfix_expression: postfix_expression DECREMENT_OP;
 postfix_expression: postfix_expression DOT simple_name;
 postfix_expression: postfix_expression argument_list;
-/*postfix_expression: postfix_expression LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET;*/ 
 postfix_expression: primary_expression;
 postfix_expression: cast_expression;
 
+primary_expression: simple_type LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET; /* [-Wconflicts-sr] */
+primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;  /* [-Wconflicts-sr] */
+primary_expression: simple_type; /* [-Wconflicts-sr] */
 primary_expression: literal_expression;
-primary_expression: simple_type;
-primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
 primary_expression: LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS;
 
 cast_expression: CAST LEFT_ANGLE_BRACKET type RIGHT_ANGLE_BRACKET LEFT_PARENTHESIS unary_expression RIGHT_PARENTHESIS;
+
+let_expression: LET variable_declaration IN unary_expression;
+let_expression: LET LEFT_CURLY_BRACE variable_declarations RIGHT_CURLY_BRACE IN unary_expression;
 
 literal_expression: boolean_literal;
 literal_expression: integer_literal;
