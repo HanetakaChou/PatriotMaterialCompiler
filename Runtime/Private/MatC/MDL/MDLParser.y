@@ -155,21 +155,25 @@ import_declaration: EXPORT USING qualified_import_prefix IMPORT unqualified_impo
 qualified_imports: qualified_imports COMMA qualified_import;
 qualified_imports: qualified_import;
 
-qualified_import_prefix: qualified_import_prefix_opt qualified_name_infix;
+qualified_import_prefix: qualified_import_prefix_relative_current qualified_name_infix;
+qualified_import_prefix: qualified_import_prefix_relative_parent qualified_name_infix;
+qualified_import_prefix: qualified_import_prefix_absolute qualified_name_infix;
+qualified_import_prefix: qualified_name_infix;
 
 unqualified_import: unqualified_import_simple_names;
 unqualified_import: STAR;
 
-qualified_import: qualified_import_prefix_opt qualified_name_infix qualified_import_suffix;
-qualified_import: qualified_import_prefix_opt qualified_name_infix;
+qualified_import: qualified_import_prefix_relative_current qualified_name_infix qualified_import_suffix;
+qualified_import: qualified_import_prefix_relative_parent qualified_name_infix qualified_import_suffix;
+qualified_import: qualified_import_prefix_absolute qualified_name_infix qualified_import_suffix;
+qualified_import: qualified_name_infix qualified_import_suffix;
+qualified_import: qualified_import_prefix_relative_current qualified_name_infix;
+qualified_import: qualified_import_prefix_relative_parent qualified_name_infix;
+qualified_import: qualified_import_prefix_absolute qualified_name_infix;
+qualified_import: qualified_name_infix;
 
 unqualified_import_simple_names: unqualified_import_simple_names COMMA simple_name;
 unqualified_import_simple_names: simple_name;
-
-qualified_import_prefix_opt: qualified_import_prefix_relative_current;
-qualified_import_prefix_opt: qualified_import_prefix_relative_parent;
-qualified_import_prefix_opt: qualified_import_prefix_absolute;
-qualified_import_prefix_opt: ;
 
 qualified_import_prefix_relative_current: DOT SCOPE;
 
@@ -267,14 +271,14 @@ multiplicative_expression: unary_expression DIVIDE_OP multiplicative_expression;
 multiplicative_expression: unary_expression MODULO_OP multiplicative_expression; 
 multiplicative_expression: unary_expression;
 
-unary_expression: 'A' LEFT_PARENTHESIS type RIGHT_PARENTHESIS unary_expression;
+unary_expression: LEFT_PARENTHESIS type RIGHT_PARENTHESIS unary_expression;
 unary_expression: postfix_expression;
 
 postfix_expression: primary_expression;
 
 primary_expression: literal_expression;
 primary_expression: simple_type;
-primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
+primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET; /*-Wconflicts-rr*/
 primary_expression: LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS;
 
 literal_expression: boolean_literal;
@@ -297,7 +301,7 @@ type: UNIFORM array_type;
 type: array_type;
 
 array_type: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
-array_type: simple_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET;
+array_type: simple_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET; /*-Wconflicts-rr*/
 array_type: simple_type LEFT_SQUARE_BRACKET LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET RIGHT_SQUARE_BRACKET;
 
 simple_type: SCOPE relative_type;
