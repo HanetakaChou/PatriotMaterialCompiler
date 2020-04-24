@@ -16,21 +16,40 @@
 WHITE ([ \t\r](([ \t\r])*))
 
 /* Split */
-SEMICOLON (;)
-COMMA (,)
+SEMICOLON (";")
+COMMA (",")
 
 /* keywords */
-MDL (mdl)
-IMPORT (import)
-USING (using)
-MODULE (module)
-EXPORT (export)
+MDL ("mdl")
+IMPORT ("import")
+USING ("using")
+MODULE ("module")
+EXPORT ("export")
+
+/* operators */
+ASSIGN ("=")
+MULTIPLY_ASSIGN ("*=")
+DIVIDE_ASSIGN ("/=")
+MODULO_ASSIGN ("%=")
+PLUS_ASSIGN ("+=")
+MINUS_ASSIGN ("-=")
+SHIFT_LEFT_ASSIGN ("<<=")
+SHIFT_RIGHT_ASSIGN (">>=")
+UNSIGNED_SHIFT_RIGHT_ASSIGN (">>>=)
+BITWISE_AND_ASSIGN ("&=")
+BITWISE_XOR_ASSIGN ("^=")
+BITWISE_OR_ASSIGN ("|=")
 
 /* Identifiers */
-DOT (.)
-DOTDOT (..)
-SCOPE (::)
-STAR (*)
+DOT (".")
+DOTDOT ("..")
+SCOPE ("::")
+STAR ("*")
+COLON (":")
+ANNOTATION_BLOCK_BEGIN ("[[")
+ANNOTATION_BLOCK_END ("]]")
+LEFT_PAREN ("(")
+RIGHT_PAREN (")")
 IDENT (([A-Za-z])(([0-9A-Za-z_])*))
 
 /* Literal values */
@@ -94,6 +113,44 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
     return YYTOKEN_EXPORT;
     }
 
+    /* operators */
+{ASSIGN} {
+    return YYTOKEN_ASSIGN;
+    }
+{MULTIPLY_ASSIGN} {
+    return YYTOKEN_MULTIPLY_ASSIGN;
+    }
+{DIVIDE_ASSIGN} {
+    return YYTOKEN_DIVIDE_ASSIGN;
+    }
+{MODULO_ASSIGN} {
+    return YYTOKEN_MODULO_ASSIGN;
+    }
+{PLUS_ASSIGN} {
+    return YYTOKEN_PLUS_ASSIGN;
+    }
+{MINUS_ASSIGN} {
+    return YYTOKEN_MINUS_ASSIGN;
+    }
+{SHIFT_LEFT_ASSIGN} {
+    return YYTOKEN_SHIFT_LEFT_ASSIGN;
+    }
+{SHIFT_RIGHT_ASSIGN} {
+    return YYTOKEN_SHIFT_RIGHT_ASSIGN;
+    }
+{UNSIGNED_SHIFT_RIGHT_ASSIGN} {
+    return YYTOKEN_UNSIGNED_SHIFT_RIGHT_ASSIGN;
+    }
+{BITWISE_AND_ASSIGN} {
+    return YYTOKEN_BITWISE_AND_ASSIGN;
+    }
+{BITWISE_XOR_ASSIGN} {
+    return YYTOKEN_BITWISE_XOR_ASSIGN;
+    }
+{BITWISE_OR_ASSIGN} {
+    return YYTOKEN_BITWISE_OR_ASSIGN;
+    }
+
      /* Identifiers */
 {DOT} {
     return YYTOKEN_DOT;
@@ -103,12 +160,32 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
     return YYTOKEN_DOTDOT;
 }
 
+{SCOPE} {
+    return YYTOKEN_SCOPE;
+}
+
 {STAR} {
     return YYTOKEN_STAR;
 }
 
-{SCOPE} {
-    return YYTOKEN_SCOPE;
+{COLON} {
+    return YYTOKEN_COLON;
+}
+
+{ANNOTATION_BLOCK_BEGIN} {
+    return YYTOKEN_ANNOTATION_BLOCK_BEGIN;
+}
+
+{ANNOTATION_BLOCK_END} {
+    return YYTOKEN_ANNOTATION_BLOCK_END;
+}
+
+{LEFT_PAREN} {
+    return YYTOKEN_LEFT_PAREN;
+}
+
+{RIGHT_PAREN} {
+    return YYTOKEN_RIGHT_PAREN;
 }
 
 {IDENT} {
