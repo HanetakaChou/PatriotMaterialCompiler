@@ -526,18 +526,18 @@ unary_expression: DECREMENT_OP unary_expression;
 unary_expression: postfix_expression;
 unary_expression: let_expression;
 
-postfix_expression: postfix_expression LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET; /* [-Wconflicts-sr] */
 
 postfix_expression: postfix_expression INCREMENT_OP;
 postfix_expression: postfix_expression DECREMENT_OP;
 postfix_expression: postfix_expression DOT simple_name;
 postfix_expression: postfix_expression argument_list;
+postfix_expression: postfix_expression LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET; /* [-Wconflicts-sr] */
 postfix_expression: primary_expression;
 postfix_expression: cast_expression;
 
-primary_expression: simple_type LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET; /* [-Wconflicts-sr] */
-primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;  /* [-Wconflicts-sr] */
-primary_expression: simple_type; /* [-Wconflicts-sr] */
+primary_expression: array_type;
+/* primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;   [-Wconflicts-sr] */
+/* primary_expression: simple_type;  [-Wconflicts-sr] */
 primary_expression: literal_expression;
 primary_expression: LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS;
 
