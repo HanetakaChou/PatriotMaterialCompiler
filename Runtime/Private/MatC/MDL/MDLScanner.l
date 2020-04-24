@@ -91,6 +91,8 @@ INTENSITY_POWER ("intensity_power")
 HAIR_BSDF ("hair_bsdf")
 TRUE ("true")
 FALSE ("false")
+LET ("let")
+IN ("in")
 
     /* operators */
 ASSIGN_OP ("=")
@@ -143,6 +145,8 @@ LEFT_SQUARE_BRACKET ("[")
 RIGHT_SQUARE_BRACKET ("]")
 LEFT_ANGLE_BRACKET ("<")
 RIGHT_ANGLE_BRACKET (">")
+LEFT_CURLY_BRACE ("{")
+RIGHT_CURLY_BRACE ("}")
 IDENT (([A-Za-z])(([0-9A-Za-z_])*))
 
     /* Literal values */
@@ -449,6 +453,14 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
     return YYTOKEN_FALSE;
     }
 
+{LET} {
+    return YYTOKEN_LET;
+    }
+
+{IN} {
+    return YYTOKEN_IN;
+    }
+
     /* operators */
 {ASSIGN_OP} {
     return YYTOKEN_ASSIGN_OP;
@@ -633,6 +645,14 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
 
 {RIGHT_ANGLE_BRACKET} {
     return YYTOKEN_RIGHT_ANGLE_BRACKET;
+    }
+
+{LEFT_CURLY_BRACE}  {
+    return YYTOKEN_LEFT_CURLY_BRACE;
+    }
+
+{RIGHT_CURLY_BRACE} {
+    return YYTOKEN_RIGHT_CURLY_BRACE;
     }
 
 {IDENT} {

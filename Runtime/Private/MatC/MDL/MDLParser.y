@@ -81,6 +81,8 @@
 %token HAIR_BSDF
 %token TRUE
 %token FALSE
+%token LET
+%token IN
 %token ASSIGN_OP
 %token BITWISE_OR_ASSIGN_OP
 %token BITWISE_AND_ASSIGN_OP
@@ -129,6 +131,8 @@
 %token RIGHT_SQUARE_BRACKET
 %token LEFT_ANGLE_BRACKET //LESS_OP
 %token RIGHT_ANGLE_BRACKET //GREATER_OP
+%token LEFT_CURLY_BRACE
+%token RIGHT_CURLY_BRACE
 %token <_IDENT> IDENT
 %token <_INTEGER_LITERAL> INTEGER_LITERAL 
 %token <_FLOATING_LITERAL> FLOATING_LITERAL
@@ -209,11 +213,17 @@ qualified_name: SCOPE qualified_name_infix;
 qualified_name: qualified_name_infix;
 
 argument_list: LEFT_PARENTHESIS named_arguments RIGHT_PARENTHESIS;
+argument_list: LEFT_PARENTHESIS positional_arguments RIGHT_PARENTHESIS;
 
 named_arguments: named_arguments COMMA named_argument;
 named_arguments: named_argument;
 
+positional_arguments: positional_arguments COMMA positional_argument;
+positional_arguments: positional_argument;
+
 named_argument: simple_name COLON assignment_expression;
+
+positional_argument: assignment_expression;
 
 // Operators in MDL are right associative 
 // To see compilercore_parser.atg
@@ -284,13 +294,33 @@ unary_expression: POSITIVE_OP unary_expression;
 unary_expression: NEGATIVE_OP unary_expression;
 unary_expression: PRE_INCREMENT_OP unary_expression;
 unary_expression: PRE_DECREMENT_OP unary_expression;
+unary_expression: let_expression;
 
 postfix_expression: primary_expression;
+
+let_expression: LET variable_declaration IN unary_expression;
+let_expression: LET LEFT_CURLY_BRACE variable_declarations RIGHT_CURLY_BRACE IN unary_expression;
 
 primary_expression: literal_expression;
 primary_expression: simple_type;
 primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
 primary_expression: LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS;
+
+variable_declarations: variable_declarations variable_declaration;
+variable_declarations: variable_declaration;
+
+variable_declaration: type variable_declarators SEMICOLON;
+
+variable_declarators: variable_declarators COMMA variable_declarator;
+variable_declarators: variable_declarator;
+
+variable_declarator: simple_name argument_list annotation_block;
+variable_declarator: simple_name ASSIGN_OP assignment_expression annotation_block;
+variable_declarator: simple_name annotation_block;
+
+variable_declarator: simple_name argument_list;
+variable_declarator: simple_name ASSIGN_OP assignment_expression;
+variable_declarator: simple_name;
 
 literal_expression: boolean_literal;
 literal_expression: integer_literal;
@@ -307,7 +337,6 @@ floating_literal: FLOATING_LITERAL;
 string_literal: string_literal STRING_LITERAL;
 string_literal: STRING_LITERAL;
 
-/*
 type: VARYING array_type;
 type: UNIFORM array_type;
 type: array_type;
@@ -315,7 +344,6 @@ type: array_type;
 array_type: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
 array_type: simple_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET;
 array_type: simple_type LEFT_SQUARE_BRACKET LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET RIGHT_SQUARE_BRACKET;
-*/
 
 simple_type: SCOPE relative_type;
 simple_type: relative_type;
