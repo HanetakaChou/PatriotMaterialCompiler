@@ -110,6 +110,12 @@
 %token MINUS_OP
 %token DIVIDE_OP
 %token MODULO_OP
+%token BITWISE_COMPLEMENT_OP
+%token LOGICAL_NOT_OP
+%token POSITIVE_OP
+%token NEGATIVE_OP
+%token PRE_INCREMENT_OP
+%token PRE_DECREMENT_OP
 %token DOT
 %token DOTDOT
 %token SCOPE
@@ -272,6 +278,12 @@ multiplicative_expression: unary_expression MODULO_OP multiplicative_expression;
 multiplicative_expression: unary_expression;
 
 unary_expression: postfix_expression;
+unary_expression: BITWISE_COMPLEMENT_OP unary_expression;
+unary_expression: LOGICAL_NOT_OP unary_expression;
+unary_expression: POSITIVE_OP unary_expression;
+unary_expression: NEGATIVE_OP unary_expression;
+unary_expression: PRE_INCREMENT_OP unary_expression;
+unary_expression: PRE_DECREMENT_OP unary_expression;
 
 postfix_expression: primary_expression;
 
@@ -295,6 +307,7 @@ floating_literal: FLOATING_LITERAL;
 string_literal: string_literal STRING_LITERAL;
 string_literal: STRING_LITERAL;
 
+/*
 type: VARYING array_type;
 type: UNIFORM array_type;
 type: array_type;
@@ -302,6 +315,7 @@ type: array_type;
 array_type: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
 array_type: simple_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET;
 array_type: simple_type LEFT_SQUARE_BRACKET LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET RIGHT_SQUARE_BRACKET;
+*/
 
 simple_type: SCOPE relative_type;
 simple_type: relative_type;

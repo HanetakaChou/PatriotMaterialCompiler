@@ -122,6 +122,12 @@ PLUS_OP ("+")
 MINUS_OP ("-")
 DIVIDE_OP ("/")
 MODULO_OP ("%")
+BITWISE_COMPLEMENT_OP ("~")
+LOGICAL_NOT_OP ("!")
+POSITIVE_OP ("+")
+NEGATIVE_OP ("-")
+PRE_INCREMENT_OP ("++")
+PRE_DECREMENT_OP ("--")
 
     /* Identifiers */
 DOT (".")
@@ -550,6 +556,30 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
 
 {MODULO_OP} {
     return YYTOKEN_MODULO_OP;
+    }
+
+{BITWISE_COMPLEMENT_OP} {
+    return YYTOKEN_BITWISE_COMPLEMENT_OP;
+    }
+
+{LOGICAL_NOT_OP} {
+    return YYTOKEN_LOGICAL_NOT_OP;
+    }
+
+{POSITIVE_OP} {
+    return YYTOKEN_POSITIVE_OP;
+    }
+
+{NEGATIVE_OP} {
+    return YYTOKEN_NEGATIVE_OP;
+    }
+
+{PRE_INCREMENT_OP} {
+    return YYTOKEN_PRE_INCREMENT_OP;
+    }
+
+{PRE_DECREMENT_OP} {
+    return YYTOKEN_PRE_DECREMENT_OP;
     }
 
      /* Identifiers */
