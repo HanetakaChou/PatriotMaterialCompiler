@@ -104,6 +104,7 @@ FOR ("for")
 BREAK ("break")
 CONTINUE ("continue")
 RETURN ("return")
+CAST ("cast")
 
     /* operators */
 ASSIGN_OP ("=")
@@ -131,16 +132,14 @@ GREATER_OR_EQUAL_OP (">=")
 SHIFT_LEFT_OP ("<<")
 SHIFT_RIGHT_OP (">>")
 UNSIGNED_SHIFT_RIGHT_OP (">>>")
-PLUS_OP ("+")
-MINUS_OP ("-")
 DIVIDE_OP ("/")
 MODULO_OP ("%")
 BITWISE_COMPLEMENT_OP ("~")
 LOGICAL_NOT_OP ("!")
 POSITIVE_OP ("+")
 NEGATIVE_OP ("-")
-PRE_INCREMENT_OP ("++")
-PRE_DECREMENT_OP ("--")
+INCREMENT_OP ("++")
+DECREMENT_OP ("--")
 
     /* Identifiers */
 DOT (".")
@@ -541,6 +540,10 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
     return YYTOKEN_RETURN;
     }
 
+{CAST} {
+    return YYTOKEN_CAST;
+    }
+
     /* operators */
 {ASSIGN_OP} {
     return YYTOKEN_ASSIGN_OP;
@@ -666,12 +669,12 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
     return YYTOKEN_NEGATIVE_OP;
     }
 
-{PRE_INCREMENT_OP} {
-    return YYTOKEN_PRE_INCREMENT_OP;
+{INCREMENT_OP} {
+    return YYTOKEN_INCREMENT_OP;
     }
 
-{PRE_DECREMENT_OP} {
-    return YYTOKEN_PRE_DECREMENT_OP;
+{DECREMENT_OP} {
+    return YYTOKEN_DECREMENT_OP;
     }
 
      /* Identifiers */
