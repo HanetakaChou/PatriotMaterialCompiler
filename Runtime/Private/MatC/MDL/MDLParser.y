@@ -347,7 +347,8 @@ matched_statement: break_statement;
 matched_statement: continue_statement;
 matched_statement: return_statement;
 matched_statement: variable_declaration;
-matched_statement: expression_statement;
+matched_statement: comma_expression SEMICOLON;
+matched_statement: SEMICOLON;
 
 unmatched_statement: unmatched_if_statement;
 unmatched_statement: unmatched_while_statement;
@@ -373,21 +374,40 @@ matched_while_statement: WHILE LEFT_PARENTHESIS comma_expression RIGHT_PARENTHES
 unmatched_while_statement: WHILE LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS unmatched_statement;
 
 matched_do_statement: DO matched_statement WHILE LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS SEMICOLON;
+
 unmatched_do_statement: DO unmatched_statement WHILE LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS SEMICOLON;
 
 matched_for_statement: FOR LEFT_PARENTHESIS variable_declaration comma_expression SEMICOLON comma_expression RIGHT_PARENTHESIS matched_statement;
-matched_for_statement: FOR LEFT_PARENTHESIS expression_statement comma_expression SEMICOLON comma_expression RIGHT_PARENTHESIS matched_statement;
+matched_for_statement: FOR LEFT_PARENTHESIS variable_declaration comma_expression SEMICOLON RIGHT_PARENTHESIS matched_statement;
+matched_for_statement: FOR LEFT_PARENTHESIS variable_declaration SEMICOLON comma_expression RIGHT_PARENTHESIS matched_statement;
+matched_for_statement: FOR LEFT_PARENTHESIS variable_declaration SEMICOLON RIGHT_PARENTHESIS matched_statement;
+matched_for_statement: FOR LEFT_PARENTHESIS comma_expression SEMICOLON comma_expression SEMICOLON comma_expression RIGHT_PARENTHESIS matched_statement;
+matched_for_statement: FOR LEFT_PARENTHESIS comma_expression SEMICOLON comma_expression SEMICOLON RIGHT_PARENTHESIS matched_statement;
+matched_for_statement: FOR LEFT_PARENTHESIS comma_expression SEMICOLON SEMICOLON comma_expression RIGHT_PARENTHESIS matched_statement;
+matched_for_statement: FOR LEFT_PARENTHESIS comma_expression SEMICOLON SEMICOLON RIGHT_PARENTHESIS matched_statement;
+matched_for_statement: FOR LEFT_PARENTHESIS SEMICOLON comma_expression SEMICOLON comma_expression RIGHT_PARENTHESIS matched_statement;
+matched_for_statement: FOR LEFT_PARENTHESIS SEMICOLON comma_expression SEMICOLON RIGHT_PARENTHESIS matched_statement;
+matched_for_statement: FOR LEFT_PARENTHESIS SEMICOLON SEMICOLON comma_expression RIGHT_PARENTHESIS matched_statement;
+matched_for_statement: FOR LEFT_PARENTHESIS SEMICOLON SEMICOLON RIGHT_PARENTHESIS matched_statement;
+
 unmatched_for_statement: FOR LEFT_PARENTHESIS variable_declaration comma_expression SEMICOLON comma_expression RIGHT_PARENTHESIS unmatched_statement;
-unmatched_for_statement: FOR LEFT_PARENTHESIS expression_statement comma_expression SEMICOLON comma_expression RIGHT_PARENTHESIS unmatched_statement;
+unmatched_for_statement: FOR LEFT_PARENTHESIS variable_declaration comma_expression SEMICOLON RIGHT_PARENTHESIS unmatched_statement;
+unmatched_for_statement: FOR LEFT_PARENTHESIS variable_declaration SEMICOLON comma_expression RIGHT_PARENTHESIS unmatched_statement;
+unmatched_for_statement: FOR LEFT_PARENTHESIS variable_declaration SEMICOLON RIGHT_PARENTHESIS unmatched_statement;
+unmatched_for_statement: FOR LEFT_PARENTHESIS comma_expression SEMICOLON comma_expression SEMICOLON comma_expression RIGHT_PARENTHESIS unmatched_statement;
+unmatched_for_statement: FOR LEFT_PARENTHESIS comma_expression SEMICOLON comma_expression SEMICOLON RIGHT_PARENTHESIS unmatched_statement;
+unmatched_for_statement: FOR LEFT_PARENTHESIS comma_expression SEMICOLON SEMICOLON comma_expression RIGHT_PARENTHESIS unmatched_statement;
+unmatched_for_statement: FOR LEFT_PARENTHESIS comma_expression SEMICOLON SEMICOLON RIGHT_PARENTHESIS unmatched_statement;
+unmatched_for_statement: FOR LEFT_PARENTHESIS SEMICOLON comma_expression SEMICOLON comma_expression RIGHT_PARENTHESIS unmatched_statement;
+unmatched_for_statement: FOR LEFT_PARENTHESIS SEMICOLON comma_expression SEMICOLON RIGHT_PARENTHESIS unmatched_statement;
+unmatched_for_statement: FOR LEFT_PARENTHESIS SEMICOLON SEMICOLON comma_expression RIGHT_PARENTHESIS unmatched_statement;
+unmatched_for_statement: FOR LEFT_PARENTHESIS SEMICOLON SEMICOLON RIGHT_PARENTHESIS unmatched_statement;
 
 break_statement: BREAK SEMICOLON;
 
 continue_statement: CONTINUE SEMICOLON;
 
 return_statement: RETURN SEMICOLON;
-
-expression_statement: comma_expression SEMICOLON;
-expression_statement: SEMICOLON;
 
 parameter_list: LEFT_PARENTHESIS parameters RIGHT_PARENTHESIS;
 
