@@ -15,6 +15,7 @@
 
 
 // Define the terminal symbols.
+%token STRING_LITERAL
 %token SEMICOLON
 %token COMMA
 %token MDL
@@ -100,22 +101,19 @@
 %token BITWISE_AND_OP
 %token EQUAL_OP
 %token NOT_EQUAL_OP
-%token LESS_OP
 %token LESS_OR_EQUAL_OP
 %token GREATER_OR_EQUAL_OP
-%token GREATER_OP
 %token SHIFT_LEFT_OP
 %token SHIFT_RIGHT_OP
 %token UNSIGNED_SHIFT_RIGHT_OP
 %token PLUS_OP
 %token MINUS_OP
-%token MULTIPLY_OP
 %token DIVIDE_OP
 %token MODULO_OP
 %token DOT
 %token DOTDOT
 %token SCOPE
-%token STAR
+%token STAR //MULTIPLY_OP
 %token COLON
 %token ANNOTATION_BLOCK_BEGIN
 %token ANNOTATION_BLOCK_END
@@ -123,8 +121,8 @@
 %token RIGHT_PARENTHESIS
 %token LEFT_SQUARE_BRACKET
 %token RIGHT_SQUARE_BRACKET
-%token LEFT_ANGLE_BRACKET
-%token RIGHT_ANGLE_BRACKET
+%token LEFT_ANGLE_BRACKET //LESS_OP
+%token RIGHT_ANGLE_BRACKET //GREATER_OP
 %token <_IDENT> IDENT
 %token <_INTEGER_LITERAL> INTEGER_LITERAL 
 %token <_FLOATING_LITERAL> FLOATING_LITERAL
@@ -250,10 +248,10 @@ equality_expression: relational_expression EQUAL_OP equality_expression;
 equality_expression: relational_expression NOT_EQUAL_OP equality_expression;
 equality_expression: relational_expression;
 
-relational_expression: shift_expression LESS_OP relational_expression;
+relational_expression: shift_expression LEFT_ANGLE_BRACKET relational_expression;
 relational_expression: shift_expression LESS_OR_EQUAL_OP relational_expression;
 relational_expression: shift_expression GREATER_OR_EQUAL_OP relational_expression;
-relational_expression: shift_expression GREATER_OP relational_expression;
+relational_expression: shift_expression RIGHT_ANGLE_BRACKET relational_expression;
 relational_expression: shift_expression;
 
 shift_expression: additive_expression SHIFT_LEFT_OP shift_expression;
@@ -265,7 +263,7 @@ additive_expression: multiplicative_expression PLUS_OP additive_expression;
 additive_expression: multiplicative_expression MINUS_OP additive_expression;
 additive_expression: multiplicative_expression;
 
-multiplicative_expression: unary_expression MULTIPLY_OP multiplicative_expression; 
+multiplicative_expression: unary_expression STAR multiplicative_expression; 
 multiplicative_expression: unary_expression DIVIDE_OP multiplicative_expression; 
 multiplicative_expression: unary_expression MODULO_OP multiplicative_expression; 
 multiplicative_expression: unary_expression;
@@ -355,8 +353,18 @@ relative_type_ident: IDENT;
 primary_expression: literal_expression;
 
 literal_expression: boolean_literal;
+literal_expression: integer_literal;
+literal_expression: floating_literal;
+literal_expression: string_literal;
 
 boolean_literal: TRUE;
 boolean_literal: FALSE;
+
+integer_literal: INTEGER_LITERAL;
+
+floating_literal: FLOATING_LITERAL;
+
+string_literal: string_literal STRING_LITERAL;
+string_literal: STRING_LITERAL;
 
 //%%

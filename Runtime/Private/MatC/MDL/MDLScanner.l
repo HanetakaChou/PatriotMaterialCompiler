@@ -12,14 +12,17 @@
 %option noyyrealloc
 %option yylineno
 
-/* Ignore whitespace */
+    /* Ignore whitespace */
 WHITE ([ \t\r](([ \t\r])*))
 
-/* Split */
+     /* string literal */
+STRING_LITERAL (\"(\\.|[^\\"\n])*\")
+
+    /* Split */
 SEMICOLON (";")
 COMMA (",")
 
-/* keywords */
+    /* keywords */
 MDL ("mdl")
 IMPORT ("import")
 USING ("using")
@@ -76,20 +79,20 @@ TEXTURE_2D ("texture_2d")
 TEXTURE_3D ("texture_3d")
 TEXTURE_CUBE ("texture_cube")
 TEXTURE_PTEX ("texture_ptex")
-/* MDL 1.1+ */
+    /* MDL 1.1+ */
 BSDF_MEASUREMENT ("bsdf_measurement")
-/* MDL 1.1+ */
+    /* MDL 1.1+ */
 INTENSITY_MODE ("intensity_mode")
-/* MDL 1.1+ */
+    /* MDL 1.1+ */
 INTENSITY_RADIANT_EXITANCE ("intensity_radiant_exitance")
-/* MDL 1.1+ */
+    /* MDL 1.1+ */
 INTENSITY_POWER ("intensity_power")
-/* MDL 1.5+ */
+    /* MDL 1.5+ */
 HAIR_BSDF ("hair_bsdf")
 TRUE ("true")
 FALSE ("false")
 
-/* operators */
+    /* operators */
 ASSIGN_OP ("=")
 BITWISE_OR_ASSIGN_OP ("|=")
 BITWISE_AND_ASSIGN_OP ("&=")
@@ -110,20 +113,17 @@ BITWISE_AND_OP ("&")
 BITWISE_XOR_OP ("^")
 EQUAL_OP ("==")
 NOT_EQUAL_OP ("!=")
-LESS_OP ("<")
 LESS_OR_EQUAL_OP ("<=")
 GREATER_OR_EQUAL_OP (">=")
-GREATER_OP (">")
 SHIFT_LEFT_OP ("<<")
 SHIFT_RIGHT_OP (">>")
 UNSIGNED_SHIFT_RIGHT_OP (">>>")
 PLUS_OP ("+")
 MINUS_OP ("-")
-MULTIPLY_OP ("*")
 DIVIDE_OP ("/")
 MODULO_OP ("%")
 
-/* Identifiers */
+    /* Identifiers */
 DOT (".")
 DOTDOT ("..")
 SCOPE ("::")
@@ -139,7 +139,7 @@ LEFT_ANGLE_BRACKET ("<")
 RIGHT_ANGLE_BRACKET (">")
 IDENT (([A-Za-z])(([0-9A-Za-z_])*))
 
-/* Literal values */
+    /* Literal values */
 INTEGER_LITERAL_DECIMAL ([1-9](([0-9])*))
 INTEGER_LITERAL_HEXADECIMAL ([0][xX]([0-9A-Fa-f])(([0-9A-Fa-f])*))
 INTEGER_LITERAL_OCTAL ([0](([0-7])*))
@@ -150,7 +150,7 @@ FLOATING_LITERAL ((({DIGIT}*)[.]({DIGIT}*))({E}?))|(({DIGIT}({DIGIT}*)){E})
 FLOATING_LITERAL_FLOAT (({FLOATING_LITERAL})([Ff]?))
 FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
 
-/* //https://westes.github.io/flex/manual/Patterns.html#Patterns */
+    /* https://westes.github.io/flex/manual/Patterns.html#Patterns */
 
 %%
     
@@ -169,6 +169,11 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
     /* Ignore whitespace */
 {WHITE} { 
     
+    }
+
+     /* string literal */
+{STRING_LITERAL} {
+    return YYTOKEN_STRING_LITERAL;
     }
 
 {SEMICOLON} {
@@ -519,20 +524,12 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
     return YYTOKEN_NOT_EQUAL_OP;
     }
 
-{LESS_OP} {
-    return YYTOKEN_LESS_OP;
-    }
-
 {LESS_OR_EQUAL_OP} {
     return YYTOKEN_LESS_OR_EQUAL_OP;
     }
 
 {GREATER_OR_EQUAL_OP} {
     return YYTOKEN_GREATER_OR_EQUAL_OP;
-    }
-
-{GREATER_OP} {
-    return YYTOKEN_GREATER_OP;
     }
 
 {SHIFT_LEFT_OP} {
@@ -546,11 +543,7 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
 {UNSIGNED_SHIFT_RIGHT_OP} {
     return YYTOKEN_UNSIGNED_SHIFT_RIGHT_OP;
     }
-
-{MULTIPLY_OP} {
-    return YYTOKEN_MULTIPLY_OP;
-    }
-
+    
 {DIVIDE_OP} {
     return YYTOKEN_DIVIDE_OP;
     }
@@ -588,12 +581,12 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
     return YYTOKEN_ANNOTATION_BLOCK_END;
 }
 
-{LEFT_PAREN} {
-    return YYTOKEN_LEFT_PAREN;
+{LEFT_PARENTHESIS} {
+    return YYTOKEN_LEFT_PARENTHESIS;
 }
 
-{RIGHT_PAREN} {
-    return YYTOKEN_RIGHT_PAREN;
+{RIGHT_PARENTHESIS} {
+    return YYTOKEN_RIGHT_PARENTHESIS;
 }
 
 {LEFT_SQUARE_BRACKET} {
