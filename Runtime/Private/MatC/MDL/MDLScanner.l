@@ -96,6 +96,8 @@ ENUM ("enum")
 IF ("if")
 ELSE ("else")
 SWITCH ("switch")
+CASE ("case")
+DEFAULT ("default")
 WHILE ("while")
 DO ("do")
 FOR ("for")
@@ -500,6 +502,10 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
 
 {SWITCH} {
     return YYTOKEN_SWITCH;
+    }
+
+{CASE} {
+    return YYTOKEN_CASE;
     }
 
 {WHILE} {

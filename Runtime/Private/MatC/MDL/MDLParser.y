@@ -91,6 +91,8 @@
 %token IF
 %token ELSE
 %token SWITCH
+%token CASE
+%token DEFAULT
 %token WHILE
 %token DO
 %token FOR
@@ -166,6 +168,7 @@ mdl: mdl_version module_declaration global_declarations { $$ = NULL; };
 mdl: mdl_version import_declarations module_declaration { $$ = NULL; };
 mdl: mdl_version import_declarations { $$ = NULL; };
 mdl: mdl_version module_declaration { $$ = NULL; };
+mdl: mdl_version global_declarations { $$ = NULL; };
 mdl: mdl_version { $$ = NULL; };
 
 mdl_version: MDL FLOATING_LITERAL SEMICOLON;
@@ -310,6 +313,18 @@ function_declaration: type simple_name parameter_list UNIFORM compound_statement
 function_declaration: type simple_name parameter_list VARYING compound_statement;
 function_declaration: type simple_name parameter_list compound_statement;
 
+function_declaration: type annotation_block simple_name parameter_list UNIFORM annotation_block ASSIGN_OP comma_expression SEMICOLON;
+function_declaration: type annotation_block simple_name parameter_list VARYING annotation_block ASSIGN_OP comma_expression SEMICOLON;
+function_declaration: type annotation_block simple_name parameter_list annotation_block ASSIGN_OP comma_expression SEMICOLON;
+function_declaration: type annotation_block simple_name parameter_list UNIFORM ASSIGN_OP comma_expression SEMICOLON;
+function_declaration: type annotation_block simple_name parameter_list VARYING ASSIGN_OP comma_expression SEMICOLON;
+function_declaration: type annotation_block simple_name parameter_list ASSIGN_OP comma_expression SEMICOLON;
+function_declaration: type simple_name parameter_list UNIFORM annotation_block ASSIGN_OP comma_expression SEMICOLON;
+function_declaration: type simple_name parameter_list VARYING annotation_block ASSIGN_OP comma_expression SEMICOLON;
+function_declaration: type simple_name parameter_list annotation_block ASSIGN_OP comma_expression SEMICOLON;
+function_declaration: type simple_name parameter_list UNIFORM ASSIGN_OP comma_expression SEMICOLON;
+function_declaration: type simple_name parameter_list VARYING ASSIGN_OP comma_expression SEMICOLON;
+function_declaration: type simple_name parameter_list ASSIGN_OP comma_expression SEMICOLON;
 
 compound_statement: LEFT_CURLY_BRACE statements RIGHT_CURLY_BRACE;
 compound_statement: LEFT_CURLY_BRACE RIGHT_CURLY_BRACE;
@@ -324,14 +339,55 @@ matched_statement: compound_statement;
 matched_statement: type_declaration;
 matched_statement: constant_declaration;
 matched_statement: matched_if_statement;
+matched_statement: switch_statement;
+matched_statement: matched_while_statement;
+matched_statement: matched_do_statement;
+matched_statement: matched_for_statement;
+matched_statement: break_statement;
+matched_statement: continue_statement;
+matched_statement: return_statement;
+matched_statement: variable_declaration;
+matched_statement: expression_statement;
 
 unmatched_statement: unmatched_if_statement;
+unmatched_statement: unmatched_while_statement;
+unmatched_statement: unmatched_do_statement;
+unmatched_statement: unmatched_for_statement;
 
 matched_if_statement: IF LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS matched_statement ELSE matched_statement;
-
 unmatched_if_statement: IF LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS statement;
 unmatched_if_statement: IF LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS matched_statement ELSE unmatched_statement;
 
+switch_statement: SWITCH LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS LEFT_CURLY_BRACE switch_cases RIGHT_CURLY_BRACE;
+switch_statement: SWITCH LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS LEFT_CURLY_BRACE RIGHT_CURLY_BRACE;
+
+switch_cases: switch_cases switch_case;
+switch_cases: switch_case;
+
+switch_case: CASE comma_expression COLON statement;
+switch_case: CASE comma_expression COLON;
+switch_case: DEFAULT COLON statement;
+switch_case: DEFAULT COLON;
+
+matched_while_statement: WHILE LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS matched_statement;
+unmatched_while_statement: WHILE LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS unmatched_statement;
+
+matched_do_statement: DO matched_statement WHILE LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS SEMICOLON;
+unmatched_do_statement: DO unmatched_statement WHILE LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS SEMICOLON;
+
+matched_for_statement: FOR LEFT_PARENTHESIS variable_declaration comma_expression SEMICOLON comma_expression RIGHT_PARENTHESIS matched_statement;
+matched_for_statement: FOR LEFT_PARENTHESIS expression_statement comma_expression SEMICOLON comma_expression RIGHT_PARENTHESIS matched_statement;
+unmatched_for_statement: FOR LEFT_PARENTHESIS variable_declaration comma_expression SEMICOLON comma_expression RIGHT_PARENTHESIS unmatched_statement;
+unmatched_for_statement: FOR LEFT_PARENTHESIS expression_statement comma_expression SEMICOLON comma_expression RIGHT_PARENTHESIS unmatched_statement;
+
+break_statement: BREAK SEMICOLON;
+
+continue_statement: CONTINUE SEMICOLON;
+
+return_statement: RETURN SEMICOLON;
+
+expression_statement: comma_expression SEMICOLON;
+expression_statement: SEMICOLON;
 
 parameter_list: LEFT_PARENTHESIS parameters RIGHT_PARENTHESIS;
 

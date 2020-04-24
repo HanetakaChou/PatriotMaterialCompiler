@@ -162,6 +162,8 @@ LR(1) 项目集 中的 项 为 二元组\<产生式,终结符构成集合\> //�
 //\[exp -> exp **.** + exp\] -+-> \[exp -> exp + **.** exp\] -exp-> \[exp -> exp + exp **.** \] //表明归约  //发生移进归约冲突！     
 \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\[exp -> **.** exp + exp\] -exp-> \[exp -> exp **.** + exp \] //表明移进    
 
+//使用bison的-r state -r solved选项 在生成的*.output文件开头： State XXX conflicts: XXX shift/reduce //找到相应的State 进行进一步分析即可  
+
 //YACC中 支持 %left '+' 解决结合性冲突  
 
 //优先级、悬空的ELSE 也会产生类似的冲突  
