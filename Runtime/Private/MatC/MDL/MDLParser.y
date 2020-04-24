@@ -317,13 +317,20 @@ compound_statement: LEFT_CURLY_BRACE RIGHT_CURLY_BRACE;
 statements: statements statement;
 statements: statement;
 
-statement: compound_statement;
-statement: type_declaration;
-statement: constant_declaration;
-statement: if_statement;
+statement: matched_statement;
+statement: unmatched_statement;
 
-if_statement: IF LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS statement ELSE statement; /*-Wconflicts-sr*/
-if_statement: IF LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS statement; /*-Wconflicts-sr*/
+matched_statement: compound_statement;
+matched_statement: type_declaration;
+matched_statement: constant_declaration;
+matched_statement: matched_if_statement;
+
+unmatched_statement: unmatched_if_statement;
+
+matched_if_statement: IF LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS matched_statement ELSE matched_statement;
+
+unmatched_if_statement: IF LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS statement;
+unmatched_if_statement: IF LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS matched_statement ELSE unmatched_statement;
 
 
 parameter_list: LEFT_PARENTHESIS parameters RIGHT_PARENTHESIS;
