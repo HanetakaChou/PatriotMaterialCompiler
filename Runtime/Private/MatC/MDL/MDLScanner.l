@@ -26,6 +26,8 @@ MODULE (module)
 EXPORT (export)
 
 /* Identifiers */
+DOT (.)
+DOTDOT (..)
 SCOPE (::)
 IDENT (([A-Za-z])(([0-9A-Za-z_])*))
 
@@ -87,6 +89,11 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
     }
 
      /* Identifiers */
+{DOT} {
+    
+}
+
+
 {SCOPE} {
     return YYTOKEN_SCOPE;
 }

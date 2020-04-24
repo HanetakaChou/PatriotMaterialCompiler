@@ -8,6 +8,7 @@ union YYSTYPE {
     int _INTEGER_LITERAL;
     float _FLOATING_LITERAL;
     struct MDLDeclaration *_decl;
+    void *_null;
 };
 
 extern int YYTOKEN_MDL;
@@ -16,6 +17,8 @@ extern int YYTOKEN_COMMA;
 extern int YYTOKEN_IMPORT;
 extern int YYTOKEN_MODULE;
 extern int YYTOKEN_EXPORT;
+extern int YYTOKEN_DOT;
+extern int YYTOKEN_DOTDOT;
 extern int YYTOKEN_SCOPE;
 extern int YYTOKEN_IDENT;
 extern int YYTOKEN_INTEGER_LITERAL;

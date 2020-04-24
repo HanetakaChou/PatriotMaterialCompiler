@@ -21,21 +21,23 @@
 %token IMPORT
 %token MODULE
 %token EXPORT
+%token DOT
+%token DOTDOT
 %token SCOPE
 %token <_IDENT> IDENT
 %token <_INTEGER_LITERAL> INTEGER_LITERAL 
 %token <_FLOATING_LITERAL> FLOATING_LITERAL
 
 // Define the nonterminals 
-// %type <_decl> import_declaration 
-
+%type <_null> mdl 
+%type <_decl> import_declaration;
 
 // Define the starting nonterminal
 %start mdl
 
 %%
 
-mdl: mdl_version import_declarations_opt module_declaration_opt global_declarations_opt;
+mdl: mdl_version import_declarations_opt module_declaration_opt global_declarations_opt { $$ = NULL; };
 
 mdl_version: MDL FLOATING_LITERAL SEMICOLON;
 
@@ -45,12 +47,21 @@ import_declarations_opt: ;
 import_declarations: import_declarations import_declaration;
 import_declarations: import_declaration;
 
-import_declaration: IMPORT qualified_imports SEMICOLON;
+import_declaration: IMPORT qualified_imports SEMICOLON  { $$ = NULL; };
 
 qualified_imports: qualified_import;
 qualified_imports: qualified_imports COMMA qualified_import;
 
-qualified_import: simple_name;
+qualified_import: qualified_import_prefix_opt qualified_import_suffix;
+
+qualified_import_prefix_opt: qualified_import_prefix;
+qualified_import_prefix_opt: ;
+
+qualified_import_prefix: qualified_import_prefix DOT SCOPE;
+qualified_import_prefix: DOT SCOPE;
+
+qualified_import_suffix: qualified_import_suffix SCOPE simple_name;
+qualified_import_suffix: simple_name;
 
 simple_name: IDENT;
 
