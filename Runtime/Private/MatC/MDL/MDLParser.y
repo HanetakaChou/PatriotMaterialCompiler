@@ -5,6 +5,8 @@
 // Tell Bison to track locations for improved error messages
 %locations
 
+%define parse.error verbose
+
 %parse-param {void *pUserData} {void *pScanner}
 %lex-param {void *pUserData} {void *pScanner}
 
@@ -237,6 +239,10 @@ variable_declarator: simple_name ASSIGN_OP assignment_expression;
 variable_declarator: simple_name annotation_block;
 variable_declarator: simple_name;
 
+global_declaration: EXPORT annotation_declaration;
+global_declaration: EXPORT constant_declaration;
+global_declaration: EXPORT type_declaration;
+global_declaration: EXPORT function_declaration;
 global_declaration: annotation_declaration;
 global_declaration: constant_declaration;
 global_declaration: type_declaration;
@@ -453,7 +459,6 @@ positional_argument: assignment_expression;
 comma_expression: assignment_expression COMMA comma_expression;
 comma_expression: assignment_expression;
 
-assignment_expression: conditional_expression;
 assignment_expression: logical_or_expression ASSIGN_OP assignment_expression;
 assignment_expression: logical_or_expression BITWISE_OR_ASSIGN_OP assignment_expression;
 assignment_expression: logical_or_expression BITWISE_AND_ASSIGN_OP assignment_expression;
@@ -466,9 +471,10 @@ assignment_expression: logical_or_expression DIVIDE_ASSIGN_OP assignment_express
 assignment_expression: logical_or_expression MODULO_ASSIGN_OP assignment_expression;
 assignment_expression: logical_or_expression PLUS_ASSIGN_OP assignment_expression;
 assignment_expression: logical_or_expression MINUS_ASSIGN_OP assignment_expression;
-assignment_expression: logical_or_expression;
+assignment_expression: conditional_expression;
 
 conditional_expression: logical_or_expression CONDITIONAL_OP comma_expression COLON assignment_expression;
+conditional_expression: logical_or_expression;
 
 logical_or_expression: logical_and_expression LOGICAL_OR_OP logical_or_expression;
 logical_or_expression: logical_and_expression;
@@ -547,9 +553,10 @@ type: VARYING array_type;
 type: UNIFORM array_type;
 type: array_type;
 
-array_type: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
-array_type: simple_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET;
 array_type: simple_type LEFT_SQUARE_BRACKET LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET RIGHT_SQUARE_BRACKET;
+array_type: simple_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET;
+array_type: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
+array_type: simple_type;
 
 simple_type: SCOPE relative_type;
 simple_type: relative_type;

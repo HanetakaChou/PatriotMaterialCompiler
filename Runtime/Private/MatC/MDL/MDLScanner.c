@@ -49,7 +49,7 @@ static void mdl_ll_test(char *const text, int leng);
         llocp->last_line = (yylineno);                \
         llocp->first_column = (yycolumn);             \
         llocp->last_column = ((yycolumn) + (yyleng)); \
-        yycolumn += (yyleng);                         \
+        (yycolumn) += (yyleng);                         \
     }
 
 #include "MDLParser.h"

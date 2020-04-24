@@ -175,18 +175,23 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
 
 %%
     
-[/][/]((.)*) {
+("//"((.)*)) {
     /* Single line comment */
     }  
 
-[/][*]([^*]*)[*]+([^*/][^*]*[*]+)*[/] {
+("/*"((("*"[^/])?)|[^*])*"*/") {
     /* Multiline comment */
     }
 
-[/][*] { 
+("/*") { 
     YY_FATAL_ERROR("Unterminated comment");
     }
-    
+
+    /* Bugs for yylineno */
+(("\n")|("\r\n")) {
+    (yycolumn) = 0;
+}
+
     /* Ignore whitespace */
 {WHITE} { 
     
