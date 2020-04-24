@@ -136,33 +136,99 @@ Grammar
    88                          | unary_expression MODULO_OP multiplicative_expression
    89                          | unary_expression
 
-   90 unary_expression: LEFT_PARENTHESIS type RIGHT_PARENTHESIS
+   90 unary_expression: LEFT_PARENTHESIS type RIGHT_PARENTHESIS unary_expression
+   91                 | postfix_expression
 
-   91 type: frequency_qualifier_opt array_type
+   92 type: frequency_qualifier_opt array_type
 
-   92 frequency_qualifier_opt: frequency_qualifier
-   93                        | %empty
+   93 postfix_expression: primary_expression
 
-   94 frequency_qualifier: VARYING
-   95                    | UNIFORM
+   94 frequency_qualifier_opt: frequency_qualifier
+   95                        | %empty
 
-   96 array_type: simple_type LEFT_SQUARE_BRACKET array_type_size_opt RIGHT_SQUARE_BRACKET
+   96 frequency_qualifier: VARYING
+   97                    | UNIFORM
 
-   97 array_type_size_opt: conditional_expression
-   98                    | LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET
+   98 array_type: simple_type LEFT_SQUARE_BRACKET array_type_size_opt RIGHT_SQUARE_BRACKET
 
-   99 simple_type: simple_type_absolute_opt relative_type
+   99 array_type_size_opt: conditional_expression
+  100                    | LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET
 
-  100 simple_type_absolute_opt: SCOPE
-  101                         | %empty
+  101 simple_type: simple_type_absolute_opt relative_type
 
-  102 relative_type: 'A'
+  102 simple_type_absolute_opt: SCOPE
+  103                         | %empty
+
+  104 relative_type: BOOL
+  105              | BOOL2
+  106              | BOOL3
+  107              | BOOL4
+  108              | INT
+  109              | INT2
+  110              | INT3
+  111              | INT4
+  112              | FLOAT
+  113              | FLOAT2
+  114              | FLOAT3
+  115              | FLOAT4
+  116              | FLOAT2X2
+  117              | FLOAT2X3
+  118              | FLOAT2X4
+  119              | FLOAT3X2
+  120              | FLOAT3X3
+  121              | FLOAT3X4
+  122              | FLOAT4X2
+  123              | FLOAT4X3
+  124              | FLOAT4X4
+  125              | DOUBLE
+  126              | DOUBLE2
+  127              | DOUBLE3
+  128              | DOUBLE4
+  129              | DOUBLE2X2
+  130              | DOUBLE2X3
+  131              | DOUBLE2X4
+  132              | DOUBLE3X2
+  133              | DOUBLE3X3
+  134              | DOUBLE3X4
+  135              | DOUBLE4X2
+  136              | DOUBLE4X3
+  137              | DOUBLE4X4
+  138              | COLOR
+  139              | STRING
+  140              | SDF
+  141              | EDF
+  142              | VDF
+  143              | LIGHT_PROFILE
+  144              | MATERIAL
+  145              | MATERIAL_EMISSION
+  146              | MATERIAL_GEOMETRY
+  147              | MATERIAL_SURFACE
+  148              | MATERIAL_VOLUME
+  149              | TEXTURE_2D
+  150              | TEXTURE_3D
+  151              | TEXTURE_CUBE
+  152              | TEXTURE_PTEX
+  153              | BSDF_MEASUREMENT
+  154              | INTENSITY_MODE
+  155              | INTENSITY_RADIANT_EXITANCE
+  156              | INTENSITY_POWER
+  157              | HAIR_BSDF
+  158              | relative_type_ident
+
+  159 relative_type_ident: IDENT SCOPE relative_type_ident
+  160                    | IDENT
+
+  161 primary_expression: literal_expression
+
+  162 literal_expression: boolean_literal
+
+  163 boolean_literal: TRUE
+  164                | FALSE
 
 
 Terminals, with rules where they appear
 
 $end (0) 0
-'A' (65) 102
 error (256)
 SEMICOLON (258) 2 9 10 33
 COMMA (259) 11 17 37 41 44
@@ -171,162 +237,231 @@ IMPORT (261) 9 10
 USING (262) 10
 MODULE (263) 33
 EXPORT (264) 10
-UNIFORM (265) 95
-VARYING (266) 94
-ASSIGN_OP (267) 47
-BITWISE_OR_ASSIGN_OP (268) 48
-BITWISE_AND_ASSIGN_OP (269) 49
-BITWISE_XOR_ASSIGN_OP (270) 50
-SHIFT_LEFT_ASSIGN_OP (271) 51
-SHIFT_RIGHT_ASSIGN_OP (272) 52
-UNSIGNED_SHIFT_RIGHT_ASSIGN_OP (273) 53
-MULTIPLY_ASSIGN_OP (274) 54
-DIVIDE_ASSIGN_OP (275) 55
-MODULO_ASSIGN_OP (276) 56
-PLUS_ASSIGN_OP (277) 57
-MINUS_ASSIGN_OP (278) 58
-CONDITIONAL_OP (279) 60
-LOGICAL_OR_OP (280) 61
-LOGICAL_AND_OP (281) 63
-BITWISE_OR_OP (282) 65
-BITWISE_XOR_OP (283) 67
-BITWISE_AND_OP (284) 69
-EQUAL_OP (285) 71
-NOT_EQUAL_OP (286) 72
-LESS_OP (287) 74
-LESS_OR_EQUAL_OP (288) 75
-GREATER_OR_EQUAL_OP (289) 76
-GREATER_OP (290) 77
-SHIFT_LEFT_OP (291) 79
-SHIFT_RIGHT_OP (292) 80
-UNSIGNED_SHIFT_RIGHT_OP (293) 81
-PLUS_OP (294) 83
-MINUS_OP (295) 84
-MULTIPLY_OP (296) 86
-DIVIDE_OP (297) 87
-MODULO_OP (298) 88
-DOT (299) 23
-DOTDOT (300) 24 25
-SCOPE (301) 23 24 25 26 27 31 100
-STAR (302) 15 31
-COLON (303) 43 60
-ANNOTATION_BLOCK_BEGIN (304) 36
-ANNOTATION_BLOCK_END (305) 36
-LEFT_PARENTHESIS (306) 40 90
-RIGHT_PARENTHESIS (307) 40 90
-LEFT_SQUARE_BRACKET (308) 96
-RIGHT_SQUARE_BRACKET (309) 96
-LEFT_ANGLE_BRACKET (310) 98
-RIGHT_ANGLE_BRACKET (311) 98
-IDENT (312) 32
-INTEGER_LITERAL (313)
-FLOATING_LITERAL (314) 2
+UNIFORM (265) 97
+VARYING (266) 96
+BOOL (267) 104
+BOOL2 (268) 105
+BOOL3 (269) 106
+BOOL4 (270) 107
+INT (271) 108
+INT2 (272) 109
+INT3 (273) 110
+INT4 (274) 111
+FLOAT (275) 112
+FLOAT2 (276) 113
+FLOAT3 (277) 114
+FLOAT4 (278) 115
+FLOAT2X2 (279) 116
+FLOAT2X3 (280) 117
+FLOAT2X4 (281) 118
+FLOAT3X2 (282) 119
+FLOAT3X3 (283) 120
+FLOAT3X4 (284) 121
+FLOAT4X2 (285) 122
+FLOAT4X3 (286) 123
+FLOAT4X4 (287) 124
+DOUBLE (288) 125
+DOUBLE2 (289) 126
+DOUBLE3 (290) 127
+DOUBLE4 (291) 128
+DOUBLE2X2 (292) 129
+DOUBLE2X3 (293) 130
+DOUBLE2X4 (294) 131
+DOUBLE3X2 (295) 132
+DOUBLE3X3 (296) 133
+DOUBLE3X4 (297) 134
+DOUBLE4X2 (298) 135
+DOUBLE4X3 (299) 136
+DOUBLE4X4 (300) 137
+COLOR (301) 138
+STRING (302) 139
+SDF (303) 140
+EDF (304) 141
+VDF (305) 142
+LIGHT_PROFILE (306) 143
+MATERIAL (307) 144
+MATERIAL_EMISSION (308) 145
+MATERIAL_GEOMETRY (309) 146
+MATERIAL_SURFACE (310) 147
+MATERIAL_VOLUME (311) 148
+TEXTURE_2D (312) 149
+TEXTURE_3D (313) 150
+TEXTURE_CUBE (314) 151
+TEXTURE_PTEX (315) 152
+BSDF_MEASUREMENT (316) 153
+INTENSITY_MODE (317) 154
+INTENSITY_RADIANT_EXITANCE (318) 155
+INTENSITY_POWER (319) 156
+HAIR_BSDF (320) 157
+TRUE (321) 163
+FALSE (322) 164
+ASSIGN_OP (323) 47
+BITWISE_OR_ASSIGN_OP (324) 48
+BITWISE_AND_ASSIGN_OP (325) 49
+BITWISE_XOR_ASSIGN_OP (326) 50
+SHIFT_LEFT_ASSIGN_OP (327) 51
+SHIFT_RIGHT_ASSIGN_OP (328) 52
+UNSIGNED_SHIFT_RIGHT_ASSIGN_OP (329) 53
+MULTIPLY_ASSIGN_OP (330) 54
+DIVIDE_ASSIGN_OP (331) 55
+MODULO_ASSIGN_OP (332) 56
+PLUS_ASSIGN_OP (333) 57
+MINUS_ASSIGN_OP (334) 58
+CONDITIONAL_OP (335) 60
+LOGICAL_OR_OP (336) 61
+LOGICAL_AND_OP (337) 63
+BITWISE_OR_OP (338) 65
+BITWISE_XOR_OP (339) 67
+BITWISE_AND_OP (340) 69
+EQUAL_OP (341) 71
+NOT_EQUAL_OP (342) 72
+LESS_OP (343) 74
+LESS_OR_EQUAL_OP (344) 75
+GREATER_OR_EQUAL_OP (345) 76
+GREATER_OP (346) 77
+SHIFT_LEFT_OP (347) 79
+SHIFT_RIGHT_OP (348) 80
+UNSIGNED_SHIFT_RIGHT_OP (349) 81
+PLUS_OP (350) 83
+MINUS_OP (351) 84
+MULTIPLY_OP (352) 86
+DIVIDE_OP (353) 87
+MODULO_OP (354) 88
+DOT (355) 23
+DOTDOT (356) 24 25
+SCOPE (357) 23 24 25 26 27 31 102 159
+STAR (358) 15 31
+COLON (359) 43 60
+ANNOTATION_BLOCK_BEGIN (360) 36
+ANNOTATION_BLOCK_END (361) 36
+LEFT_PARENTHESIS (362) 40 90
+RIGHT_PARENTHESIS (363) 40 90
+LEFT_SQUARE_BRACKET (364) 98
+RIGHT_SQUARE_BRACKET (365) 98
+LEFT_ANGLE_BRACKET (366) 100
+RIGHT_ANGLE_BRACKET (367) 100
+IDENT (368) 32 159 160
+INTEGER_LITERAL (369)
+FLOATING_LITERAL (370) 2
 
 
 Nonterminals, with rules where they appear
 
-$accept (61)
+$accept (116)
     on left: 0
-mdl (62)
+mdl (117)
     on left: 1, on right: 0
-mdl_version (63)
+mdl_version (118)
     on left: 2, on right: 1
-import_declarations_opt (64)
+import_declarations_opt (119)
     on left: 3 4, on right: 1
-module_declaration_opt (65)
+module_declaration_opt (120)
     on left: 5 6, on right: 1
-import_declarations (66)
+import_declarations (121)
     on left: 7 8, on right: 3 7
-import_declaration (67)
+import_declaration (122)
     on left: 9 10, on right: 7 8
-qualified_imports (68)
+qualified_imports (123)
     on left: 11 12, on right: 9 11
-qualified_import_prefix (69)
+qualified_import_prefix (124)
     on left: 13, on right: 10
-unqualified_import (70)
+unqualified_import (125)
     on left: 14 15, on right: 10
-qualified_import (71)
+qualified_import (126)
     on left: 16, on right: 11 12
-unqualified_import_simple_names (72)
+unqualified_import_simple_names (127)
     on left: 17 18, on right: 14 17
-qualified_import_prefix_opt (73)
+qualified_import_prefix_opt (128)
     on left: 19 20 21 22, on right: 13 16
-qualified_import_prefix_relative_current (74)
+qualified_import_prefix_relative_current (129)
     on left: 23, on right: 19
-qualified_import_prefix_relative_parent (75)
+qualified_import_prefix_relative_parent (130)
     on left: 24 25, on right: 20 24
-qualified_import_prefix_absolute (76)
+qualified_import_prefix_absolute (131)
     on left: 26, on right: 21
-qualified_name (77)
+qualified_name (132)
     on left: 27 28, on right: 13 16 27 39
-qualified_import_suffix_opt (78)
+qualified_import_suffix_opt (133)
     on left: 29 30, on right: 16
-qualified_import_suffix (79)
+qualified_import_suffix (134)
     on left: 31, on right: 29
-simple_name (80)
-    on left: 32, on right: 17 18 27 28 43 98
-module_declaration (81)
+simple_name (135)
+    on left: 32, on right: 17 18 27 28 43 100
+module_declaration (136)
     on left: 33, on right: 5
-annotation_block_opt (82)
+annotation_block_opt (137)
     on left: 34 35, on right: 33
-annotation_block (83)
+annotation_block (138)
     on left: 36, on right: 34
-annotations (84)
+annotations (139)
     on left: 37 38, on right: 36 37
-annotation (85)
+annotation (140)
     on left: 39, on right: 37 38
-argument_list (86)
+argument_list (141)
     on left: 40, on right: 39
-named_arguments (87)
+named_arguments (142)
     on left: 41 42, on right: 40 41
-named_argument (88)
+named_argument (143)
     on left: 43, on right: 41 42
-comma_expression (89)
+comma_expression (144)
     on left: 44 45, on right: 44 60
-assignment_expression (90)
+assignment_expression (145)
     on left: 46 47 48 49 50 51 52 53 54 55 56 57 58 59, on right: 43
     44 45 47 48 49 50 51 52 53 54 55 56 57 58 60
-conditional_expression (91)
-    on left: 60, on right: 46 97
-logical_or_expression (92)
+conditional_expression (146)
+    on left: 60, on right: 46 99
+logical_or_expression (147)
     on left: 61 62, on right: 47 48 49 50 51 52 53 54 55 56 57 58 59
     60 61
-logical_and_expression (93)
+logical_and_expression (148)
     on left: 63 64, on right: 61 62 63
-inclusive_or_expression (94)
+inclusive_or_expression (149)
     on left: 65 66, on right: 63 64 65
-exclusive_or_expression (95)
+exclusive_or_expression (150)
     on left: 67 68, on right: 65 66 67
-and_expression (96)
+and_expression (151)
     on left: 69 70, on right: 67 68 69
-equality_expression (97)
+equality_expression (152)
     on left: 71 72 73, on right: 69 70 71 72
-relational_expression (98)
+relational_expression (153)
     on left: 74 75 76 77 78, on right: 71 72 73 74 75 76 77
-shift_expression (99)
+shift_expression (154)
     on left: 79 80 81 82, on right: 74 75 76 77 78 79 80 81
-additive_expression (100)
+additive_expression (155)
     on left: 83 84 85, on right: 79 80 81 82 83 84
-multiplicative_expression (101)
+multiplicative_expression (156)
     on left: 86 87 88 89, on right: 83 84 85 86 87 88
-unary_expression (102)
-    on left: 90, on right: 86 87 88 89
-type (103)
-    on left: 91, on right: 90
-frequency_qualifier_opt (104)
-    on left: 92 93, on right: 91
-frequency_qualifier (105)
+unary_expression (157)
+    on left: 90 91, on right: 86 87 88 89 90
+type (158)
+    on left: 92, on right: 90
+postfix_expression (159)
+    on left: 93, on right: 91
+frequency_qualifier_opt (160)
     on left: 94 95, on right: 92
-array_type (106)
-    on left: 96, on right: 91
-array_type_size_opt (107)
-    on left: 97 98, on right: 96
-simple_type (108)
-    on left: 99, on right: 96
-simple_type_absolute_opt (109)
-    on left: 100 101, on right: 99
-relative_type (110)
-    on left: 102, on right: 99
+frequency_qualifier (161)
+    on left: 96 97, on right: 94
+array_type (162)
+    on left: 98, on right: 92
+array_type_size_opt (163)
+    on left: 99 100, on right: 98
+simple_type (164)
+    on left: 101, on right: 98
+simple_type_absolute_opt (165)
+    on left: 102 103, on right: 101
+relative_type (166)
+    on left: 104 105 106 107 108 109 110 111 112 113 114 115 116 117
+    118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133
+    134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149
+    150 151 152 153 154 155 156 157 158, on right: 101
+relative_type_ident (167)
+    on left: 159 160, on right: 158 159
+primary_expression (168)
+    on left: 161, on right: 93
+literal_expression (169)
+    on left: 162, on right: 161
+boolean_literal (170)
+    on left: 163 164, on right: 162
 
 
 State 0
@@ -923,21 +1058,27 @@ State 68
 
    43 named_argument: simple_name COLON . assignment_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    assignment_expression      go to state 72
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    assignment_expression      go to state 74
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 69
@@ -947,7 +1088,7 @@ State 69
     IDENT  shift, and go to state 30
 
     simple_name     go to state 63
-    named_argument  go to state 85
+    named_argument  go to state 91
 
 
 State 70
@@ -959,33 +1100,47 @@ State 70
 
 State 71
 
-   90 unary_expression: LEFT_PARENTHESIS . type RIGHT_PARENTHESIS
+  163 boolean_literal: TRUE .
 
-    UNIFORM  shift, and go to state 86
-    VARYING  shift, and go to state 87
-
-    $default  reduce using rule 93 (frequency_qualifier_opt)
-
-    type                     go to state 88
-    frequency_qualifier_opt  go to state 89
-    frequency_qualifier      go to state 90
+    $default  reduce using rule 163 (boolean_literal)
 
 
 State 72
+
+  164 boolean_literal: FALSE .
+
+    $default  reduce using rule 164 (boolean_literal)
+
+
+State 73
+
+   90 unary_expression: LEFT_PARENTHESIS . type RIGHT_PARENTHESIS unary_expression
+
+    UNIFORM  shift, and go to state 92
+    VARYING  shift, and go to state 93
+
+    $default  reduce using rule 95 (frequency_qualifier_opt)
+
+    type                     go to state 94
+    frequency_qualifier_opt  go to state 95
+    frequency_qualifier      go to state 96
+
+
+State 74
 
    43 named_argument: simple_name COLON assignment_expression .
 
     $default  reduce using rule 43 (named_argument)
 
 
-State 73
+State 75
 
    46 assignment_expression: conditional_expression .
 
     $default  reduce using rule 46 (assignment_expression)
 
 
-State 74
+State 76
 
    47 assignment_expression: logical_or_expression . ASSIGN_OP assignment_expression
    48                      | logical_or_expression . BITWISE_OR_ASSIGN_OP assignment_expression
@@ -1002,86 +1157,86 @@ State 74
    59                      | logical_or_expression .
    60 conditional_expression: logical_or_expression . CONDITIONAL_OP comma_expression COLON assignment_expression
 
-    ASSIGN_OP                       shift, and go to state 91
-    BITWISE_OR_ASSIGN_OP            shift, and go to state 92
-    BITWISE_AND_ASSIGN_OP           shift, and go to state 93
-    BITWISE_XOR_ASSIGN_OP           shift, and go to state 94
-    SHIFT_LEFT_ASSIGN_OP            shift, and go to state 95
-    SHIFT_RIGHT_ASSIGN_OP           shift, and go to state 96
-    UNSIGNED_SHIFT_RIGHT_ASSIGN_OP  shift, and go to state 97
-    MULTIPLY_ASSIGN_OP              shift, and go to state 98
-    DIVIDE_ASSIGN_OP                shift, and go to state 99
-    MODULO_ASSIGN_OP                shift, and go to state 100
-    PLUS_ASSIGN_OP                  shift, and go to state 101
-    MINUS_ASSIGN_OP                 shift, and go to state 102
-    CONDITIONAL_OP                  shift, and go to state 103
+    ASSIGN_OP                       shift, and go to state 97
+    BITWISE_OR_ASSIGN_OP            shift, and go to state 98
+    BITWISE_AND_ASSIGN_OP           shift, and go to state 99
+    BITWISE_XOR_ASSIGN_OP           shift, and go to state 100
+    SHIFT_LEFT_ASSIGN_OP            shift, and go to state 101
+    SHIFT_RIGHT_ASSIGN_OP           shift, and go to state 102
+    UNSIGNED_SHIFT_RIGHT_ASSIGN_OP  shift, and go to state 103
+    MULTIPLY_ASSIGN_OP              shift, and go to state 104
+    DIVIDE_ASSIGN_OP                shift, and go to state 105
+    MODULO_ASSIGN_OP                shift, and go to state 106
+    PLUS_ASSIGN_OP                  shift, and go to state 107
+    MINUS_ASSIGN_OP                 shift, and go to state 108
+    CONDITIONAL_OP                  shift, and go to state 109
 
     $default  reduce using rule 59 (assignment_expression)
 
 
-State 75
+State 77
 
    61 logical_or_expression: logical_and_expression . LOGICAL_OR_OP logical_or_expression
    62                      | logical_and_expression .
 
-    LOGICAL_OR_OP  shift, and go to state 104
+    LOGICAL_OR_OP  shift, and go to state 110
 
     $default  reduce using rule 62 (logical_or_expression)
 
 
-State 76
+State 78
 
    63 logical_and_expression: inclusive_or_expression . LOGICAL_AND_OP logical_and_expression
    64                       | inclusive_or_expression .
 
-    LOGICAL_AND_OP  shift, and go to state 105
+    LOGICAL_AND_OP  shift, and go to state 111
 
     $default  reduce using rule 64 (logical_and_expression)
 
 
-State 77
+State 79
 
    65 inclusive_or_expression: exclusive_or_expression . BITWISE_OR_OP inclusive_or_expression
    66                        | exclusive_or_expression .
 
-    BITWISE_OR_OP  shift, and go to state 106
+    BITWISE_OR_OP  shift, and go to state 112
 
     $default  reduce using rule 66 (inclusive_or_expression)
 
 
-State 78
+State 80
 
    67 exclusive_or_expression: and_expression . BITWISE_XOR_OP exclusive_or_expression
    68                        | and_expression .
 
-    BITWISE_XOR_OP  shift, and go to state 107
+    BITWISE_XOR_OP  shift, and go to state 113
 
     $default  reduce using rule 68 (exclusive_or_expression)
 
 
-State 79
+State 81
 
    69 and_expression: equality_expression . BITWISE_AND_OP and_expression
    70               | equality_expression .
 
-    BITWISE_AND_OP  shift, and go to state 108
+    BITWISE_AND_OP  shift, and go to state 114
 
     $default  reduce using rule 70 (and_expression)
 
 
-State 80
+State 82
 
    71 equality_expression: relational_expression . EQUAL_OP equality_expression
    72                    | relational_expression . NOT_EQUAL_OP equality_expression
    73                    | relational_expression .
 
-    EQUAL_OP      shift, and go to state 109
-    NOT_EQUAL_OP  shift, and go to state 110
+    EQUAL_OP      shift, and go to state 115
+    NOT_EQUAL_OP  shift, and go to state 116
 
     $default  reduce using rule 73 (equality_expression)
 
 
-State 81
+State 83
 
    74 relational_expression: shift_expression . LESS_OP relational_expression
    75                      | shift_expression . LESS_OR_EQUAL_OP relational_expression
@@ -1089,1039 +1244,1751 @@ State 81
    77                      | shift_expression . GREATER_OP relational_expression
    78                      | shift_expression .
 
-    LESS_OP              shift, and go to state 111
-    LESS_OR_EQUAL_OP     shift, and go to state 112
-    GREATER_OR_EQUAL_OP  shift, and go to state 113
-    GREATER_OP           shift, and go to state 114
+    LESS_OP              shift, and go to state 117
+    LESS_OR_EQUAL_OP     shift, and go to state 118
+    GREATER_OR_EQUAL_OP  shift, and go to state 119
+    GREATER_OP           shift, and go to state 120
 
     $default  reduce using rule 78 (relational_expression)
 
 
-State 82
+State 84
 
    79 shift_expression: additive_expression . SHIFT_LEFT_OP shift_expression
    80                 | additive_expression . SHIFT_RIGHT_OP shift_expression
    81                 | additive_expression . UNSIGNED_SHIFT_RIGHT_OP shift_expression
    82                 | additive_expression .
 
-    SHIFT_LEFT_OP            shift, and go to state 115
-    SHIFT_RIGHT_OP           shift, and go to state 116
-    UNSIGNED_SHIFT_RIGHT_OP  shift, and go to state 117
+    SHIFT_LEFT_OP            shift, and go to state 121
+    SHIFT_RIGHT_OP           shift, and go to state 122
+    UNSIGNED_SHIFT_RIGHT_OP  shift, and go to state 123
 
     $default  reduce using rule 82 (shift_expression)
 
 
-State 83
+State 85
 
    83 additive_expression: multiplicative_expression . PLUS_OP additive_expression
    84                    | multiplicative_expression . MINUS_OP additive_expression
    85                    | multiplicative_expression .
 
-    PLUS_OP   shift, and go to state 118
-    MINUS_OP  shift, and go to state 119
+    PLUS_OP   shift, and go to state 124
+    MINUS_OP  shift, and go to state 125
 
     $default  reduce using rule 85 (additive_expression)
 
 
-State 84
+State 86
 
    86 multiplicative_expression: unary_expression . MULTIPLY_OP multiplicative_expression
    87                          | unary_expression . DIVIDE_OP multiplicative_expression
    88                          | unary_expression . MODULO_OP multiplicative_expression
    89                          | unary_expression .
 
-    MULTIPLY_OP  shift, and go to state 120
-    DIVIDE_OP    shift, and go to state 121
-    MODULO_OP    shift, and go to state 122
+    MULTIPLY_OP  shift, and go to state 126
+    DIVIDE_OP    shift, and go to state 127
+    MODULO_OP    shift, and go to state 128
 
     $default  reduce using rule 89 (multiplicative_expression)
 
 
-State 85
+State 87
+
+   91 unary_expression: postfix_expression .
+
+    $default  reduce using rule 91 (unary_expression)
+
+
+State 88
+
+   93 postfix_expression: primary_expression .
+
+    $default  reduce using rule 93 (postfix_expression)
+
+
+State 89
+
+  161 primary_expression: literal_expression .
+
+    $default  reduce using rule 161 (primary_expression)
+
+
+State 90
+
+  162 literal_expression: boolean_literal .
+
+    $default  reduce using rule 162 (literal_expression)
+
+
+State 91
 
    41 named_arguments: named_arguments COMMA named_argument .
 
     $default  reduce using rule 41 (named_arguments)
 
 
-State 86
-
-   95 frequency_qualifier: UNIFORM .
-
-    $default  reduce using rule 95 (frequency_qualifier)
-
-
-State 87
-
-   94 frequency_qualifier: VARYING .
-
-    $default  reduce using rule 94 (frequency_qualifier)
-
-
-State 88
-
-   90 unary_expression: LEFT_PARENTHESIS type . RIGHT_PARENTHESIS
-
-    RIGHT_PARENTHESIS  shift, and go to state 123
-
-
-State 89
-
-   91 type: frequency_qualifier_opt . array_type
-
-    SCOPE  shift, and go to state 124
-
-    $default  reduce using rule 101 (simple_type_absolute_opt)
-
-    array_type                go to state 125
-    simple_type               go to state 126
-    simple_type_absolute_opt  go to state 127
-
-
-State 90
-
-   92 frequency_qualifier_opt: frequency_qualifier .
-
-    $default  reduce using rule 92 (frequency_qualifier_opt)
-
-
-State 91
-
-   47 assignment_expression: logical_or_expression ASSIGN_OP . assignment_expression
-
-    LEFT_PARENTHESIS  shift, and go to state 71
-
-    assignment_expression      go to state 128
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
-
-
 State 92
 
-   48 assignment_expression: logical_or_expression BITWISE_OR_ASSIGN_OP . assignment_expression
+   97 frequency_qualifier: UNIFORM .
 
-    LEFT_PARENTHESIS  shift, and go to state 71
-
-    assignment_expression      go to state 129
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    $default  reduce using rule 97 (frequency_qualifier)
 
 
 State 93
 
-   49 assignment_expression: logical_or_expression BITWISE_AND_ASSIGN_OP . assignment_expression
+   96 frequency_qualifier: VARYING .
 
-    LEFT_PARENTHESIS  shift, and go to state 71
-
-    assignment_expression      go to state 130
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    $default  reduce using rule 96 (frequency_qualifier)
 
 
 State 94
 
-   50 assignment_expression: logical_or_expression BITWISE_XOR_ASSIGN_OP . assignment_expression
+   90 unary_expression: LEFT_PARENTHESIS type . RIGHT_PARENTHESIS unary_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
-
-    assignment_expression      go to state 131
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    RIGHT_PARENTHESIS  shift, and go to state 129
 
 
 State 95
 
-   51 assignment_expression: logical_or_expression SHIFT_LEFT_ASSIGN_OP . assignment_expression
+   92 type: frequency_qualifier_opt . array_type
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    SCOPE  shift, and go to state 130
 
-    assignment_expression      go to state 132
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    $default  reduce using rule 103 (simple_type_absolute_opt)
+
+    array_type                go to state 131
+    simple_type               go to state 132
+    simple_type_absolute_opt  go to state 133
 
 
 State 96
 
-   52 assignment_expression: logical_or_expression SHIFT_RIGHT_ASSIGN_OP . assignment_expression
+   94 frequency_qualifier_opt: frequency_qualifier .
 
-    LEFT_PARENTHESIS  shift, and go to state 71
-
-    assignment_expression      go to state 133
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    $default  reduce using rule 94 (frequency_qualifier_opt)
 
 
 State 97
 
-   53 assignment_expression: logical_or_expression UNSIGNED_SHIFT_RIGHT_ASSIGN_OP . assignment_expression
+   47 assignment_expression: logical_or_expression ASSIGN_OP . assignment_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
     assignment_expression      go to state 134
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 98
 
-   54 assignment_expression: logical_or_expression MULTIPLY_ASSIGN_OP . assignment_expression
+   48 assignment_expression: logical_or_expression BITWISE_OR_ASSIGN_OP . assignment_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
     assignment_expression      go to state 135
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 99
 
-   55 assignment_expression: logical_or_expression DIVIDE_ASSIGN_OP . assignment_expression
+   49 assignment_expression: logical_or_expression BITWISE_AND_ASSIGN_OP . assignment_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
     assignment_expression      go to state 136
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 100
 
-   56 assignment_expression: logical_or_expression MODULO_ASSIGN_OP . assignment_expression
+   50 assignment_expression: logical_or_expression BITWISE_XOR_ASSIGN_OP . assignment_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
     assignment_expression      go to state 137
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 101
 
-   57 assignment_expression: logical_or_expression PLUS_ASSIGN_OP . assignment_expression
+   51 assignment_expression: logical_or_expression SHIFT_LEFT_ASSIGN_OP . assignment_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
     assignment_expression      go to state 138
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 102
 
-   58 assignment_expression: logical_or_expression MINUS_ASSIGN_OP . assignment_expression
+   52 assignment_expression: logical_or_expression SHIFT_RIGHT_ASSIGN_OP . assignment_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
     assignment_expression      go to state 139
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 103
 
-   60 conditional_expression: logical_or_expression CONDITIONAL_OP . comma_expression COLON assignment_expression
+   53 assignment_expression: logical_or_expression UNSIGNED_SHIFT_RIGHT_ASSIGN_OP . assignment_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    comma_expression           go to state 140
-    assignment_expression      go to state 141
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    assignment_expression      go to state 140
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 104
 
-   61 logical_or_expression: logical_and_expression LOGICAL_OR_OP . logical_or_expression
+   54 assignment_expression: logical_or_expression MULTIPLY_ASSIGN_OP . assignment_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    logical_or_expression      go to state 142
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    assignment_expression      go to state 141
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 105
 
-   63 logical_and_expression: inclusive_or_expression LOGICAL_AND_OP . logical_and_expression
+   55 assignment_expression: logical_or_expression DIVIDE_ASSIGN_OP . assignment_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    logical_and_expression     go to state 143
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    assignment_expression      go to state 142
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 106
 
-   65 inclusive_or_expression: exclusive_or_expression BITWISE_OR_OP . inclusive_or_expression
+   56 assignment_expression: logical_or_expression MODULO_ASSIGN_OP . assignment_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    inclusive_or_expression    go to state 144
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    assignment_expression      go to state 143
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 107
 
-   67 exclusive_or_expression: and_expression BITWISE_XOR_OP . exclusive_or_expression
+   57 assignment_expression: logical_or_expression PLUS_ASSIGN_OP . assignment_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    exclusive_or_expression    go to state 145
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    assignment_expression      go to state 144
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 108
 
-   69 and_expression: equality_expression BITWISE_AND_OP . and_expression
+   58 assignment_expression: logical_or_expression MINUS_ASSIGN_OP . assignment_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    and_expression             go to state 146
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    assignment_expression      go to state 145
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 109
 
-   71 equality_expression: relational_expression EQUAL_OP . equality_expression
+   60 conditional_expression: logical_or_expression CONDITIONAL_OP . comma_expression COLON assignment_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    equality_expression        go to state 147
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    comma_expression           go to state 146
+    assignment_expression      go to state 147
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 110
 
-   72 equality_expression: relational_expression NOT_EQUAL_OP . equality_expression
+   61 logical_or_expression: logical_and_expression LOGICAL_OR_OP . logical_or_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    equality_expression        go to state 148
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    logical_or_expression      go to state 148
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 111
 
-   74 relational_expression: shift_expression LESS_OP . relational_expression
+   63 logical_and_expression: inclusive_or_expression LOGICAL_AND_OP . logical_and_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    relational_expression      go to state 149
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    logical_and_expression     go to state 149
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 112
 
-   75 relational_expression: shift_expression LESS_OR_EQUAL_OP . relational_expression
+   65 inclusive_or_expression: exclusive_or_expression BITWISE_OR_OP . inclusive_or_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    relational_expression      go to state 150
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    inclusive_or_expression    go to state 150
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 113
 
-   76 relational_expression: shift_expression GREATER_OR_EQUAL_OP . relational_expression
+   67 exclusive_or_expression: and_expression BITWISE_XOR_OP . exclusive_or_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    relational_expression      go to state 151
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    exclusive_or_expression    go to state 151
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 114
 
-   77 relational_expression: shift_expression GREATER_OP . relational_expression
+   69 and_expression: equality_expression BITWISE_AND_OP . and_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    relational_expression      go to state 152
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    and_expression             go to state 152
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 115
 
-   79 shift_expression: additive_expression SHIFT_LEFT_OP . shift_expression
+   71 equality_expression: relational_expression EQUAL_OP . equality_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    shift_expression           go to state 153
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    equality_expression        go to state 153
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 116
 
-   80 shift_expression: additive_expression SHIFT_RIGHT_OP . shift_expression
+   72 equality_expression: relational_expression NOT_EQUAL_OP . equality_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    shift_expression           go to state 154
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    equality_expression        go to state 154
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 117
 
-   81 shift_expression: additive_expression UNSIGNED_SHIFT_RIGHT_OP . shift_expression
+   74 relational_expression: shift_expression LESS_OP . relational_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    shift_expression           go to state 155
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    relational_expression      go to state 155
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 118
 
-   83 additive_expression: multiplicative_expression PLUS_OP . additive_expression
+   75 relational_expression: shift_expression LESS_OR_EQUAL_OP . relational_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    additive_expression        go to state 156
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    relational_expression      go to state 156
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 119
 
-   84 additive_expression: multiplicative_expression MINUS_OP . additive_expression
+   76 relational_expression: shift_expression GREATER_OR_EQUAL_OP . relational_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    additive_expression        go to state 157
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
+    relational_expression      go to state 157
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 120
 
-   86 multiplicative_expression: unary_expression MULTIPLY_OP . multiplicative_expression
+   77 relational_expression: shift_expression GREATER_OP . relational_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    multiplicative_expression  go to state 158
-    unary_expression           go to state 84
+    relational_expression      go to state 158
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 121
 
-   87 multiplicative_expression: unary_expression DIVIDE_OP . multiplicative_expression
+   79 shift_expression: additive_expression SHIFT_LEFT_OP . shift_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    multiplicative_expression  go to state 159
-    unary_expression           go to state 84
+    shift_expression           go to state 159
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 122
 
-   88 multiplicative_expression: unary_expression MODULO_OP . multiplicative_expression
+   80 shift_expression: additive_expression SHIFT_RIGHT_OP . shift_expression
 
-    LEFT_PARENTHESIS  shift, and go to state 71
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    multiplicative_expression  go to state 160
-    unary_expression           go to state 84
+    shift_expression           go to state 160
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 123
 
-   90 unary_expression: LEFT_PARENTHESIS type RIGHT_PARENTHESIS .
+   81 shift_expression: additive_expression UNSIGNED_SHIFT_RIGHT_OP . shift_expression
 
-    $default  reduce using rule 90 (unary_expression)
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
+
+    shift_expression           go to state 161
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 124
 
-  100 simple_type_absolute_opt: SCOPE .
+   83 additive_expression: multiplicative_expression PLUS_OP . additive_expression
 
-    $default  reduce using rule 100 (simple_type_absolute_opt)
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
+
+    additive_expression        go to state 162
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 125
 
-   91 type: frequency_qualifier_opt array_type .
+   84 additive_expression: multiplicative_expression MINUS_OP . additive_expression
 
-    $default  reduce using rule 91 (type)
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
+
+    additive_expression        go to state 163
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 126
 
-   96 array_type: simple_type . LEFT_SQUARE_BRACKET array_type_size_opt RIGHT_SQUARE_BRACKET
+   86 multiplicative_expression: unary_expression MULTIPLY_OP . multiplicative_expression
 
-    LEFT_SQUARE_BRACKET  shift, and go to state 161
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
+
+    multiplicative_expression  go to state 164
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 127
 
-   99 simple_type: simple_type_absolute_opt . relative_type
+   87 multiplicative_expression: unary_expression DIVIDE_OP . multiplicative_expression
 
-    'A'  shift, and go to state 162
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
 
-    relative_type  go to state 163
+    multiplicative_expression  go to state 165
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 128
+
+   88 multiplicative_expression: unary_expression MODULO_OP . multiplicative_expression
+
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
+
+    multiplicative_expression  go to state 166
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
+
+
+State 129
+
+   90 unary_expression: LEFT_PARENTHESIS type RIGHT_PARENTHESIS . unary_expression
+
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
+
+    unary_expression    go to state 167
+    postfix_expression  go to state 87
+    primary_expression  go to state 88
+    literal_expression  go to state 89
+    boolean_literal     go to state 90
+
+
+State 130
+
+  102 simple_type_absolute_opt: SCOPE .
+
+    $default  reduce using rule 102 (simple_type_absolute_opt)
+
+
+State 131
+
+   92 type: frequency_qualifier_opt array_type .
+
+    $default  reduce using rule 92 (type)
+
+
+State 132
+
+   98 array_type: simple_type . LEFT_SQUARE_BRACKET array_type_size_opt RIGHT_SQUARE_BRACKET
+
+    LEFT_SQUARE_BRACKET  shift, and go to state 168
+
+
+State 133
+
+  101 simple_type: simple_type_absolute_opt . relative_type
+
+    BOOL                        shift, and go to state 169
+    BOOL2                       shift, and go to state 170
+    BOOL3                       shift, and go to state 171
+    BOOL4                       shift, and go to state 172
+    INT                         shift, and go to state 173
+    INT2                        shift, and go to state 174
+    INT3                        shift, and go to state 175
+    INT4                        shift, and go to state 176
+    FLOAT                       shift, and go to state 177
+    FLOAT2                      shift, and go to state 178
+    FLOAT3                      shift, and go to state 179
+    FLOAT4                      shift, and go to state 180
+    FLOAT2X2                    shift, and go to state 181
+    FLOAT2X3                    shift, and go to state 182
+    FLOAT2X4                    shift, and go to state 183
+    FLOAT3X2                    shift, and go to state 184
+    FLOAT3X3                    shift, and go to state 185
+    FLOAT3X4                    shift, and go to state 186
+    FLOAT4X2                    shift, and go to state 187
+    FLOAT4X3                    shift, and go to state 188
+    FLOAT4X4                    shift, and go to state 189
+    DOUBLE                      shift, and go to state 190
+    DOUBLE2                     shift, and go to state 191
+    DOUBLE3                     shift, and go to state 192
+    DOUBLE4                     shift, and go to state 193
+    DOUBLE2X2                   shift, and go to state 194
+    DOUBLE2X3                   shift, and go to state 195
+    DOUBLE2X4                   shift, and go to state 196
+    DOUBLE3X2                   shift, and go to state 197
+    DOUBLE3X3                   shift, and go to state 198
+    DOUBLE3X4                   shift, and go to state 199
+    DOUBLE4X2                   shift, and go to state 200
+    DOUBLE4X3                   shift, and go to state 201
+    DOUBLE4X4                   shift, and go to state 202
+    COLOR                       shift, and go to state 203
+    STRING                      shift, and go to state 204
+    SDF                         shift, and go to state 205
+    EDF                         shift, and go to state 206
+    VDF                         shift, and go to state 207
+    LIGHT_PROFILE               shift, and go to state 208
+    MATERIAL                    shift, and go to state 209
+    MATERIAL_EMISSION           shift, and go to state 210
+    MATERIAL_GEOMETRY           shift, and go to state 211
+    MATERIAL_SURFACE            shift, and go to state 212
+    MATERIAL_VOLUME             shift, and go to state 213
+    TEXTURE_2D                  shift, and go to state 214
+    TEXTURE_3D                  shift, and go to state 215
+    TEXTURE_CUBE                shift, and go to state 216
+    TEXTURE_PTEX                shift, and go to state 217
+    BSDF_MEASUREMENT            shift, and go to state 218
+    INTENSITY_MODE              shift, and go to state 219
+    INTENSITY_RADIANT_EXITANCE  shift, and go to state 220
+    INTENSITY_POWER             shift, and go to state 221
+    HAIR_BSDF                   shift, and go to state 222
+    IDENT                       shift, and go to state 223
+
+    relative_type        go to state 224
+    relative_type_ident  go to state 225
+
+
+State 134
 
    47 assignment_expression: logical_or_expression ASSIGN_OP assignment_expression .
 
     $default  reduce using rule 47 (assignment_expression)
 
 
-State 129
+State 135
 
    48 assignment_expression: logical_or_expression BITWISE_OR_ASSIGN_OP assignment_expression .
 
     $default  reduce using rule 48 (assignment_expression)
 
 
-State 130
+State 136
 
    49 assignment_expression: logical_or_expression BITWISE_AND_ASSIGN_OP assignment_expression .
 
     $default  reduce using rule 49 (assignment_expression)
 
 
-State 131
+State 137
 
    50 assignment_expression: logical_or_expression BITWISE_XOR_ASSIGN_OP assignment_expression .
 
     $default  reduce using rule 50 (assignment_expression)
 
 
-State 132
+State 138
 
    51 assignment_expression: logical_or_expression SHIFT_LEFT_ASSIGN_OP assignment_expression .
 
     $default  reduce using rule 51 (assignment_expression)
 
 
-State 133
+State 139
 
    52 assignment_expression: logical_or_expression SHIFT_RIGHT_ASSIGN_OP assignment_expression .
 
     $default  reduce using rule 52 (assignment_expression)
 
 
-State 134
+State 140
 
    53 assignment_expression: logical_or_expression UNSIGNED_SHIFT_RIGHT_ASSIGN_OP assignment_expression .
 
     $default  reduce using rule 53 (assignment_expression)
 
 
-State 135
+State 141
 
    54 assignment_expression: logical_or_expression MULTIPLY_ASSIGN_OP assignment_expression .
 
     $default  reduce using rule 54 (assignment_expression)
 
 
-State 136
+State 142
 
    55 assignment_expression: logical_or_expression DIVIDE_ASSIGN_OP assignment_expression .
 
     $default  reduce using rule 55 (assignment_expression)
 
 
-State 137
+State 143
 
    56 assignment_expression: logical_or_expression MODULO_ASSIGN_OP assignment_expression .
 
     $default  reduce using rule 56 (assignment_expression)
 
 
-State 138
+State 144
 
    57 assignment_expression: logical_or_expression PLUS_ASSIGN_OP assignment_expression .
 
     $default  reduce using rule 57 (assignment_expression)
 
 
-State 139
+State 145
 
    58 assignment_expression: logical_or_expression MINUS_ASSIGN_OP assignment_expression .
 
     $default  reduce using rule 58 (assignment_expression)
 
 
-State 140
+State 146
 
    60 conditional_expression: logical_or_expression CONDITIONAL_OP comma_expression . COLON assignment_expression
 
-    COLON  shift, and go to state 164
+    COLON  shift, and go to state 226
 
 
-State 141
+State 147
 
    44 comma_expression: assignment_expression . COMMA comma_expression
    45                 | assignment_expression .
 
-    COMMA  shift, and go to state 165
+    COMMA  shift, and go to state 227
 
     $default  reduce using rule 45 (comma_expression)
 
 
-State 142
+State 148
 
    61 logical_or_expression: logical_and_expression LOGICAL_OR_OP logical_or_expression .
 
     $default  reduce using rule 61 (logical_or_expression)
 
 
-State 143
+State 149
 
    63 logical_and_expression: inclusive_or_expression LOGICAL_AND_OP logical_and_expression .
 
     $default  reduce using rule 63 (logical_and_expression)
 
 
-State 144
+State 150
 
    65 inclusive_or_expression: exclusive_or_expression BITWISE_OR_OP inclusive_or_expression .
 
     $default  reduce using rule 65 (inclusive_or_expression)
 
 
-State 145
+State 151
 
    67 exclusive_or_expression: and_expression BITWISE_XOR_OP exclusive_or_expression .
 
     $default  reduce using rule 67 (exclusive_or_expression)
 
 
-State 146
+State 152
 
    69 and_expression: equality_expression BITWISE_AND_OP and_expression .
 
     $default  reduce using rule 69 (and_expression)
 
 
-State 147
+State 153
 
    71 equality_expression: relational_expression EQUAL_OP equality_expression .
 
     $default  reduce using rule 71 (equality_expression)
 
 
-State 148
+State 154
 
    72 equality_expression: relational_expression NOT_EQUAL_OP equality_expression .
 
     $default  reduce using rule 72 (equality_expression)
 
 
-State 149
+State 155
 
    74 relational_expression: shift_expression LESS_OP relational_expression .
 
     $default  reduce using rule 74 (relational_expression)
 
 
-State 150
+State 156
 
    75 relational_expression: shift_expression LESS_OR_EQUAL_OP relational_expression .
 
     $default  reduce using rule 75 (relational_expression)
 
 
-State 151
+State 157
 
    76 relational_expression: shift_expression GREATER_OR_EQUAL_OP relational_expression .
 
     $default  reduce using rule 76 (relational_expression)
 
 
-State 152
+State 158
 
    77 relational_expression: shift_expression GREATER_OP relational_expression .
 
     $default  reduce using rule 77 (relational_expression)
 
 
-State 153
+State 159
 
    79 shift_expression: additive_expression SHIFT_LEFT_OP shift_expression .
 
     $default  reduce using rule 79 (shift_expression)
 
 
-State 154
+State 160
 
    80 shift_expression: additive_expression SHIFT_RIGHT_OP shift_expression .
 
     $default  reduce using rule 80 (shift_expression)
 
 
-State 155
+State 161
 
    81 shift_expression: additive_expression UNSIGNED_SHIFT_RIGHT_OP shift_expression .
 
     $default  reduce using rule 81 (shift_expression)
 
 
-State 156
+State 162
 
    83 additive_expression: multiplicative_expression PLUS_OP additive_expression .
 
     $default  reduce using rule 83 (additive_expression)
 
 
-State 157
+State 163
 
    84 additive_expression: multiplicative_expression MINUS_OP additive_expression .
 
     $default  reduce using rule 84 (additive_expression)
 
 
-State 158
+State 164
 
    86 multiplicative_expression: unary_expression MULTIPLY_OP multiplicative_expression .
 
     $default  reduce using rule 86 (multiplicative_expression)
 
 
-State 159
+State 165
 
    87 multiplicative_expression: unary_expression DIVIDE_OP multiplicative_expression .
 
     $default  reduce using rule 87 (multiplicative_expression)
 
 
-State 160
+State 166
 
    88 multiplicative_expression: unary_expression MODULO_OP multiplicative_expression .
 
     $default  reduce using rule 88 (multiplicative_expression)
 
 
-State 161
-
-   96 array_type: simple_type LEFT_SQUARE_BRACKET . array_type_size_opt RIGHT_SQUARE_BRACKET
-
-    LEFT_PARENTHESIS    shift, and go to state 71
-    LEFT_ANGLE_BRACKET  shift, and go to state 166
-
-    conditional_expression     go to state 167
-    logical_or_expression      go to state 168
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
-    array_type_size_opt        go to state 169
-
-
-State 162
-
-  102 relative_type: 'A' .
-
-    $default  reduce using rule 102 (relative_type)
-
-
-State 163
-
-   99 simple_type: simple_type_absolute_opt relative_type .
-
-    $default  reduce using rule 99 (simple_type)
-
-
-State 164
-
-   60 conditional_expression: logical_or_expression CONDITIONAL_OP comma_expression COLON . assignment_expression
-
-    LEFT_PARENTHESIS  shift, and go to state 71
-
-    assignment_expression      go to state 170
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
-
-
-State 165
-
-   44 comma_expression: assignment_expression COMMA . comma_expression
-
-    LEFT_PARENTHESIS  shift, and go to state 71
-
-    comma_expression           go to state 171
-    assignment_expression      go to state 141
-    conditional_expression     go to state 73
-    logical_or_expression      go to state 74
-    logical_and_expression     go to state 75
-    inclusive_or_expression    go to state 76
-    exclusive_or_expression    go to state 77
-    and_expression             go to state 78
-    equality_expression        go to state 79
-    relational_expression      go to state 80
-    shift_expression           go to state 81
-    additive_expression        go to state 82
-    multiplicative_expression  go to state 83
-    unary_expression           go to state 84
-
-
-State 166
-
-   98 array_type_size_opt: LEFT_ANGLE_BRACKET . simple_name RIGHT_ANGLE_BRACKET
-
-    IDENT  shift, and go to state 30
-
-    simple_name  go to state 172
-
-
 State 167
 
-   97 array_type_size_opt: conditional_expression .
+   90 unary_expression: LEFT_PARENTHESIS type RIGHT_PARENTHESIS unary_expression .
 
-    $default  reduce using rule 97 (array_type_size_opt)
+    $default  reduce using rule 90 (unary_expression)
 
 
 State 168
 
-   60 conditional_expression: logical_or_expression . CONDITIONAL_OP comma_expression COLON assignment_expression
+   98 array_type: simple_type LEFT_SQUARE_BRACKET . array_type_size_opt RIGHT_SQUARE_BRACKET
 
-    CONDITIONAL_OP  shift, and go to state 103
+    TRUE                shift, and go to state 71
+    FALSE               shift, and go to state 72
+    LEFT_PARENTHESIS    shift, and go to state 73
+    LEFT_ANGLE_BRACKET  shift, and go to state 228
+
+    conditional_expression     go to state 229
+    logical_or_expression      go to state 230
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    array_type_size_opt        go to state 231
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
 
 
 State 169
 
-   96 array_type: simple_type LEFT_SQUARE_BRACKET array_type_size_opt . RIGHT_SQUARE_BRACKET
+  104 relative_type: BOOL .
 
-    RIGHT_SQUARE_BRACKET  shift, and go to state 173
+    $default  reduce using rule 104 (relative_type)
 
 
 State 170
+
+  105 relative_type: BOOL2 .
+
+    $default  reduce using rule 105 (relative_type)
+
+
+State 171
+
+  106 relative_type: BOOL3 .
+
+    $default  reduce using rule 106 (relative_type)
+
+
+State 172
+
+  107 relative_type: BOOL4 .
+
+    $default  reduce using rule 107 (relative_type)
+
+
+State 173
+
+  108 relative_type: INT .
+
+    $default  reduce using rule 108 (relative_type)
+
+
+State 174
+
+  109 relative_type: INT2 .
+
+    $default  reduce using rule 109 (relative_type)
+
+
+State 175
+
+  110 relative_type: INT3 .
+
+    $default  reduce using rule 110 (relative_type)
+
+
+State 176
+
+  111 relative_type: INT4 .
+
+    $default  reduce using rule 111 (relative_type)
+
+
+State 177
+
+  112 relative_type: FLOAT .
+
+    $default  reduce using rule 112 (relative_type)
+
+
+State 178
+
+  113 relative_type: FLOAT2 .
+
+    $default  reduce using rule 113 (relative_type)
+
+
+State 179
+
+  114 relative_type: FLOAT3 .
+
+    $default  reduce using rule 114 (relative_type)
+
+
+State 180
+
+  115 relative_type: FLOAT4 .
+
+    $default  reduce using rule 115 (relative_type)
+
+
+State 181
+
+  116 relative_type: FLOAT2X2 .
+
+    $default  reduce using rule 116 (relative_type)
+
+
+State 182
+
+  117 relative_type: FLOAT2X3 .
+
+    $default  reduce using rule 117 (relative_type)
+
+
+State 183
+
+  118 relative_type: FLOAT2X4 .
+
+    $default  reduce using rule 118 (relative_type)
+
+
+State 184
+
+  119 relative_type: FLOAT3X2 .
+
+    $default  reduce using rule 119 (relative_type)
+
+
+State 185
+
+  120 relative_type: FLOAT3X3 .
+
+    $default  reduce using rule 120 (relative_type)
+
+
+State 186
+
+  121 relative_type: FLOAT3X4 .
+
+    $default  reduce using rule 121 (relative_type)
+
+
+State 187
+
+  122 relative_type: FLOAT4X2 .
+
+    $default  reduce using rule 122 (relative_type)
+
+
+State 188
+
+  123 relative_type: FLOAT4X3 .
+
+    $default  reduce using rule 123 (relative_type)
+
+
+State 189
+
+  124 relative_type: FLOAT4X4 .
+
+    $default  reduce using rule 124 (relative_type)
+
+
+State 190
+
+  125 relative_type: DOUBLE .
+
+    $default  reduce using rule 125 (relative_type)
+
+
+State 191
+
+  126 relative_type: DOUBLE2 .
+
+    $default  reduce using rule 126 (relative_type)
+
+
+State 192
+
+  127 relative_type: DOUBLE3 .
+
+    $default  reduce using rule 127 (relative_type)
+
+
+State 193
+
+  128 relative_type: DOUBLE4 .
+
+    $default  reduce using rule 128 (relative_type)
+
+
+State 194
+
+  129 relative_type: DOUBLE2X2 .
+
+    $default  reduce using rule 129 (relative_type)
+
+
+State 195
+
+  130 relative_type: DOUBLE2X3 .
+
+    $default  reduce using rule 130 (relative_type)
+
+
+State 196
+
+  131 relative_type: DOUBLE2X4 .
+
+    $default  reduce using rule 131 (relative_type)
+
+
+State 197
+
+  132 relative_type: DOUBLE3X2 .
+
+    $default  reduce using rule 132 (relative_type)
+
+
+State 198
+
+  133 relative_type: DOUBLE3X3 .
+
+    $default  reduce using rule 133 (relative_type)
+
+
+State 199
+
+  134 relative_type: DOUBLE3X4 .
+
+    $default  reduce using rule 134 (relative_type)
+
+
+State 200
+
+  135 relative_type: DOUBLE4X2 .
+
+    $default  reduce using rule 135 (relative_type)
+
+
+State 201
+
+  136 relative_type: DOUBLE4X3 .
+
+    $default  reduce using rule 136 (relative_type)
+
+
+State 202
+
+  137 relative_type: DOUBLE4X4 .
+
+    $default  reduce using rule 137 (relative_type)
+
+
+State 203
+
+  138 relative_type: COLOR .
+
+    $default  reduce using rule 138 (relative_type)
+
+
+State 204
+
+  139 relative_type: STRING .
+
+    $default  reduce using rule 139 (relative_type)
+
+
+State 205
+
+  140 relative_type: SDF .
+
+    $default  reduce using rule 140 (relative_type)
+
+
+State 206
+
+  141 relative_type: EDF .
+
+    $default  reduce using rule 141 (relative_type)
+
+
+State 207
+
+  142 relative_type: VDF .
+
+    $default  reduce using rule 142 (relative_type)
+
+
+State 208
+
+  143 relative_type: LIGHT_PROFILE .
+
+    $default  reduce using rule 143 (relative_type)
+
+
+State 209
+
+  144 relative_type: MATERIAL .
+
+    $default  reduce using rule 144 (relative_type)
+
+
+State 210
+
+  145 relative_type: MATERIAL_EMISSION .
+
+    $default  reduce using rule 145 (relative_type)
+
+
+State 211
+
+  146 relative_type: MATERIAL_GEOMETRY .
+
+    $default  reduce using rule 146 (relative_type)
+
+
+State 212
+
+  147 relative_type: MATERIAL_SURFACE .
+
+    $default  reduce using rule 147 (relative_type)
+
+
+State 213
+
+  148 relative_type: MATERIAL_VOLUME .
+
+    $default  reduce using rule 148 (relative_type)
+
+
+State 214
+
+  149 relative_type: TEXTURE_2D .
+
+    $default  reduce using rule 149 (relative_type)
+
+
+State 215
+
+  150 relative_type: TEXTURE_3D .
+
+    $default  reduce using rule 150 (relative_type)
+
+
+State 216
+
+  151 relative_type: TEXTURE_CUBE .
+
+    $default  reduce using rule 151 (relative_type)
+
+
+State 217
+
+  152 relative_type: TEXTURE_PTEX .
+
+    $default  reduce using rule 152 (relative_type)
+
+
+State 218
+
+  153 relative_type: BSDF_MEASUREMENT .
+
+    $default  reduce using rule 153 (relative_type)
+
+
+State 219
+
+  154 relative_type: INTENSITY_MODE .
+
+    $default  reduce using rule 154 (relative_type)
+
+
+State 220
+
+  155 relative_type: INTENSITY_RADIANT_EXITANCE .
+
+    $default  reduce using rule 155 (relative_type)
+
+
+State 221
+
+  156 relative_type: INTENSITY_POWER .
+
+    $default  reduce using rule 156 (relative_type)
+
+
+State 222
+
+  157 relative_type: HAIR_BSDF .
+
+    $default  reduce using rule 157 (relative_type)
+
+
+State 223
+
+  159 relative_type_ident: IDENT . SCOPE relative_type_ident
+  160                    | IDENT .
+
+    SCOPE  shift, and go to state 232
+
+    $default  reduce using rule 160 (relative_type_ident)
+
+
+State 224
+
+  101 simple_type: simple_type_absolute_opt relative_type .
+
+    $default  reduce using rule 101 (simple_type)
+
+
+State 225
+
+  158 relative_type: relative_type_ident .
+
+    $default  reduce using rule 158 (relative_type)
+
+
+State 226
+
+   60 conditional_expression: logical_or_expression CONDITIONAL_OP comma_expression COLON . assignment_expression
+
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
+
+    assignment_expression      go to state 233
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
+
+
+State 227
+
+   44 comma_expression: assignment_expression COMMA . comma_expression
+
+    TRUE              shift, and go to state 71
+    FALSE             shift, and go to state 72
+    LEFT_PARENTHESIS  shift, and go to state 73
+
+    comma_expression           go to state 234
+    assignment_expression      go to state 147
+    conditional_expression     go to state 75
+    logical_or_expression      go to state 76
+    logical_and_expression     go to state 77
+    inclusive_or_expression    go to state 78
+    exclusive_or_expression    go to state 79
+    and_expression             go to state 80
+    equality_expression        go to state 81
+    relational_expression      go to state 82
+    shift_expression           go to state 83
+    additive_expression        go to state 84
+    multiplicative_expression  go to state 85
+    unary_expression           go to state 86
+    postfix_expression         go to state 87
+    primary_expression         go to state 88
+    literal_expression         go to state 89
+    boolean_literal            go to state 90
+
+
+State 228
+
+  100 array_type_size_opt: LEFT_ANGLE_BRACKET . simple_name RIGHT_ANGLE_BRACKET
+
+    IDENT  shift, and go to state 30
+
+    simple_name  go to state 235
+
+
+State 229
+
+   99 array_type_size_opt: conditional_expression .
+
+    $default  reduce using rule 99 (array_type_size_opt)
+
+
+State 230
+
+   60 conditional_expression: logical_or_expression . CONDITIONAL_OP comma_expression COLON assignment_expression
+
+    CONDITIONAL_OP  shift, and go to state 109
+
+
+State 231
+
+   98 array_type: simple_type LEFT_SQUARE_BRACKET array_type_size_opt . RIGHT_SQUARE_BRACKET
+
+    RIGHT_SQUARE_BRACKET  shift, and go to state 236
+
+
+State 232
+
+  159 relative_type_ident: IDENT SCOPE . relative_type_ident
+
+    IDENT  shift, and go to state 223
+
+    relative_type_ident  go to state 237
+
+
+State 233
 
    60 conditional_expression: logical_or_expression CONDITIONAL_OP comma_expression COLON assignment_expression .
 
     $default  reduce using rule 60 (conditional_expression)
 
 
-State 171
+State 234
 
    44 comma_expression: assignment_expression COMMA comma_expression .
 
     $default  reduce using rule 44 (comma_expression)
 
 
-State 172
+State 235
 
-   98 array_type_size_opt: LEFT_ANGLE_BRACKET simple_name . RIGHT_ANGLE_BRACKET
+  100 array_type_size_opt: LEFT_ANGLE_BRACKET simple_name . RIGHT_ANGLE_BRACKET
 
-    RIGHT_ANGLE_BRACKET  shift, and go to state 174
-
-
-State 173
-
-   96 array_type: simple_type LEFT_SQUARE_BRACKET array_type_size_opt RIGHT_SQUARE_BRACKET .
-
-    $default  reduce using rule 96 (array_type)
+    RIGHT_ANGLE_BRACKET  shift, and go to state 238
 
 
-State 174
+State 236
 
-   98 array_type_size_opt: LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET .
+   98 array_type: simple_type LEFT_SQUARE_BRACKET array_type_size_opt RIGHT_SQUARE_BRACKET .
 
-    $default  reduce using rule 98 (array_type_size_opt)
+    $default  reduce using rule 98 (array_type)
+
+
+State 237
+
+  159 relative_type_ident: IDENT SCOPE relative_type_ident .
+
+    $default  reduce using rule 159 (relative_type_ident)
+
+
+State 238
+
+  100 array_type_size_opt: LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET .
+
+    $default  reduce using rule 100 (array_type_size_opt)

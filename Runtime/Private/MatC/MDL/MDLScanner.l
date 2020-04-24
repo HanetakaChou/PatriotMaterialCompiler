@@ -27,6 +27,67 @@ MODULE ("module")
 EXPORT ("export")
 UNIFORM ("uniform")
 VARYING ("varying")
+BOOL ("bool")
+BOOL2 ("bool2")
+BOOL3 ("bool3")
+BOOL4 ("bool4")
+INT ("int")
+INT2 ("int2")
+INT3 ("int3")
+INT4 ("int4")
+FLOAT ("float")
+FLOAT2 ("float2")
+FLOAT3 ("float3")
+FLOAT4 ("float4")
+FLOAT2X2 ("float2x2")
+FLOAT2X3 ("float2x3")
+FLOAT2X4 ("float2x4")
+FLOAT3X2 ("float3x2")
+FLOAT3X3 ("float3x3")
+FLOAT3X4 ("float3x4")
+FLOAT4X2 ("float4x2")
+FLOAT4X3 ("float4x3")
+FLOAT4X4 ("float4x4")
+DOUBLE ("double")
+DOUBLE2 ("double2")
+DOUBLE3 ("double3")
+DOUBLE4 ("double4")
+DOUBLE2X2 ("double2x2")
+DOUBLE2X3 ("double2x3")
+DOUBLE2X4 ("double2x4")
+DOUBLE3X2 ("double3x2")
+DOUBLE3X3 ("double3x3")
+DOUBLE3X4 ("double3x4")
+DOUBLE4X2 ("double4x2")
+DOUBLE4X3 ("double4x3")
+DOUBLE4X4 ("double4x4")
+COLOR ("color")
+STRING ("string")
+SDF ("bsdf")
+EDF ("edf")
+VDF ("vdf")
+LIGHT_PROFILE ("light_profile")
+MATERIAL ("material")
+MATERIAL_EMISSION ("material_emission")
+MATERIAL_GEOMETRY ("material_geometry")
+MATERIAL_SURFACE ("material_surface")
+MATERIAL_VOLUME ("material_volume")
+TEXTURE_2D ("texture_2d")
+TEXTURE_3D ("texture_3d")
+TEXTURE_CUBE ("texture_cube")
+TEXTURE_PTEX ("texture_ptex")
+/* MDL 1.1+ */
+BSDF_MEASUREMENT ("bsdf_measurement")
+/* MDL 1.1+ */
+INTENSITY_MODE ("intensity_mode")
+/* MDL 1.1+ */
+INTENSITY_RADIANT_EXITANCE ("intensity_radiant_exitance")
+/* MDL 1.1+ */
+INTENSITY_POWER ("intensity_power")
+/* MDL 1.5+ */
+HAIR_BSDF ("hair_bsdf")
+TRUE ("true")
+FALSE ("false")
 
 /* operators */
 ASSIGN_OP ("=")
@@ -145,6 +206,236 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
 
 {VARYING} {
     return YYTOKEN_VARYING;
+    }
+
+{BOOL}  {
+    return YYTOKEN_BOOL;
+    }
+
+{BOOL2}  {
+    return YYTOKEN_BOOL2;
+    }
+
+{BOOL3}  {
+    return YYTOKEN_BOOL3;
+    }
+
+{BOOL4}  {
+    return YYTOKEN_BOOL4;
+    }
+
+{INT}  {
+    return YYTOKEN_INT;
+    }
+
+
+{INT2}  {
+    return YYTOKEN_INT2;
+    }
+
+{INT3}  {
+    return YYTOKEN_INT3;
+    }
+
+{INT4}  {
+    return YYTOKEN_INT4;
+    }
+
+{FLOAT}  {
+    return YYTOKEN_FLOAT;
+    }
+
+{FLOAT2}  {
+    return YYTOKEN_FLOAT2;
+    }
+
+{FLOAT3}  {
+    return YYTOKEN_FLOAT3;
+    }
+
+{FLOAT4}  {
+    return YYTOKEN_FLOAT4;
+    }
+
+{FLOAT2X2}  {
+    return YYTOKEN_FLOAT2X2;
+    }
+
+{FLOAT2X3}  {
+    return YYTOKEN_FLOAT2X3;
+    }
+
+{FLOAT2X4}  {
+    return YYTOKEN_FLOAT2X4;
+    }
+
+{FLOAT3X2}  {
+    return YYTOKEN_FLOAT3X2;
+    }
+
+{FLOAT3X3}  {
+    return YYTOKEN_FLOAT3X3;
+    }
+
+{FLOAT3X4}  {
+    return YYTOKEN_FLOAT3X4;
+    }
+
+{FLOAT4X2}  {
+    return YYTOKEN_FLOAT4X2;
+    }
+
+{FLOAT4X3}  {
+    return YYTOKEN_FLOAT4X3;
+    }
+
+{FLOAT4X4}  {
+    return YYTOKEN_FLOAT4X4;
+    }
+
+{DOUBLE}  {
+    return YYTOKEN_DOUBLE;
+    }
+
+{DOUBLE2}  {
+    return YYTOKEN_DOUBLE2;
+    }
+
+{DOUBLE3}  {
+    return YYTOKEN_DOUBLE3;
+    }
+
+{DOUBLE4}  {
+    return YYTOKEN_DOUBLE4;
+    }
+
+{DOUBLE2X2}  {
+    return YYTOKEN_DOUBLE2X2;
+    }
+
+{DOUBLE2X3}  {
+    return YYTOKEN_DOUBLE2X3;
+    }
+
+{DOUBLE2X4}  {
+    return YYTOKEN_DOUBLE2X4;
+    }
+
+{DOUBLE3X2}  {
+    return YYTOKEN_DOUBLE3X2;
+    }
+
+{DOUBLE3X3}  {
+    return YYTOKEN_DOUBLE3X3;
+    }
+
+{DOUBLE3X4}  {
+    return YYTOKEN_DOUBLE3X4;
+    }
+
+{DOUBLE4X2}  {
+    return YYTOKEN_DOUBLE4X2;
+    }
+
+{DOUBLE4X3}  {
+    return YYTOKEN_DOUBLE4X3;
+    }
+
+{DOUBLE4X4}  {
+    return YYTOKEN_DOUBLE4X4;
+    }
+
+{COLOR}  {
+    return YYTOKEN_COLOR;
+    }
+
+{STRING}  {
+    return YYTOKEN_STRING;
+    }
+
+{SDF}  {
+    return YYTOKEN_SDF;
+    }
+
+{EDF}  {
+    return YYTOKEN_EDF;
+    }
+
+{VDF}  {
+    return YYTOKEN_VDF;
+    }
+
+{LIGHT_PROFILE}  {
+    return YYTOKEN_LIGHT_PROFILE;
+    }
+
+{MATERIAL}  {
+    return YYTOKEN_MATERIAL;
+    }
+
+{MATERIAL_EMISSION}  {
+    return YYTOKEN_MATERIAL_EMISSION;
+    }
+
+{MATERIAL_GEOMETRY}  {
+    return YYTOKEN_MATERIAL_GEOMETRY;
+    }
+
+{MATERIAL_SURFACE}  {
+    return YYTOKEN_MATERIAL_SURFACE;
+    }
+
+{MATERIAL_VOLUME}  {
+    return YYTOKEN_MATERIAL_VOLUME;
+    }
+
+{TEXTURE_2D}  {
+    return YYTOKEN_TEXTURE_2D;
+    }
+
+{TEXTURE_3D}  {
+    return YYTOKEN_TEXTURE_3D;
+    }
+
+{TEXTURE_CUBE}  {
+    return YYTOKEN_TEXTURE_CUBE;
+    }
+
+{TEXTURE_PTEX}  {
+    return YYTOKEN_TEXTURE_PTEX;
+    }
+
+    /* MDL 1.1+ */
+{BSDF_MEASUREMENT}  {
+    return YYTOKEN_BSDF_MEASUREMENT;
+    }
+
+    /* MDL 1.1+ */
+{INTENSITY_MODE}  {
+    return YYTOKEN_INTENSITY_MODE;
+    }
+
+    /* MDL 1.1+ */
+{INTENSITY_RADIANT_EXITANCE}  {
+    return YYTOKEN_INTENSITY_RADIANT_EXITANCE;
+    }
+
+    /* MDL 1.1+ */
+{INTENSITY_POWER}  {
+    return YYTOKEN_INTENSITY_POWER;
+    }
+
+    /* MDL 1.5+ */
+{HAIR_BSDF}  {
+    return YYTOKEN_HAIR_BSDF;
+    }
+
+{TRUE} {
+    return YYTOKEN_TRUE;
+    }
+
+{FALSE} {
+    return YYTOKEN_FALSE;
     }
 
     /* operators */

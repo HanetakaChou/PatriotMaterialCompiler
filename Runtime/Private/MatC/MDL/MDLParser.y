@@ -24,6 +24,62 @@
 %token EXPORT
 %token UNIFORM
 %token VARYING
+%token BOOL
+%token BOOL2
+%token BOOL3
+%token BOOL4 
+%token INT
+%token INT2
+%token INT3
+%token INT4 
+%token FLOAT
+%token FLOAT2 
+%token FLOAT3
+%token FLOAT4
+%token FLOAT2X2 
+%token FLOAT2X3
+%token FLOAT2X4
+%token FLOAT3X2 
+%token FLOAT3X3 
+%token FLOAT3X4 
+%token FLOAT4X2
+%token FLOAT4X3
+%token FLOAT4X4 
+%token DOUBLE
+%token DOUBLE2
+%token DOUBLE3 
+%token DOUBLE4 
+%token DOUBLE2X2 
+%token DOUBLE2X3 
+%token DOUBLE2X4 
+%token DOUBLE3X2 
+%token DOUBLE3X3 
+%token DOUBLE3X4 
+%token DOUBLE4X2
+%token DOUBLE4X3 
+%token DOUBLE4X4 
+%token COLOR
+%token STRING
+%token SDF
+%token EDF
+%token VDF 
+%token LIGHT_PROFILE
+%token MATERIAL
+%token MATERIAL_EMISSION
+%token MATERIAL_GEOMETRY
+%token MATERIAL_SURFACE 
+%token MATERIAL_VOLUME
+%token TEXTURE_2D
+%token TEXTURE_3D 
+%token TEXTURE_CUBE 
+%token TEXTURE_PTEX
+%token BSDF_MEASUREMENT
+%token INTENSITY_MODE 
+%token INTENSITY_RADIANT_EXITANCE
+%token INTENSITY_POWER
+%token HAIR_BSDF
+%token TRUE
+%token FALSE
 %token ASSIGN_OP
 %token BITWISE_OR_ASSIGN_OP
 %token BITWISE_AND_ASSIGN_OP
@@ -214,9 +270,12 @@ multiplicative_expression: unary_expression DIVIDE_OP multiplicative_expression;
 multiplicative_expression: unary_expression MODULO_OP multiplicative_expression; 
 multiplicative_expression: unary_expression;
 
-unary_expression: LEFT_PARENTHESIS type RIGHT_PARENTHESIS;
+unary_expression: LEFT_PARENTHESIS type RIGHT_PARENTHESIS unary_expression;
+unary_expression: postfix_expression;
 
 type: frequency_qualifier_opt array_type;
+
+postfix_expression: primary_expression;
 
 frequency_qualifier_opt: frequency_qualifier;
 frequency_qualifier_opt: ;
@@ -234,6 +293,70 @@ simple_type: simple_type_absolute_opt relative_type;
 simple_type_absolute_opt: SCOPE;
 simple_type_absolute_opt: ;
 
-relative_type: 'A';
+relative_type: BOOL;
+relative_type: BOOL2;
+relative_type: BOOL3;
+relative_type: BOOL4;
+relative_type: INT;
+relative_type: INT2;
+relative_type: INT3;
+relative_type: INT4;
+relative_type: FLOAT;
+relative_type: FLOAT2;
+relative_type: FLOAT3;
+relative_type: FLOAT4;
+relative_type: FLOAT2X2;
+relative_type: FLOAT2X3;
+relative_type: FLOAT2X4;
+relative_type: FLOAT3X2;
+relative_type: FLOAT3X3;
+relative_type: FLOAT3X4;
+relative_type: FLOAT4X2;
+relative_type: FLOAT4X3;
+relative_type: FLOAT4X4; 
+relative_type: DOUBLE;
+relative_type: DOUBLE2;
+relative_type: DOUBLE3; 
+relative_type: DOUBLE4;
+relative_type: DOUBLE2X2;
+relative_type: DOUBLE2X3;
+relative_type: DOUBLE2X4; 
+relative_type: DOUBLE3X2;
+relative_type: DOUBLE3X3;
+relative_type: DOUBLE3X4;
+relative_type: DOUBLE4X2;
+relative_type: DOUBLE4X3; 
+relative_type: DOUBLE4X4; 
+relative_type: COLOR;
+relative_type: STRING;
+relative_type: SDF;
+relative_type: EDF;
+relative_type: VDF;
+relative_type: LIGHT_PROFILE;
+relative_type: MATERIAL;
+relative_type: MATERIAL_EMISSION;
+relative_type: MATERIAL_GEOMETRY;
+relative_type: MATERIAL_SURFACE; 
+relative_type: MATERIAL_VOLUME;
+relative_type: TEXTURE_2D;
+relative_type: TEXTURE_3D; 
+relative_type: TEXTURE_CUBE; 
+relative_type: TEXTURE_PTEX;
+relative_type: BSDF_MEASUREMENT;
+relative_type: INTENSITY_MODE;
+relative_type: INTENSITY_RADIANT_EXITANCE;
+relative_type: INTENSITY_POWER;
+relative_type: HAIR_BSDF;
+relative_type: relative_type_ident;
+
+relative_type_ident: IDENT SCOPE relative_type_ident;
+relative_type_ident: IDENT;
+
+primary_expression: literal_expression;
+
+literal_expression: boolean_literal;
+
+boolean_literal: TRUE;
+boolean_literal: FALSE;
 
 //%%
