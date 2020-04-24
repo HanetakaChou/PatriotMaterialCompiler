@@ -155,12 +155,13 @@ import_declaration: EXPORT USING qualified_import_prefix IMPORT unqualified_impo
 qualified_imports: qualified_imports COMMA qualified_import;
 qualified_imports: qualified_import;
 
-qualified_import_prefix: qualified_import_prefix_opt qualified_name;
+qualified_import_prefix: qualified_import_prefix_opt qualified_name_infix;
 
 unqualified_import: unqualified_import_simple_names;
 unqualified_import: STAR;
 
-qualified_import: qualified_import_prefix_opt qualified_name qualified_import_suffix_opt;
+qualified_import: qualified_import_prefix_opt qualified_name_infix qualified_import_suffix;
+qualified_import: qualified_import_prefix_opt qualified_name_infix;
 
 unqualified_import_simple_names: unqualified_import_simple_names COMMA simple_name;
 unqualified_import_simple_names: simple_name;
@@ -177,20 +178,15 @@ qualified_import_prefix_relative_parent: DOTDOT SCOPE;
 
 qualified_import_prefix_absolute: SCOPE;
 
-qualified_name: qualified_name SCOPE simple_name;
-qualified_name: simple_name;
-
-qualified_import_suffix_opt: qualified_import_suffix;
-qualified_import_suffix_opt: ;
+qualified_name_infix: qualified_name_infix SCOPE simple_name;
+qualified_name_infix: simple_name;
 
 qualified_import_suffix: SCOPE STAR;
 
 simple_name: IDENT;
 
-module_declaration: MODULE annotation_block_opt SEMICOLON;
-
-annotation_block_opt: annotation_block;
-annotation_block_opt: ;
+module_declaration: MODULE annotation_block SEMICOLON;
+module_declaration: MODULE SEMICOLON;
 
 annotation_block: ANNOTATION_BLOCK_BEGIN annotations ANNOTATION_BLOCK_END;
 
@@ -198,6 +194,9 @@ annotations: annotations COMMA annotation;
 annotations: annotation;
 
 annotation: qualified_name argument_list;
+
+qualified_name: SCOPE qualified_name_infix;
+qualified_name: qualified_name_infix;
 
 argument_list: LEFT_PARENTHESIS named_arguments RIGHT_PARENTHESIS;
 
@@ -268,28 +267,41 @@ multiplicative_expression: unary_expression DIVIDE_OP multiplicative_expression;
 multiplicative_expression: unary_expression MODULO_OP multiplicative_expression; 
 multiplicative_expression: unary_expression;
 
-unary_expression: LEFT_PARENTHESIS type RIGHT_PARENTHESIS unary_expression;
+unary_expression: 'A' LEFT_PARENTHESIS type RIGHT_PARENTHESIS unary_expression;
 unary_expression: postfix_expression;
-
-type: frequency_qualifier_opt array_type;
 
 postfix_expression: primary_expression;
 
-frequency_qualifier_opt: frequency_qualifier;
-frequency_qualifier_opt: ;
+primary_expression: literal_expression;
+primary_expression: simple_type;
+primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
+primary_expression: LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS;
 
-frequency_qualifier: VARYING;
-frequency_qualifier: UNIFORM;
+literal_expression: boolean_literal;
+literal_expression: integer_literal;
+literal_expression: floating_literal;
+literal_expression: string_literal;
 
-array_type: simple_type LEFT_SQUARE_BRACKET array_type_size_opt RIGHT_SQUARE_BRACKET;
+boolean_literal: TRUE;
+boolean_literal: FALSE;
 
-array_type_size_opt: conditional_expression;
-array_type_size_opt: LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET;
+integer_literal: INTEGER_LITERAL;
 
-simple_type: simple_type_absolute_opt relative_type;
+floating_literal: FLOATING_LITERAL;
 
-simple_type_absolute_opt: SCOPE;
-simple_type_absolute_opt: ;
+string_literal: string_literal STRING_LITERAL;
+string_literal: STRING_LITERAL;
+
+type: VARYING array_type;
+type: UNIFORM array_type;
+type: array_type;
+
+array_type: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
+array_type: simple_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET;
+array_type: simple_type LEFT_SQUARE_BRACKET LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET RIGHT_SQUARE_BRACKET;
+
+simple_type: SCOPE relative_type;
+simple_type: relative_type;
 
 relative_type: BOOL;
 relative_type: BOOL2;
@@ -345,31 +357,6 @@ relative_type: INTENSITY_MODE;
 relative_type: INTENSITY_RADIANT_EXITANCE;
 relative_type: INTENSITY_POWER;
 relative_type: HAIR_BSDF;
-relative_type: relative_type_ident;
-
-relative_type_ident: IDENT SCOPE relative_type_ident;
-relative_type_ident: IDENT;
-
-primary_expression: literal_expression;
-primary_expression: simple_type;
-primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
-
-literal_expression: boolean_literal;
-literal_expression: integer_literal;
-literal_expression: floating_literal;
-literal_expression: string_literal;
-
-boolean_literal: TRUE;
-boolean_literal: FALSE;
-
-integer_literal: INTEGER_LITERAL;
-
-floating_literal: FLOATING_LITERAL;
-
-string_literal: string_literal STRING_LITERAL;
-string_literal: STRING_LITERAL;
-
-
-
+relative_type: qualified_name_infix;
 
 //%%
