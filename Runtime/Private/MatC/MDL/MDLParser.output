@@ -1,0 +1,552 @@
+Terminals unused in grammar
+
+   MODULE
+   INTEGER_LITERAL
+
+
+Grammar
+
+    0 $accept: mdl $end
+
+    1 mdl: mdl_version import_declarations_opt
+
+    2 mdl_version: MDL FLOATING_LITERAL SEMICOLON
+
+    3 import_declarations_opt: import_declarations
+    4                        | %empty
+
+    5 import_declarations: import_declarations import_declaration
+    6                    | import_declaration
+
+    7 import_declaration: IMPORT qualified_imports SEMICOLON
+    8                   | EXPORT USING qualified_import_prefix IMPORT unqualified_import SEMICOLON
+
+    9 qualified_imports: qualified_imports COMMA qualified_import
+   10                  | qualified_import
+
+   11 qualified_import_prefix: qualified_import_prefix_opt qualified_import_infix
+
+   12 unqualified_import: unqualified_import_simple_names
+   13                   | STAR
+
+   14 qualified_import: qualified_import_prefix_opt qualified_import_infix qualified_import_suffix_opt
+
+   15 unqualified_import_simple_names: unqualified_import_simple_names COMMA simple_name
+   16                                | simple_name
+
+   17 qualified_import_prefix_opt: qualified_import_prefix_relative_current
+   18                            | qualified_import_prefix_relative_parent
+   19                            | qualified_import_prefix_absolute
+   20                            | %empty
+
+   21 qualified_import_prefix_relative_current: DOT SCOPE
+
+   22 qualified_import_prefix_relative_parent: qualified_import_prefix_relative_parent DOTDOT SCOPE
+   23                                        | DOTDOT SCOPE
+
+   24 qualified_import_prefix_absolute: SCOPE
+
+   25 qualified_import_infix: qualified_import_infix SCOPE simple_name
+   26                       | simple_name
+
+   27 qualified_import_suffix_opt: qualified_import_suffix
+   28                            | %empty
+
+   29 qualified_import_suffix: SCOPE STAR
+
+   30 simple_name: IDENT
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+SEMICOLON (258) 2 7 8
+COMMA (259) 9 15
+MDL (260) 2
+IMPORT (261) 7 8
+USING (262) 8
+MODULE (263)
+EXPORT (264) 8
+DOT (265) 21
+DOTDOT (266) 22 23
+SCOPE (267) 21 22 23 24 25 29
+STAR (268) 13 29
+IDENT (269) 30
+INTEGER_LITERAL (270)
+FLOATING_LITERAL (271) 2
+
+
+Nonterminals, with rules where they appear
+
+$accept (17)
+    on left: 0
+mdl (18)
+    on left: 1, on right: 0
+mdl_version (19)
+    on left: 2, on right: 1
+import_declarations_opt (20)
+    on left: 3 4, on right: 1
+import_declarations (21)
+    on left: 5 6, on right: 3 5
+import_declaration (22)
+    on left: 7 8, on right: 5 6
+qualified_imports (23)
+    on left: 9 10, on right: 7 9
+qualified_import_prefix (24)
+    on left: 11, on right: 8
+unqualified_import (25)
+    on left: 12 13, on right: 8
+qualified_import (26)
+    on left: 14, on right: 9 10
+unqualified_import_simple_names (27)
+    on left: 15 16, on right: 12 15
+qualified_import_prefix_opt (28)
+    on left: 17 18 19 20, on right: 11 14
+qualified_import_prefix_relative_current (29)
+    on left: 21, on right: 17
+qualified_import_prefix_relative_parent (30)
+    on left: 22 23, on right: 18 22
+qualified_import_prefix_absolute (31)
+    on left: 24, on right: 19
+qualified_import_infix (32)
+    on left: 25 26, on right: 11 14 25
+qualified_import_suffix_opt (33)
+    on left: 27 28, on right: 14
+qualified_import_suffix (34)
+    on left: 29, on right: 27
+simple_name (35)
+    on left: 30, on right: 15 16 25 26
+
+
+State 0
+
+    0 $accept: . mdl $end
+
+    MDL  shift, and go to state 1
+
+    mdl          go to state 2
+    mdl_version  go to state 3
+
+
+State 1
+
+    2 mdl_version: MDL . FLOATING_LITERAL SEMICOLON
+
+    FLOATING_LITERAL  shift, and go to state 4
+
+
+State 2
+
+    0 $accept: mdl . $end
+
+    $end  shift, and go to state 5
+
+
+State 3
+
+    1 mdl: mdl_version . import_declarations_opt
+
+    IMPORT  shift, and go to state 6
+    EXPORT  shift, and go to state 7
+
+    $default  reduce using rule 4 (import_declarations_opt)
+
+    import_declarations_opt  go to state 8
+    import_declarations      go to state 9
+    import_declaration       go to state 10
+
+
+State 4
+
+    2 mdl_version: MDL FLOATING_LITERAL . SEMICOLON
+
+    SEMICOLON  shift, and go to state 11
+
+
+State 5
+
+    0 $accept: mdl $end .
+
+    $default  accept
+
+
+State 6
+
+    7 import_declaration: IMPORT . qualified_imports SEMICOLON
+
+    DOT     shift, and go to state 12
+    DOTDOT  shift, and go to state 13
+    SCOPE   shift, and go to state 14
+
+    $default  reduce using rule 20 (qualified_import_prefix_opt)
+
+    qualified_imports                         go to state 15
+    qualified_import                          go to state 16
+    qualified_import_prefix_opt               go to state 17
+    qualified_import_prefix_relative_current  go to state 18
+    qualified_import_prefix_relative_parent   go to state 19
+    qualified_import_prefix_absolute          go to state 20
+
+
+State 7
+
+    8 import_declaration: EXPORT . USING qualified_import_prefix IMPORT unqualified_import SEMICOLON
+
+    USING  shift, and go to state 21
+
+
+State 8
+
+    1 mdl: mdl_version import_declarations_opt .
+
+    $default  reduce using rule 1 (mdl)
+
+
+State 9
+
+    3 import_declarations_opt: import_declarations .
+    5 import_declarations: import_declarations . import_declaration
+
+    IMPORT  shift, and go to state 6
+    EXPORT  shift, and go to state 7
+
+    $default  reduce using rule 3 (import_declarations_opt)
+
+    import_declaration  go to state 22
+
+
+State 10
+
+    6 import_declarations: import_declaration .
+
+    $default  reduce using rule 6 (import_declarations)
+
+
+State 11
+
+    2 mdl_version: MDL FLOATING_LITERAL SEMICOLON .
+
+    $default  reduce using rule 2 (mdl_version)
+
+
+State 12
+
+   21 qualified_import_prefix_relative_current: DOT . SCOPE
+
+    SCOPE  shift, and go to state 23
+
+
+State 13
+
+   23 qualified_import_prefix_relative_parent: DOTDOT . SCOPE
+
+    SCOPE  shift, and go to state 24
+
+
+State 14
+
+   24 qualified_import_prefix_absolute: SCOPE .
+
+    $default  reduce using rule 24 (qualified_import_prefix_absolute)
+
+
+State 15
+
+    7 import_declaration: IMPORT qualified_imports . SEMICOLON
+    9 qualified_imports: qualified_imports . COMMA qualified_import
+
+    SEMICOLON  shift, and go to state 25
+    COMMA      shift, and go to state 26
+
+
+State 16
+
+   10 qualified_imports: qualified_import .
+
+    $default  reduce using rule 10 (qualified_imports)
+
+
+State 17
+
+   14 qualified_import: qualified_import_prefix_opt . qualified_import_infix qualified_import_suffix_opt
+
+    IDENT  shift, and go to state 27
+
+    qualified_import_infix  go to state 28
+    simple_name             go to state 29
+
+
+State 18
+
+   17 qualified_import_prefix_opt: qualified_import_prefix_relative_current .
+
+    $default  reduce using rule 17 (qualified_import_prefix_opt)
+
+
+State 19
+
+   18 qualified_import_prefix_opt: qualified_import_prefix_relative_parent .
+   22 qualified_import_prefix_relative_parent: qualified_import_prefix_relative_parent . DOTDOT SCOPE
+
+    DOTDOT  shift, and go to state 30
+
+    $default  reduce using rule 18 (qualified_import_prefix_opt)
+
+
+State 20
+
+   19 qualified_import_prefix_opt: qualified_import_prefix_absolute .
+
+    $default  reduce using rule 19 (qualified_import_prefix_opt)
+
+
+State 21
+
+    8 import_declaration: EXPORT USING . qualified_import_prefix IMPORT unqualified_import SEMICOLON
+
+    DOT     shift, and go to state 12
+    DOTDOT  shift, and go to state 13
+    SCOPE   shift, and go to state 14
+
+    $default  reduce using rule 20 (qualified_import_prefix_opt)
+
+    qualified_import_prefix                   go to state 31
+    qualified_import_prefix_opt               go to state 32
+    qualified_import_prefix_relative_current  go to state 18
+    qualified_import_prefix_relative_parent   go to state 19
+    qualified_import_prefix_absolute          go to state 20
+
+
+State 22
+
+    5 import_declarations: import_declarations import_declaration .
+
+    $default  reduce using rule 5 (import_declarations)
+
+
+State 23
+
+   21 qualified_import_prefix_relative_current: DOT SCOPE .
+
+    $default  reduce using rule 21 (qualified_import_prefix_relative_current)
+
+
+State 24
+
+   23 qualified_import_prefix_relative_parent: DOTDOT SCOPE .
+
+    $default  reduce using rule 23 (qualified_import_prefix_relative_parent)
+
+
+State 25
+
+    7 import_declaration: IMPORT qualified_imports SEMICOLON .
+
+    $default  reduce using rule 7 (import_declaration)
+
+
+State 26
+
+    9 qualified_imports: qualified_imports COMMA . qualified_import
+
+    DOT     shift, and go to state 12
+    DOTDOT  shift, and go to state 13
+    SCOPE   shift, and go to state 14
+
+    $default  reduce using rule 20 (qualified_import_prefix_opt)
+
+    qualified_import                          go to state 33
+    qualified_import_prefix_opt               go to state 17
+    qualified_import_prefix_relative_current  go to state 18
+    qualified_import_prefix_relative_parent   go to state 19
+    qualified_import_prefix_absolute          go to state 20
+
+
+State 27
+
+   30 simple_name: IDENT .
+
+    $default  reduce using rule 30 (simple_name)
+
+
+State 28
+
+   14 qualified_import: qualified_import_prefix_opt qualified_import_infix . qualified_import_suffix_opt
+   25 qualified_import_infix: qualified_import_infix . SCOPE simple_name
+
+    SCOPE  shift, and go to state 34
+
+    $default  reduce using rule 28 (qualified_import_suffix_opt)
+
+    qualified_import_suffix_opt  go to state 35
+    qualified_import_suffix      go to state 36
+
+
+State 29
+
+   26 qualified_import_infix: simple_name .
+
+    $default  reduce using rule 26 (qualified_import_infix)
+
+
+State 30
+
+   22 qualified_import_prefix_relative_parent: qualified_import_prefix_relative_parent DOTDOT . SCOPE
+
+    SCOPE  shift, and go to state 37
+
+
+State 31
+
+    8 import_declaration: EXPORT USING qualified_import_prefix . IMPORT unqualified_import SEMICOLON
+
+    IMPORT  shift, and go to state 38
+
+
+State 32
+
+   11 qualified_import_prefix: qualified_import_prefix_opt . qualified_import_infix
+
+    IDENT  shift, and go to state 27
+
+    qualified_import_infix  go to state 39
+    simple_name             go to state 29
+
+
+State 33
+
+    9 qualified_imports: qualified_imports COMMA qualified_import .
+
+    $default  reduce using rule 9 (qualified_imports)
+
+
+State 34
+
+   25 qualified_import_infix: qualified_import_infix SCOPE . simple_name
+   29 qualified_import_suffix: SCOPE . STAR
+
+    STAR   shift, and go to state 40
+    IDENT  shift, and go to state 27
+
+    simple_name  go to state 41
+
+
+State 35
+
+   14 qualified_import: qualified_import_prefix_opt qualified_import_infix qualified_import_suffix_opt .
+
+    $default  reduce using rule 14 (qualified_import)
+
+
+State 36
+
+   27 qualified_import_suffix_opt: qualified_import_suffix .
+
+    $default  reduce using rule 27 (qualified_import_suffix_opt)
+
+
+State 37
+
+   22 qualified_import_prefix_relative_parent: qualified_import_prefix_relative_parent DOTDOT SCOPE .
+
+    $default  reduce using rule 22 (qualified_import_prefix_relative_parent)
+
+
+State 38
+
+    8 import_declaration: EXPORT USING qualified_import_prefix IMPORT . unqualified_import SEMICOLON
+
+    STAR   shift, and go to state 42
+    IDENT  shift, and go to state 27
+
+    unqualified_import               go to state 43
+    unqualified_import_simple_names  go to state 44
+    simple_name                      go to state 45
+
+
+State 39
+
+   11 qualified_import_prefix: qualified_import_prefix_opt qualified_import_infix .
+   25 qualified_import_infix: qualified_import_infix . SCOPE simple_name
+
+    SCOPE  shift, and go to state 46
+
+    $default  reduce using rule 11 (qualified_import_prefix)
+
+
+State 40
+
+   29 qualified_import_suffix: SCOPE STAR .
+
+    $default  reduce using rule 29 (qualified_import_suffix)
+
+
+State 41
+
+   25 qualified_import_infix: qualified_import_infix SCOPE simple_name .
+
+    $default  reduce using rule 25 (qualified_import_infix)
+
+
+State 42
+
+   13 unqualified_import: STAR .
+
+    $default  reduce using rule 13 (unqualified_import)
+
+
+State 43
+
+    8 import_declaration: EXPORT USING qualified_import_prefix IMPORT unqualified_import . SEMICOLON
+
+    SEMICOLON  shift, and go to state 47
+
+
+State 44
+
+   12 unqualified_import: unqualified_import_simple_names .
+   15 unqualified_import_simple_names: unqualified_import_simple_names . COMMA simple_name
+
+    COMMA  shift, and go to state 48
+
+    $default  reduce using rule 12 (unqualified_import)
+
+
+State 45
+
+   16 unqualified_import_simple_names: simple_name .
+
+    $default  reduce using rule 16 (unqualified_import_simple_names)
+
+
+State 46
+
+   25 qualified_import_infix: qualified_import_infix SCOPE . simple_name
+
+    IDENT  shift, and go to state 27
+
+    simple_name  go to state 41
+
+
+State 47
+
+    8 import_declaration: EXPORT USING qualified_import_prefix IMPORT unqualified_import SEMICOLON .
+
+    $default  reduce using rule 8 (import_declaration)
+
+
+State 48
+
+   15 unqualified_import_simple_names: unqualified_import_simple_names COMMA . simple_name
+
+    IDENT  shift, and go to state 27
+
+    simple_name  go to state 49
+
+
+State 49
+
+   15 unqualified_import_simple_names: unqualified_import_simple_names COMMA simple_name .
+
+    $default  reduce using rule 15 (unqualified_import_simple_names)

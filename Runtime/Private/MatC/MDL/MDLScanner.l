@@ -22,6 +22,7 @@ COMMA (,)
 /* keywords */
 MDL (mdl)
 IMPORT (import)
+USING (using)
 MODULE (module)
 EXPORT (export)
 
@@ -29,6 +30,7 @@ EXPORT (export)
 DOT (.)
 DOTDOT (..)
 SCOPE (::)
+STAR (*)
 IDENT (([A-Za-z])(([0-9A-Za-z_])*))
 
 /* Literal values */
@@ -80,6 +82,10 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
     return YYTOKEN_IMPORT; 
     }
 
+{USING} {
+    return YYTOKEN_USING;
+    }    
+
 {MODULE} {
     return YYTOKEN_MODULE;
     }
@@ -90,9 +96,16 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
 
      /* Identifiers */
 {DOT} {
-    
+    return YYTOKEN_DOT;
 }
 
+{DOTDOT} {
+    return YYTOKEN_DOTDOT;
+}
+
+{STAR} {
+    return YYTOKEN_STAR;
+}
 
 {SCOPE} {
     return YYTOKEN_SCOPE;
