@@ -326,6 +326,11 @@ function_declaration: type simple_name parameter_list UNIFORM ASSIGN_OP comma_ex
 function_declaration: type simple_name parameter_list VARYING ASSIGN_OP comma_expression SEMICOLON;
 function_declaration: type simple_name parameter_list ASSIGN_OP comma_expression SEMICOLON;
 
+function_declaration: type annotation_block simple_name LEFT_PARENTHESIS STAR RIGHT_PARENTHESIS annotation_block ASSIGN_OP comma_expression SEMICOLON;
+function_declaration: type annotation_block simple_name LEFT_PARENTHESIS STAR RIGHT_PARENTHESIS ASSIGN_OP comma_expression SEMICOLON;
+function_declaration: type simple_name LEFT_PARENTHESIS STAR RIGHT_PARENTHESIS annotation_block ASSIGN_OP comma_expression SEMICOLON;
+function_declaration: type simple_name LEFT_PARENTHESIS STAR RIGHT_PARENTHESIS ASSIGN_OP comma_expression SEMICOLON;
+
 compound_statement: LEFT_CURLY_BRACE statements RIGHT_CURLY_BRACE;
 compound_statement: LEFT_CURLY_BRACE RIGHT_CURLY_BRACE;
 
