@@ -351,6 +351,8 @@ relative_type_ident: IDENT SCOPE relative_type_ident;
 relative_type_ident: IDENT;
 
 primary_expression: literal_expression;
+primary_expression: simple_type;
+primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
 
 literal_expression: boolean_literal;
 literal_expression: integer_literal;
@@ -366,5 +368,8 @@ floating_literal: FLOATING_LITERAL;
 
 string_literal: string_literal STRING_LITERAL;
 string_literal: STRING_LITERAL;
+
+
+
 
 //%%
