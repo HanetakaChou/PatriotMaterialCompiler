@@ -22,6 +22,8 @@
 %token USING
 %token MODULE
 %token EXPORT
+%token UNIFORM
+%token VARYING
 %token ASSIGN_OP
 %token BITWISE_OR_ASSIGN_OP
 %token BITWISE_AND_ASSIGN_OP
@@ -59,10 +61,14 @@
 %token SCOPE
 %token STAR
 %token COLON
-%token ANNOTATION_BLOCK_BEGIN;
-%token ANNOTATION_BLOCK_END;
-%token LEFT_PARENTHESIS;
-%token RIGHT_PARENTHESIS;
+%token ANNOTATION_BLOCK_BEGIN
+%token ANNOTATION_BLOCK_END
+%token LEFT_PARENTHESIS
+%token RIGHT_PARENTHESIS
+%token LEFT_SQUARE_BRACKET
+%token RIGHT_SQUARE_BRACKET
+%token LEFT_ANGLE_BRACKET
+%token RIGHT_ANGLE_BRACKET
 %token <_IDENT> IDENT
 %token <_INTEGER_LITERAL> INTEGER_LITERAL 
 %token <_FLOATING_LITERAL> FLOATING_LITERAL
@@ -147,12 +153,12 @@ named_arguments: named_argument;
 named_argument: simple_name COLON assignment_expression;
 
 // Operators in MDL are right associative 
-// To see: compilercore_parser.atg
+// To see compilercore_parser.atg
 
 comma_expression: assignment_expression COMMA comma_expression;
 comma_expression: assignment_expression;
 
-assignment_expression: logical_or_expression CONDITIONAL_OP comma_expression COLON assignment_expression;
+assignment_expression: conditional_expression;
 assignment_expression: logical_or_expression ASSIGN_OP assignment_expression;
 assignment_expression: logical_or_expression BITWISE_OR_ASSIGN_OP assignment_expression;
 assignment_expression: logical_or_expression BITWISE_AND_ASSIGN_OP assignment_expression;
@@ -166,6 +172,8 @@ assignment_expression: logical_or_expression MODULO_ASSIGN_OP assignment_express
 assignment_expression: logical_or_expression PLUS_ASSIGN_OP assignment_expression;
 assignment_expression: logical_or_expression MINUS_ASSIGN_OP assignment_expression;
 assignment_expression: logical_or_expression;
+
+conditional_expression: logical_or_expression CONDITIONAL_OP comma_expression COLON assignment_expression;
 
 logical_or_expression: logical_and_expression LOGICAL_OR_OP logical_or_expression;
 logical_or_expression: logical_and_expression;
@@ -206,6 +214,26 @@ multiplicative_expression: unary_expression DIVIDE_OP multiplicative_expression;
 multiplicative_expression: unary_expression MODULO_OP multiplicative_expression; 
 multiplicative_expression: unary_expression;
 
-unary_expression: LEFT_PARENTHESIS RIGHT_PARENTHESIS;
+unary_expression: LEFT_PARENTHESIS type RIGHT_PARENTHESIS;
+
+type: frequency_qualifier_opt array_type;
+
+frequency_qualifier_opt: frequency_qualifier;
+frequency_qualifier_opt: ;
+
+frequency_qualifier: VARYING;
+frequency_qualifier: UNIFORM;
+
+array_type: simple_type LEFT_SQUARE_BRACKET array_type_size_opt RIGHT_SQUARE_BRACKET;
+
+array_type_size_opt: conditional_expression;
+array_type_size_opt: LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET;
+
+simple_type: simple_type_absolute_opt relative_type;
+
+simple_type_absolute_opt: SCOPE;
+simple_type_absolute_opt: ;
+
+relative_type: 'A';
 
 //%%

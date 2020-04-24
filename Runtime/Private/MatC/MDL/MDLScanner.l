@@ -25,6 +25,8 @@ IMPORT ("import")
 USING ("using")
 MODULE ("module")
 EXPORT ("export")
+UNIFORM ("uniform")
+VARYING ("varying")
 
 /* operators */
 ASSIGN_OP ("=")
@@ -70,6 +72,10 @@ ANNOTATION_BLOCK_BEGIN ("[[")
 ANNOTATION_BLOCK_END ("]]")
 LEFT_PARENTHESIS ("(")
 RIGHT_PARENTHESIS (")")
+LEFT_SQUARE_BRACKET ("[")
+RIGHT_SQUARE_BRACKET ("]")
+LEFT_ANGLE_BRACKET ("<")
+RIGHT_ANGLE_BRACKET (">")
 IDENT (([A-Za-z])(([0-9A-Za-z_])*))
 
 /* Literal values */
@@ -131,6 +137,14 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
 
 {EXPORT} {
     return YYTOKEN_EXPORT;
+    }
+
+{UNIFORM} {
+    return YYTOKEN_UNIFORM;
+    }
+
+{VARYING} {
+    return YYTOKEN_VARYING;
     }
 
     /* operators */
@@ -290,6 +304,22 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
 {RIGHT_PAREN} {
     return YYTOKEN_RIGHT_PAREN;
 }
+
+{LEFT_SQUARE_BRACKET} {
+    return YYTOKEN_LEFT_SQUARE_BRACKET;
+}
+
+{RIGHT_SQUARE_BRACKET} {
+    return YYTOKEN_RIGHT_SQUARE_BRACKET;
+}
+
+{LEFT_ANGLE_BRACKET} {
+    return YYTOKEN_LEFT_ANGLE_BRACKET;
+    }
+
+{RIGHT_ANGLE_BRACKET} {
+    return YYTOKEN_RIGHT_ANGLE_BRACKET;
+    }
 
 {IDENT} {
     lvalp->_IDENT = MDLFrontend_HashIdentName(yyextra, yytext);
