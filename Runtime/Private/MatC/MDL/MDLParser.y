@@ -478,43 +478,43 @@ assignment_expression: conditional_expression;
 conditional_expression: logical_or_expression CONDITIONAL_OP comma_expression COLON assignment_expression;
 conditional_expression: logical_or_expression;
 
-logical_or_expression: logical_and_expression LOGICAL_OR_OP logical_or_expression;
+logical_or_expression: logical_or_expression LOGICAL_OR_OP logical_and_expression;
 logical_or_expression: logical_and_expression;
 
-logical_and_expression: inclusive_or_expression LOGICAL_AND_OP logical_and_expression;
+logical_and_expression: logical_and_expression LOGICAL_AND_OP inclusive_or_expression;
 logical_and_expression: inclusive_or_expression;
 
-inclusive_or_expression: exclusive_or_expression BITWISE_OR_OP inclusive_or_expression;
+inclusive_or_expression: inclusive_or_expression BITWISE_OR_OP exclusive_or_expression;
 inclusive_or_expression: exclusive_or_expression;
 
-exclusive_or_expression: and_expression BITWISE_XOR_OP exclusive_or_expression;
+exclusive_or_expression: exclusive_or_expression BITWISE_XOR_OP and_expression;
 exclusive_or_expression: and_expression;
 
-and_expression: equality_expression BITWISE_AND_OP and_expression;
+and_expression: and_expression BITWISE_AND_OP equality_expression;
 and_expression: equality_expression;
 
-equality_expression: relational_expression EQUAL_OP equality_expression;
-equality_expression: relational_expression NOT_EQUAL_OP equality_expression;
+equality_expression: equality_expression EQUAL_OP relational_expression;
+equality_expression: equality_expression NOT_EQUAL_OP relational_expression;
 equality_expression: relational_expression;
 
-relational_expression: shift_expression LEFT_ANGLE_BRACKET relational_expression;
-relational_expression: shift_expression LESS_OR_EQUAL_OP relational_expression;
-relational_expression: shift_expression GREATER_OR_EQUAL_OP relational_expression;
-relational_expression: shift_expression RIGHT_ANGLE_BRACKET relational_expression;
+relational_expression: relational_expression LEFT_ANGLE_BRACKET shift_expression;
+relational_expression: relational_expression LESS_OR_EQUAL_OP shift_expression;
+relational_expression: relational_expression GREATER_OR_EQUAL_OP shift_expression;
+relational_expression: relational_expression RIGHT_ANGLE_BRACKET shift_expression;
 relational_expression: shift_expression;
 
-shift_expression: additive_expression SHIFT_LEFT_OP shift_expression;
-shift_expression: additive_expression SHIFT_RIGHT_OP shift_expression;
-shift_expression: additive_expression UNSIGNED_SHIFT_RIGHT_OP shift_expression;
+shift_expression: shift_expression SHIFT_LEFT_OP additive_expression;
+shift_expression: shift_expression SHIFT_RIGHT_OP  additive_expression;
+shift_expression: shift_expression UNSIGNED_SHIFT_RIGHT_OP additive_expression;
 shift_expression: additive_expression;
 
-additive_expression: multiplicative_expression POSITIVE_OP additive_expression;
-additive_expression: multiplicative_expression NEGATIVE_OP additive_expression;
+additive_expression: additive_expression POSITIVE_OP multiplicative_expression;
+additive_expression: additive_expression NEGATIVE_OP multiplicative_expression;
 additive_expression: multiplicative_expression;
 
-multiplicative_expression: unary_expression STAR multiplicative_expression; 
-multiplicative_expression: unary_expression DIVIDE_OP multiplicative_expression; 
-multiplicative_expression: unary_expression MODULO_OP multiplicative_expression; 
+multiplicative_expression: multiplicative_expression STAR unary_expression; 
+multiplicative_expression: multiplicative_expression DIVIDE_OP unary_expression; 
+multiplicative_expression: multiplicative_expression MODULO_OP unary_expression; 
 multiplicative_expression: unary_expression;
 
 unary_expression: BITWISE_COMPLEMENT_OP unary_expression;
