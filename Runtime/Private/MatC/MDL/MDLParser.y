@@ -221,8 +221,6 @@ qualified_name_infix: simple_name;
 
 qualified_import_suffix: SCOPE STAR;
 
-simple_name: IDENT;
-
 module_declaration: MODULE annotation_block SEMICOLON;
 module_declaration: MODULE SEMICOLON;
 
@@ -537,7 +535,7 @@ matched_postfix_expression: matched_postfix_expression LEFT_SQUARE_BRACKET comma
 matched_postfix_expression: matched_primary_expression;
 matched_postfix_expression: cast_expression;
 
-matched_primary_expression: simple_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET; //Index of simple_type Or Construction
+matched_primary_expression: simple_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET; //Index of simple_type Or Construction //MDL spec comma_expression
 matched_primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
 matched_primary_expression: literal_expression;
 matched_primary_expression: LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS;
@@ -546,8 +544,8 @@ unmatched_postfix_expression: unmatched_postfix_expression INCREMENT_OP;
 unmatched_postfix_expression: unmatched_postfix_expression DECREMENT_OP;
 unmatched_postfix_expression: unmatched_postfix_expression DOT simple_name;
 unmatched_postfix_expression: unmatched_postfix_expression argument_list;
-
 unmatched_postfix_expression: unmatched_primary_expression;
+
 unmatched_primary_expression: simple_type;  
 
 cast_expression: CAST LEFT_ANGLE_BRACKET type RIGHT_ANGLE_BRACKET LEFT_PARENTHESIS unary_expression RIGHT_PARENTHESIS;
@@ -637,5 +635,7 @@ relative_type: INTENSITY_RADIANT_EXITANCE;
 relative_type: INTENSITY_POWER;
 relative_type: HAIR_BSDF;
 relative_type: qualified_name_infix;
+
+simple_name: IDENT;
 
 //%%
