@@ -535,7 +535,7 @@ matched_postfix_expression: matched_postfix_expression LEFT_SQUARE_BRACKET comma
 matched_postfix_expression: matched_primary_expression;
 matched_postfix_expression: cast_expression;
 
-matched_primary_expression: simple_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET; //Index of simple_type Or Construction //MDL spec comma_expression
+matched_primary_expression: simple_type LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET; //Index of simple_type Or Construction
 matched_primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
 matched_primary_expression: literal_expression;
 matched_primary_expression: LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS;
@@ -573,7 +573,7 @@ type: UNIFORM array_type;
 type: array_type;
 
 array_type: simple_type LEFT_SQUARE_BRACKET LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET RIGHT_SQUARE_BRACKET;
-array_type: simple_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET;
+array_type: simple_type LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET; //Use action to analyze further //Only support comma_expression here
 array_type: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
 array_type: simple_type;
 
@@ -634,7 +634,10 @@ relative_type: INTENSITY_MODE;
 relative_type: INTENSITY_RADIANT_EXITANCE;
 relative_type: INTENSITY_POWER;
 relative_type: HAIR_BSDF;
-relative_type: qualified_name_infix;
+relative_type: relative_type_qualified_name;
+
+relative_type_qualified_name: relative_type_qualified_name SCOPE IDENT;
+relative_type_qualified_name: IDENT;
 
 simple_name: IDENT;
 
