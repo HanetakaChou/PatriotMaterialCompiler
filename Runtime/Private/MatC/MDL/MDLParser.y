@@ -433,10 +433,11 @@ annotation_block: ANNOTATION_BLOCK_BEGIN annotations ANNOTATION_BLOCK_END;
 annotations: annotations COMMA annotation;
 annotations: annotation;
 
-qualified_name: SCOPE qualified_name_infix;
-qualified_name: qualified_name_infix;
+annotation: SCOPE annotation_qualified_name argument_list;
+annotation: annotation_qualified_name argument_list;
 
-annotation: qualified_name argument_list;
+annotation_qualified_name: annotation_qualified_name SCOPE IDENT;
+annotation_qualified_name: IDENT;
 
 argument_list: LEFT_PARENTHESIS positional_arguments COMMA named_arguments RIGHT_PARENTHESIS;
 argument_list: LEFT_PARENTHESIS named_arguments RIGHT_PARENTHESIS;
