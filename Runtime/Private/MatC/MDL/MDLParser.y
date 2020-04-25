@@ -454,9 +454,6 @@ named_argument: simple_name COLON assignment_expression;
 
 positional_argument: assignment_expression;
 
-// Operators in MDL are right associative 
-// To see compilercore_parser.atg
-
 comma_expression: assignment_expression COMMA comma_expression;
 comma_expression: assignment_expression;
 
