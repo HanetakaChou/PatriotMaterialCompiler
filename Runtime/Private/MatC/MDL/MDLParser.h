@@ -5,8 +5,13 @@
 
 union YYSTYPE {
     size_t _IDENT; //unordered_set hash unique value
-    int _INTEGER_LITERAL;
+    long _INTEGER_LITERAL;
+    struct {
+        long major;
+        long minor;
+    } _FRACT_LITERAL;
     float _FLOATING_LITERAL;
+    double _DOUBLE_LITERAL;
     struct MDLDeclaration *_decl;
     void *_null;
 };
@@ -146,7 +151,9 @@ extern int YYTOKEN_LEFT_CURLY_BRACE;
 extern int YYTOKEN_RIGHT_CURLY_BRACE;
 extern int YYTOKEN_IDENT;
 extern int YYTOKEN_INTEGER_LITERAL;
+extern int YYTOKEN_FRACT_LITERAL;
 extern int YYTOKEN_FLOATING_LITERAL;
+extern int YYTOKEN_DOUBLE_LITERAL;
 
 #else
 #error C++ Not Supported

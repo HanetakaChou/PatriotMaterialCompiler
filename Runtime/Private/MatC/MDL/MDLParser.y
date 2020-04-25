@@ -152,7 +152,9 @@
 %token RIGHT_CURLY_BRACE
 %token <_IDENT> IDENT
 %token <_INTEGER_LITERAL> INTEGER_LITERAL 
+%token <_FRACT_LITERAL> FRACT_LITERAL
 %token <_FLOATING_LITERAL> FLOATING_LITERAL
+%token <_DOUBLE_LITERAL> DOUBLE_LITERAL
 
 // Define the nonterminals 
 %type <_null> mdl 
@@ -172,7 +174,7 @@ mdl: mdl_version module_declaration { $$ = NULL; };
 mdl: mdl_version global_declarations { $$ = NULL; };
 mdl: mdl_version { $$ = NULL; };
 
-mdl_version: MDL FLOATING_LITERAL SEMICOLON;
+mdl_version: MDL FRACT_LITERAL SEMICOLON;
 
 import_declarations: import_declarations import_declaration;
 import_declarations: import_declaration;
@@ -561,7 +563,9 @@ boolean_literal: FALSE;
 
 integer_literal: INTEGER_LITERAL;
 
+floating_literal: FRACT_LITERAL;
 floating_literal: FLOATING_LITERAL;
+floating_literal: DOUBLE_LITERAL;
 
 string_literal: string_literal STRING_LITERAL;
 string_literal: STRING_LITERAL;

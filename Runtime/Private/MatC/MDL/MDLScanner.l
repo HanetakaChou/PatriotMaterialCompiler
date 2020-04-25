@@ -165,10 +165,12 @@ INTEGER_LITERAL_HEXADECIMAL ([0][xX]([0-9A-Fa-f])(([0-9A-Fa-f])*))
 INTEGER_LITERAL_OCTAL ([0](([0-7])*))
 
 DIGIT ([0-9])
+FRACT_LITERAL ({DIGIT}({DIGIT}*)"."{DIGIT}({DIGIT}*)) 
+
 E ([eE]([-+]?){DIGIT}({DIGIT}*))
-FLOATING_LITERAL ((({DIGIT}*)[.]({DIGIT}*))({E}?))|(({DIGIT}({DIGIT}*)){E})  
-FLOATING_LITERAL_FLOAT (({FLOATING_LITERAL})([Ff]?))
-FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
+FLOATING_LITERAL_HELPER (((({DIGIT}({DIGIT}*)".")|("."{DIGIT}({DIGIT}*)))({E}?))|(({DIGIT}({DIGIT}*)){E}))     
+FLOATING_LITERAL (({FLOATING_LITERAL_HELPER}([Ff]?))|({FRACT_LITERAL}{E})|({FRACT_LITERAL}[Ff])|({FRACT_LITERAL}{E}[Ff]))
+DOUBLE_LITERAL (({FLOATING_LITERAL_HELPER}[Dd])|({FRACT_LITERAL}({E}?)[Dd]))
 
     /* https://westes.github.io/flex/manual/Patterns.html#Patterns */
 
@@ -765,17 +767,30 @@ FLOATING_LITERAL_DOUBLE (({FLOATING_LITERAL})[Dd])
     return YYTOKEN_INTEGER_LITERAL; 
     }     
 
-{FLOATING_LITERAL_FLOAT} {
+{FRACT_LITERAL} {
+    char *endptr = NULL;
+    lvalp->_FRACT_LITERAL.major = strtol(yytext, &endptr, 10);
+    assert(endptr <= ((yytext) + (yyleng)));
+    assert((*endptr) == '.');
+    ++endptr;
+    assert(endptr < ((yytext) + (yyleng)));
+    lvalp->_FRACT_LITERAL.minor = strtol(endptr, &endptr, 10);
+    assert(endptr <= ((yytext) + (yyleng)));
+    return YYTOKEN_FRACT_LITERAL;
+    }
+
+{FLOATING_LITERAL} {
     char *endptr = NULL;
     lvalp->_FLOATING_LITERAL = strtof(yytext, &endptr);
     assert(endptr <= ((yytext) + (yyleng)));
     return YYTOKEN_FLOATING_LITERAL;
     }
-{FLOATING_LITERAL_DOUBLE} {
+
+{DOUBLE_LITERAL} {
     char *endptr = NULL;
-    lvalp->_FLOATING_LITERAL = strtod(yytext, &endptr);
+    lvalp->_DOUBLE_LITERAL = strtod(yytext, &endptr);
     assert(endptr <= ((yytext) + (yyleng)));
-    return YYTOKEN_FLOATING_LITERAL;
+    return YYTOKEN_DOUBLE_LITERAL;
     }    
     
     /* catch-all rule for any other single characters */
