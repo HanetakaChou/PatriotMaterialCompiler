@@ -523,9 +523,11 @@ unary_expression: POSITIVE_OP unary_expression;
 unary_expression: NEGATIVE_OP unary_expression;
 unary_expression: INCREMENT_OP unary_expression;
 unary_expression: DECREMENT_OP unary_expression;
-unary_expression: matched_postfix_expression;
 unary_expression: postfix_expression;
 unary_expression: let_expression;
+
+postfix_expression: matched_postfix_expression;
+postfix_expression: unmatched_postfix_expression;
 
 matched_postfix_expression: matched_postfix_expression INCREMENT_OP;
 matched_postfix_expression: matched_postfix_expression DECREMENT_OP;
@@ -540,13 +542,13 @@ matched_primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET
 matched_primary_expression: literal_expression;
 matched_primary_expression: LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS;
 
-postfix_expression: postfix_expression INCREMENT_OP;
-postfix_expression: postfix_expression DECREMENT_OP;
-postfix_expression: postfix_expression DOT simple_name;
-postfix_expression: postfix_expression argument_list;
-postfix_expression: primary_expression;
-primary_expression: simple_type;  
+unmatched_postfix_expression: unmatched_postfix_expression INCREMENT_OP;
+unmatched_postfix_expression: unmatched_postfix_expression DECREMENT_OP;
+unmatched_postfix_expression: unmatched_postfix_expression DOT simple_name;
+unmatched_postfix_expression: unmatched_postfix_expression argument_list;
 
+unmatched_postfix_expression: unmatched_primary_expression;
+unmatched_primary_expression: simple_type;  
 
 cast_expression: CAST LEFT_ANGLE_BRACKET type RIGHT_ANGLE_BRACKET LEFT_PARENTHESIS unary_expression RIGHT_PARENTHESIS;
 
