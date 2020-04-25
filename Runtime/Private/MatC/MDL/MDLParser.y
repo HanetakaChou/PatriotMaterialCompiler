@@ -533,11 +533,11 @@ matched_postfix_expression: matched_postfix_expression INCREMENT_OP;
 matched_postfix_expression: matched_postfix_expression DECREMENT_OP;
 matched_postfix_expression: matched_postfix_expression DOT simple_name;
 matched_postfix_expression: matched_postfix_expression argument_list;
-matched_postfix_expression: matched_postfix_expression LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET; /* [-Wconflicts-sr] */
+matched_postfix_expression: matched_postfix_expression LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET;
 matched_postfix_expression: matched_primary_expression;
 matched_postfix_expression: cast_expression;
 
-matched_primary_expression: simple_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET;
+matched_primary_expression: simple_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET; //Index of simple_type Or Construction
 matched_primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
 matched_primary_expression: literal_expression;
 matched_primary_expression: LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS;
