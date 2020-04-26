@@ -62,6 +62,12 @@ int main()
     LLVMSetFunctionCallConv(func, LLVMFastCallConv);
     LLVMValueRef llvm_value2 = LLVMGetNamedFunction(llvm_module, "huhu");
 
+    LLVMBasicBlockRef entry_bb = LLVMAppendBasicBlockInContext(llvm_context, func, "huhu");
+    LLVMBuilderRef irbuilder = LLVMCreateBuilderInContext(llvm_context);
+    LLVMPositionBuilderAtEnd(irbuilder, entry_bb);
+    
+    //LLVMBuildGEP2
+
     LLVMPassManagerRef llvm_func_passes = LLVMCreateFunctionPassManagerForModule(llvm_module);
 
     LLVMPassManagerRef llvm_module_passes = LLVMCreatePassManager();
