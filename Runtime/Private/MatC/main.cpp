@@ -5,6 +5,8 @@
 #include <stdlib.h>
 
 #include <llvm-c/Core.h>
+#include <llvm-c/Transforms/PassManagerBuilder.h>
+#include <llvm-c/Transforms/IPO.h>
 #include <llvm-c/BitReader.h>
 #include <llvm-c/ExecutionEngine.h>
 
@@ -12,10 +14,9 @@
 
 int main()
 {
-    MDLFrontend mdlfrontend;
-    mdlfrontend.Compile();
+    //MDLFrontend mdlfrontend;
+    //mdlfrontend.Compile();
 
-#if 0
     LLVMContextRef llvm_context = LLVMContextCreate();
 
     LLVMTypeRef llvm_type_float = LLVMFloatTypeInContext(llvm_context);
@@ -52,6 +53,27 @@ int main()
     //llvm::getLazyBitcodeModule
     LLVMModuleRef llvm_module = NULL;
     LLVMBool res = LLVMGetBitcodeModuleInContext2(llvm_context, buf, &llvm_module);
+
+    //LLVMModuleCreateWithNameInContext
+
+    LLVMTypeRef params[1] = {llvm_type_matrix};
+    LLVMTypeRef functype = LLVMFunctionType(llvm_type_float, params, 1, false);
+    LLVMValueRef func = LLVMAddFunction(llvm_module, "huhu", functype);
+    LLVMSetFunctionCallConv(func, LLVMFastCallConv);
+    LLVMValueRef llvm_value2 = LLVMGetNamedFunction(llvm_module, "huhu");
+
+    LLVMPassManagerRef llvm_func_passes = LLVMCreateFunctionPassManagerForModule(llvm_module);
+
+    LLVMPassManagerRef llvm_module_passes = LLVMCreatePassManager();
+
+    LLVMPassManagerBuilderRef builder = LLVMPassManagerBuilderCreate();
+    LLVMPassManagerBuilderSetOptLevel(builder, 3);
+    LLVMPassManagerBuilderUseInlinerWithThreshold(builder, 3);
+
+    LLVMPassManagerBuilderPopulateFunctionPassManager(builder, llvm_func_passes);
+    LLVMPassManagerBuilderPopulateModulePassManager(builder, llvm_module_passes);
+
+    //LLVMAddFunctionInliningPass(llvm_func_passes);
 
     std::vector<void *> jit_block;
 
@@ -109,8 +131,6 @@ int main()
         //LLVMJITEventListenerRef vtuneProfiler = LLVMCreateIntelJITEventListener();
         //m_llvm_exec->RegisterJITEventListener (vtuneProfiler);
     }
-
-#endif 
 
     return 0;
 }
