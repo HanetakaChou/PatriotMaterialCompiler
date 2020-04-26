@@ -8,7 +8,10 @@ extern "C"
 {
 #endif
     MDLStringRef MDLFrontend_CreateString(void *pUserData, char const *s);
-    MDLStringRef MDLFrontend_StringAppend(void *pUserData, MDLStringRef _self, char const *s);
+    MDLStringRef MDLFrontend_StringAppend2(void *pUserData, MDLStringRef l, MDLStringRef r);
+    MDLStringRef MDLFrontend_StringAppend3(void *pUserData, MDLStringRef l, char const *m, MDLStringRef r);
+    void MDLFrontend_DisposeString(void *pUserData, MDLStringRef s);
+    void MDLFrontend_HashTypeName(void *pUserData, MDLStringRef s);
 #ifdef __cplusplus
 }
 #endif

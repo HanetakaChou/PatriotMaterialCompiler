@@ -31,9 +31,32 @@ std::string *MDLFrontend::Callback_CreateString(char const *s)
     return new (Callback_Malloc(sizeof(std::string))) std::string(s);
 }
 
-std::string *MDLFrontend::Callback_StringAppend(std::string *_self, char const *s)
+std::string *MDLFrontend::Callback_StringAppend(std::string *l, std::string *r)
 {
-    return &((*_self).append(s));
+    return &((*l).append((*r)));
+}
+
+std::string *MDLFrontend::Callback_StringAppend(std::string *l, char const *m, std::string *r)
+{
+    return &(((*l).append(m)).append((*r)));
+}
+
+template <typename T>
+void _Invoke_Destructor_Helper(T *_self)
+{
+    _self->~T();
+}
+
+void MDLFrontend::Callback_DisposeString(std::string *s)
+{
+    _Invoke_Destructor_Helper(s);
+    Callback_Free(s);
+}
+
+void MDLFrontend::Callback_HashTypeName(std::string *s)
+{
+    char const *ident = (*s).c_str();
+    ident = NULL;
 }
 
 void MDLFrontend::Callback_Error(char const *s)

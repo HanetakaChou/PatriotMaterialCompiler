@@ -159,6 +159,8 @@
 // Define the nonterminals 
 %type <_null> mdl 
 %type <_decl> import_declaration;
+%type <_string> simple_type_or_lvalue;
+%type <_string> type_or_variable_qualified_name;
 %type <_string> simple_name;
 
 // Define the starting nonterminal
@@ -599,9 +601,15 @@ array_type_or_lvalue: type_or_variable_qualified_name LEFT_SQUARE_BRACKET comma_
 
 simple_type: SCOPE builtin_type;
 simple_type: builtin_type;
-simple_type: simple_type_or_lvalue;
+simple_type: simple_type_or_lvalue {
+    MDLFrontend_HashTypeName(pUserData, $1);
+    MDLFrontend_DisposeString(pUserData, $1);
+};
 
-simple_type_or_lvalue: SCOPE type_or_variable_qualified_name;
+simple_type_or_lvalue: SCOPE type_or_variable_qualified_name {
+    $$ = MDLFrontend_StringAppend2(pUserData, MDLFrontend_CreateString(pUserData, "::"), $2);
+    MDLFrontend_DisposeString(pUserData, $2);
+};
 simple_type_or_lvalue: type_or_variable_qualified_name;
 
 builtin_type: BOOL;
@@ -659,8 +667,12 @@ builtin_type: INTENSITY_RADIANT_EXITANCE;
 builtin_type: INTENSITY_POWER;
 builtin_type: HAIR_BSDF;
 
-type_or_variable_qualified_name: type_or_variable_qualified_name SCOPE simple_name;
-type_or_variable_qualified_name: simple_name;
+type_or_variable_qualified_name: type_or_variable_qualified_name SCOPE simple_name { 
+    $$ = MDLFrontend_StringAppend3(pUserData, $1, "::", $3);
+    MDLFrontend_DisposeString(pUserData, $3);
+    };
+
+type_or_variable_qualified_name: simple_name { $$ = $1; };
 
 simple_name: IDENT { $$ = $1; } ;
 

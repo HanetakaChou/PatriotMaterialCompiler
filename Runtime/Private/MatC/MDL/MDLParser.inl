@@ -730,46 +730,46 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   169,   169,   170,   171,   172,   173,   174,   175,   176,
-     178,   180,   181,   183,   184,   186,   187,   189,   190,   192,
-     193,   195,   196,   197,   198,   200,   201,   203,   204,   205,
-     206,   207,   208,   209,   210,   212,   213,   215,   217,   218,
-     220,   222,   223,   225,   227,   228,   230,   231,   232,   233,
-     234,   235,   236,   237,   239,   240,   242,   244,   245,   247,
-     248,   249,   250,   252,   253,   254,   256,   258,   259,   260,
-     261,   263,   264,   266,   267,   268,   269,   271,   272,   273,
-     274,   276,   277,   279,   280,   281,   282,   284,   285,   286,
-     287,   288,   289,   290,   291,   292,   293,   294,   295,   297,
-     298,   299,   300,   301,   302,   303,   304,   305,   306,   307,
-     308,   310,   311,   312,   313,   314,   315,   316,   317,   318,
-     319,   320,   321,   323,   324,   325,   326,   328,   329,   331,
-     332,   334,   335,   337,   338,   339,   340,   341,   342,   343,
-     344,   345,   346,   347,   348,   349,   350,   352,   353,   354,
-     355,   357,   358,   359,   361,   362,   364,   365,   367,   368,
-     369,   370,   372,   373,   375,   377,   379,   380,   381,   382,
-     383,   384,   385,   386,   387,   388,   389,   390,   392,   393,
-     394,   395,   396,   397,   398,   399,   400,   401,   402,   403,
-     405,   407,   409,   411,   413,   414,   416,   417,   418,   419,
-     420,   421,   423,   424,   426,   427,   429,   430,   431,   432,
-     434,   436,   437,   439,   440,   442,   443,   445,   446,   447,
-     448,   450,   451,   453,   454,   456,   458,   460,   461,   463,
-     464,   465,   466,   467,   468,   469,   470,   471,   472,   473,
-     474,   475,   477,   478,   480,   481,   483,   484,   486,   487,
-     489,   490,   492,   493,   495,   496,   497,   499,   500,   501,
-     502,   503,   505,   506,   507,   508,   510,   511,   512,   514,
-     515,   516,   517,   519,   520,   521,   522,   523,   524,   525,
-     526,   528,   529,   531,   532,   534,   535,   536,   537,   538,
-     539,   541,   542,   543,   544,   546,   548,   549,   551,   552,
-     553,   554,   556,   557,   559,   560,   561,   563,   564,   566,
-     567,   569,   571,   572,   573,   575,   576,   578,   579,   580,
-     581,   582,   583,   585,   586,   587,   588,   589,   590,   591,
-     592,   593,   594,   595,   597,   598,   600,   601,   602,   604,
-     605,   607,   608,   609,   610,   611,   612,   613,   614,   615,
-     616,   617,   618,   619,   620,   621,   622,   623,   624,   625,
-     626,   627,   628,   629,   630,   631,   632,   633,   634,   635,
-     636,   637,   638,   639,   640,   641,   642,   643,   644,   645,
-     646,   647,   648,   649,   650,   651,   652,   653,   654,   655,
-     656,   657,   658,   659,   660,   662,   663,   665
+       0,   171,   171,   172,   173,   174,   175,   176,   177,   178,
+     180,   182,   183,   185,   186,   188,   189,   191,   192,   194,
+     195,   197,   198,   199,   200,   202,   203,   205,   206,   207,
+     208,   209,   210,   211,   212,   214,   215,   217,   219,   220,
+     222,   224,   225,   227,   229,   230,   232,   233,   234,   235,
+     236,   237,   238,   239,   241,   242,   244,   246,   247,   249,
+     250,   251,   252,   254,   255,   256,   258,   260,   261,   262,
+     263,   265,   266,   268,   269,   270,   271,   273,   274,   275,
+     276,   278,   279,   281,   282,   283,   284,   286,   287,   288,
+     289,   290,   291,   292,   293,   294,   295,   296,   297,   299,
+     300,   301,   302,   303,   304,   305,   306,   307,   308,   309,
+     310,   312,   313,   314,   315,   316,   317,   318,   319,   320,
+     321,   322,   323,   325,   326,   327,   328,   330,   331,   333,
+     334,   336,   337,   339,   340,   341,   342,   343,   344,   345,
+     346,   347,   348,   349,   350,   351,   352,   354,   355,   356,
+     357,   359,   360,   361,   363,   364,   366,   367,   369,   370,
+     371,   372,   374,   375,   377,   379,   381,   382,   383,   384,
+     385,   386,   387,   388,   389,   390,   391,   392,   394,   395,
+     396,   397,   398,   399,   400,   401,   402,   403,   404,   405,
+     407,   409,   411,   413,   415,   416,   418,   419,   420,   421,
+     422,   423,   425,   426,   428,   429,   431,   432,   433,   434,
+     436,   438,   439,   441,   442,   444,   445,   447,   448,   449,
+     450,   452,   453,   455,   456,   458,   460,   462,   463,   465,
+     466,   467,   468,   469,   470,   471,   472,   473,   474,   475,
+     476,   477,   479,   480,   482,   483,   485,   486,   488,   489,
+     491,   492,   494,   495,   497,   498,   499,   501,   502,   503,
+     504,   505,   507,   508,   509,   510,   512,   513,   514,   516,
+     517,   518,   519,   521,   522,   523,   524,   525,   526,   527,
+     528,   530,   531,   533,   534,   536,   537,   538,   539,   540,
+     541,   543,   544,   545,   546,   548,   550,   551,   553,   554,
+     555,   556,   558,   559,   561,   562,   563,   565,   566,   568,
+     569,   571,   573,   574,   575,   577,   578,   580,   581,   582,
+     583,   584,   585,   587,   588,   589,   590,   591,   592,   593,
+     594,   595,   596,   597,   599,   600,   602,   603,   604,   609,
+     613,   615,   616,   617,   618,   619,   620,   621,   622,   623,
+     624,   625,   626,   627,   628,   629,   630,   631,   632,   633,
+     634,   635,   636,   637,   638,   639,   640,   641,   642,   643,
+     644,   645,   646,   647,   648,   649,   650,   651,   652,   653,
+     654,   655,   656,   657,   658,   659,   660,   661,   662,   663,
+     664,   665,   666,   667,   668,   670,   675,   677
 };
 #endif
 
@@ -3061,73 +3061,106 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 169 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+#line 171 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
 #line 3067 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 170 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+#line 172 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
 #line 3073 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 171 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+#line 173 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
 #line 3079 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 172 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+#line 174 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
 #line 3085 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 173 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+#line 175 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
 #line 3091 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 174 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+#line 176 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
 #line 3097 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 175 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+#line 177 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
 #line 3103 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 176 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+#line 178 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
 #line 3109 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 189 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+#line 191 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._decl) = NULL; }
 #line 3115 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 190 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+#line 192 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._decl) = NULL; }
 #line 3121 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
-  case 397:
-#line 665 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+  case 338:
+#line 604 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+    {
+    MDLFrontend_HashTypeName(pUserData, (yyvsp[0]._string));
+    MDLFrontend_DisposeString(pUserData, (yyvsp[0]._string));
+}
+#line 3130 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+    break;
+
+  case 339:
+#line 609 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+    {
+    (yyval._string) = MDLFrontend_StringAppend2(pUserData, MDLFrontend_CreateString(pUserData, "::"), (yyvsp[0]._string));
+    MDLFrontend_DisposeString(pUserData, (yyvsp[0]._string));
+}
+#line 3139 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+    break;
+
+  case 395:
+#line 670 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+    { 
+    (yyval._string) = MDLFrontend_StringAppend3(pUserData, (yyvsp[-2]._string), "::", (yyvsp[0]._string));
+    MDLFrontend_DisposeString(pUserData, (yyvsp[0]._string));
+    }
+#line 3148 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+    break;
+
+  case 396:
+#line 675 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._string) = (yyvsp[0]._string); }
-#line 3127 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3154 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+    break;
+
+  case 397:
+#line 677 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+    { (yyval._string) = (yyvsp[0]._string); }
+#line 3160 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
 
-#line 3131 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3164 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
