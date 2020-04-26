@@ -226,18 +226,6 @@ qualified_import_suffix: SCOPE STAR;
 module_declaration: MODULE annotation_block SEMICOLON;
 module_declaration: MODULE SEMICOLON;
 
-variable_declaration: type variable_declarators SEMICOLON;
-
-variable_declarators: variable_declarators COMMA variable_declarator;
-variable_declarators: variable_declarator;
-
-variable_declarator: simple_name argument_list annotation_block;
-variable_declarator: simple_name argument_list;
-variable_declarator: simple_name ASSIGN_OP assignment_expression annotation_block;
-variable_declarator: simple_name ASSIGN_OP assignment_expression;
-variable_declarator: simple_name annotation_block;
-variable_declarator: simple_name;
-
 global_declaration: EXPORT annotation_declaration;
 global_declaration: EXPORT constant_declaration;
 global_declaration: EXPORT type_declaration;
@@ -418,6 +406,18 @@ break_statement: BREAK SEMICOLON;
 continue_statement: CONTINUE SEMICOLON;
 
 return_statement: RETURN comma_expression SEMICOLON;
+
+variable_declaration: type variable_declarators SEMICOLON;
+
+variable_declarators: variable_declarators COMMA variable_declarator;
+variable_declarators: variable_declarator;
+
+variable_declarator: simple_name argument_list annotation_block;
+variable_declarator: simple_name argument_list;
+variable_declarator: simple_name ASSIGN_OP assignment_expression annotation_block;
+variable_declarator: simple_name ASSIGN_OP assignment_expression;
+variable_declarator: simple_name annotation_block;
+variable_declarator: simple_name;
 
 parameter_list: LEFT_PARENTHESIS parameters RIGHT_PARENTHESIS;
 parameter_list: LEFT_PARENTHESIS RIGHT_PARENTHESIS;
