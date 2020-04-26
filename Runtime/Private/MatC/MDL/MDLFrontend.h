@@ -18,6 +18,7 @@ public:
     std::string *Callback_StringAppend(std::string *l, char const *m, std::string *r);
     void Callback_DisposeString(std::string *s);
     void Callback_HashTypeName(std::string *s);
+    void Callback_HashVariableName(std::string *s);
     void Callback_Error(char const *s);
     void *Callback_Malloc(size_t size);
     void *Callback_Realloc(void *ptr, size_t size);

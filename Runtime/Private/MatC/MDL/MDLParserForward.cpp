@@ -28,3 +28,8 @@ extern "C" void MDLFrontend_HashTypeName(void *pUserData, MDLStringRef s)
 {
     return static_cast<class MDLFrontend *>(pUserData)->Callback_HashTypeName(unwrap(s));
 }
+
+extern "C" void MDLFrontend_HashVariableName(void *pUserData, MDLStringRef s)
+{
+    return static_cast<class MDLFrontend *>(pUserData)->Callback_HashVariableName(unwrap(s));
+}

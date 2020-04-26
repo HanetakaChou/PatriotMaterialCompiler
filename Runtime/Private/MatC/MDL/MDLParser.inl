@@ -760,16 +760,16 @@ static const yytype_uint16 yyrline[] =
      517,   518,   519,   521,   522,   523,   524,   525,   526,   527,
      528,   530,   531,   533,   534,   536,   537,   538,   539,   540,
      541,   543,   544,   545,   546,   548,   550,   551,   553,   554,
-     555,   556,   558,   559,   561,   562,   563,   565,   566,   568,
-     569,   571,   573,   574,   575,   577,   578,   580,   581,   582,
-     583,   584,   585,   587,   588,   589,   590,   591,   592,   593,
-     594,   595,   596,   597,   599,   600,   602,   603,   604,   609,
-     613,   615,   616,   617,   618,   619,   620,   621,   622,   623,
-     624,   625,   626,   627,   628,   629,   630,   631,   632,   633,
-     634,   635,   636,   637,   638,   639,   640,   641,   642,   643,
-     644,   645,   646,   647,   648,   649,   650,   651,   652,   653,
-     654,   655,   656,   657,   658,   659,   660,   661,   662,   663,
-     664,   665,   666,   667,   668,   670,   675,   677
+     555,   556,   558,   559,   561,   562,   563,   565,   566,   571,
+     572,   574,   576,   577,   578,   580,   581,   583,   584,   585,
+     586,   587,   588,   590,   591,   592,   593,   594,   595,   596,
+     597,   598,   599,   600,   602,   603,   605,   606,   607,   612,
+     616,   620,   621,   622,   623,   624,   625,   626,   627,   628,
+     629,   630,   631,   632,   633,   634,   635,   636,   637,   638,
+     639,   640,   641,   642,   643,   644,   645,   646,   647,   648,
+     649,   650,   651,   652,   653,   654,   655,   656,   657,   658,
+     659,   660,   661,   662,   663,   664,   665,   666,   667,   668,
+     669,   670,   671,   672,   673,   675,   680,   682
 };
 #endif
 
@@ -3120,47 +3120,64 @@ yyreduce:
 #line 3121 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
-  case 338:
-#line 604 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+  case 308:
+#line 566 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     {
-    MDLFrontend_HashTypeName(pUserData, (yyvsp[0]._string));
+    MDLFrontend_HashVariableName(pUserData, (yyvsp[0]._string));
     MDLFrontend_DisposeString(pUserData, (yyvsp[0]._string));
 }
 #line 3130 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
-  case 339:
-#line 609 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+  case 338:
+#line 607 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     {
-    (yyval._string) = MDLFrontend_StringAppend2(pUserData, MDLFrontend_CreateString(pUserData, "::"), (yyvsp[0]._string));
+    MDLFrontend_HashTypeName(pUserData, (yyvsp[0]._string));
     MDLFrontend_DisposeString(pUserData, (yyvsp[0]._string));
 }
 #line 3139 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
+  case 339:
+#line 612 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+    {
+    (yyval._string) = MDLFrontend_StringAppend2(pUserData, MDLFrontend_CreateString(pUserData, "::"), (yyvsp[0]._string));
+    MDLFrontend_DisposeString(pUserData, (yyvsp[0]._string));
+}
+#line 3148 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+    break;
+
+  case 340:
+#line 616 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+    {
+    (yyval._string) = (yyvsp[0]._string);
+}
+#line 3156 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+    break;
+
   case 395:
-#line 670 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+#line 675 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { 
     (yyval._string) = MDLFrontend_StringAppend3(pUserData, (yyvsp[-2]._string), "::", (yyvsp[0]._string));
     MDLFrontend_DisposeString(pUserData, (yyvsp[0]._string));
     }
-#line 3148 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3165 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
   case 396:
-#line 675 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+#line 680 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._string) = (yyvsp[0]._string); }
-#line 3154 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3171 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
   case 397:
-#line 677 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
+#line 682 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._string) = (yyvsp[0]._string); }
-#line 3160 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3177 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
     break;
 
 
-#line 3164 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3181 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

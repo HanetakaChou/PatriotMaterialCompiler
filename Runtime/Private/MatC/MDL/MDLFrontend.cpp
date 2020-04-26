@@ -74,6 +74,15 @@ void MDLFrontend::Callback_HashTypeName(std::string *s)
 #endif
 }
 
+void MDLFrontend::Callback_HashVariableName(std::string *s)
+{
+    char const *ident = (*s).c_str();
+    ident = NULL;
+#ifndef NDEBUG
+    (*s).clear();
+#endif
+}
+
 void MDLFrontend::Callback_Error(char const *s)
 {
     std::cout << s << std::endl;

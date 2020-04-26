@@ -563,7 +563,10 @@ lvalue_postfix_expression_with_index_operation: array_type_or_lvalue LEFT_SQUARE
 lvalue_postfix_expression_with_index_operation: array_type_or_lvalue;
 
 lvalue_postfix_expression_without_index_operation: lvalue_postfix_expression_without_index_operation DOT simple_name;
-lvalue_postfix_expression_without_index_operation: simple_type_or_lvalue;
+lvalue_postfix_expression_without_index_operation: simple_type_or_lvalue {
+    MDLFrontend_HashVariableName(pUserData, $1);
+    MDLFrontend_DisposeString(pUserData, $1);
+};
 
 boolean_literal: TRUE;
 boolean_literal: FALSE;
@@ -610,7 +613,9 @@ simple_type_or_lvalue: SCOPE type_or_variable_qualified_name {
     $$ = MDLFrontend_StringAppend2(pUserData, MDLFrontend_CreateString(pUserData, "::"), $2);
     MDLFrontend_DisposeString(pUserData, $2);
 };
-simple_type_or_lvalue: type_or_variable_qualified_name;
+simple_type_or_lvalue: type_or_variable_qualified_name {
+    $$ = $1;
+}
 
 builtin_type: BOOL;
 builtin_type: BOOL2;

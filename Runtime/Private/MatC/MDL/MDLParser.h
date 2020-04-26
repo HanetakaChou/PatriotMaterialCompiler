@@ -12,6 +12,7 @@ extern "C"
     MDLStringRef MDLFrontend_StringAppend3(void *pUserData, MDLStringRef l, char const *m, MDLStringRef r);
     void MDLFrontend_DisposeString(void *pUserData, MDLStringRef s);
     void MDLFrontend_HashTypeName(void *pUserData, MDLStringRef s);
+    void MDLFrontend_HashVariableName(void *pUserData, MDLStringRef s);
 #ifdef __cplusplus
 }
 #endif
