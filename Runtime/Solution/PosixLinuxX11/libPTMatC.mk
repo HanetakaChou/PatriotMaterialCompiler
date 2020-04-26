@@ -8,6 +8,7 @@ LOCAL_SRC_FILES:= \
 	$(LOCAL_PATH)/../../Private/MatC/MDL/MDLScanner.cpp \
 	$(LOCAL_PATH)/../../Private/MatC/MDL/MDLParser.cpp \
 	$(LOCAL_PATH)/../../Private/MatC/MDL/MDLFrontend.cpp \
+	$(LOCAL_PATH)/../../Private/MatC/MDL/MDLParserForward.cpp \
 	$(LOCAL_PATH)/../../Private/MatC/PT_MatC_Stream.cpp \
 
 LOCAL_CFLAGS += -fdiagnostics-format=msvc

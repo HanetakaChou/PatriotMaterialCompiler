@@ -53,7 +53,6 @@ static void mdl_ll_test(char *const text, int leng);
     }
 
 #include "MDLParser.h"
-#include "MDLScanner.hpp"
 
 #include "MDLScanner.inl"
 

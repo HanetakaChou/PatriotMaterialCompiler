@@ -1,12 +1,24 @@
-#ifndef _MDL_YYPARSER_H_
-#define _MDL_YYPARSER_H_ 1
+#ifndef _PT_MATC_MDL_MDLPARSER_H_
+#define _PT_MATC_MDL_MDLPARSER_H_ 1
+
+typedef struct MDLOpaqueString *MDLStringRef;
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+    MDLStringRef MDLFrontend_CreateString(void *pUserData, char const *s);
+    MDLStringRef MDLFrontend_StringAppend(void *pUserData, MDLStringRef _self, char const *s);
+#ifdef __cplusplus
+}
+#endif
 
 #ifndef __cplusplus
-
 union YYSTYPE {
-    size_t _IDENT; //unordered_set hash unique value
+    MDLStringRef _string; //unordered_set hash unique value
     long _INTEGER_LITERAL;
-    struct {
+    struct
+    {
         long major;
         long minor;
     } _FRACT_LITERAL;
@@ -154,9 +166,6 @@ extern int YYTOKEN_INTEGER_LITERAL;
 extern int YYTOKEN_FRACT_LITERAL;
 extern int YYTOKEN_FLOATING_LITERAL;
 extern int YYTOKEN_DOUBLE_LITERAL;
-
-#else
-#error C++ Not Supported
 #endif
 
 #endif

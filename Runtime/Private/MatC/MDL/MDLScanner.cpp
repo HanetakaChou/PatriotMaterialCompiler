@@ -1,13 +1,7 @@
-#include "MDLScanner.hpp"
 #include "MDLFrontend.h"
 #include "../PT_MatC_Stream.h"
 #include <stdexcept>
 extern "C" void *mdl_llget_extra(struct llscan_t *yyscanner);
-
-extern "C" size_t MDLFrontend_HashIdentName(void *pUserData, char const *pIdentName)
-{
-    return static_cast<class MDLFrontend *>(pUserData)->Callback_HashIdentName(pIdentName);
-}
 
 extern "C" int mdl_ll_stream_read(void *pUserData, void *pUserStream, void *buf, size_t size)
 {

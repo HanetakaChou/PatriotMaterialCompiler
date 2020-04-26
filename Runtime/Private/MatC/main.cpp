@@ -14,9 +14,10 @@
 
 int main()
 {
-    //MDLFrontend mdlfrontend;
-    //mdlfrontend.Compile();
+    MDLFrontend mdlfrontend;
+    mdlfrontend.Compile();
 
+#if 0
     LLVMContextRef llvm_context = LLVMContextCreate();
 
     LLVMTypeRef llvm_type_float = LLVMFloatTypeInContext(llvm_context);
@@ -65,7 +66,7 @@ int main()
     LLVMBasicBlockRef entry_bb = LLVMAppendBasicBlockInContext(llvm_context, func, "huhu");
     LLVMBuilderRef irbuilder = LLVMCreateBuilderInContext(llvm_context);
     LLVMPositionBuilderAtEnd(irbuilder, entry_bb);
-    
+
     //LLVMBuildGEP2
 
     LLVMPassManagerRef llvm_func_passes = LLVMCreateFunctionPassManagerForModule(llvm_module);
@@ -137,6 +138,7 @@ int main()
         //LLVMJITEventListenerRef vtuneProfiler = LLVMCreateIntelJITEventListener();
         //m_llvm_exec->RegisterJITEventListener (vtuneProfiler);
     }
+#endif
 
     return 0;
 }

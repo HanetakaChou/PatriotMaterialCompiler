@@ -8472,7 +8472,7 @@ case 139:
 YY_RULE_SETUP
 #line 743 "../../Private/MatC/MDL/MDLScanner.l"
 {
-    lvalp->_IDENT = MDLFrontend_HashIdentName(yyextra, yytext);
+    lvalp->_string = MDLFrontend_CreateString(yyextra, yytext);
     return YYTOKEN_IDENT;
     }
 	YY_BREAK

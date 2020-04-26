@@ -150,15 +150,16 @@
 %token RIGHT_ANGLE_BRACKET //GREATER_OP
 %token LEFT_CURLY_BRACE
 %token RIGHT_CURLY_BRACE
-%token <_IDENT> IDENT
-%token <_INTEGER_LITERAL> INTEGER_LITERAL 
-%token <_FRACT_LITERAL> FRACT_LITERAL
-%token <_FLOATING_LITERAL> FLOATING_LITERAL
-%token <_DOUBLE_LITERAL> DOUBLE_LITERAL
+%token <_string> IDENT
+%token INTEGER_LITERAL 
+%token FRACT_LITERAL
+%token FLOATING_LITERAL
+%token DOUBLE_LITERAL
 
 // Define the nonterminals 
 %type <_null> mdl 
 %type <_decl> import_declaration;
+%type <_string> simple_name;
 
 // Define the starting nonterminal
 %start mdl
@@ -658,9 +659,9 @@ builtin_type: INTENSITY_RADIANT_EXITANCE;
 builtin_type: INTENSITY_POWER;
 builtin_type: HAIR_BSDF;
 
-type_or_variable_qualified_name: type_or_variable_qualified_name SCOPE IDENT;
-type_or_variable_qualified_name: IDENT;
+type_or_variable_qualified_name: type_or_variable_qualified_name SCOPE simple_name;
+type_or_variable_qualified_name: simple_name;
 
-simple_name: IDENT;
+simple_name: IDENT { $$ = $1; } ;
 
 //%%

@@ -741,7 +741,7 @@ DOUBLE_LITERAL (({FLOATING_LITERAL_HELPER}[Dd])|({FRACT_LITERAL}({E}?)[Dd]))
     }
 
 {IDENT} {
-    lvalp->_IDENT = MDLFrontend_HashIdentName(yyextra, yytext);
+    lvalp->_string = MDLFrontend_CreateString(yyextra, yytext);
     return YYTOKEN_IDENT;
     }
 

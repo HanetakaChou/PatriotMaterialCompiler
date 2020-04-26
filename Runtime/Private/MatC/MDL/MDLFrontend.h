@@ -9,11 +9,12 @@
 
 class PTEXPORT MDLFrontend
 {
-    std::unordered_set<std::string> m_ident_name_hash;
+    //std::unordered_set<std::string> m_ident_name_hash;
 public:
     MDLFrontend();
     void Compile();
-    size_t Callback_HashIdentName(char const *pIdentName);
+    std::string *Callback_CreateString(char const *s);
+    std::string *Callback_StringAppend(std::string *_self, char const *s);
     void Callback_Error(char const *s);
     void *Callback_Malloc(size_t size);
     void *Callback_Realloc(void *ptr, size_t size);

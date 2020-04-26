@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <memory.h>
 #include <iostream>
+#include <new>
+
 extern "C" int mdl_lllex_init_extra(void *user_defined, struct llscan_t **scanner);
 extern "C" void mdl_llset_in(void *user_inputstream, struct llscan_t *scanner);
 extern "C" int mdl_lllex_destroy(struct llscan_t *scanner);
@@ -24,9 +26,14 @@ void MDLFrontend::Compile()
     mdl_lllex_destroy(scanner);
 }
 
-size_t MDLFrontend::Callback_HashIdentName(char const *pIdentName)
+std::string *MDLFrontend::Callback_CreateString(char const *s)
 {
-    return 0;
+    return new (Callback_Malloc(sizeof(std::string))) std::string(s);
+}
+
+std::string *MDLFrontend::Callback_StringAppend(std::string *_self, char const *s)
+{
+    return &((*_self).append(s));
 }
 
 void MDLFrontend::Callback_Error(char const *s)
