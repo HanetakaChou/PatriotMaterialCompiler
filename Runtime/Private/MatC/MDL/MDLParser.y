@@ -459,18 +459,18 @@ positional_argument: assignment_expression;
 comma_expression: assignment_expression COMMA comma_expression;
 comma_expression: assignment_expression;
 
-assignment_expression: logical_or_expression ASSIGN_OP assignment_expression;
-assignment_expression: logical_or_expression BITWISE_OR_ASSIGN_OP assignment_expression;
-assignment_expression: logical_or_expression BITWISE_AND_ASSIGN_OP assignment_expression;
-assignment_expression: logical_or_expression BITWISE_XOR_ASSIGN_OP assignment_expression;
-assignment_expression: logical_or_expression SHIFT_LEFT_ASSIGN_OP assignment_expression;
-assignment_expression: logical_or_expression SHIFT_RIGHT_ASSIGN_OP assignment_expression;
-assignment_expression: logical_or_expression UNSIGNED_SHIFT_RIGHT_ASSIGN_OP assignment_expression;
-assignment_expression: logical_or_expression MULTIPLY_ASSIGN_OP assignment_expression;
-assignment_expression: logical_or_expression DIVIDE_ASSIGN_OP assignment_expression;
-assignment_expression: logical_or_expression MODULO_ASSIGN_OP assignment_expression;
-assignment_expression: logical_or_expression PLUS_ASSIGN_OP assignment_expression;
-assignment_expression: logical_or_expression MINUS_ASSIGN_OP assignment_expression;
+assignment_expression: lvalue_expression ASSIGN_OP assignment_expression;
+assignment_expression: lvalue_expression BITWISE_OR_ASSIGN_OP assignment_expression;
+assignment_expression: lvalue_expression BITWISE_AND_ASSIGN_OP assignment_expression;
+assignment_expression: lvalue_expression BITWISE_XOR_ASSIGN_OP assignment_expression;
+assignment_expression: lvalue_expression SHIFT_LEFT_ASSIGN_OP assignment_expression;
+assignment_expression: lvalue_expression SHIFT_RIGHT_ASSIGN_OP assignment_expression;
+assignment_expression: lvalue_expression UNSIGNED_SHIFT_RIGHT_ASSIGN_OP assignment_expression;
+assignment_expression: lvalue_expression MULTIPLY_ASSIGN_OP assignment_expression;
+assignment_expression: lvalue_expression DIVIDE_ASSIGN_OP assignment_expression;
+assignment_expression: lvalue_expression MODULO_ASSIGN_OP assignment_expression;
+assignment_expression: lvalue_expression PLUS_ASSIGN_OP assignment_expression;
+assignment_expression: lvalue_expression MINUS_ASSIGN_OP assignment_expression;
 assignment_expression: conditional_expression;
 
 conditional_expression: logical_or_expression CONDITIONAL_OP comma_expression COLON assignment_expression;
@@ -524,39 +524,44 @@ unary_expression: DECREMENT_OP unary_expression;
 unary_expression: postfix_expression;
 unary_expression: let_expression;
 
-postfix_expression: matched_postfix_expression;
-postfix_expression: unmatched_postfix_expression;
-
-matched_postfix_expression: matched_postfix_expression INCREMENT_OP;
-matched_postfix_expression: matched_postfix_expression DECREMENT_OP;
-matched_postfix_expression: matched_postfix_expression DOT simple_name;
-matched_postfix_expression: matched_postfix_expression argument_list;
-matched_postfix_expression: matched_postfix_expression LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET;
-matched_postfix_expression: matched_primary_expression;
-matched_postfix_expression: cast_expression;
-
-matched_primary_expression: simple_type LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET; //Index of simple_type Or Construction
-matched_primary_expression: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
-matched_primary_expression: literal_expression;
-matched_primary_expression: LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS;
-
-unmatched_postfix_expression: unmatched_postfix_expression INCREMENT_OP;
-unmatched_postfix_expression: unmatched_postfix_expression DECREMENT_OP;
-unmatched_postfix_expression: unmatched_postfix_expression DOT simple_name;
-unmatched_postfix_expression: unmatched_postfix_expression argument_list;
-unmatched_postfix_expression: unmatched_primary_expression;
-
-unmatched_primary_expression: simple_type;  
-
-cast_expression: CAST LEFT_ANGLE_BRACKET type RIGHT_ANGLE_BRACKET LEFT_PARENTHESIS unary_expression RIGHT_PARENTHESIS;
+postfix_expression: rvalue_postfix_expression;
+postfix_expression: lvalue_expression;
 
 let_expression: LET variable_declaration IN unary_expression;
 let_expression: LET LEFT_CURLY_BRACE variable_declarations RIGHT_CURLY_BRACE IN unary_expression;
+
+rvalue_postfix_expression: rvalue_postfix_expression INCREMENT_OP;
+rvalue_postfix_expression: rvalue_postfix_expression DECREMENT_OP;
+rvalue_postfix_expression: rvalue_postfix_expression DOT simple_name;
+rvalue_postfix_expression: rvalue_postfix_expression argument_list;
+rvalue_postfix_expression: rvalue_postfix_expression LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET;
+rvalue_postfix_expression: rvalue_primary_expression;
+
+rvalue_primary_expression: cast_expression;
+rvalue_primary_expression: constructor_expression; 
+rvalue_primary_expression: literal_expression;
+rvalue_primary_expression: LEFT_PARENTHESIS comma_expression RIGHT_PARENTHESIS;
+
+cast_expression: CAST LEFT_ANGLE_BRACKET type RIGHT_ANGLE_BRACKET LEFT_PARENTHESIS unary_expression RIGHT_PARENTHESIS;
+
+constructor_expression: array_type argument_list;
+constructor_expression: simple_type argument_list;
 
 literal_expression: boolean_literal;
 literal_expression: integer_literal;
 literal_expression: floating_literal;
 literal_expression: string_literal;
+
+lvalue_expression: lvalue_expression_with_index_operation;
+lvalue_expression: lvalue_expression_without_index_operation;
+
+lvalue_expression_with_index_operation: array_type_or_lvalue DOT simple_name;
+lvalue_expression_with_index_operation: array_type_or_lvalue LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET;
+lvalue_expression_with_index_operation: array_type_or_lvalue;
+
+lvalue_expression_without_index_operation: lvalue_expression_without_index_operation DOT simple_name;
+lvalue_expression_without_index_operation: SCOPE type_or_variable_qualified_name;
+lvalue_expression_without_index_operation: type_or_variable_qualified_name;
 
 boolean_literal: TRUE;
 boolean_literal: FALSE;
@@ -573,73 +578,87 @@ string_literal: STRING_LITERAL;
 type: VARYING array_type;
 type: UNIFORM array_type;
 type: array_type;
+type: VARYING simple_type;
+type: UNIFORM simple_type;
+type: simple_type;
 
-array_type: simple_type LEFT_SQUARE_BRACKET LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET RIGHT_SQUARE_BRACKET;
-array_type: simple_type LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET; //Use action to analyze further //Only support comma_expression here
-array_type: simple_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
-array_type: simple_type;
+array_type: SCOPE builtin_type LEFT_SQUARE_BRACKET LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET RIGHT_SQUARE_BRACKET;
+array_type: SCOPE builtin_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET;
+array_type: SCOPE builtin_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
+array_type: SCOPE type_or_variable_qualified_name LEFT_SQUARE_BRACKET LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET RIGHT_SQUARE_BRACKET;
+array_type: SCOPE type_or_variable_qualified_name LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
+array_type: builtin_type LEFT_SQUARE_BRACKET LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET RIGHT_SQUARE_BRACKET;
+array_type: builtin_type LEFT_SQUARE_BRACKET conditional_expression RIGHT_SQUARE_BRACKET;
+array_type: builtin_type LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
+array_type: type_or_variable_qualified_name LEFT_SQUARE_BRACKET LEFT_ANGLE_BRACKET simple_name RIGHT_ANGLE_BRACKET RIGHT_SQUARE_BRACKET;
+array_type: type_or_variable_qualified_name LEFT_SQUARE_BRACKET RIGHT_SQUARE_BRACKET;
+array_type: array_type_or_lvalue; //Use action to analyze further //Only support conditional_expression for array_type  
 
-simple_type: SCOPE relative_type;
-simple_type: relative_type;
+array_type_or_lvalue: SCOPE type_or_variable_qualified_name LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET; 
+array_type_or_lvalue: type_or_variable_qualified_name LEFT_SQUARE_BRACKET comma_expression RIGHT_SQUARE_BRACKET;
 
-relative_type: BOOL;
-relative_type: BOOL2;
-relative_type: BOOL3;
-relative_type: BOOL4;
-relative_type: INT;
-relative_type: INT2;
-relative_type: INT3;
-relative_type: INT4;
-relative_type: FLOAT;
-relative_type: FLOAT2;
-relative_type: FLOAT3;
-relative_type: FLOAT4;
-relative_type: FLOAT2X2;
-relative_type: FLOAT2X3;
-relative_type: FLOAT2X4;
-relative_type: FLOAT3X2;
-relative_type: FLOAT3X3;
-relative_type: FLOAT3X4;
-relative_type: FLOAT4X2;
-relative_type: FLOAT4X3;
-relative_type: FLOAT4X4; 
-relative_type: DOUBLE;
-relative_type: DOUBLE2;
-relative_type: DOUBLE3; 
-relative_type: DOUBLE4;
-relative_type: DOUBLE2X2;
-relative_type: DOUBLE2X3;
-relative_type: DOUBLE2X4; 
-relative_type: DOUBLE3X2;
-relative_type: DOUBLE3X3;
-relative_type: DOUBLE3X4;
-relative_type: DOUBLE4X2;
-relative_type: DOUBLE4X3; 
-relative_type: DOUBLE4X4; 
-relative_type: COLOR;
-relative_type: STRING;
-relative_type: SDF;
-relative_type: EDF;
-relative_type: VDF;
-relative_type: LIGHT_PROFILE;
-relative_type: MATERIAL;
-relative_type: MATERIAL_EMISSION;
-relative_type: MATERIAL_GEOMETRY;
-relative_type: MATERIAL_SURFACE; 
-relative_type: MATERIAL_VOLUME;
-relative_type: TEXTURE_2D;
-relative_type: TEXTURE_3D; 
-relative_type: TEXTURE_CUBE; 
-relative_type: TEXTURE_PTEX;
-relative_type: BSDF_MEASUREMENT;
-relative_type: INTENSITY_MODE;
-relative_type: INTENSITY_RADIANT_EXITANCE;
-relative_type: INTENSITY_POWER;
-relative_type: HAIR_BSDF;
-relative_type: relative_type_qualified_name;
+simple_type: SCOPE builtin_type;
+simple_type: SCOPE type_or_variable_qualified_name;
+simple_type: builtin_type;
+simple_type: type_or_variable_qualified_name;
 
-relative_type_qualified_name: relative_type_qualified_name SCOPE IDENT;
-relative_type_qualified_name: IDENT;
+builtin_type: BOOL;
+builtin_type: BOOL2;
+builtin_type: BOOL3;
+builtin_type: BOOL4;
+builtin_type: INT;
+builtin_type: INT2;
+builtin_type: INT3;
+builtin_type: INT4;
+builtin_type: FLOAT;
+builtin_type: FLOAT2;
+builtin_type: FLOAT3;
+builtin_type: FLOAT4;
+builtin_type: FLOAT2X2;
+builtin_type: FLOAT2X3;
+builtin_type: FLOAT2X4;
+builtin_type: FLOAT3X2;
+builtin_type: FLOAT3X3;
+builtin_type: FLOAT3X4;
+builtin_type: FLOAT4X2;
+builtin_type: FLOAT4X3;
+builtin_type: FLOAT4X4; 
+builtin_type: DOUBLE;
+builtin_type: DOUBLE2;
+builtin_type: DOUBLE3; 
+builtin_type: DOUBLE4;
+builtin_type: DOUBLE2X2;
+builtin_type: DOUBLE2X3;
+builtin_type: DOUBLE2X4; 
+builtin_type: DOUBLE3X2;
+builtin_type: DOUBLE3X3;
+builtin_type: DOUBLE3X4;
+builtin_type: DOUBLE4X2;
+builtin_type: DOUBLE4X3; 
+builtin_type: DOUBLE4X4; 
+builtin_type: COLOR;
+builtin_type: STRING;
+builtin_type: SDF;
+builtin_type: EDF;
+builtin_type: VDF;
+builtin_type: LIGHT_PROFILE;
+builtin_type: MATERIAL;
+builtin_type: MATERIAL_EMISSION;
+builtin_type: MATERIAL_GEOMETRY;
+builtin_type: MATERIAL_SURFACE; 
+builtin_type: MATERIAL_VOLUME;
+builtin_type: TEXTURE_2D;
+builtin_type: TEXTURE_3D; 
+builtin_type: TEXTURE_CUBE; 
+builtin_type: TEXTURE_PTEX;
+builtin_type: BSDF_MEASUREMENT;
+builtin_type: INTENSITY_MODE;
+builtin_type: INTENSITY_RADIANT_EXITANCE;
+builtin_type: INTENSITY_POWER;
+builtin_type: HAIR_BSDF;
+
+type_or_variable_qualified_name: type_or_variable_qualified_name SCOPE IDENT;
+type_or_variable_qualified_name: IDENT;
 
 simple_name: IDENT;
 

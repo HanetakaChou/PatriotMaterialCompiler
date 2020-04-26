@@ -12,9 +12,10 @@
 
 int main()
 {
-    //MDLFrontend mdlfrontend;
-    //mdlfrontend.Compile();
+    MDLFrontend mdlfrontend;
+    mdlfrontend.Compile();
 
+#if 0
     LLVMContextRef llvm_context = LLVMContextCreate();
 
     LLVMTypeRef llvm_type_float = LLVMFloatTypeInContext(llvm_context);
@@ -108,6 +109,8 @@ int main()
         //LLVMJITEventListenerRef vtuneProfiler = LLVMCreateIntelJITEventListener();
         //m_llvm_exec->RegisterJITEventListener (vtuneProfiler);
     }
+
+#endif 
 
     return 0;
 }
