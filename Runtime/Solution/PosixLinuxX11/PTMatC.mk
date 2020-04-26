@@ -6,6 +6,7 @@ LOCAL_MODULE := PTMatC.bundle
 
 LOCAL_SRC_FILES:= \
 	$(LOCAL_PATH)/../../Private/MatC/main.cpp \
+	$(LOCAL_PATH)/../../Private/MatC/llvm_ops.bc.cpp \
 
 LOCAL_CFLAGS += -fdiagnostics-format=msvc
 LOCAL_CFLAGS += -finput-charset=UTF-8 -fexec-charset=UTF-8
