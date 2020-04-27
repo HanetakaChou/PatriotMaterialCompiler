@@ -159,4 +159,5 @@ int YYTOKEN_DOUBLE_LITERAL = DOUBLE_LITERAL;
 static void _static_assert_mdl_yy_parser_(void)
 {
     char _static_assert_yyeof_[((YYEOF == 0) ? 1 : -1)];
+	((void)_static_assert_yyeof_);
 }

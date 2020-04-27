@@ -73,26 +73,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetName>PTMATC</TargetName>
     <LinkIncremental>true</LinkIncremental>
-    <IntDir>$(SolutionDir)\..\..\..\Intermediate\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir)\..\..\..\Intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)\..\..\..\Binary\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>PTMATC</TargetName>
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)\..\..\..\Binary\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\..\..\..\Intermediate\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir)\..\..\..\Intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <TargetName>PTMATC</TargetName>
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)\..\..\..\Binary\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\..\..\..\Intermediate\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir)\..\..\..\Intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>PTMATC</TargetName>
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)\..\..\..\Binary\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\..\..\..\Intermediate\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir)\..\..\..\Intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -161,18 +161,18 @@
   <ItemGroup>
     <ClCompile Include="..\..\Private\MatC\MDL\MDLFrontend.cpp" />
     <ClCompile Include="..\..\Private\MatC\MDL\MDLParserYacc.c" />
-    <ClCompile Include="..\..\Private\MatC\MDL\MDLParser.cpp" />
+    <ClCompile Include="..\..\Private\MatC\MDL\MDLParserCXX.cpp" />
     <ClCompile Include="..\..\Private\MatC\MDL\MDLParserForward.cpp" />
     <ClCompile Include="..\..\Private\MatC\MDL\MDLScannerLex.c" />
-    <ClCompile Include="..\..\Private\MatC\MDL\MDLScanner.cpp" />
-    <ClCompile Include="..\..\Private\MatC\PT_MatC_Stream.cpp" />
+    <ClCompile Include="..\..\Private\MatC\MDL\MDLScannerCXX.cpp" />
     <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Private\MatC\MDL\MDLAST.h" />
     <ClInclude Include="..\..\Private\MatC\MDL\MDLFrontend.h" />
     <ClInclude Include="..\..\Private\MatC\MDL\MDLParser.h" />
-    <ClInclude Include="..\..\Private\MatC\PT_MatC_Stream.h" />
+    <ClInclude Include="..\..\Public\MatC\PT_MatC_Common.h" />
+    <ClInclude Include="..\..\Public\MatC\PT_MatC_Frontend.h" />
     <ClInclude Include="..\..\Public\PTCommon.h" />
   </ItemGroup>
   <ItemGroup>

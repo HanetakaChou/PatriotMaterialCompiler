@@ -1,4 +1,4 @@
-#ifndef PT_COMMON_H
+﻿#ifndef PT_COMMON_H
 #define PT_COMMON_H
 
 #if defined(_MSC_VER) //Compiler

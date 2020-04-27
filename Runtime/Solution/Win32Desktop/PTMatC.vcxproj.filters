@@ -4,25 +4,22 @@
     <ClCompile Include="..\..\Private\MatC\MDL\MDLFrontend.cpp">
       <Filter>Private\MatC\MDL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Private\MatC\MDL\MDLParser.cpp">
-      <Filter>Private\MatC\MDL</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Private\MatC\MDL\MDLParserForward.cpp">
-      <Filter>Private\MatC\MDL</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Private\MatC\MDL\MDLScanner.cpp">
       <Filter>Private\MatC\MDL</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>Solution\Win32Desktop</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Private\MatC\PT_MatC_Stream.cpp">
-      <Filter>Private</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Private\MatC\MDL\MDLParserYacc.c">
       <Filter>Private\MatC\MDL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Private\MatC\MDL\MDLScannerLex.c">
+      <Filter>Private\MatC\MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Private\MatC\MDL\MDLParserCXX.cpp">
+      <Filter>Private\MatC\MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Private\MatC\MDL\MDLScannerCXX.cpp">
       <Filter>Private\MatC\MDL</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,6 +42,9 @@
     <Filter Include="Solution\Win32Desktop">
       <UniqueIdentifier>{5b03d83a-f5e2-4f10-9ff8-468c700b18ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Public\MatC">
+      <UniqueIdentifier>{608e0610-bca2-4cd8-91d3-7437195b42cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Public\PTCommon.h">
@@ -59,8 +59,11 @@
     <ClInclude Include="..\..\Private\MatC\MDL\MDLParser.h">
       <Filter>Private\MatC\MDL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Private\MatC\PT_MatC_Stream.h">
-      <Filter>Private</Filter>
+    <ClInclude Include="..\..\Public\MatC\PT_MatC_Common.h">
+      <Filter>Public\MatC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Public\MatC\PT_MatC_Frontend.h">
+      <Filter>Public\MatC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
