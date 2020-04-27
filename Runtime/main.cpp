@@ -4,8 +4,8 @@
 //#include <stddef.h>
 //#include <stdlib.h>
 
-#if 0
 #include <llvm-c/Core.h>
+#if 0
 #include <llvm-c/Transforms/PassManagerBuilder.h>
 #include <llvm-c/Transforms/IPO.h>
 #include <llvm-c/BitReader.h>
@@ -20,6 +20,8 @@
 
 int main()
 {
+
+	LLVMContextRef llvm_context = LLVMContextCreate();
 
 	HANDLE hFile = CreateFileW(L"C:\\Users\\Administrator\\Documents\\github\\PatriotMaterialCompiler\\tutorials.mdl", FILE_READ_DATA, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
