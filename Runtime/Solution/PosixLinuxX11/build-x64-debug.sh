@@ -8,10 +8,10 @@ int_dir="obj/local/x86_64"
 out_dir="../../../Binary/x64/Debug"
 
 # flex bison
-rm -rf ../../Private/MatC/MDL/MDLScanner.inl
-flex -X -o ../../Private/MatC/MDL/MDLScanner.inl ../../Private/MatC/MDL/MDLScanner.l   
-rm -rf ../../Private/MatC/MDL/MDLParser.inl
-bison -y -o ../../Private/MatC/MDL/MDLParser.inl -p mdl_yy ../../Private/MatC/MDL/MDLParser.y -L C 
+rm -rf ../../Private/MatC/MDL/MDLScannerLex.inl
+flex -X -o ../../Private/MatC/MDL/MDLScannerLex.inl ../../Private/MatC/MDL/MDLScanner.l   
+rm -rf ../../Private/MatC/MDL/MDLParserYacc.inl
+bison -y -o ../../Private/MatC/MDL/MDLParserYacc.inl -p mdl_yy ../../Private/MatC/MDL/MDLParser.y -L C 
 
 # build by ndk
 rm -rf obj

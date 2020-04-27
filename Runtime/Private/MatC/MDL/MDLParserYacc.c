@@ -2,9 +2,9 @@
 
 #include "MDLParser.h"
 
-void *mdl_yyalloc(size_t size, void *pUserData);
-void *mdl_yyrealloc(void *ptr, size_t size, void *pUserData);
-void mdl_yyfree(void *ptr, void *pUserData);
+extern void *mdl_yyalloc(size_t size, void *pUserData);
+extern void *mdl_yyrealloc(void *ptr, size_t size, void *pUserData);
+extern void mdl_yyfree(void *ptr, void *pUserData);
 
 #define YYMALLOC(size) (mdl_yyalloc((size), pUserData))
 #define YYREALLOC(ptr, size) (mdl_yyrealloc((ptr), (size), pUserData))
@@ -12,7 +12,7 @@ void mdl_yyfree(void *ptr, void *pUserData);
 
 //https://www.gnu.org/software/bison/manual/html_node/Table-of-Symbols.html
 //#define YYSTACK_USE_ALLOCA 1
-#include "MDLParser.inl"
+#include "MDLParserYacc.inl"
 
 //https://www.gnu.org/software/bison/manual/html_node/Union-Decl.html#Union-Decl
 //https://www.gnu.org/software/bison/manual/html_node/Location-Type.html

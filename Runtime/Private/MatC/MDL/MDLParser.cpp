@@ -31,7 +31,7 @@ typedef struct YYLTYPE YYLTYPE;
 extern "C" void mdl_yyerror(YYLTYPE *llocp, void *pUserData, struct llscan_t *, const char *s)
 {
     char msg_yyerror[4096];
-    sprintf(msg_yyerror, "%s at line %d column %d", s, llocp->first_line, llocp->first_column);
+    snprintf(msg_yyerror, 4096, "%s at line %d column %d", s, llocp->first_line, llocp->first_column);
     static_cast<class MDLFrontend *>(pUserData)->Callback_Error(msg_yyerror);
 }
 

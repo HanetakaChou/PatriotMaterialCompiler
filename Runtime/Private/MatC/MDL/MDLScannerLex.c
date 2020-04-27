@@ -5,7 +5,7 @@
 #include <assert.h>
 
 #if defined(_MSC_VER)
-extern __declspec(noreturn) void mdl_ll_fatal_error(char const *msg void *pUserData);
+extern __declspec(noreturn) void mdl_ll_fatal_error(char const *msg, void *pUserData);
 #elif defined(__GNUC__)
 extern __attribute__((__noreturn__)) void mdl_ll_fatal_error(char const *msg, void *pUserData);
 #else
@@ -54,7 +54,7 @@ static void mdl_ll_test(char *const text, int leng);
 
 #include "MDLParser.h"
 
-#include "MDLScanner.inl"
+#include "MDLScannerLex.inl"
 
 static void _static_assert_mdl_ll_lexer_(void)
 {

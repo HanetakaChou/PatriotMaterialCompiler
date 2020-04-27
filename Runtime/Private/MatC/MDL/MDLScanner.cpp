@@ -16,7 +16,7 @@ extern "C" int mdl_llwrap(struct llscan_t *scanner)
 }
 
 #if defined(_MSC_VER)
-extern "C" __declspec(noreturn) void mdl_ll_fatal_error(char const *msg void *pUserData)
+extern "C" __declspec(noreturn) void mdl_ll_fatal_error(char const *msg, void *pUserData)
 #elif defined(__GNUC__)
 extern "C" __attribute__((__noreturn__)) void mdl_ll_fatal_error(char const *msg, void *pUserData)
 #else
