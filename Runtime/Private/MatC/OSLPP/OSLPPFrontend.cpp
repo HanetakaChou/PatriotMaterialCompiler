@@ -1,6 +1,5 @@
 #include "../../../Public/MatC/PT_MatC_OSLPreprocessor.h"
 
-#include <clang-c/Index.h>
 
 extern "C" PTMATCAPI void PTCALL PT_MatC_OSLPreprocessor_Run(
 	void *pUserStream, 

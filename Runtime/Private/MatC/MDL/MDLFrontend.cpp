@@ -53,7 +53,8 @@ ptrdiff_t MDLFrontend::Callback_InputStreamRead(MDLFrontend_InputStreamRef _Inpu
 
 int MDLFrontend::Callback_Wrap()
 {
-	return ((m_inputstream_stack.empty()) ? 1 : 0);
+	//return ((m_inputstream_stack.empty()) ? 1 : 0);
+	return 1;
 }
 
 std::string *MDLFrontend::Callback_CreateString(char const *s)

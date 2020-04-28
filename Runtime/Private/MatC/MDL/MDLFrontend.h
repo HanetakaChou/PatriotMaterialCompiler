@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <string>
-#include <vector>
+//#include <vector>
 //#include <unordered_set>
 
 class MDLFrontend
@@ -15,10 +15,7 @@ class MDLFrontend
 	ptrdiff_t(PTPTR *m_pFn_InputStreamRead)(MDLFrontend_InputStreamRef InputStreamRef, void *buf, size_t count);
 	void(PTPTR *m_pFn_InputStreamDispose)(MDLFrontend_InputStreamRef InputStreamRef);
 
-	std::vector<MDLFrontend_InputStreamRef> m_inputstream_stack;
-
-	//std::vector<MDLFrontend_UserStream> m_UserStream_Vec;
-	//std::unordered_set<std::string> m_ident_name_hash;
+	//std::vector<MDLFrontend_InputStreamRef> m_inputstream_stack;
 
 public:
 	MDLFrontend(

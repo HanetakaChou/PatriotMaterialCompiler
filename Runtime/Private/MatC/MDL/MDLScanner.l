@@ -805,8 +805,12 @@ DOUBLE_LITERAL (({FLOATING_LITERAL_HELPER}[Dd])|({FRACT_LITERAL}({E}?)[Dd]))
         YY_FATAL_ERROR(msg_fatal_error);
     }
 
-<INITIAL><<EOF>> {
-    return YYTOKEN_EOF;
+<<EOF>> {
+    mdl_llpop_buffer_state(yyscanner);
+    if(!YY_CURRENT_BUFFER)
+    {
+        return YYTOKEN_EOF; //yyterminate
+    }
     }
 
 %%

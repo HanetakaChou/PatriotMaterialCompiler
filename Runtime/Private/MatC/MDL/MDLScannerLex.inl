@@ -8557,15 +8557,19 @@ YY_RULE_SETUP
 case YY_STATE_EOF(INITIAL):
 #line 808 "../../Private/MatC/MDL/MDLScanner.l"
 {
-    return YYTOKEN_EOF;
+    mdl_llpop_buffer_state(yyscanner);
+    if(!YY_CURRENT_BUFFER)
+    {
+        return YYTOKEN_EOF; //yyterminate
+    }
     }
 	YY_BREAK
 case 147:
 YY_RULE_SETUP
-#line 812 "../../Private/MatC/MDL/MDLScanner.l"
+#line 816 "../../Private/MatC/MDL/MDLScanner.l"
 ECHO;
 	YY_BREAK
-#line 8569 "../../Private/MatC/MDL/MDLScannerLex.inl"
+#line 8573 "../../Private/MatC/MDL/MDLScannerLex.inl"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -9666,6 +9670,6 @@ static int yy_flex_strlen (yyconst char * s , yyscan_t yyscanner)
 
 #define YYTABLES_NAME "yytables"
 
-#line 812 "../../Private/MatC/MDL/MDLScanner.l"
+#line 816 "../../Private/MatC/MDL/MDLScanner.l"
 
 
