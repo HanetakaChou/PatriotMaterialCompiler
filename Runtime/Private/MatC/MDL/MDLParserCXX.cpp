@@ -1,6 +1,6 @@
 #include "MDLParser.h"
 #include "MDLFrontend.h"
-#include <stdexcept>
+#include <exception>
 extern "C" int mdl_lllex(struct llscan_t *scanner, union YYSTYPE *lvalp, struct YYLTYPE *llocp);
 
 extern "C" int mdl_yylex(union YYSTYPE *lvalp, struct YYLTYPE *llocp, class MDLFrontend *pUserData, struct llscan_t *pScanner)
@@ -12,8 +12,7 @@ extern "C" int mdl_yylex(union YYSTYPE *lvalp, struct YYLTYPE *llocp, class MDLF
     }
     catch (const std::exception &e)
     {
-		pUserData->Callback_Error(e.what());
-		return YYTOKEN_EOF;
+        return YYTOKEN_PSEUDO_LEX_ERROR;
     }
 }
 
@@ -27,24 +26,22 @@ struct YYLTYPE
 };
 typedef struct YYLTYPE YYLTYPE;
 
-extern "C" void mdl_yyerror(YYLTYPE *llocp, class MDLFrontend *pUserData, struct llscan_t *, const char *s)
+extern "C" void mdl_yyerror(YYLTYPE *llocp, MDLFrontend *pUserData, struct llscan_t *, const char *s)
 {
-	char msg_yyerror[4096];
-	snprintf(msg_yyerror, 4096, "%s at line %d column %d", s, llocp->first_line, llocp->first_column);
-	pUserData->Callback_Error(msg_yyerror);
+    pUserData->Callback_Error(llocp->first_line, llocp->first_column, s);
 }
 
 extern "C" void *mdl_yyalloc(size_t size, class MDLFrontend *pUserData)
 {
-	return pUserData->Callback_Malloc(size);
+    return pUserData->Callback_Malloc(size);
 }
 
 extern "C" void *mdl_yyrealloc(void *ptr, size_t size, class MDLFrontend *pUserData)
 {
-	return pUserData->Callback_Realloc(ptr, size);
+    return pUserData->Callback_Realloc(ptr, size);
 }
 
 extern "C" void mdl_yyfree(void *ptr, class MDLFrontend *pUserData)
 {
-	return pUserData->Callback_Free(ptr);
+    return pUserData->Callback_Free(ptr);
 }

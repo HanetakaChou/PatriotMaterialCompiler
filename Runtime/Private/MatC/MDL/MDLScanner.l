@@ -801,7 +801,7 @@ DOUBLE_LITERAL (({FLOATING_LITERAL_HELPER}[Dd])|({FRACT_LITERAL}({E}?)[Dd]))
 (.) { 
         char msg_fatal_error[4096];
         assert(((yyleng) == 1));
-        snprintf(msg_fatal_error, 4096, "Unexpect \'%c\' at line %d column %d", ((yytext)[0]), (yylineno), (yycolumn));
+        snprintf(msg_fatal_error, 4096, "lex error, unexpected \'%s\'", (yytext));
         YY_FATAL_ERROR(msg_fatal_error);
     }
 

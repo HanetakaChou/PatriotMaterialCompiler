@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <string>
-//#include <vector>
+#include <vector>
 //#include <unordered_set>
 
 class MDLFrontend
@@ -15,7 +15,7 @@ class MDLFrontend
 	ptrdiff_t(PTPTR *m_pFn_InputStreamRead)(MDLFrontend_InputStreamRef InputStreamRef, void *buf, size_t count);
 	void(PTPTR *m_pFn_InputStreamDispose)(MDLFrontend_InputStreamRef InputStreamRef);
 
-	//std::vector<MDLFrontend_InputStreamRef> m_inputstream_stack;
+	std::vector<std::string> m_inputstream_filename_stack;
 
 public:
 	MDLFrontend(
@@ -26,6 +26,7 @@ public:
 	void Run(char const *pInitialFileName);
 
 	ptrdiff_t Callback_InputStreamRead(MDLFrontend_InputStreamRef _InputStreamRef, void *buf, size_t count);
+
 	int Callback_Wrap();
 
 	std::string *Callback_CreateString(char const *s);
@@ -36,7 +37,7 @@ public:
 	void Callback_HashTypeName(std::string *s);
 	void Callback_HashVariableName(std::string *s);
 
-	void Callback_Error(char const *s);
+	void Callback_Error(int line, int column, char const *s);
 
 	void *Callback_Malloc(size_t size);
 	void *Callback_Realloc(void *ptr, size_t size);

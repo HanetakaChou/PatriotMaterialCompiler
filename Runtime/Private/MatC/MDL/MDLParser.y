@@ -154,7 +154,8 @@
 %token INTEGER_LITERAL 
 %token FRACT_LITERAL
 %token FLOATING_LITERAL
-%token DOUBLE_LITERAL
+%token DOUBLE_LITERAL 
+%token PSEUDO_LEX_ERROR "[A lex error has occurred!]"
 
 // Define the nonterminals 
 %type <_null> mdl 

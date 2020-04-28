@@ -37,6 +37,8 @@ void MDLFrontend::Run(char const *pInitialFileName)
 	mdl_lllex_init_extra(this, &scanner);
 
 	MDLFrontend_InputStreamRef _InitialInputStream = m_pFn_CreateInputStream(pInitialFileName);
+	m_inputstream_filename_stack.push_back(pInitialFileName);
+
 	mdl_llset_in(_InitialInputStream, scanner);
 
 	mdl_yyparse(this, scanner);
@@ -53,8 +55,8 @@ ptrdiff_t MDLFrontend::Callback_InputStreamRead(MDLFrontend_InputStreamRef _Inpu
 
 int MDLFrontend::Callback_Wrap()
 {
-	//return ((m_inputstream_stack.empty()) ? 1 : 0);
-	return 1;
+	m_inputstream_filename_stack.pop_back();
+	return ((m_inputstream_filename_stack.empty()) ? 1 : 0);
 }
 
 std::string *MDLFrontend::Callback_CreateString(char const *s)
@@ -113,9 +115,11 @@ void MDLFrontend::Callback_HashVariableName(std::string *s)
 #endif
 }
 
-void MDLFrontend::Callback_Error(char const *s)
+void MDLFrontend::Callback_Error(int line, int column, char const *s)
 {
-	std::cout << s << std::endl;
+	char msg_yy_error[4096];
+	snprintf(msg_yy_error, 4096, "%s(%d,%d): %s", m_inputstream_filename_stack.back().c_str(), line, column, s);
+	std::cout << msg_yy_error << std::endl;
 }
 
 void *MDLFrontend::Callback_Malloc(size_t size)

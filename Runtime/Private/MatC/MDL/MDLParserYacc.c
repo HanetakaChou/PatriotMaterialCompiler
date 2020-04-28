@@ -155,10 +155,11 @@ int YYTOKEN_INTEGER_LITERAL = INTEGER_LITERAL;
 int YYTOKEN_FRACT_LITERAL = FRACT_LITERAL;
 int YYTOKEN_FLOATING_LITERAL = FLOATING_LITERAL;
 int YYTOKEN_DOUBLE_LITERAL = DOUBLE_LITERAL;
+int YYTOKEN_PSEUDO_LEX_ERROR = PSEUDO_LEX_ERROR;
 int YYTOKEN_EOF = YYEOF;
 
 static void _static_assert_mdl_yy_parser_(void)
 {
     char _static_assert_yyeof_[((YYEOF == 0) ? 1 : -1)];
-	((void)_static_assert_yyeof_);
+    ((void)_static_assert_yyeof_);
 }

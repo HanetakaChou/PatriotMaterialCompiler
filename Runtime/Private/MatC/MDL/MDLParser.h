@@ -176,7 +176,8 @@ extern int YYTOKEN_DOUBLE_LITERAL;
 extern "C"
 {
 #endif
-   extern int YYTOKEN_EOF;
+    extern int YYTOKEN_PSEUDO_LEX_ERROR;
+    extern int YYTOKEN_EOF;
 #ifdef __cplusplus
 }
 #endif

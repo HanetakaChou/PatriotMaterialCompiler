@@ -262,7 +262,7 @@ export checker_value checker(float2 uv, float roughness, float anisotropy)
         val.weight = 1.0f;
     }
     return val;
-}
+} 
 
 // a material combining a diffuse, glossy, and specular
 export material example_df(

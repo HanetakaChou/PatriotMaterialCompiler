@@ -5,17 +5,17 @@
 #include <assert.h>
 
 #if defined(_MSC_VER)
-extern __declspec(noreturn) void mdl_ll_fatal_error(char const *msg, void *pUserData);
+extern __declspec(noreturn) void mdl_ll_fatal_error(int line, int column, char const *msg, void *pUserData);
 #elif defined(__GNUC__)
-extern __attribute__((__noreturn__)) void mdl_ll_fatal_error(char const *msg, void *pUserData);
+extern __attribute__((__noreturn__)) void mdl_ll_fatal_error(int line, int column, char const *msg, void *pUserData);
 #else
 #error Unknown Compiler //未知的编译器
 #endif
 
-#define YY_FATAL_ERROR(msg)                                  \
-    {                                                        \
-        struct yyguts_t *yyg = (struct yyguts_t *)yyscanner; \
-        (mdl_ll_fatal_error(msg, (yyextra)));                \
+#define YY_FATAL_ERROR(msg)                                           \
+    {                                                                 \
+        struct yyguts_t *yyg = (struct yyguts_t *)yyscanner;          \
+        (mdl_ll_fatal_error((yylineno), (yycolumn), msg, (yyextra))); \
     }
 
 extern ptrdiff_t mdl_ll_stream_read(void *pUserData, void *pUserStream, void *buf, size_t size);
@@ -49,7 +49,7 @@ static void mdl_ll_test(char *const text, int leng);
         llocp->last_line = (yylineno);                \
         llocp->first_column = (yycolumn);             \
         llocp->last_column = ((yycolumn) + (yyleng)); \
-        (yycolumn) += (yyleng);                         \
+        (yycolumn) += (yyleng);                       \
     }
 
 #include "MDLParser.h"
@@ -61,7 +61,7 @@ static void _static_assert_mdl_ll_lexer_(void)
     char _static_assert_yy_size_t_[((sizeof(yy_size_t) == sizeof(size_t)) ? 1 : -1)];
     char _static_assert_yyscan_t_[((sizeof(yyscan_t) == sizeof(void *)) ? 1 : -1)];
     char _static_assert_YY_NULL_[((YY_NULL == 0) ? 1 : -1)];
-	((void)_static_assert_yy_size_t_);
-	((void)_static_assert_yyscan_t_);
-	((void)_static_assert_YY_NULL_);
+    ((void)_static_assert_yy_size_t_);
+    ((void)_static_assert_yyscan_t_);
+    ((void)_static_assert_YY_NULL_);
 }
