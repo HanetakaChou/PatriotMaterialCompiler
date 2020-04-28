@@ -7,7 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PTMatC", "PTMatC.vcxproj", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PTMatC-Test", "PTMatC-Test.vcxproj", "{6FFB71A1-889F-4AF2-950D-150074209A6E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LLVM-8", "LLVM-8.vcxproj", "{249FC6D0-73F8-4DD0-9BA1-8C5B5A92553B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LLVM", "LLVM.vcxproj", "{249FC6D0-73F8-4DD0-9BA1-8C5B5A92553B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

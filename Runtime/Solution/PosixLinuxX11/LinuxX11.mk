@@ -6,7 +6,7 @@ LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := libLLVM-8
+LOCAL_MODULE := libLLVM
 
 ifeq (x86_64,$(TARGET_ARCH))
 LOCAL_SRC_FILES := $(LOCAL_PATH)/../../../ThirdParty/PosixLinuxX11/Bionic-Redistributable/lib64/libLLVM-8.so

@@ -10,7 +10,7 @@ extern "C" int mdl_yylex(union YYSTYPE *lvalp, struct YYLTYPE *llocp, class MDLF
         int yytoken = mdl_lllex(pScanner, lvalp, llocp);
         return yytoken;
     }
-    catch (const std::exception &e)
+    catch (const std::exception &)
     {
         return YYTOKEN_PSEUDO_LEX_ERROR;
     }

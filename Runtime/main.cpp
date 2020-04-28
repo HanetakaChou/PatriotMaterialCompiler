@@ -32,26 +32,32 @@ int main()
 	PT_MatC_MDLFrontend_Run(
 		"/home/share/github/PatriotMaterialCompiler/tutorials.mdl",
 		[](char const *pFileName) -> MDLFrontend_InputStreamRef {
-			int fd = openat(AT_FDCWD, pFileName, O_RDONLY);
-			return reinterpret_cast<MDLFrontend_InputStreamRef>(static_cast<intptr_t>(fd));
-		},
+		int fd = openat(AT_FDCWD, pFileName, O_RDONLY);
+		return reinterpret_cast<MDLFrontend_InputStreamRef>(static_cast<intptr_t>(fd));
+	},
 		[](MDLFrontend_InputStreamRef InputStreamRef, void *buf, size_t count) -> ptrdiff_t {
-			ssize_t _res = read(static_cast<int>(reinterpret_cast<intptr_t>(InputStreamRef)), buf, count);
-			return _res;
-		},
+		ssize_t _res = read(static_cast<int>(reinterpret_cast<intptr_t>(InputStreamRef)), buf, count);
+		return _res;
+	},
 		[](MDLFrontend_InputStreamRef InputStreamRef) -> void {
-			close(static_cast<int>(reinterpret_cast<intptr_t>(InputStreamRef)));
-		});
+		close(static_cast<int>(reinterpret_cast<intptr_t>(InputStreamRef)));
+	});
 #elif defined(PTWIN32)
-	HANDLE hFile = CreateFileW(L"C:\\Users\\Administrator\\Documents\\github\\PatriotMaterialCompiler\\tutorials.mdl", FILE_READ_DATA, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-
 	PT_MatC_MDLFrontend_Run(
-		hFile,
-		[](void *pUserStream, void *buf, size_t count) -> ptrdiff_t {
-			DWORD _numberOfBytesRead;
-			BOOL _res = ReadFile(static_cast<HANDLE>(pUserStream), buf, count, &_numberOfBytesRead, NULL);
-			return ((_res != FALSE) ? _numberOfBytesRead : -1);
-		});
+		"C:\\Users\\Administrator\\Documents\\github\\PatriotMaterialCompiler\\tutorials.mdl",
+		[](char const *pFileName) -> MDLFrontend_InputStreamRef {
+		HANDLE hFile = CreateFileA(pFileName, FILE_READ_DATA, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+		return reinterpret_cast<MDLFrontend_InputStreamRef>(static_cast<void*>(hFile));
+	},
+		[](MDLFrontend_InputStreamRef InputStreamRef, void *buf, size_t count) -> ptrdiff_t {
+		DWORD _numberOfBytesRead;
+		BOOL _res = ReadFile(static_cast<HANDLE>(reinterpret_cast<void *>(InputStreamRef)), buf, count, &_numberOfBytesRead, NULL);
+		return ((_res != FALSE) ? _numberOfBytesRead : -1);
+	},
+		[](MDLFrontend_InputStreamRef InputStreamRef) -> void {
+		CloseHandle(static_cast<HANDLE>(reinterpret_cast<void *>(InputStreamRef)));
+	}
+	);
 #else
 #error Unknown Platform
 #endif
@@ -60,7 +66,6 @@ int main()
 	//MDLFrontend mdlfrontend;
 	//mdlfrontend.Compile();
 
-#if 0
 	LLVMContextRef llvm_context = LLVMContextCreate();
 
 	LLVMTypeRef llvm_type_float = LLVMFloatTypeInContext(llvm_context);
@@ -88,6 +93,7 @@ int main()
 
 	LLVMTypeRef llvm_type_matrix_ptr = LLVMPointerType(llvm_type_matrix, 0);
 
+#if 0
 	extern int osl_llvm_compiled_ops_size;
 	extern char osl_llvm_compiled_ops_block[];
 	LLVMMemoryBufferRef buf = LLVMCreateMemoryBufferWithMemoryRange(osl_llvm_compiled_ops_block, osl_llvm_compiled_ops_size, "llvm_ops", false);

@@ -4,6 +4,6 @@
     <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="LLVM-8.def" />
+    <None Include="LLVM.def" />
   </ItemGroup>
 </Project>
