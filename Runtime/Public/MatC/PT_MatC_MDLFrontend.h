@@ -6,9 +6,13 @@
 
 #include <stddef.h>
 
+typedef struct MDLFrontend_OpaqueInputStream *MDLFrontend_InputStreamRef;
+
 extern "C" PTMATCAPI void PTCALL PT_MatC_MDLFrontend_Run(
-	void *pUserStream, 
-	ptrdiff_t(PTPTR *pFn_UserStream_Read)(void *pUserStream, void *buf, size_t count)
+	char const *pInitialFileName,
+	MDLFrontend_InputStreamRef (PTPTR *pFn_CreateInputStream)(char const *pFileName), //For process #include
+	ptrdiff_t(PTPTR *pFn_InputStreamRead)(MDLFrontend_InputStreamRef InputStreamRef, void *buf, size_t count),
+	void (PTPTR *pFn_InputStreamDispose)(MDLFrontend_InputStreamRef InputStreamRef)
 );
 
 #endif

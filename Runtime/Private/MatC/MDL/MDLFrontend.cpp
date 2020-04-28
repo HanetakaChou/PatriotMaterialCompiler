@@ -7,33 +7,53 @@
 #include <assert.h>
 
 extern "C" PTMATCAPI void PTCALL PT_MatC_MDLFrontend_Run(
-	void *pUserStream,
-	ptrdiff_t(PTPTR *pFn_UserStream_Read)(void *, void *, size_t)
-)
+	char const *pInitialFileName,
+	MDLFrontend_InputStreamRef(PTPTR *pFn_CreateInputStream)(char const *pFileName), //For process #include
+	ptrdiff_t(PTPTR *pFn_InputStreamRead)(MDLFrontend_InputStreamRef InputStreamRef, void *buf, size_t count),
+	void(PTPTR *pFn_InputStreamDispose)(MDLFrontend_InputStreamRef InputStreamRef))
 {
-	MDLFrontend_InputStream _inputStream(pUserStream, pFn_UserStream_Read);
-
-	MDLFrontend mdlfrontend;
-	mdlfrontend.Run(&_inputStream);
+	MDLFrontend mdlfrontend(pFn_CreateInputStream, pFn_InputStreamRead, pFn_InputStreamDispose);
+	mdlfrontend.Run(pInitialFileName);
 }
 
 extern "C" int mdl_lllex_init_extra(class MDLFrontend *user_defined, struct llscan_t **scanner);
-extern "C" void mdl_llset_in(class MDLFrontend_InputStream *user_inputstream, struct llscan_t *scanner);
+extern "C" void mdl_llset_in(MDLFrontend_InputStreamRef user_inputstream, struct llscan_t *scanner);
 extern "C" int mdl_lllex_destroy(struct llscan_t *scanner);
 extern "C" int mdl_yyparse(class MDLFrontend *pUserData, struct llscan_t *pScanner);
 
-MDLFrontend::MDLFrontend()
+MDLFrontend::MDLFrontend(
+	MDLFrontend_InputStreamRef(PTPTR *pFn_CreateInputStream)(char const *pFileName), //For process #include
+	ptrdiff_t(PTPTR *pFn_InputStreamRead)(MDLFrontend_InputStreamRef InputStreamRef, void *buf, size_t count),
+	void(PTPTR *pFn_InputStreamDispose)(MDLFrontend_InputStreamRef InputStreamRef))
+	: m_pFn_CreateInputStream(pFn_CreateInputStream),
+	  m_pFn_InputStreamRead(pFn_InputStreamRead),
+	  m_pFn_InputStreamDispose(pFn_InputStreamDispose)
 {
-
 }
 
-void MDLFrontend::Run(MDLFrontend_InputStream *pInputStream)
+void MDLFrontend::Run(char const *pInitialFileName)
 {
 	struct llscan_t *scanner;
 	mdl_lllex_init_extra(this, &scanner);
-	mdl_llset_in(pInputStream, scanner);
+
+	MDLFrontend_InputStreamRef _InitialInputStream = m_pFn_CreateInputStream(pInitialFileName);
+	mdl_llset_in(_InitialInputStream, scanner);
+
 	mdl_yyparse(this, scanner);
+
+	m_pFn_InputStreamDispose(_InitialInputStream);
+
 	mdl_lllex_destroy(scanner);
+}
+
+ptrdiff_t MDLFrontend::Callback_InputStreamRead(MDLFrontend_InputStreamRef _InputStreamRef, void *buf, size_t count)
+{
+	return m_pFn_InputStreamRead(_InputStreamRef, buf, count);
+}
+
+int MDLFrontend::Callback_Wrap()
+{
+	return ((m_inputstream_stack.empty()) ? 1 : 0);
 }
 
 std::string *MDLFrontend::Callback_CreateString(char const *s)

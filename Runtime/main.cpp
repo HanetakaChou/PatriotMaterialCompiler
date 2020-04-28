@@ -5,14 +5,12 @@
 //#include <stdlib.h>
 
 #include <llvm-c/Core.h>
-#if 0
 #include <llvm-c/Transforms/PassManagerBuilder.h>
 #include <llvm-c/Transforms/IPO.h>
 #include <llvm-c/BitReader.h>
 #include <llvm-c/ExecutionEngine.h>
 
 #include <vector>
-#endif
 
 #if defined(PTPOSIX)
 #include <sys/types.h>
@@ -31,12 +29,18 @@ int main()
 {
 
 #if defined(PTPOSIX)
-	int fd = openat(AT_FDCWD, "/home/share/github/PatriotMaterialCompiler/tutorials.mdl", O_RDONLY);
 	PT_MatC_MDLFrontend_Run(
-		reinterpret_cast<void *>(static_cast<intptr_t>(fd)),
-		[](void *pUserStream, void *buf, size_t count) -> ptrdiff_t {
-			ssize_t _res = read(static_cast<int>(reinterpret_cast<intptr_t>(pUserStream)), buf, count);
+		"/home/share/github/PatriotMaterialCompiler/tutorials.mdl",
+		[](char const *pFileName) -> MDLFrontend_InputStreamRef {
+			int fd = openat(AT_FDCWD, pFileName, O_RDONLY);
+			return reinterpret_cast<MDLFrontend_InputStreamRef>(static_cast<intptr_t>(fd));
+		},
+		[](MDLFrontend_InputStreamRef InputStreamRef, void *buf, size_t count) -> ptrdiff_t {
+			ssize_t _res = read(static_cast<int>(reinterpret_cast<intptr_t>(InputStreamRef)), buf, count);
 			return _res;
+		},
+		[](MDLFrontend_InputStreamRef InputStreamRef) -> void {
+			close(static_cast<int>(reinterpret_cast<intptr_t>(InputStreamRef)));
 		});
 #elif defined(PTWIN32)
 	HANDLE hFile = CreateFileW(L"C:\\Users\\Administrator\\Documents\\github\\PatriotMaterialCompiler\\tutorials.mdl", FILE_READ_DATA, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);

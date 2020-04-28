@@ -2,18 +2,17 @@
 #include <stdexcept>
 extern "C" class MDLFrontend *mdl_llget_extra(struct llscan_t *yyscanner);
 
-extern "C" int mdl_ll_stream_read(void *, class MDLFrontend_InputStream *pUserStream, void *buf, size_t size)
+extern "C" int mdl_ll_stream_read(class MDLFrontend *pUserData, MDLFrontend_InputStreamRef _InputStreamRef, void *buf, size_t size)
 {
-	ptrdiff_t _res = pUserStream->Read(buf, size);
+	ptrdiff_t _res = pUserData->Callback_InputStreamRead(_InputStreamRef, buf, size);
 	return static_cast<int>(_res);
 }
 
 //https://westes.github.io/flex/manual/Generated-Scanner.html#Generated-Scanner
 extern "C" int mdl_llwrap(struct llscan_t *scanner)
 {
-	return 1;
+	return mdl_llget_extra(scanner)->Callback_Wrap();
 }
-
 
 #if defined(_MSC_VER)
 static inline __declspec(noreturn) void mdl_ll_fatal_error_cxx(char const *msg, class MDLFrontend *pUserData);
