@@ -1,3 +1,4 @@
+#include "MDLParser.h"
 #include "MDLFrontend.h"
 #include <stdexcept>
 extern "C" int mdl_lllex(struct llscan_t *scanner, union YYSTYPE *lvalp, struct YYLTYPE *llocp);
@@ -6,15 +7,13 @@ extern "C" int mdl_yylex(union YYSTYPE *lvalp, struct YYLTYPE *llocp, class MDLF
 {
     try
     {
-        //yyterminate return YY_NULL //YY_NULL == NULL == 0 //Scanner.c
-        //YYEOF == 0 //MDLParser.c
         int yytoken = mdl_lllex(pScanner, lvalp, llocp);
         return yytoken;
     }
     catch (const std::exception &e)
     {
 		pUserData->Callback_Error(e.what());
-		return 0; //YYEOF == 0 //MDLParser.c
+		return YYTOKEN_EOF;
     }
 }
 

@@ -172,4 +172,13 @@ extern int YYTOKEN_FLOATING_LITERAL;
 extern int YYTOKEN_DOUBLE_LITERAL;
 #endif
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+   extern int YYTOKEN_EOF;
+#ifdef __cplusplus
+}
+#endif
+
 #endif

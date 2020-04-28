@@ -1,7 +1,7 @@
 #ifndef _MDLFRONTEND_H_
 #define _MDLFRONTEND_H_ 1
 
-#include "../../../Public/MatC/PT_MatC_Frontend.h"
+#include "../../../Public/MatC/PT_MatC_MDLFrontend.h"
 
 #include <stddef.h>
 #include <string>

@@ -7171,6 +7171,7 @@ static yyconst flex_int32_t yy_rule_can_match_eol[148] =
 #line 1 "../../Private/MatC/MDL/MDLScanner.l"
 #define YY_NO_INPUT 1
 #define YY_NO_UNISTD_H 1
+/* https://westes.github.io/flex/manual/Start-Conditions.html#Start-Conditions */
 /* Ignore whitespace */
 /* string literal */
 /* Split */
@@ -7179,7 +7180,7 @@ static yyconst flex_int32_t yy_rule_can_match_eol[148] =
 /* Identifiers */
 /* Literal values */
 /* https://westes.github.io/flex/manual/Patterns.html#Patterns */
-#line 7183 "../../Private/MatC/MDL/MDLScannerLex.inl"
+#line 7184 "../../Private/MatC/MDL/MDLScannerLex.inl"
 
 #define INITIAL 0
 
@@ -7422,10 +7423,10 @@ YY_DECL
 		}
 
 	{
-#line 177 "../../Private/MatC/MDL/MDLScanner.l"
+#line 181 "../../Private/MatC/MDL/MDLScanner.l"
 
     
-#line 7429 "../../Private/MatC/MDL/MDLScannerLex.inl"
+#line 7430 "../../Private/MatC/MDL/MDLScannerLex.inl"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -7491,7 +7492,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 179 "../../Private/MatC/MDL/MDLScanner.l"
+#line 183 "../../Private/MatC/MDL/MDLScanner.l"
 {
     /* Single line comment */
     }  
@@ -7499,14 +7500,14 @@ YY_RULE_SETUP
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 183 "../../Private/MatC/MDL/MDLScanner.l"
+#line 187 "../../Private/MatC/MDL/MDLScanner.l"
 {
     /* Multiline comment */
     }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 187 "../../Private/MatC/MDL/MDLScanner.l"
+#line 191 "../../Private/MatC/MDL/MDLScanner.l"
 { 
     YY_FATAL_ERROR("Unterminated comment");
     }
@@ -7515,7 +7516,7 @@ YY_RULE_SETUP
 case 4:
 /* rule 4 can match eol */
 YY_RULE_SETUP
-#line 192 "../../Private/MatC/MDL/MDLScanner.l"
+#line 196 "../../Private/MatC/MDL/MDLScanner.l"
 {
     (yycolumn) = 0;
 }
@@ -7523,7 +7524,7 @@ YY_RULE_SETUP
 /* Ignore whitespace */
 case 5:
 YY_RULE_SETUP
-#line 197 "../../Private/MatC/MDL/MDLScanner.l"
+#line 201 "../../Private/MatC/MDL/MDLScanner.l"
 { 
     
     }
@@ -7531,21 +7532,21 @@ YY_RULE_SETUP
 /* string literal */
 case 6:
 YY_RULE_SETUP
-#line 202 "../../Private/MatC/MDL/MDLScanner.l"
+#line 206 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_STRING_LITERAL;
     }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 206 "../../Private/MatC/MDL/MDLScanner.l"
+#line 210 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_SEMICOLON;
     }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 210 "../../Private/MatC/MDL/MDLScanner.l"
+#line 214 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_COMMA;
     }
@@ -7553,392 +7554,392 @@ YY_RULE_SETUP
 /* keywords */
 case 9:
 YY_RULE_SETUP
-#line 215 "../../Private/MatC/MDL/MDLScanner.l"
+#line 219 "../../Private/MatC/MDL/MDLScanner.l"
 { 
     return YYTOKEN_MDL; 
     }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 219 "../../Private/MatC/MDL/MDLScanner.l"
+#line 223 "../../Private/MatC/MDL/MDLScanner.l"
 { 
     return YYTOKEN_IMPORT; 
     }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 223 "../../Private/MatC/MDL/MDLScanner.l"
+#line 227 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_USING;
     }    
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 227 "../../Private/MatC/MDL/MDLScanner.l"
+#line 231 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_MODULE;
     }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 231 "../../Private/MatC/MDL/MDLScanner.l"
+#line 235 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_EXPORT;
     }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 235 "../../Private/MatC/MDL/MDLScanner.l"
+#line 239 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_UNIFORM;
     }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 239 "../../Private/MatC/MDL/MDLScanner.l"
+#line 243 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_VARYING;
     }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 243 "../../Private/MatC/MDL/MDLScanner.l"
+#line 247 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_BOOL;
     }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 247 "../../Private/MatC/MDL/MDLScanner.l"
+#line 251 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_BOOL2;
     }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 251 "../../Private/MatC/MDL/MDLScanner.l"
+#line 255 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_BOOL3;
     }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 255 "../../Private/MatC/MDL/MDLScanner.l"
+#line 259 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_BOOL4;
     }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 259 "../../Private/MatC/MDL/MDLScanner.l"
+#line 263 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_INT;
     }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 264 "../../Private/MatC/MDL/MDLScanner.l"
+#line 268 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_INT2;
     }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 268 "../../Private/MatC/MDL/MDLScanner.l"
+#line 272 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_INT3;
     }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 272 "../../Private/MatC/MDL/MDLScanner.l"
+#line 276 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_INT4;
     }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 276 "../../Private/MatC/MDL/MDLScanner.l"
+#line 280 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FLOAT;
     }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 280 "../../Private/MatC/MDL/MDLScanner.l"
+#line 284 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FLOAT2;
     }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 284 "../../Private/MatC/MDL/MDLScanner.l"
+#line 288 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FLOAT3;
     }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 288 "../../Private/MatC/MDL/MDLScanner.l"
+#line 292 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FLOAT4;
     }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 292 "../../Private/MatC/MDL/MDLScanner.l"
+#line 296 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FLOAT2X2;
     }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 296 "../../Private/MatC/MDL/MDLScanner.l"
+#line 300 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FLOAT2X3;
     }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 300 "../../Private/MatC/MDL/MDLScanner.l"
+#line 304 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FLOAT2X4;
     }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 304 "../../Private/MatC/MDL/MDLScanner.l"
+#line 308 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FLOAT3X2;
     }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 308 "../../Private/MatC/MDL/MDLScanner.l"
+#line 312 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FLOAT3X3;
     }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 312 "../../Private/MatC/MDL/MDLScanner.l"
+#line 316 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FLOAT3X4;
     }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 316 "../../Private/MatC/MDL/MDLScanner.l"
+#line 320 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FLOAT4X2;
     }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 320 "../../Private/MatC/MDL/MDLScanner.l"
+#line 324 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FLOAT4X3;
     }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 324 "../../Private/MatC/MDL/MDLScanner.l"
+#line 328 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FLOAT4X4;
     }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 328 "../../Private/MatC/MDL/MDLScanner.l"
+#line 332 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOUBLE;
     }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 332 "../../Private/MatC/MDL/MDLScanner.l"
+#line 336 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOUBLE2;
     }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 336 "../../Private/MatC/MDL/MDLScanner.l"
+#line 340 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOUBLE3;
     }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 340 "../../Private/MatC/MDL/MDLScanner.l"
+#line 344 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOUBLE4;
     }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 344 "../../Private/MatC/MDL/MDLScanner.l"
+#line 348 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOUBLE2X2;
     }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 348 "../../Private/MatC/MDL/MDLScanner.l"
+#line 352 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOUBLE2X3;
     }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 352 "../../Private/MatC/MDL/MDLScanner.l"
+#line 356 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOUBLE2X4;
     }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 356 "../../Private/MatC/MDL/MDLScanner.l"
+#line 360 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOUBLE3X2;
     }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 360 "../../Private/MatC/MDL/MDLScanner.l"
+#line 364 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOUBLE3X3;
     }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 364 "../../Private/MatC/MDL/MDLScanner.l"
+#line 368 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOUBLE3X4;
     }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 368 "../../Private/MatC/MDL/MDLScanner.l"
+#line 372 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOUBLE4X2;
     }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 372 "../../Private/MatC/MDL/MDLScanner.l"
+#line 376 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOUBLE4X3;
     }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 376 "../../Private/MatC/MDL/MDLScanner.l"
+#line 380 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOUBLE4X4;
     }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 380 "../../Private/MatC/MDL/MDLScanner.l"
+#line 384 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_COLOR;
     }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 384 "../../Private/MatC/MDL/MDLScanner.l"
+#line 388 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_STRING;
     }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 388 "../../Private/MatC/MDL/MDLScanner.l"
+#line 392 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_SDF;
     }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 392 "../../Private/MatC/MDL/MDLScanner.l"
+#line 396 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_EDF;
     }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 396 "../../Private/MatC/MDL/MDLScanner.l"
+#line 400 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_VDF;
     }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 400 "../../Private/MatC/MDL/MDLScanner.l"
+#line 404 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_LIGHT_PROFILE;
     }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 404 "../../Private/MatC/MDL/MDLScanner.l"
+#line 408 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_MATERIAL;
     }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 408 "../../Private/MatC/MDL/MDLScanner.l"
+#line 412 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_MATERIAL_EMISSION;
     }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 412 "../../Private/MatC/MDL/MDLScanner.l"
+#line 416 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_MATERIAL_GEOMETRY;
     }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 416 "../../Private/MatC/MDL/MDLScanner.l"
+#line 420 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_MATERIAL_SURFACE;
     }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 420 "../../Private/MatC/MDL/MDLScanner.l"
+#line 424 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_MATERIAL_VOLUME;
     }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 424 "../../Private/MatC/MDL/MDLScanner.l"
+#line 428 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_TEXTURE_2D;
     }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 428 "../../Private/MatC/MDL/MDLScanner.l"
+#line 432 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_TEXTURE_3D;
     }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 432 "../../Private/MatC/MDL/MDLScanner.l"
+#line 436 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_TEXTURE_CUBE;
     }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 436 "../../Private/MatC/MDL/MDLScanner.l"
+#line 440 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_TEXTURE_PTEX;
     }
@@ -7946,7 +7947,7 @@ YY_RULE_SETUP
 /* MDL 1.1+ */
 case 65:
 YY_RULE_SETUP
-#line 441 "../../Private/MatC/MDL/MDLScanner.l"
+#line 445 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_BSDF_MEASUREMENT;
     }
@@ -7954,7 +7955,7 @@ YY_RULE_SETUP
 /* MDL 1.1+ */
 case 66:
 YY_RULE_SETUP
-#line 446 "../../Private/MatC/MDL/MDLScanner.l"
+#line 450 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_INTENSITY_MODE;
     }
@@ -7962,7 +7963,7 @@ YY_RULE_SETUP
 /* MDL 1.1+ */
 case 67:
 YY_RULE_SETUP
-#line 451 "../../Private/MatC/MDL/MDLScanner.l"
+#line 455 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_INTENSITY_RADIANT_EXITANCE;
     }
@@ -7970,7 +7971,7 @@ YY_RULE_SETUP
 /* MDL 1.1+ */
 case 68:
 YY_RULE_SETUP
-#line 456 "../../Private/MatC/MDL/MDLScanner.l"
+#line 460 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_INTENSITY_POWER;
     }
@@ -7978,154 +7979,154 @@ YY_RULE_SETUP
 /* MDL 1.5+ */
 case 69:
 YY_RULE_SETUP
-#line 461 "../../Private/MatC/MDL/MDLScanner.l"
+#line 465 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_HAIR_BSDF;
     }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 465 "../../Private/MatC/MDL/MDLScanner.l"
+#line 469 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_TRUE;
     }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 469 "../../Private/MatC/MDL/MDLScanner.l"
+#line 473 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FALSE;
     }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 473 "../../Private/MatC/MDL/MDLScanner.l"
+#line 477 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_LET;
     }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 477 "../../Private/MatC/MDL/MDLScanner.l"
+#line 481 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_IN;
     }
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 481 "../../Private/MatC/MDL/MDLScanner.l"
+#line 485 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_ANNOTATION;
     }
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 485 "../../Private/MatC/MDL/MDLScanner.l"
+#line 489 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_CONST;
     }
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 489 "../../Private/MatC/MDL/MDLScanner.l"
+#line 493 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_TYPEDEF;
     }
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 493 "../../Private/MatC/MDL/MDLScanner.l"
+#line 497 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_STRUCT;
     }
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 497 "../../Private/MatC/MDL/MDLScanner.l"
+#line 501 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_ENUM;
     }
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 501 "../../Private/MatC/MDL/MDLScanner.l"
+#line 505 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_IF;
     }
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 505 "../../Private/MatC/MDL/MDLScanner.l"
+#line 509 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_ELSE;
     }
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 509 "../../Private/MatC/MDL/MDLScanner.l"
+#line 513 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_SWITCH;
     }
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 513 "../../Private/MatC/MDL/MDLScanner.l"
+#line 517 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_CASE;
     }
 	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 517 "../../Private/MatC/MDL/MDLScanner.l"
+#line 521 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DEFAULT;
     }
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 521 "../../Private/MatC/MDL/MDLScanner.l"
+#line 525 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_WHILE;
     }
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 525 "../../Private/MatC/MDL/MDLScanner.l"
+#line 529 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DO;
     }
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 529 "../../Private/MatC/MDL/MDLScanner.l"
+#line 533 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_FOR;
     }
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 533 "../../Private/MatC/MDL/MDLScanner.l"
+#line 537 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_BREAK;
     }
 	YY_BREAK
 case 88:
 YY_RULE_SETUP
-#line 537 "../../Private/MatC/MDL/MDLScanner.l"
+#line 541 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_CONTINUE;
     }
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 541 "../../Private/MatC/MDL/MDLScanner.l"
+#line 545 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_RETURN;
     }
 	YY_BREAK
 case 90:
 YY_RULE_SETUP
-#line 545 "../../Private/MatC/MDL/MDLScanner.l"
+#line 549 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_CAST;
     }
@@ -8133,231 +8134,231 @@ YY_RULE_SETUP
 /* operators */
 case 91:
 YY_RULE_SETUP
-#line 550 "../../Private/MatC/MDL/MDLScanner.l"
+#line 554 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_ASSIGN_OP;
     }
 	YY_BREAK
 case 92:
 YY_RULE_SETUP
-#line 554 "../../Private/MatC/MDL/MDLScanner.l"
+#line 558 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_BITWISE_OR_ASSIGN_OP;
     }
 	YY_BREAK
 case 93:
 YY_RULE_SETUP
-#line 558 "../../Private/MatC/MDL/MDLScanner.l"
+#line 562 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_BITWISE_AND_ASSIGN_OP;
     }
 	YY_BREAK
 case 94:
 YY_RULE_SETUP
-#line 562 "../../Private/MatC/MDL/MDLScanner.l"
+#line 566 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_BITWISE_XOR_ASSIGN_OP;
     }
 	YY_BREAK
 case 95:
 YY_RULE_SETUP
-#line 566 "../../Private/MatC/MDL/MDLScanner.l"
+#line 570 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_SHIFT_LEFT_ASSIGN_OP;
     }
 	YY_BREAK
 case 96:
 YY_RULE_SETUP
-#line 570 "../../Private/MatC/MDL/MDLScanner.l"
+#line 574 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_SHIFT_RIGHT_ASSIGN_OP;
     }
 	YY_BREAK
 case 97:
 YY_RULE_SETUP
-#line 574 "../../Private/MatC/MDL/MDLScanner.l"
+#line 578 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_UNSIGNED_SHIFT_RIGHT_ASSIGN_OP;
     }
 	YY_BREAK
 case 98:
 YY_RULE_SETUP
-#line 578 "../../Private/MatC/MDL/MDLScanner.l"
+#line 582 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_MULTIPLY_ASSIGN_OP;
     }
 	YY_BREAK
 case 99:
 YY_RULE_SETUP
-#line 582 "../../Private/MatC/MDL/MDLScanner.l"
+#line 586 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DIVIDE_ASSIGN_OP;
     }
 	YY_BREAK
 case 100:
 YY_RULE_SETUP
-#line 586 "../../Private/MatC/MDL/MDLScanner.l"
+#line 590 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_MODULO_ASSIGN_OP;
     }
 	YY_BREAK
 case 101:
 YY_RULE_SETUP
-#line 590 "../../Private/MatC/MDL/MDLScanner.l"
+#line 594 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_PLUS_ASSIGN_OP;
     }
 	YY_BREAK
 case 102:
 YY_RULE_SETUP
-#line 594 "../../Private/MatC/MDL/MDLScanner.l"
+#line 598 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_MINUS_ASSIGN_OP;
     }
 	YY_BREAK
 case 103:
 YY_RULE_SETUP
-#line 598 "../../Private/MatC/MDL/MDLScanner.l"
+#line 602 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_CONDITIONAL_OP;    
     }
 	YY_BREAK
 case 104:
 YY_RULE_SETUP
-#line 602 "../../Private/MatC/MDL/MDLScanner.l"
+#line 606 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_LOGICAL_OR_OP;
     }
 	YY_BREAK
 case 105:
 YY_RULE_SETUP
-#line 606 "../../Private/MatC/MDL/MDLScanner.l"
+#line 610 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_LOGICAL_AND_OP;
     }
 	YY_BREAK
 case 106:
 YY_RULE_SETUP
-#line 610 "../../Private/MatC/MDL/MDLScanner.l"
+#line 614 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_BITWISE_OR_OP;
     }
 	YY_BREAK
 case 107:
 YY_RULE_SETUP
-#line 614 "../../Private/MatC/MDL/MDLScanner.l"
+#line 618 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_BITWISE_XOR_OP;
     }
 	YY_BREAK
 case 108:
 YY_RULE_SETUP
-#line 618 "../../Private/MatC/MDL/MDLScanner.l"
+#line 622 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_BITWISE_AND_OP;
     }
 	YY_BREAK
 case 109:
 YY_RULE_SETUP
-#line 622 "../../Private/MatC/MDL/MDLScanner.l"
+#line 626 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_EQUAL_OP;
     }
 	YY_BREAK
 case 110:
 YY_RULE_SETUP
-#line 626 "../../Private/MatC/MDL/MDLScanner.l"
+#line 630 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_NOT_EQUAL_OP;
     }
 	YY_BREAK
 case 111:
 YY_RULE_SETUP
-#line 630 "../../Private/MatC/MDL/MDLScanner.l"
+#line 634 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_LESS_OR_EQUAL_OP;
     }
 	YY_BREAK
 case 112:
 YY_RULE_SETUP
-#line 634 "../../Private/MatC/MDL/MDLScanner.l"
+#line 638 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_GREATER_OR_EQUAL_OP;
     }
 	YY_BREAK
 case 113:
 YY_RULE_SETUP
-#line 638 "../../Private/MatC/MDL/MDLScanner.l"
+#line 642 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_SHIFT_LEFT_OP;
     }
 	YY_BREAK
 case 114:
 YY_RULE_SETUP
-#line 642 "../../Private/MatC/MDL/MDLScanner.l"
+#line 646 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_SHIFT_RIGHT_OP;
     }
 	YY_BREAK
 case 115:
 YY_RULE_SETUP
-#line 646 "../../Private/MatC/MDL/MDLScanner.l"
+#line 650 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_UNSIGNED_SHIFT_RIGHT_OP;
     }
 	YY_BREAK
 case 116:
 YY_RULE_SETUP
-#line 650 "../../Private/MatC/MDL/MDLScanner.l"
+#line 654 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DIVIDE_OP;
     }
 	YY_BREAK
 case 117:
 YY_RULE_SETUP
-#line 654 "../../Private/MatC/MDL/MDLScanner.l"
+#line 658 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_MODULO_OP;
     }
 	YY_BREAK
 case 118:
 YY_RULE_SETUP
-#line 658 "../../Private/MatC/MDL/MDLScanner.l"
+#line 662 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_BITWISE_COMPLEMENT_OP;
     }
 	YY_BREAK
 case 119:
 YY_RULE_SETUP
-#line 662 "../../Private/MatC/MDL/MDLScanner.l"
+#line 666 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_LOGICAL_NOT_OP;
     }
 	YY_BREAK
 case 120:
 YY_RULE_SETUP
-#line 666 "../../Private/MatC/MDL/MDLScanner.l"
+#line 670 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_POSITIVE_OP;
     }
 	YY_BREAK
 case 121:
 YY_RULE_SETUP
-#line 670 "../../Private/MatC/MDL/MDLScanner.l"
+#line 674 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_NEGATIVE_OP;
     }
 	YY_BREAK
 case 122:
 YY_RULE_SETUP
-#line 674 "../../Private/MatC/MDL/MDLScanner.l"
+#line 678 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_INCREMENT_OP;
     }
 	YY_BREAK
 case 123:
 YY_RULE_SETUP
-#line 678 "../../Private/MatC/MDL/MDLScanner.l"
+#line 682 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DECREMENT_OP;
     }
@@ -8365,112 +8366,112 @@ YY_RULE_SETUP
 /* Identifiers */
 case 124:
 YY_RULE_SETUP
-#line 683 "../../Private/MatC/MDL/MDLScanner.l"
+#line 687 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOT;
 }
 	YY_BREAK
 case 125:
 YY_RULE_SETUP
-#line 687 "../../Private/MatC/MDL/MDLScanner.l"
+#line 691 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_DOTDOT;
 }
 	YY_BREAK
 case 126:
 YY_RULE_SETUP
-#line 691 "../../Private/MatC/MDL/MDLScanner.l"
+#line 695 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_SCOPE;
 }
 	YY_BREAK
 case 127:
 YY_RULE_SETUP
-#line 695 "../../Private/MatC/MDL/MDLScanner.l"
+#line 699 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_STAR;
 }
 	YY_BREAK
 case 128:
 YY_RULE_SETUP
-#line 699 "../../Private/MatC/MDL/MDLScanner.l"
+#line 703 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_COLON;
 }
 	YY_BREAK
 case 129:
 YY_RULE_SETUP
-#line 703 "../../Private/MatC/MDL/MDLScanner.l"
+#line 707 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_ANNOTATION_BLOCK_BEGIN;
 }
 	YY_BREAK
 case 130:
 YY_RULE_SETUP
-#line 707 "../../Private/MatC/MDL/MDLScanner.l"
+#line 711 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_ANNOTATION_BLOCK_END;
 }
 	YY_BREAK
 case 131:
 YY_RULE_SETUP
-#line 711 "../../Private/MatC/MDL/MDLScanner.l"
+#line 715 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_LEFT_PARENTHESIS;
 }
 	YY_BREAK
 case 132:
 YY_RULE_SETUP
-#line 715 "../../Private/MatC/MDL/MDLScanner.l"
+#line 719 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_RIGHT_PARENTHESIS;
 }
 	YY_BREAK
 case 133:
 YY_RULE_SETUP
-#line 719 "../../Private/MatC/MDL/MDLScanner.l"
+#line 723 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_LEFT_SQUARE_BRACKET;
 }
 	YY_BREAK
 case 134:
 YY_RULE_SETUP
-#line 723 "../../Private/MatC/MDL/MDLScanner.l"
+#line 727 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_RIGHT_SQUARE_BRACKET;
 }
 	YY_BREAK
 case 135:
 YY_RULE_SETUP
-#line 727 "../../Private/MatC/MDL/MDLScanner.l"
+#line 731 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_LEFT_ANGLE_BRACKET;
     }
 	YY_BREAK
 case 136:
 YY_RULE_SETUP
-#line 731 "../../Private/MatC/MDL/MDLScanner.l"
+#line 735 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_RIGHT_ANGLE_BRACKET;
     }
 	YY_BREAK
 case 137:
 YY_RULE_SETUP
-#line 735 "../../Private/MatC/MDL/MDLScanner.l"
+#line 739 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_LEFT_CURLY_BRACE;
     }
 	YY_BREAK
 case 138:
 YY_RULE_SETUP
-#line 739 "../../Private/MatC/MDL/MDLScanner.l"
+#line 743 "../../Private/MatC/MDL/MDLScanner.l"
 {
     return YYTOKEN_RIGHT_CURLY_BRACE;
     }
 	YY_BREAK
 case 139:
 YY_RULE_SETUP
-#line 743 "../../Private/MatC/MDL/MDLScanner.l"
+#line 747 "../../Private/MatC/MDL/MDLScanner.l"
 {
     lvalp->_string = MDLFrontend_CreateString(yyextra, yytext);
     return YYTOKEN_IDENT;
@@ -8479,7 +8480,7 @@ YY_RULE_SETUP
 /* Literal values */
 case 140:
 YY_RULE_SETUP
-#line 749 "../../Private/MatC/MDL/MDLScanner.l"
+#line 753 "../../Private/MatC/MDL/MDLScanner.l"
 { 
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 10);
@@ -8489,7 +8490,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 141:
 YY_RULE_SETUP
-#line 756 "../../Private/MatC/MDL/MDLScanner.l"
+#line 760 "../../Private/MatC/MDL/MDLScanner.l"
 { 
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 16);
@@ -8499,7 +8500,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 142:
 YY_RULE_SETUP
-#line 763 "../../Private/MatC/MDL/MDLScanner.l"
+#line 767 "../../Private/MatC/MDL/MDLScanner.l"
 { 
     char *endptr = NULL;
     lvalp->_INTEGER_LITERAL = strtol(yytext, &endptr, 8);
@@ -8509,7 +8510,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 143:
 YY_RULE_SETUP
-#line 770 "../../Private/MatC/MDL/MDLScanner.l"
+#line 774 "../../Private/MatC/MDL/MDLScanner.l"
 {
     char *endptr = NULL;
     lvalp->_FRACT_LITERAL.major = strtol(yytext, &endptr, 10);
@@ -8524,7 +8525,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 144:
 YY_RULE_SETUP
-#line 782 "../../Private/MatC/MDL/MDLScanner.l"
+#line 786 "../../Private/MatC/MDL/MDLScanner.l"
 {
     char *endptr = NULL;
     lvalp->_FLOATING_LITERAL = strtof(yytext, &endptr);
@@ -8534,7 +8535,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 145:
 YY_RULE_SETUP
-#line 789 "../../Private/MatC/MDL/MDLScanner.l"
+#line 793 "../../Private/MatC/MDL/MDLScanner.l"
 {
     char *endptr = NULL;
     lvalp->_DOUBLE_LITERAL = strtod(yytext, &endptr);
@@ -8545,7 +8546,7 @@ YY_RULE_SETUP
 /* catch-all rule for any other single characters */
 case 146:
 YY_RULE_SETUP
-#line 797 "../../Private/MatC/MDL/MDLScanner.l"
+#line 801 "../../Private/MatC/MDL/MDLScanner.l"
 { 
         char msg_fatal_error[4096];
         assert(((yyleng) == 1));
@@ -8553,14 +8554,18 @@ YY_RULE_SETUP
         YY_FATAL_ERROR(msg_fatal_error);
     }
 	YY_BREAK
+case YY_STATE_EOF(INITIAL):
+#line 808 "../../Private/MatC/MDL/MDLScanner.l"
+{
+    return YYTOKEN_EOF;
+    }
+	YY_BREAK
 case 147:
 YY_RULE_SETUP
-#line 803 "../../Private/MatC/MDL/MDLScanner.l"
+#line 812 "../../Private/MatC/MDL/MDLScanner.l"
 ECHO;
 	YY_BREAK
-#line 8562 "../../Private/MatC/MDL/MDLScannerLex.inl"
-case YY_STATE_EOF(INITIAL):
-	yyterminate();
+#line 8569 "../../Private/MatC/MDL/MDLScannerLex.inl"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -9661,6 +9666,6 @@ static int yy_flex_strlen (yyconst char * s , yyscan_t yyscanner)
 
 #define YYTABLES_NAME "yytables"
 
-#line 803 "../../Private/MatC/MDL/MDLScanner.l"
+#line 812 "../../Private/MatC/MDL/MDLScanner.l"
 
 

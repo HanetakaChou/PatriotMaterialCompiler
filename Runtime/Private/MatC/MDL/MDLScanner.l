@@ -12,6 +12,10 @@
 %option noyyrealloc
 %option yylineno
 
+
+    /* https://westes.github.io/flex/manual/Start-Conditions.html#Start-Conditions */
+
+
     /* Ignore whitespace */
 WHITE ([ \t\r](([ \t\r])*))
 
@@ -800,4 +804,9 @@ DOUBLE_LITERAL (({FLOATING_LITERAL_HELPER}[Dd])|({FRACT_LITERAL}({E}?)[Dd]))
         snprintf(msg_fatal_error, 4096, "Unexpect \'%c\' at line %d column %d", ((yytext)[0]), (yylineno), (yycolumn));
         YY_FATAL_ERROR(msg_fatal_error);
     }
+
+<INITIAL><<EOF>> {
+    return YYTOKEN_EOF;
+    }
+
 %%
