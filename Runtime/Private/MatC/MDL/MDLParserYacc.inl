@@ -69,7 +69,7 @@
 
 /* Copy the first part of user declarations.  */
 
-#line 73 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:339  */
+#line 73 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -410,14 +410,14 @@ int mdl_yyparse (void *pUserData, void *pScanner);
 
 /* Copy the second part of user declarations.  */
 
-#line 414 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:358  */
+#line 414 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:358  */
 /* Unqualified %code blocks.  */
 #line 13 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:359  */
 
     int yylex(union YYSTYPE *lvalp, YYLTYPE *llocp, void *pUserData, void *pScanner);
     void yyerror(YYLTYPE *llocp, void *pUserData, void *pScanner, const char *s);
 
-#line 421 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:359  */
+#line 421 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:359  */
 
 #ifdef short
 # undef short
@@ -3063,61 +3063,61 @@ yyreduce:
         case 2:
 #line 171 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
-#line 3067 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3067 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 3:
 #line 172 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
-#line 3073 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3073 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 4:
 #line 173 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
-#line 3079 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3079 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 5:
 #line 174 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
-#line 3085 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3085 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 6:
 #line 175 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
-#line 3091 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3091 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 7:
 #line 176 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
-#line 3097 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3097 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 8:
 #line 177 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
-#line 3103 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3103 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 9:
 #line 178 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._null) = NULL; }
-#line 3109 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3109 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 17:
 #line 191 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._decl) = NULL; }
-#line 3115 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3115 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 18:
 #line 192 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._decl) = NULL; }
-#line 3121 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3121 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 308:
@@ -3126,7 +3126,7 @@ yyreduce:
     MDLFrontend_HashVariableName(pUserData, (yyvsp[0]._string));
     MDLFrontend_DisposeString(pUserData, (yyvsp[0]._string));
 }
-#line 3130 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3130 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 338:
@@ -3135,7 +3135,7 @@ yyreduce:
     MDLFrontend_HashTypeName(pUserData, (yyvsp[0]._string));
     MDLFrontend_DisposeString(pUserData, (yyvsp[0]._string));
 }
-#line 3139 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3139 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 339:
@@ -3144,7 +3144,7 @@ yyreduce:
     (yyval._string) = MDLFrontend_StringAppend2(pUserData, MDLFrontend_CreateString(pUserData, "::"), (yyvsp[0]._string));
     MDLFrontend_DisposeString(pUserData, (yyvsp[0]._string));
 }
-#line 3148 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3148 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 340:
@@ -3152,7 +3152,7 @@ yyreduce:
     {
     (yyval._string) = (yyvsp[0]._string);
 }
-#line 3156 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3156 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 395:
@@ -3161,23 +3161,23 @@ yyreduce:
     (yyval._string) = MDLFrontend_StringAppend3(pUserData, (yyvsp[-2]._string), "::", (yyvsp[0]._string));
     MDLFrontend_DisposeString(pUserData, (yyvsp[0]._string));
     }
-#line 3165 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3165 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 396:
 #line 680 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._string) = (yyvsp[0]._string); }
-#line 3171 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3171 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
   case 397:
 #line 682 "../../Private/MatC/MDL/MDLParser.y" /* yacc.c:1646  */
     { (yyval._string) = (yyvsp[0]._string); }
-#line 3177 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3177 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
     break;
 
 
-#line 3181 "../../Private/MatC/MDL/MDLParser.inl" /* yacc.c:1646  */
+#line 3181 "../../Private/MatC/MDL/MDLParserYacc.inl" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

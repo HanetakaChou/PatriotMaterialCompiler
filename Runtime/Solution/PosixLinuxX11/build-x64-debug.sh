@@ -2,7 +2,7 @@
 
 cd "$(dirname "$(readlink -f "${0}")")"
 
-target_name="PTMatC.bundle"
+target_name="PTMatC-Test"
 target_name_lib1="libPTMatC.so"
 int_dir="obj/local/x86_64"
 out_dir="../../../Binary/x64/Debug"

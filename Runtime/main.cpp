@@ -14,25 +14,44 @@
 #include <vector>
 #endif
 
+#if defined(PTPOSIX)
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <fcntl.h>
+#elif defined(PTWIN32)
 #include <winsdkver.h>
 #define WIN32_LEAN_AND_MEAN 1
 #include <Windows.h>
+#else
+#error Unknown Platform
+#endif
 
 int main()
 {
 
-	LLVMContextRef llvm_context = LLVMContextCreate();
-
+#if defined(PTPOSIX)
+	int fd = openat(AT_FDCWD, "/home/share/github/PatriotMaterialCompiler/tutorials.mdl", O_RDONLY);
+	PT_MatC_MDLFrontend_Run(
+		reinterpret_cast<void *>(static_cast<intptr_t>(fd)),
+		[](void *pUserStream, void *buf, size_t count) -> ptrdiff_t {
+			ssize_t _res = read(static_cast<int>(reinterpret_cast<intptr_t>(pUserStream)), buf, count);
+			return _res;
+		});
+#elif defined(PTWIN32)
 	HANDLE hFile = CreateFileW(L"C:\\Users\\Administrator\\Documents\\github\\PatriotMaterialCompiler\\tutorials.mdl", FILE_READ_DATA, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
 	PT_MatC_MDLFrontend_Run(
 		hFile,
-		[](void *pUserStream, void *buf, size_t count)->ptrdiff_t {
-		DWORD _numberOfBytesRead;
-		BOOL _res = ReadFile(static_cast<HANDLE>(pUserStream), buf, count, &_numberOfBytesRead, NULL);
-		return ((_res != FALSE) ? _numberOfBytesRead : -1);
-	}
-	);
+		[](void *pUserStream, void *buf, size_t count) -> ptrdiff_t {
+			DWORD _numberOfBytesRead;
+			BOOL _res = ReadFile(static_cast<HANDLE>(pUserStream), buf, count, &_numberOfBytesRead, NULL);
+			return ((_res != FALSE) ? _numberOfBytesRead : -1);
+		});
+#else
+#error Unknown Platform
+#endif
+	//LLVMContextRef llvm_context = LLVMContextCreate();
 
 	//MDLFrontend mdlfrontend;
 	//mdlfrontend.Compile();

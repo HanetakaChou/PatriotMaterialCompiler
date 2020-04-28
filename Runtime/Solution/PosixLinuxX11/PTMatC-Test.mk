@@ -1,12 +1,13 @@
-# PTMatC.bundle
+# PTMatC-Test
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := PTMatC.bundle
+LOCAL_MODULE := PTMatC-Test
 
 LOCAL_SRC_FILES:= \
-	$(LOCAL_PATH)/../../Private/MatC/main.cpp \
-	$(LOCAL_PATH)/../../Private/MatC/llvm_ops.bc.cpp \
+	$(LOCAL_PATH)/../../main.cpp \
+
+#	$(LOCAL_PATH)/../../Private/MatC/llvm_ops.bc.cpp \
 
 LOCAL_CFLAGS += -fdiagnostics-format=msvc
 LOCAL_CFLAGS += -finput-charset=UTF-8 -fexec-charset=UTF-8

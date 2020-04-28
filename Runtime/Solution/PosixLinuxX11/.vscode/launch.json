@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/Runtime/Solution/PosixLinuxX11/obj/local/x86_64/PTMatC.bundle", //should set a.out in obj here instead of in libs
+            "program": "${workspaceFolder}/Runtime/Solution/PosixLinuxX11/obj/local/x86_64/PTMatC-Test", //should set a.out in obj here instead of in libs
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/Binary/x64/Debug",

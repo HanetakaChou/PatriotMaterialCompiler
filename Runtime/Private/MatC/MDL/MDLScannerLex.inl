@@ -1,6 +1,6 @@
-#line 2 "../../Private/MatC/MDL/MDLScanner.inl"
+#line 2 "../../Private/MatC/MDL/MDLScannerLex.inl"
 
-#line 4 "../../Private/MatC/MDL/MDLScanner.inl"
+#line 4 "../../Private/MatC/MDL/MDLScannerLex.inl"
 
 #define  YY_INT_ALIGNED short int
 
@@ -7179,7 +7179,7 @@ static yyconst flex_int32_t yy_rule_can_match_eol[148] =
 /* Identifiers */
 /* Literal values */
 /* https://westes.github.io/flex/manual/Patterns.html#Patterns */
-#line 7183 "../../Private/MatC/MDL/MDLScanner.inl"
+#line 7183 "../../Private/MatC/MDL/MDLScannerLex.inl"
 
 #define INITIAL 0
 
@@ -7425,7 +7425,7 @@ YY_DECL
 #line 177 "../../Private/MatC/MDL/MDLScanner.l"
 
     
-#line 7429 "../../Private/MatC/MDL/MDLScanner.inl"
+#line 7429 "../../Private/MatC/MDL/MDLScannerLex.inl"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -8558,7 +8558,7 @@ YY_RULE_SETUP
 #line 803 "../../Private/MatC/MDL/MDLScanner.l"
 ECHO;
 	YY_BREAK
-#line 8562 "../../Private/MatC/MDL/MDLScanner.inl"
+#line 8562 "../../Private/MatC/MDL/MDLScannerLex.inl"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 

@@ -18,6 +18,6 @@ endif
 
 include $(PREBUILT_SHARED_LIBRARY) # ndk-build will strip the so
 
-include $(LOCAL_PATH)/PTMatC.mk
+include $(LOCAL_PATH)/PTMatC-Test.mk
 
 include $(LOCAL_PATH)/libPTMatC.mk
