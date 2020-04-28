@@ -1,5 +1,5 @@
-#ifndef _PT_MATC_FRONTEND_H_
-#define _PT_MATC_FRONTEND_H_ 1
+#ifndef _PT_MATC_MDLFRONTEND_H_
+#define _PT_MATC_MDLFRONTEND_H_ 1
 
 #include "../PTCommon.h"
 #include "PT_MatC_Common.h"

@@ -2,7 +2,7 @@
 #include <stdexcept>
 extern "C" class MDLFrontend *mdl_llget_extra(struct llscan_t *yyscanner);
 
-extern "C" int mdl_ll_stream_read(void *pUserData, class MDLFrontend_InputStream *pUserStream, void *buf, size_t size)
+extern "C" int mdl_ll_stream_read(void *, class MDLFrontend_InputStream *pUserStream, void *buf, size_t size)
 {
 	ptrdiff_t _res = pUserStream->Read(buf, size);
 	return static_cast<int>(_res);
@@ -11,7 +11,6 @@ extern "C" int mdl_ll_stream_read(void *pUserData, class MDLFrontend_InputStream
 //https://westes.github.io/flex/manual/Generated-Scanner.html#Generated-Scanner
 extern "C" int mdl_llwrap(struct llscan_t *scanner)
 {
-	//void *user_defined = mdl_llget_extra(scanner);
 	return 1;
 }
 
